@@ -1,5 +1,5 @@
 # Programmazione-ad-oggetti-UniPD
 
-Raccolta di esercizi svolti dal prof. Francesco Ranzato 
+Raccolta di esercizi svolti dal prof. Ranzato 
 e dal sottoscritto nel corso dell'anno 2021/2022 di Programmazione ad Oggetti UniPD
 
