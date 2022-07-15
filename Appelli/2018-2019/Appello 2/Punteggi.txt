@@ -1,0 +1,2 @@
+Modellazione: 75% => 22,5
+Cosa stampa : 25% =>  7,5

@@ -1,0 +1,1823 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 10">
+<meta name=Originator content="Microsoft Word 10">
+<link rel=File-List
+href="Capitolo%206%20-%20bozza%20finale%20riveduta_file/filelist.xml">
+<link rel=Edit-Time-Data
+href="Capitolo%206%20-%20bozza%20finale%20riveduta_file/editdata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>6: Inizializzazione &amp; Pulizia</title>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="date"/>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="State"/>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="place"/>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Your User Name</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>cicardo giuseppe</o:LastAuthor>
+  <o:Revision>39</o:Revision>
+  <o:TotalTime>551</o:TotalTime>
+  <o:Created>2002-11-19T12:26:00Z</o:Created>
+  <o:LastSaved>2003-02-24T21:00:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>6172</o:Words>
+  <o:Characters>35187</o:Characters>
+  <o:Company>Your Organization Name</o:Company>
+  <o:Lines>293</o:Lines>
+  <o:Paragraphs>82</o:Paragraphs>
+  <o:CharactersWithSpaces>41277</o:CharactersWithSpaces>
+  <o:Version>10.4219</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:ActiveWritingStyle Lang="EN-GB" VendorID="64" DLLVersion="131078"
+   NLCheck="1">1</w:ActiveWritingStyle>
+  <w:ActiveWritingStyle Lang="IT" VendorID="3" DLLVersion="517" NLCheck="0">1</w:ActiveWritingStyle>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:HyphenationZone>14</w:HyphenationZone>
+  <w:Compatibility>
+   <w:ApplyBreakingRules/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if !mso]><object
+ classid="clsid:38481807-CA0E-42D2-BF39-B33AF135CC4D" id=ieooui></object>
+<style>
+st1\:*{behavior:url(#ieooui) }
+</style>
+<![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:536871559 0 0 0 415 0;}
+@font-face
+	{font-family:Georgia;
+	panose-1:2 4 5 2 5 4 5 2 3 3;
+	mso-font-charset:0;
+	mso-generic-font-family:roman;
+	mso-font-pitch:variable;
+	mso-font-signature:647 0 0 0 159 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+h1
+	{mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	mso-pagination:widow-orphan;
+	mso-outline-level:1;
+	font-size:24.0pt;
+	font-family:"Times New Roman";
+	font-weight:bold;}
+h2
+	{mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	mso-pagination:widow-orphan;
+	mso-outline-level:2;
+	font-size:18.0pt;
+	font-family:"Times New Roman";
+	font-weight:bold;}
+h3
+	{mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	mso-pagination:widow-orphan;
+	mso-outline-level:3;
+	font-size:13.5pt;
+	font-family:"Times New Roman";
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+p
+	{mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+pre
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+	font-size:10.0pt;
+	font-family:"Courier New";
+	mso-fareast-font-family:"Times New Roman";}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:70.85pt 2.0cm 2.0cm 2.0cm;
+	mso-header-margin:35.4pt;
+	mso-footer-margin:35.4pt;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:1475566529;
+	mso-list-template-ids:-575641106;}
+@list l1
+	{mso-list-id:1562252037;
+	mso-list-template-ids:859626880;}
+@list l1:level1
+	{mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l1:level2
+	{mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l1:level3
+	{mso-level-tab-stop:108.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l1:level4
+	{mso-level-tab-stop:144.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l1:level5
+	{mso-level-tab-stop:180.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l1:level6
+	{mso-level-tab-stop:216.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l1:level7
+	{mso-level-tab-stop:252.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l1:level8
+	{mso-level-tab-stop:288.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l1:level9
+	{mso-level-tab-stop:324.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Tabella normale";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";}
+</style>
+<![endif]-->
+</head>
+
+<body lang=IT link=blue vlink=blue style='tab-interval:35.4pt' bgcolor="#FFFFFF">
+<div class=Section1>
+  <p class=MsoNormal style='text-align:justify' align="center">&nbsp;</p>
+  <center>
+    <p align="CENTER"><img src="mindview-head.gif" width="750" height="96"></p>
+    <p align="CENTER"><font face="Verdana" size=2>[ </font><a href="README-HTML.txt"><u><font face="Verdana" size="2" color="#0000ff">Suggerimenti</font></u></a><font face="Verdana" size=2> 
+      ] [ </font><a href="http://www.mindview.net/CPPServices/SolutionGuide.html"><u><font face="Verdana" size=2 color="#0000ff">Soluzioni 
+      degli Esercizi</font></u></a><font face="Verdana" size=2>] [ </font><a href="http://www.mindview.net/ThinkingInCPP2e.html"><u><font face="Verdana" size=2 color="#0000ff">Volume 
+      2</font></u></a><font face="Verdana" size=2> ] [ </font><a href="http://www.mindview.net/MailingList.html"><u><font face="Verdana" size=2 color="#0000ff">Newsletter 
+      Gratuita</font></u></a><font face="Verdana" size=2> ] <br>
+      [ </font><a href="http://www.mindview.net/CPPServices/#PublicSeminars"><u><font face="Verdana" size=2 color="#0000ff">Seminari</font></u></a><font face="Verdana" size=2> 
+      ] [ </font><a href="http://www.mindview.net/CPPServices/#SeminarsOnCD"><u><font face="Verdana" size=2 color="#0000ff">Seminari 
+      su CD ROM</font></u></a><font face="Verdana" size=2> ] [ </font><a href="http://www.mindview.net/CPPServices/#ConsultingServices"><u><font face="Verdana" size="2" color="#0000ff">Consulenza</font></u></a><font face="Verdana" size=2>] 
+      </font></p>
+    <h2 align="CENTER"><font face="Verdana">Pensare in C++, seconda ed. Volume 
+      1</font></h2>
+    <h3 align="CENTER"><font face="Verdana">&copy;2000 by Bruce Eckel</font></h3>
+    <p align="CENTER"><font face="Verdana" size=2>[ </font><a href="Capitolo05.html"><u><font face="Verdana" size=2 color="#0000ff">Capitolo 
+      Precedente </font></u></a><font face="Verdana" size=2> ] [ </font><a href="Contents.html"><u><font face="Verdana" size=2 color="#0000ff">Indice 
+      Generale</font></u></a><font face="Verdana" size=2> ] [ </font><a href="DocIndex.html"><u><font face="Verdana" size=2 color="#0000ff">Indice 
+      Analitico </font></u></a><font face="Verdana" size=2> ] [ </font><a href="Capitolo07.html"><u><font face="Verdana" size=2 color="#0000ff">Prossimo 
+      Capitolo</font></u></a><font face="Verdana" size=2> ] </font></p>
+    <p align="CENTER"><font face="Georgia, Times New Roman, Times, serif">traduzione 
+      italiana e adattamento a cura di Giuseppe Cicardo</font></p>
+  </center>
+  <h1><a name="_Toc472654852"></a><a name=Heading224></a><span style='font-family:
+Verdana'>6: Inizializzazione &amp; Pulizia<o:p></o:p></span></h1>
+
+<p><span style='font-size:13.5pt;font-family:Verdana'>Nel Capitolo 4 si è
+migliorato significativamente l'uso delle librerie, riunendo tutti i <span
+class=GramE>componenti</span> sparsi di una tipica libreria C e incapsulandoli
+in una struttura (un tipo dati astratto, che da ora in poi sarà chiamato <i>classe</i>).</span>
+</p>
+
+<p><span style='font-family:Georgia'>In tal modo, non solo si fornisce un unico
+punto <span class=GramE>di </span>accesso a un dato componente di una libreria,
+ma si nascondono anche i nomi delle funzioni all'interno del nome della classe.
+Il capitolo 5 ha introdotto il concetto <span class=GramE>di </span>accesso
+controllato (protezione&nbsp; delle informazioni). Grazie ad <span class=GramE>esso</span>
+il progettista della classe ha un modo di stabilire dei chiari limiti nel
+determinare cosa può essere manipolato dal programmatore client e cosa invece è
+oltre il limite. Ciò significa che i meccanismi interni delle operazioni
+eseguibili dal nuovo tipo dati avvengono a discrezione del progettista della
+classe e sono sotto il suo controllo, mentre <span class=GramE>viene</span>
+reso chiaro ai programmatori client quali sono i membri a cui possono e
+dovrebbero prestare attenzione.</span></p>
+
+<p><span style='font-family:Georgia'>Insieme, incapsulamento e accesso controllato,
+<span class=GramE>semplificano</span> significativamente l'uso di una libreria.
+Essi forniscono <span class=GramE>un concetto di nuovo tipo dati</span> che è
+migliore, sotto diversi aspetti, di quello che esiste nel linguaggio C con i
+suoi tipi predefiniti. Il compilatore C++ può ora garantire il controllo di
+coerenza sul nuovo tipo dati, assicurando in tal modo un certo livello di
+sicurezza quando esso <span class=GramE>viene</span> utilizzato.</span></p>
+
+<p><span style='font-family:Georgia'>Quando si tratta di sicurezza, <span
+class=GramE>comunque</span>, il compilatore può fare molto di più di quanto non
+faccia il C. In questo e nei prossimi capitoli, saranno trattate <span
+class=GramE>ulteriori</span> caratteristiche che sono state ingegnerizzate nel
+C++, le quali fanno sì che i bugs del vostro programma saltino fuori e vi
+afferrino, a volte perfino prima di compilare il programma, o più solitamente
+sotto forma di errori o warnings del compilatore. Pertanto, vi abituerete
+presto all'insolito scenario di un programma C++ che, se compilato, spesso gira
+correttamente al primo colpo. </span></p>
+
+<p><span style='font-family:Georgia'>Due importanti fattori legati alla
+sicurezza del codice sono l'inizializzazione e la pulizia delle variabili. Una
+grossa fetta di bugs in &quot;C&quot; <span class=GramE>derivano</span> dal
+fatto che il programmatore dimentica di inizializzare o ripulire debitamente
+una variabile. Questo è specialmente vero nel caso di librerie &quot;C&quot;,
+in cui i programmatori client non sanno come inizializzare una <i
+style='mso-bidi-font-style:normal'>struct</i>, o addirittura non sanno neppure
+che devono farlo. (Le librerie spesso non includono una funzione <span
+class=GramE>di </span>inizializzazione, obbligando in tal modo il programmatore
+client a inizializzare le strutture &quot;manualmente&quot;). La pulizia è un
+genere di problema particolare, dato che i programmatori C non fanno fatica a
+scordarsi delle loro variabili una volta che hanno finito di usarle, così che
+spesso manca qualunque operazione di pulizia si renda necessaria per le
+strutture delle librerie. </span></p>
+
+<p><span style='font-family:Georgia'>In C++, il concetto <span class=GramE>di </span>inizializzazione
+e pulizia è essenziale per un semplice utilizzo delle librerie e per eliminare
+molti bugs subdoli che vengono inseriti quando il programmatore client
+dimentica di eseguire tali operazioni. Questo capitolo prende in esame le
+proprietà del C++ che aiutano a garantire le appropriate operazioni <span
+class=GramE>di </span>inizializzazione e pulizia di una variabile.<a
+name="_Toc312373853"></a><a name="_Toc472654853"></a><o:p></o:p></span></p>
+
+<p><o:p>&nbsp;</o:p></p>
+
+<h2><a name=Heading225></a><span style='font-family:Verdana'>Inizializzazione
+garantita dal <span class=GramE>costruttore</span><o:p></o:p></span></h2>
+
+<p><span style='font-family:Georgia'>Sia la classe <b>Stash</b> che <b>Stack</b>
+definite in precedenza <span class=GramE>hanno</span> una funzione denominata <b>initialize(&nbsp;)</b>,
+il cui nome stesso suggerisce che dovrebbe essere richiamata prima di usare
+l'oggetto in qualsiasi altro modo. Purtroppo, ciò implica che sia il
+programmatore client ad assicurare la dovuta inizializzazione. I programmatori
+client tendono a trascurare dettagli come l'inizializzazione mentre caricano a
+testa bassa con la fretta di risolvere il loro problema grazie alla vostra
+fantastica&nbsp;libreria. In C++ l'inizializzazione è troppo importante <span
+class=GramE>per essere</span> lasciata al programmatore client. Il progettista
+della classe può garantire che ogni oggetto <span class=GramE>venga</span>
+inizializzato fornendo una funzione speciale chiamata <i>costruttore</i>. Se
+una classe ha un costruttore, il compilatore richiamerà automaticamente il
+costruttore nel punto in cui un oggetto <span class=GramE>viene</span> creato,
+prima che il programmatore client possa mettergli le mani addosso. Il
+costruttore non è un'<span class=GramE>opzione</span> per il programmatore
+client. Esso <span class=GramE>viene</span> eseguito dal compilatore al momento
+in cui l'oggetto è definito.</span></p>
+
+<p><span style='font-family:Georgia'>La prossima sfida è il&nbsp; nome da
+assegnare a questa funzione speciale (il costruttore). Sorgono due problemi. Il
+primo è che qualunque nome si scelga può in teoria collidere con il nome che vi
+piacerebbe assegnare <span class=GramE>a</span> un'altra funzione membro della
+classe. Il secondo è che il compilatore, avendo la responsabilità di
+invocare&nbsp; tale funzione autonomamente, deve sempre sapere quale funzione
+richiamare. La soluzione scelta da Stroustrup sembra la più semplice e anche la
+più logica: il <a name=Index1292></a>costruttore ha lo <a name=Index1293></a>stesso
+nome della classe. <span class=GramE>Ed</span> è logico che&nbsp; tale funzione
+sia richiamata automaticamente all'inizializzazione.</span></p>
+
+<p><span style='font-family:Georgia'>Ecco una semplice classe con un
+costruttore:</span></p>
+
+<blockquote style='margin-top:5.0pt;margin-bottom:5.0pt'><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>class</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> X {<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>int</span></span> i;<o:p></o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>public</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>:<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span></span>X();<span style='mso-spacerun:yes'>  </span><span
+style='color:#009900'>// Costruttore</span></pre><pre>}; </pre></blockquote>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+class=GramE><span style='font-family:Georgia'>Adesso, quando si definisce un
+oggetto</span></span><span style='font-family:Georgia'>:&nbsp;</span></p>
+
+<blockquote style='margin-top:5.0pt;margin-bottom:5.0pt'><pre><span
+class=GramE><span style='color:blue'>void</span></span> f() {</pre><pre><span style='mso-spacerun:yes'>  </span>X a;</pre><pre><span style='mso-spacerun:yes'>  </span><span
+style='color:#009900'>// ...</span></pre><pre>} </pre></blockquote>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+class=GramE><span style='font-family:Georgia'>quello</span></span><span
+style='font-family:Georgia'> che accade è lo stesso che accadrebbe se <b>a</b>
+fosse un <b>int</b>: viene allocato spazio in memoria per contenere&nbsp;
+l'oggetto. Ma quando il programma raggiunge la riga di programma in cui <b>a</b><span
+style='mso-bidi-font-weight:bold'> <span class=GramE>viene</span> definito</span>,
+il costruttore viene richiamato automaticamente. Cioé, il compilatore inserisce
+silenziosamente la chiamata a <b>X::X()</b> per l'oggetto <span class=GramE><b>a</b>
+nel</span> punto in cui esso viene definito. Come per qualunque altra funzione
+membro della classe, il primo argomento (segreto) passato al costruttore è il
+puntatore <b>this</b> - l'indirizzo dell'oggetto <span class=GramE>per cui</span>
+viene&nbsp; richiamato. Nel caso del costruttore, <span class=GramE>comunque</span>,
+<b>this </b>sta puntando a un blocco di memoria non inizializzato, e sarà
+appunto compito del costruttore inizializzarlo dovutamente.</span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>Come qualsiasi funzione, il costruttore può avere
+degli argomenti, permettendo di specificare come creare un oggetto, dargli dei
+valori iniziali, e così via. Tali argomenti danno modo di garantire che tutte
+le parti dell'oggetto <span class=GramE>siano</span> inizializzate con valori
+appropriati. Ad esempio, se la classe <b>Tree</b> (albero) ha un costruttore
+con un solo argomento di tipo intero per stabilire l'altezza dell'albero, si
+potrà creare un oggetto di tipo Tree in questo modo:</span></p>
+
+<blockquote style='margin-top:5.0pt;margin-bottom:5.0pt'><pre>Tree t(12);<span style='mso-spacerun:yes'>  </span><span
+style='color:#009900'>// albero alto 12 piedi</span></pre></blockquote>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+class=GramE><span style='font-family:Georgia'>Se</span></span><span
+style='font-family:Georgia'> <b>Tree(int) </b>è l'unico costruttore, il
+compilatore non permetterà di creare oggetti in alcun altro modo. (Il prossimo
+capitolo parlerà di costruttori multipli e modi diversi di chiamare i
+costruttori).</span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>Questo è tutto sul costruttore. E' una funzione dal
+nome speciale, che <span class=GramE>viene</span> invocata automaticamente dal
+compilatore nel&nbsp; momento in cui ciascun oggetto viene creato. Nonostante
+la sua semplicità, ha un <span class=GramE>grande</span> valore, in quanto
+elimina una vasta gamma di problemi e rende più semplice leggere e scrivere il
+codice. Nel frammento di codice precedente, ad esempio, non si vede una
+chiamata esplicita a qualche funzione <b>initialize()</b>, concettualmente
+separata dalla definizione dell'oggetto. In C++, definizione e inizializzazione
+sono concetti unificati - non si può avere l'una senza l'altra.</span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>Sia il costruttore che il distruttore <span
+class=GramE>sono</span> un genere di funzioni molto insolito: non hanno un
+valore di ritorno<a name=Index1300></a><a name=Index1301></a>. Ciò è
+completamente diverso da un valore di ritorno <b>void</b>, in cui la funziona
+non ritorna niente, ma si ha sempre la possibilità di cambiarla perché ritorni
+qualcosa. I costruttori e i distruttori non ritornano niente, e non c'è
+alcun’altra possibilità. Portare un oggetto dentro e <span class=GramE>fuori
+dal</span> programma sono azioni speciali, come la nascita e la morte, e il
+compilatore invoca le funzioni autonomamente, per essere certo che avvengano
+sempre. <span class=GramE>Se</span> ci fosse un valore di ritorno, e si potesse
+scegliere il proprio, il compilatore dovrebbe in qualche modo sapere cosa
+farne, oppure il programmatore <span style='mso-bidi-font-style:italic'>client</span>
+dovrebbe richiamare esplicitamente i costruttori e i distruttori, il che
+eliminerebbe la loro protezione implicita.<a name="_Toc312373854"></a><a
+name="_Toc472654854"></a><o:p></o:p></span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><o:p>&nbsp;</o:p></p>
+
+<h2 style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><a
+name=Heading226></a><span style='font-family:Verdana'>Pulizia garantita dal
+distruttore<o:p></o:p></span></h2>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>Un programmatore C si sofferma spesso
+sull'importanza dell'inizializzazione, ma più raramente si preoccupa della
+pulizia. Dopo <span class=GramE>tutto, cosa</span> è necessario fare per
+ripulire un <b>int</b>? Basta scordarsene. Con le librerie <span class=GramE>comunque</span>,
+semplicemente &quot;lasciar perdere&quot; un oggetto una volta che si è
+adoperato non è così sicuro. Che dire se l'oggetto modifica qualche dispositivo
+hardware, o visualizza qualcosa sullo schermo, o alloca spazio in memoria <span
+class=GramE>sullo </span>heap? Se <span class=GramE>viene</span> semplicemente
+abbandonato, l'oggetto non raggiungerà mai il suo fine uscendo da questo mondo.
+In C++, la pulizia è importante quanto l'inizializzazione e <span class=GramE>viene</span>
+quindi garantita dal distruttore.</span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>La sintassi per il distruttore è simile a quella
+del costruttore: la funzione ha lo stesso&nbsp; nome della classe. Tuttavia, il
+distruttore si distingue dal costruttore per il prefisso ~ (carattere tilde).
+Inoltre, il distruttore non ha mai argomenti, <span class=GramE>dato che</span>
+la distruzione non necessita mai di alcuna opzione. Ecco la dichiarazione per
+il distruttore:</span></p>
+
+<blockquote style='margin-top:5.0pt;margin-bottom:5.0pt'><pre><span
+class=GramE><span style='color:blue'>class</span></span> Y {</pre><pre><span
+style='color:blue'>public</span>:</pre><pre><span style='mso-spacerun:yes'>  </span>~Y();</pre><pre>}; </pre></blockquote>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>Il distruttore <span class=GramE>viene</span>
+richiamato automaticamente dal compilatore quando un oggetto esce dal suo campo
+di visibilità (<i>scope</i>). E' possibile capire dove <span class=GramE>viene</span>
+richiamato il costruttore dal punto di definizione di un oggetto, ma l'unica
+evidenza della chiamata al&nbsp; distruttore è la parentesi graffa chiusa del
+blocco che contiene l'oggetto. E il distruttore <span class=GramE>viene</span>
+sempre chiamato, perfino quando si usa <b>goto </b>per saltare fuori dal
+blocco. (<b>goto</b> esiste anche nel C++ per compatibilità retroattiva con il
+C, e per quelle volte in cui fa comodo.) Si dovrebbe notare che un <i>goto
+non-locale</i>, implementato tramite le funzioni di libreria C Standard <b>setjmp()</b>
+e <b>longjmp()</b>, non fa sì che i distruttori <span class=GramE>vengano</span>
+richiamati. (Questa è la specifica, anche se il compilatore usato si comporta
+diversamente. Affidarsi <span class=GramE>a</span> una caratteristica non
+riportata nella specifica significa che il codice generato non sarà portabile).</span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>Ecco un esempio che dimostra le proprietà dei
+costruttori e dei distruttori viste finora:</span> </p>
+
+<blockquote style='margin-top:5.0pt;margin-bottom:5.0pt'><pre><span
+style='color:#009900'>//: C06<span class=GramE>:</span>Constructor1.cpp</span></pre><pre><span
+style='color:#009900'>// Costruttori &amp; distruttori</span></pre><pre>#include &lt;iostream&gt;</pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>using</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> <span style='color:blue'>namespace</span> std;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>class</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> Tree {<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>int</span></span> height;<o:p></o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>public</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>:<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE>Tree(</span><span style='color:blue'>int</span> initialHeight);<span style='mso-spacerun:yes'>  </span><span
+style='color:#009900'>// Costruttore</span><o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span>~<span
+class=GramE>Tree(</span>);<span style='mso-spacerun:yes'>  </span><span
+style='mso-tab-count:1'>     </span><span style='color:#009900'>// Distruttore</span><o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>void</span></span> grow(<span
+style='color:blue'>int</span> years);<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>void</span></span> printsize();<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>};<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>Tree::<span class=GramE>Tree(</span><span
+style='color:blue'>int</span> initialHeight) {<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE>height</span> = initialHeight;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>}<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>Tree:<span class=GramE>:~</span>Tree() {<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE>cout</span> &lt;&lt; <span style='color:#004488'>&quot;all’interno </span></span><st1:State><st1:place><span
+  lang=EN-GB style='color:#004488;mso-ansi-language:EN-GB'>del</span></st1:place></st1:State><span
+lang=EN-GB style='color:#004488;mso-ansi-language:EN-GB'> distruttore di Tree&quot;</span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> &lt;&lt; endl;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE>printsize(</span>);<o:p></o:p></span></pre><pre><span lang=EN-GB
+style='mso-ansi-language:EN-GB'>}<o:p></o:p></span></pre><pre><span lang=EN-GB
+style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>void</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> Tree::grow(<span style='color:blue'>int</span> years) {<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE>height</span> += years;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>}<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>void</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> Tree::printsize() {<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE>cout</span> &lt;&lt; <span style='color:#004488'>&quot;L’altezza dell’albero è &quot;</span> &lt;&lt; height &lt;&lt; endl;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>}<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>int</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> main() {<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE>cout</span> &lt;&lt; <span style='color:#004488'>&quot;prima della parentesi graffa aperta&quot;</span> &lt;&lt; endl;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span>{<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>    </span>Tree <span
+class=GramE>t(</span>12);<o:p></o:p></span></pre><pre><span lang=EN-GB
+style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>    </span><span
+class=GramE>cout</span> &lt;&lt; <span style='color:#004488'>&quot;dopo la creazione dell’albero&quot;</span> &lt;&lt; endl;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>    </span><span
+class=GramE>t.printsize(</span>);<o:p></o:p></span></pre><pre><span lang=EN-GB
+style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>    </span><span
+class=GramE>t.grow(</span>4);<o:p></o:p></span></pre><pre><span lang=EN-GB
+style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>    </span><span
+class=GramE>cout</span> &lt;&lt; <span style='color:#004488'>&quot;prima della parentesi graffa chiusa&quot;</span> &lt;&lt; endl;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span>}<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE>cout</span> &lt;&lt; <span style='color:#004488'>&quot;dopo la parentesi graffa chiusa&quot;</span> &lt;&lt; endl;<o:p></o:p></span></pre><pre>} <span
+style='color:#009900'>///<span class=GramE>:</span>~</span></pre></blockquote>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>Ecco il risultato sul video:</span></p>
+
+<blockquote style='margin-top:5.0pt;margin-bottom:5.0pt'><pre><span
+class=GramE><span lang=EN-GB style='mso-ansi-language:EN-GB'>prima</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> della parentesi graffa aperta<o:p></o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='mso-ansi-language:EN-GB'>dopo</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> la creazione dell’albero<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>L’altezza dell’albero è 12<o:p></o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='mso-ansi-language:EN-GB'>dopo</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> la parentesi graffa chiusa<o:p></o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='mso-ansi-language:EN-GB'>all’interno</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> </span><st1:State><st1:place><span
+  lang=EN-GB style='mso-ansi-language:EN-GB'>del</span></st1:place></st1:State><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> distruttore di Tree<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>L’altezza dell’albero è 16<o:p></o:p></span></pre><pre><span
+class=GramE>dopo</span> la parentesi graffa chiusa</pre></blockquote>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>Si può vedere che il distruttore <span class=GramE>viene</span>
+richiamato automaticamente alla chiusura del blocco che racchiude l’oggetto
+(parentesi graffa chiusa)<a name="_Toc312373855"></a><a name="_Toc472654855"></a>.<o:p></o:p></span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><o:p>&nbsp;</o:p></p>
+
+<h2 style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><a
+name=Heading227></a><span style='font-family:Verdana'>Eliminazione del blocco
+di definizione<a name=Index1313></a><a name=Index1314></a><o:p></o:p></span></h2>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>In C, le variabili devono sempre essere definite
+all'inizio di un blocco, dopo la parentesi graffa aperta. Tale requisito non è
+insolito nei linguaggi di programmazione, e la ragione spesso addotta è che si
+tratta di &quot;<span class=GramE>buon</span> stile di programmazione&quot;. Su
+questo punto ho i miei sospetti. E' sempre sembrato scomodo ai programmatori,
+saltare avanti e indietro all'inizio del blocco ogni volta che serve una nuova
+variabile. Anche il codice <span class=GramE>risulta</span> più leggibile
+quando la variabile è definita vicino al punto in cui viene usata.</span><a
+name=Index1316></a></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+class=GramE><span style='font-family:Georgia'>Puo’ darsi che questi siano
+argomenti di carattere stilistico</span></span><span style='font-family:Georgia'>.
+In C++, <span class=GramE>comunque</span>, sorge un problema significativo
+nell'essere obbligati a definire tutti gli oggetti all'inizio di un blocco. Se
+esiste un costruttore, esso deve essere richiamato quando l'oggetto <span
+class=GramE>viene</span> creato. Ma se il costruttore vuole uno o più argomenti
+<span class=GramE>di </span>inizializzazione, come si può sapere se si avranno
+tali informazioni all'inizio di un blocco? Nella tipica situazione di
+programmazione, non si avranno. <span class=GramE>Poiché il C non ha alcun
+concetto di “privato”, tale separazione fra definizione e inizializzazione non
+è un problema</span>. Il C++ invece, garantisce che quando si crea un oggetto,
+esso <span class=GramE>venga</span> anche inizializzato simultaneamente. Questo
+assicura di non avere oggetti non inizializzati a spasso per il sistema. Il C
+non se ne dà pensiero; anzi, <i>incoraggia</i> tale pratica richiedendo di
+definire tutte le variabili all'inizio di un blocco, quando non necessariamente
+si hanno tutte le informazioni per l'inizializzazione</span><a name=fnB38> </a><a
+href="#fn38"><span style='mso-bookmark:fnB38'>[38]</span><span
+style='mso-bookmark:fnB38'></span></a><span style='mso-bookmark:fnB38'></span><span
+style='font-family:Georgia'>.</span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>In genere il C++ non permette di creare <span
+class=GramE>un oggetto prima</span> che si abbiano le informazioni di
+inizializzazione per il costruttore. Pertanto, il linguaggio non sarebbe
+attuabile se si dovessero definire tutte le variabili all'inizio di un blocco.
+Invece, lo stile del linguaggio sembra incoraggiare la definizione di un
+oggetto il più vicino possibile al punto in cui esso <span class=GramE>viene</span>
+usato. In C++, qualunque regola che si applica <span class=GramE>a</span> un
+&quot;oggetto&quot;, si riferisce automaticamente anche ad un oggetto di un
+tipo predefinito. Ciò implica che qualunque oggetto di una classe o variabile
+di un tipo predefinito <span class=GramE>possano</span> essere definiti ovunque
+all’interno di un blocco di codice. Implica anche che si può attendere di avere
+tutte le informazioni necessarie per una variabile prima di definirla, in modo
+da potere sempre definire e inizializzare allo stesso tempo:</span></p>
+
+<blockquote style='margin-top:5.0pt;margin-bottom:5.0pt'><pre><span
+style='color:#009900'>//: C06<span class=GramE>:</span>DefineInitialize.cpp</span></pre><pre><span
+style='color:#009900'>// Definire le variabili ovunque</span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>#include <span style='color:#004488'>&quot;<span
+class=GramE>..</span>/require.h&quot;</span><o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>#include &lt;iostream&gt;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>#include &lt;string&gt;<o:p></o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>using</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> <span style='color:blue'>namespace</span> std;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>class</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> G {<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>int</span></span> i;<o:p></o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>public</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>:<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE>G(</span><span style='color:blue'>int</span> ii);<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>};<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>G::<span class=GramE>G(</span><span
+style='color:blue'>int</span> ii) { i = ii; }<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>int</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> main() {<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE>cout</span> &lt;&lt; <span style='color:#004488'>&quot;valore di inizializzazione? </span></span><span
+style='color:#004488'>&quot;</span>;</pre><pre><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>int</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> retval = 0;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE>cin</span> &gt;&gt; retval;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE>require(</span>retval != 0);<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>int</span></span> y = retval + 3;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span>G g(y);<o:p></o:p></span></pre><pre>} <span
+style='color:#009900'>///<span class=GramE>:</span>~</span></pre></blockquote>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+class=GramE><span style='font-family:Georgia'>come</span></span><span
+style='font-family:Georgia'> si può notare, vengono eseguite delle istruzioni,
+dopodiché <b>retval</b> viene definita, inizializzata, e utilizzata per
+acquisire l'input dell'utente. Infine, <span class=GramE>vengono</span>
+definite <b>y</b> e <b>g</b>. Il C invece, non consente di definire una
+variabile se non all'inizio di un blocco.</span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>Generalmente le variabili dovrebbero essere
+definite il più vicino possibile al punto in cui <span class=GramE>vengono</span>
+utilizzate, ed essere sempre inizializzate al tempo stesso della definizione.
+(Per i tipi predefiniti, questo diventa un suggerimento stilistico, dato <span
+class=GramE>che per essi l'inizializzazione è facoltativa</span>). E' una questione
+di protezione del codice. Riducendo la durata in cui una variabile è
+disponibile all'interno di un blocco di codice, si riduce anche l'eventualità
+che se <span class=GramE>ne </span>abusi in qualche altro punto del blocco
+stesso. Questo inoltre, migliora la leggibilità del codice, <span class=GramE>dato
+che</span> il lettore non deve saltare continuamente all'inizio del blocco per
+scoprire il tipo di ogni variabile.<a name="_Toc312373856"></a><a
+name="_Toc472654856"></a><o:p></o:p></span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><o:p>&nbsp;</o:p></p>
+
+<h3 style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><a
+name=Heading228></a><span class=GramE><span style='font-family:Verdana'>cicli</span></span><span
+style='font-family:Verdana'> &quot;for&quot;<o:p></o:p></span></h3>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>In C++, si vedrà spesso il&nbsp;contatore per un
+ciclo <b>for</b> definito all'interno dell'espressione <b>for</b> stessa:</span>
+</p>
+
+<blockquote style='margin-top:5.0pt;margin-bottom:5.0pt'><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>for</span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>(</span></span><span lang=EN-GB
+style='color:blue;mso-ansi-language:EN-GB'>int</span><span lang=EN-GB
+style='mso-ansi-language:EN-GB'> j = 0; j &lt; 100; j++) {<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>    </span><span
+class=GramE>cout</span> &lt;&lt; <span style='color:#004488'>&quot;j = &quot;</span> &lt;&lt; j &lt;&lt; endl;<o:p></o:p></span></pre><pre>}</pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>for</span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>(</span></span><span lang=EN-GB
+style='color:blue;mso-ansi-language:EN-GB'>int</span><span lang=EN-GB
+style='mso-ansi-language:EN-GB'> i = 0; i &lt; 100; i++)<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> <span class=GramE>cout</span> &lt;&lt; <span
+style='color:#004488'>&quot;i = &quot;</span> &lt;&lt; i &lt;&lt; endl;<o:p></o:p></span></pre></blockquote>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>Le istruzioni qui sopra sono importanti casi
+speciali, che confondono i nuovi programmatori C++.</span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>Le variabili <b style='mso-bidi-font-weight:normal'>i</b>
+e <span class=GramE><b style='mso-bidi-font-weight:normal'>j</b> sono definite</span>
+direttamente dentro l'espressione for (non consentito in C). Sono quindi
+disponibili per l’uso nel ciclo for. È una sintassi molto comoda poiché il <span
+class=GramE>contesto</span> elimina qualsiasi dubbio sullo scopo di i e j, così
+da non essere costretti ad utilizzare nomi macchinosi come <b style='mso-bidi-font-weight:
+normal'>i_contatore_cicli </b>per chiarezza.</span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+class=GramE><span style='font-family:Georgia'>Comunque</span></span><span
+style='font-family:Georgia'>, può risultare un po' di confusione se ci si
+aspetta che la durata delle variabili <b style='mso-bidi-font-weight:normal'>i </b>e
+<b style='mso-bidi-font-weight:normal'>j </b>si estenda oltre il blocco del
+ciclo for. Non è così<a name=fnB39><span style='color:red'> </span></a><a
+href="#fn39"><span style='mso-bookmark:fnB39'>[39]</span><span
+style='mso-bookmark:fnB39'></span></a><span style='mso-bookmark:fnB39'></span><a
+name=Index1321></a><a name=Index1322></a><a name=Index1323></a><a
+name=Index1324></a>.</span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>Il capitolo 3 fa notare che anche le istruzioni <b>while</b>
+e <b>switch</b> permettono di definire oggetti nelle proprie espressioni di
+controllo, nonostante tale utilizzo sembri molto meno importante rispetto a
+quello col ciclo <b>for</b>.</span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>Si deve fare attenzione a variabili locali che
+nascondono variabili del blocco più esterno. Generalmente, utilizzare per una
+variabile annidata lo stesso nome di una variabile <span class=GramE>globale</span>
+al blocco genera confusione e induce a errori</span><a name=fnB40><span
+style='color:red'> </span></a><a href="#fn40"><span style='mso-bookmark:fnB40'>[40]</span><span
+style='mso-bookmark:fnB40'></span></a><span style='mso-bookmark:fnB40'></span><span
+style='font-family:Georgia'> .</span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+class=GramE><span style='font-family:Georgia'>Trovo</span></span><span
+style='font-family:Georgia'> che blocchi di dimensioni ridotte siano un indice
+di buona progettazione. <span class=GramE>Se</span> si hanno diverse pagine per
+un'unica funzione, probabilmente si sta tentando di fare troppe cose con tale
+funzione. Funzioni più frazionate sono non solo più utili, ma rendono anche più
+facile scovare i bugs.<a name="_Toc312373857"></a><a name="_Toc472654857"></a><o:p></o:p></span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><o:p>&nbsp;</o:p></p>
+
+<h3 style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><a
+name=Heading229></a><span style='font-family:Verdana'>Allocazione di memoria<o:p></o:p></span></h3>
+
+  <p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>Ora che le variabili possono essere definite ovunque 
+    all’interno di un blocco di codice, potrebbe sembrare che lo spazio in memoria 
+    per una variabile non possa essere allocato fino al momento in cui essa <span class=GramE>viene</span> 
+    definita. In realtà è più probabile <span
+class=GramE>che il</span> compilatore segua la pratica del C di allocare tutto 
+    lo spazio necessario alle variabili di un dato blocco, nel punto in cui esso 
+    inizia con la parentesi graffa aperta. Ma ciò è irrilevante, dato che il programmatore 
+    non potrà <span class=GramE>accedere</span> allo spazio di memoria (che poi 
+    è l'oggetto) finché esso non sia stato definito</span><a
+name=fnB41></a><a href="#fn41"><span style='mso-bookmark:fnB41'>[41]</span><span
+style='mso-bookmark:fnB41'></span></a><span style='mso-bookmark:fnB41'><span
+style='font-family:Georgia'>. Nonostante la memoria <span class=GramE>venga</span> 
+    allocata all'inizio del blocco di codice, la chiamata al costruttore non avviene 
+    fino alla riga di programma in cui l'oggetto è definito, dal momento che l'identificatore 
+    dell'oggetto non è disponibile fino ad allora. Il compilatore si assicura 
+    perfino che la definizione dell'oggetto (e quindi la chiamata al costruttore) 
+    non avvenga in un punto <span class=GramE>di </span>esecuzione condizionale, 
+    come&nbsp; all'interno di un'istruzione <b>switch</b> o in un punto che possa 
+    essere eluso da un <b>goto</b>. Attivando le istruzioni commentate nel seguente 
+    frammento di codice si genererà un errore o <span
+class=GramE>uno</span> warning:</span></span></p>
+
+<blockquote style='margin-top:5.0pt;margin-bottom:5.0pt'><pre><span
+style='color:#009900'>//: C06<span class=GramE>:</span>Nojump.cpp</span></pre><pre><span
+style='color:#009900'>// Non ammesso saltare oltre i <span class=GramE>costruttori</span></span></pre><pre><o:p>&nbsp;</o:p></pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>class</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> X {<o:p></o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>public</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>:<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE>X(</span>);<o:p></o:p></span></pre><pre><span lang=EN-GB
+style='mso-ansi-language:EN-GB'>};<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>X::<span class=GramE>X(</span>) {}<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>void</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> f(<span style='color:blue'>int</span> i) {<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span></span><span
+class=GramE><span style='color:blue'>if</span></span>(i &lt; 10) {</pre><pre><span style='mso-spacerun:yes'>   </span><span
+style='color:#009900'>//! <span class=GramE>goto</span> jump1; // Errore: il goto elude l’inizializzazione</span></pre><pre><span style='mso-spacerun:yes'>  </span>}</pre><pre><span style='mso-spacerun:yes'>  </span>X x1;<span style='mso-spacerun:yes'>  </span><span
+style='color:#009900'>// Costruttore richiamato qui</span></pre><pre> jump1:</pre><pre><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>switch</span></span>(i) {</pre><pre><span style='mso-spacerun:yes'>    </span><span
+class=GramE><span style='color:blue'>case</span></span> 1 :</pre><pre><span style='mso-spacerun:yes'>      </span>X x2;<span style='mso-spacerun:yes'>  </span><span
+style='color:#009900'>// Costruttore richiamato qui</span></pre><pre><span style='mso-spacerun:yes'>      </span><span
+style='color:blue'>break</span>;</pre><pre><span style='mso-spacerun:yes'>  </span><span
+style='color:#009900'>//! <span class=GramE>case</span> 2 : // Errore: case elude l’inizializzazione</span></pre><pre><span style='mso-spacerun:yes'>      </span>X x3;<span style='mso-spacerun:yes'>  </span><span
+style='color:#009900'>// Costruttore richiamato qui</span></pre><pre><span style='mso-spacerun:yes'>      </span><span
+style='color:blue'>break</span>;</pre><pre><span style='mso-spacerun:yes'>  </span>}</pre><pre>} </pre><pre><o:p>&nbsp;</o:p></pre><pre><span
+class=GramE><span style='color:blue'>int</span></span> main() {</pre><pre><span style='mso-spacerun:yes'>  </span><span
+class=GramE>f</span>(9);</pre><pre><span style='mso-spacerun:yes'>  </span><span
+class=GramE>f</span>(11);</pre><pre>}<span style='color:#009900'>///<span
+class=GramE>:</span>~ </span></pre></blockquote>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>In questa sequenza <span class=GramE>di </span>istruzioni,
+sia <b>goto</b> che <b>switch</b> eluderebbero potenzialmente una riga di
+programma in cui viene richiamato un costruttore. In tal caso, l’oggetto <span
+class=GramE>risulterebbe</span> accessibile benché il suo costruttore non sia
+stato invocato. Pertanto il compilatore genera un messaggio <span class=GramE>di
+</span>errore. Ancora una volta questo garantisce che un oggetto non <span
+class=GramE>possa</span> essere creato a meno che non venga anche
+inizializzato.</span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>Le allocazioni di memoria di cui si è parlato qui
+avvengono, naturalmente, sullo <i>stack</i>. La memoria <span class=GramE>viene</span>
+allocata dal compilatore spostando lo stack pointer verso il &quot;basso&quot;
+(termine relativo, che può indicare incremento o decremento dell'effettivo
+valore dello stack pointer, a seconda della macchina utilizzata). Gli oggetti
+possono anche essere allocati <span class=GramE>sullo </span><i>heap</i>
+tramite l'istruzione <b>new</b>, che verrà esplorata più a fondo nel Capitolo
+13.<a name="_Toc312373858"></a><a name="_Toc472654858"></a><o:p></o:p></span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'><o:p>&nbsp;</o:p></span></p>
+
+<h2 style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Verdana'>Stash con costruttori e distruttori<o:p></o:p></span></h2>
+
+  <p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>Gli esempi dei capitoli precedenti hanno funzioni 
+    ovvie che corrispondono ai costruttori e distruttori: <b style='mso-bidi-font-weight:
+normal'>initialize(&nbsp;)</b> e <b style='mso-bidi-font-weight:normal'>cleanup(&nbsp;)</b>. 
+    Ecco l’header file per la classe <b>Stash</b> che fa uso di costruttori e 
+    distruttori: </span><a name=Index1342></a></p>
+
+<pre><span style='color:#009900'>//: C06<span class=GramE>:</span>Stash2.h</span></pre><pre><span
+style='color:#009900'>// Con costruttori e distruttori</span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>#ifndef STASH2_H<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>#define STASH2_H<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></pre><pre><span
+class=GramE><span style='color:blue'>class</span></span> Stash {</pre><pre><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>int</span></span> size;<span style='mso-spacerun:yes'>      </span><span
+style='color:#009900'>// Dimensione di ogni blocco di memorizzazione</span></pre><pre><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>int</span></span> quantity;<span style='mso-spacerun:yes'>  </span><span
+style='color:#009900'>// Numero di blocchi di memorizzazione</span></pre><pre><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>int</span></span> next;<span style='mso-spacerun:yes'>      </span><span
+style='color:#009900'>// Prossimo blocco libero</span></pre><pre><span style='mso-spacerun:yes'>  </span><span
+style='color:#009900'>// Array di bytes allocato dinamicamente:</span></pre><pre><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>unsigned</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> <span style='color:blue'>char</span>* storage;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>void</span></span> inflate(<span
+style='color:blue'>int</span> increase);<o:p></o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>public</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>:<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE>Stash(</span><span style='color:blue'>int</span> size);<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span>~<span
+class=GramE>Stash(</span>);<o:p></o:p></span></pre><pre><span lang=EN-GB
+style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>int</span></span> add(<span
+style='color:blue'>void</span>* element);<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>void</span></span>* fetch(<span
+style='color:blue'>int</span> index);<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>int</span></span> count();<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>};<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>#endif <span style='color:#009900'>// STASH2_H ///:~</span><o:p></o:p></span></pre>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+class=GramE><span style='font-family:Georgia'>Le uniche funzioni membro</span></span><span
+style='font-family:Georgia'> ad essere cambiate sono <b>initialize(&nbsp;)</b>
+e <b>cleanup(&nbsp;)</b>, rimpiazzate con un costruttore e un distruttore:</span></p>
+
+<pre><span style='color:#009900'>//: C06<span class=GramE>:</span>Stash2.cpp {O}</span></pre><pre><span
+style='color:#009900'>// Costruttori e distruttori</span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>#include <span style='color:#004488'>&quot;Stash2.h&quot;</span><o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>#include <span style='color:#004488'>&quot;<span
+class=GramE>..</span>/require.h&quot;</span><o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>#include &lt;iostream&gt;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>#include &lt;cassert&gt;<o:p></o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>using</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> <span style='color:blue'>namespace</span> std;<o:p></o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>const</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> <span style='color:blue'>int</span> increment = 100;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>Stash::<span class=GramE>Stash(</span><span
+style='color:blue'>int</span> sz) {<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE>size</span> = sz;<o:p></o:p></span></pre><pre><span lang=EN-GB
+style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE>quantity</span> = 0;<o:p></o:p></span></pre><pre><span lang=EN-GB
+style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE>storage</span> = 0;<o:p></o:p></span></pre><pre><span lang=EN-GB
+style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE>next</span> = 0;<o:p></o:p></span></pre><pre><span lang=EN-GB
+style='mso-ansi-language:EN-GB'>}<o:p></o:p></span></pre><pre><span lang=EN-GB
+style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>int</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> Stash::add(<span style='color:blue'>void</span>* element) {<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span></span><span
+class=GramE><span style='color:blue'>if</span></span>(next &gt;= quantity) <span
+style='color:#009900'>// Abbastanza spazio rimasto?</span></pre><pre><span style='mso-spacerun:yes'>    </span><span
+class=GramE>inflate</span>(increment);</pre><pre><span style='mso-spacerun:yes'>  </span><span
+style='color:#009900'>// Copia elemento nello spazio di memorizzazione<span
+class=GramE>,</span></span></pre><pre><span style='mso-spacerun:yes'>  </span><span
+style='color:#009900'>// cominciando dal prossimo blocco libero:</span></pre><pre><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>int</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> startBytes = next * size;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>unsigned</span></span> <span
+style='color:blue'>char</span>* e = (<span style='color:blue'>unsigned</span> <span
+style='color:blue'>char</span>*)element;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>for</span>(</span><span style='color:blue'>int</span> i = 0; i &lt; size; i++)<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>    </span></span><span
+class=GramE>storage</span>[startBytes + i] = e[i];</pre><pre><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span lang=EN-GB style='mso-ansi-language:EN-GB'>next</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>++;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>return</span>(</span>next - 1); <span
+style='color:#009900'>// Numero indice</span><o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>}<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>void</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>* Stash::fetch(<span
+style='color:blue'>int</span> index) {<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE>require(</span>0 &lt;= index, <span style='color:#004488'>&quot;Stash::fetch (-)index&quot;</span>);<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span></span><span
+class=GramE><span style='color:blue'>if</span></span>(index &gt;= next)</pre><pre><span style='mso-spacerun:yes'>    </span><span
+class=GramE><span style='color:blue'>return</span></span> 0; <span
+style='color:#009900'>// Per indicare la fine</span></pre><pre><span style='mso-spacerun:yes'>  </span><span
+style='color:#009900'>// Restituisce il puntatore all’elemento desiderato:</span></pre><pre><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>return</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> &amp;(storage[index * size]);<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>}<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>int</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> Stash::count() {<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>return</span></span> next; <span
+style='color:#009900'>// Numero di elementi in CStash</span><o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>}<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>void</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> Stash::inflate(<span
+style='color:blue'>int</span> increase) {<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE>require(</span>increase &gt; 0, <o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>    </span><span
+style='color:#004488'>&quot;Stash::inflate zero or negative increase&quot;</span>);<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>int</span></span> newQuantity = quantity + increase;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>int</span></span> newBytes = newQuantity * size;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>int</span></span> oldBytes = quantity * size;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>unsigned</span></span> <span
+style='color:blue'>char</span>* b = <span style='color:blue'>new</span> <span
+style='color:blue'>unsigned</span> <span style='color:blue'>char</span>[newBytes];<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>for</span>(</span><span style='color:blue'>int</span> i = 0; i &lt; oldBytes; i++)<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>    </span></span><span
+class=GramE>b</span>[i] = storage[i]; <span style='color:#009900'>// Copia il vecchio nel nuovo</span></pre><pre><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>delete</span></span> [](storage); <span
+style='color:#009900'>// Vecchio spazio di memorizzazione</span></pre><pre><span style='mso-spacerun:yes'>  </span><span
+class=GramE>storage</span> = b; <span style='color:#009900'>// Punta alla nuova zona di memoria</span></pre><pre><span style='mso-spacerun:yes'>  </span><span
+class=GramE>quantity</span> = newQuantity;</pre><pre>}</pre><pre><o:p>&nbsp;</o:p></pre><pre><span
+class=GramE>Stash::~Stash() {</span></pre><pre><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>if</span></span>(storage != 0) {</pre><pre><span style='mso-spacerun:yes'>   </span><span
+class=GramE><span lang=EN-GB style='mso-ansi-language:EN-GB'>cout</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> &lt;&lt; <span style='color:#004488'>&quot;freeing storage&quot;</span> &lt;&lt; endl;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>   </span><span
+class=GramE><span style='color:blue'>delete</span></span> []storage;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span>}<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>} <span style='color:#009900'>///:~</span><o:p></o:p></span></pre>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>Come si può notare, per difendersi da errori di
+programmazione si fa uso di funzioni definite in <b style='mso-bidi-font-weight:
+normal'>require.h</b>, invece <span class=GramE>di </span><b>assert(&nbsp;)</b>.
+Le informazioni fornite da un <b style='mso-bidi-font-weight:normal'>assert()</b>
+fallito<span class=GramE> infatti</span>, non sono utili quanto quelle delle
+funzioni di <b>require.h</b> (come sarà mostrato più avanti nel libro).</span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>Poiché <b style='mso-bidi-font-weight:normal'>inflate()</b>
+è privata, l’unico modo in cui <b style='mso-bidi-font-weight:normal'>require()</b>
+può fallire è se una delle altre funzioni membro passa accidentalmente un
+valore non corretto <span class=GramE>a</span> <b style='mso-bidi-font-weight:
+normal'>inflate()</b>. <span class=GramE>Se</span> si è certi che questo non
+possa accadere, si potrebbe considerare di rimuovere la <b style='mso-bidi-font-weight:
+normal'>require()</b>, ma occorre tenere in mente che, finché la classe non è
+stabile, c’è sempre la possibilità di aggiungere del nuovo codice che introduca
+degli errori. Il costo di <b style='mso-bidi-font-weight:normal'>require()</b>
+è basso (e si potrebbe rimuovere automaticamente usando il preprocessore)
+mentre il valore della robustezza del codice è alto.</span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>Si noti come nel seguente programma di test la
+definizione <span class=GramE>di </span>oggetti <b style='mso-bidi-font-weight:
+normal'>Stash</b> appaia appena prima che essi servano, e come
+l’inizializzazione sia parte della definizione stessa, nella lista di argomenti
+del costruttore:<br style='mso-special-character:line-break'>
+<![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+<![endif]></span></p>
+
+<pre><span style='color:#009900'>//: C06<span class=GramE>:</span>Stash2Test.cpp</span></pre><pre><span
+style='color:#009900'>//{L} Stash2</span></pre><pre><span style='color:#009900'>// Costruttori e distruttori</span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>#include <span style='color:#004488'>&quot;Stash2.h&quot;</span><o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>#include <span style='color:#004488'>&quot;<span
+class=GramE>..</span>/require.h&quot;</span><o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>#include &lt;fstream&gt;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>#include &lt;iostream&gt;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>#include &lt;string&gt;<o:p></o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>using</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> <span style='color:blue'>namespace</span> std;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>int</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> main() {<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span>Stash <span
+class=GramE>intStash(</span><span style='color:blue'>sizeof</span>(<span
+style='color:blue'>int</span>));<o:p></o:p></span></pre><pre><span lang=EN-GB
+style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>for</span>(</span><span style='color:blue'>int</span> i = 0; i &lt; 100; i++)<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>    </span><span
+class=GramE>intStash.add(</span>&amp;i);<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>for</span>(</span><span style='color:blue'>int</span> j = 0; j &lt; intStash.count(); j++)<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>    </span><span
+class=GramE>cout</span> &lt;&lt; <span style='color:#004488'>&quot;intStash.fetch(&quot;</span> &lt;&lt; j &lt;&lt; <span
+style='color:#004488'>&quot;) = &quot;</span><o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>         </span>&lt;&lt; *(<span
+style='color:blue'>int</span>*<span class=GramE>)intStash.fetch</span>(j)<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>         </span>&lt;&lt; <span
+class=GramE>endl</span>;<o:p></o:p></span></pre><pre><span lang=EN-GB
+style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>const</span></span> <span
+style='color:blue'>int</span> bufsize = 80;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span>Stash <span
+class=GramE>stringStash(</span><span style='color:blue'>sizeof</span>(<span
+style='color:blue'>char</span>) * bufsize);<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE>ifstream</span> in(<span style='color:#004488'>&quot;Stash2Test.cpp&quot;</span>);<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE>assure(</span>in, <span style='color:#004488'>&quot; Stash2Test.cpp&quot;</span>);<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE>string</span> line;<o:p></o:p></span></pre><pre><span lang=EN-GB
+style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>while</span>(</span>getline(in, line))<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>    </span><span
+class=GramE>stringStash.add(</span>(<span style='color:blue'>char</span>*)line.c_str());<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>int</span></span> k = 0;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>char</span></span>* cp;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>while</span>(</span>(cp = (<span
+style='color:blue'>char</span>*)stringStash.fetch(k++))!=0)<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>    </span><span
+class=GramE>cout</span> &lt;&lt; <span style='color:#004488'>&quot;stringStash.fetch(&quot;</span> &lt;&lt; k &lt;&lt; <span
+style='color:#004488'>&quot;) = &quot;</span><o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>         </span>&lt;&lt; <span
+class=GramE>cp</span> &lt;&lt; endl;<o:p></o:p></span></pre><pre>} <span
+style='color:#009900'>///<span class=GramE>:</span>~</span></pre>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>Si noti anche come le chiamate a <b
+style='mso-bidi-font-weight:normal'>cleanup()</b> siano state eliminate, ma i
+distruttori <span class=GramE>vengano</span> sempre richiamati automaticamente
+quando <b style='mso-bidi-font-weight:normal'>intStash</b> e <b
+style='mso-bidi-font-weight:normal'>stringStash</b> escono dal campo di
+visibilità.</span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>Una cosa a cui prestare attenzione negli esempi con
+<b>Stash</b>: sono stato molto <span class=GramE>attento</span> a far uso
+soltanto di tipi predefiniti; cioé quelli senza distruttori. Se si tentasse di
+copiare oggetti di una classe dentro <b style='mso-bidi-font-weight:normal'>Stash</b>,
+ci <span class=GramE>si </span>imbatterebbe in ogni genere di problema e non
+funzionerebbe correttamente. La Libreria Standard del C++<span class=GramE> in
+effetti</span> può realizzare copie corrette di oggetti nei suoi contenitori (<i
+style='mso-bidi-font-style:normal'>containers</i>), ma si tratta di un processo
+piuttosto complesso e ingarbugliato. Il seguente esempio, con <b
+style='mso-bidi-font-weight:normal'>Stack</b>, farà uso dei puntatori per
+aggirare <span class=GramE>questo </span>ostacolo, e in un capitolo successivo
+anche la classe <b style='mso-bidi-font-weight:normal'>Stash</b> sarà
+modificata per usare i puntatori.<a name="_Toc312373859"></a><a
+name="_Toc472654859"></a><o:p></o:p></span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><o:p>&nbsp;</o:p></p>
+
+<h2 style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><a
+name=Heading231></a><span style='font-family:Verdana'>Stack con costruttori e
+distruttori<o:p></o:p></span></h2>
+
+  <p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>Reimplementando la lista concatenata (contenuta in 
+    <b>Stack</b>)<span
+style='mso-bidi-font-weight:bold'> facendo uso di costruttori e distruttori, si 
+    mostra come <span class=GramE>questi lavorino</span> elegantemente con le 
+    istruzioni <b>new </b></span>e <b>delete</b>. Ecco l’header file modificato: 
+    </span><a
+name=Index1347></a></p>
+
+<pre><span style='color:#009900'>//: C06<span class=GramE>:</span>Stack3.h</span></pre><pre><span
+style='color:#009900'>// Con costruttori/distruttori</span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>#ifndef STACK3_H<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>#define STACK3_H<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>class</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> Stack {<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>struct</span></span> Link {<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>    </span><span
+class=GramE><span style='color:blue'>void</span></span>* data;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>    </span>Link* next;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>    </span><span
+class=GramE>Link(</span><span style='color:blue'>void</span>* dat, Link* nxt);<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>    </span>~<span
+class=GramE>Link(</span>);<o:p></o:p></span></pre><pre><span lang=EN-GB
+style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span>}* head;<o:p></o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>public</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>:<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE>Stack(</span>);<o:p></o:p></span></pre><pre><span lang=EN-GB
+style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span>~<span
+class=GramE>Stack(</span>);<o:p></o:p></span></pre><pre><span lang=EN-GB
+style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>void</span></span> push(<span
+style='color:blue'>void</span>* dat);<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>void</span></span>* peek();<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>void</span></span>* pop();<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>};<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>#endif <span style='color:#009900'>// STACK3_H ///:~</span><o:p></o:p></span></pre>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>Non solo <b>Stack</b> ha un costruttore e il
+distruttore, ma <span class=GramE>ce l’</span>ha anche la classe annidata <b>Link</b>:</span></p>
+
+<pre><span style='color:#009900'>//: C06<span class=GramE>:</span>Stack3.cpp {O}</span></pre><pre><span
+style='color:#009900'>// Costruttori/Distruttori</span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>#include <span style='color:#004488'>&quot;Stack3.h&quot;</span><o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>#include <span style='color:#004488'>&quot;<span
+class=GramE>..</span>/require.h&quot;</span><o:p></o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>using</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> <span style='color:blue'>namespace</span> std;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>Stack:<span class=GramE>:Link</span>::Link(<span
+style='color:blue'>void</span>* dat, Link* nxt) {<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE>data</span> = dat;<o:p></o:p></span></pre><pre><span lang=EN-GB
+style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE>next</span> = nxt;<o:p></o:p></span></pre><pre><span lang=EN-GB
+style='mso-ansi-language:EN-GB'>}<o:p></o:p></span></pre><pre><span lang=EN-GB
+style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>Stack:<span class=GramE>:Link</span>::~Link() { }<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>Stack::<span class=GramE>Stack(</span>) { head = 0; }<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>void</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> Stack::push(<span style='color:
+blue'>void</span>* dat) {<o:p></o:p></span></pre><pre><span lang=EN-GB
+style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE>head</span> = <span style='color:blue'>new</span> Link(dat,head);<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>}<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>void</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>* Stack::peek() { <o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE>require(</span>head != 0, <span style='color:#004488'>&quot;Stack vuoto&quot;</span>);<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>return</span></span> head-&gt;data; <o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>}<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>void</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>* Stack::pop() {<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>if</span>(</span>head == 0) <span
+style='color:blue'>return</span> 0;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>void</span></span>* result = head-&gt;data;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span>Link* oldHead = head;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE>head</span> = head-&gt;next;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>delete</span></span> oldHead;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>return</span></span> result;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>}<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>Stack:<span class=GramE>:~</span>Stack() {<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE>require(</span>head == 0, <span style='color:#004488'>&quot;Stack non vuoto&quot;</span>);<o:p></o:p></span></pre><pre>} <span
+style='color:#009900'>///<span class=GramE>:</span>~</span></pre>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>Il costruttore <b>Link::Link(&nbsp;)</b>
+inizializza semplicemente <span class=GramE>i puntatori <b>data</b></span> e <b>next</b>,
+per cui nella funzione <b>Stack::push(&nbsp;)</b> la linea di codice:</span></p>
+
+<pre><span class=GramE><span lang=EN-GB style='mso-ansi-language:EN-GB'>head</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> = <span style='color:blue'>new</span> Link(dat,head);<o:p></o:p></span></pre>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+class=GramE><span style='font-family:Georgia'>non</span></span><span
+style='font-family:Georgia'> solo alloca un nuovo concatenamento (utilizzando
+la creazione dinamica di oggetti tramite la parola chiave <b style='mso-bidi-font-weight:
+normal'>new</b>, introdotta nel Capitolo 4), ma inizializza anche i suoi
+puntatori correttamente.</span></p>
+
+  <p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>Ci si potrebbe chiedere come mai il distruttore di 
+    <b
+style='mso-bidi-font-weight:normal'>Link</b> non fa nulla – in particolare, perché 
+    non chiama <b style='mso-bidi-font-weight:normal'>delete</b> <span
+class=GramE>sul puntatore <b style='mso-bidi-font-weight:normal'>data</b></span>? 
+    Ci sono due problemi. Nel Capitolo 4, in cui è stata introdotta la classe 
+    <b
+style='mso-bidi-font-weight:normal'>Stack</b>, si faceva notare che non si <span
+class=GramE>può</span> usare propriamente <b style='mso-bidi-font-weight:normal'>delete</b> 
+    con un puntatore <b style='mso-bidi-font-weight:normal'>void</b> se esso punta 
+    ad un oggetto (asserzione che sarà dimostrata nel Capitolo 13). Ma oltre a 
+    questo, se il distruttore di <b style='mso-bidi-font-weight:normal'>Link</b> 
+    eseguisse <b style='mso-bidi-font-weight:normal'>delete</b> <span class=GramE>sul 
+    puntatore <b style='mso-bidi-font-weight:normal'>data</b></span>, la funzione 
+    <b
+style='mso-bidi-font-weight:normal'>pop()</b> finirebbe col restituire un puntatore 
+    ad un oggetto non più esistente, il che sarebbe certamente un bug. Questa 
+    viene a volte definita come la questione dell’<i style='mso-bidi-font-style:
+normal'>appartenenza</i> (<i style='mso-bidi-font-style:normal'>ownership</i>): 
+    <b style='mso-bidi-font-weight:normal'>Link</b> e quindi <b style='mso-bidi-font-weight:
+normal'>Stack</b> detengono solo i puntatori, ma non sono responsabili della loro 
+    pulizia. Ciò significa che si deve stare molto attenti a sapere chi ne <i
+style='mso-bidi-font-style:normal'>è </i>il responsabile. Ad esempio, se non si 
+    richiama <b style='mso-bidi-font-weight:normal'>pop() </b>e <b
+style='mso-bidi-font-weight:normal'>delete</b> per tutti i puntatori contenuti 
+    in <b style='mso-bidi-font-weight:normal'>Stack</b>, essi non <span
+class=GramE>verranno</span> ripuliti automaticamente dal distruttore di <b
+style='mso-bidi-font-weight:normal'>Stack</b>. La faccenda può diventare spinosa 
+    e portare ai memory leaks (<i>falla di memoria</i>). Pertanto, sapere chi 
+    è responsabile della pulizia di un oggetto può fare la differenza fra un programma 
+    di successo ed uno pieno di bugs. <span
+class=GramE>Ecco perché <b>Stack::~Stack(&nbsp;)</b><span style='mso-bidi-font-weight:
+bold'> visualizza un messaggio d’errore se al momento della distruzione l’oggetto 
+    <b>Stack</b> non è vuoto</span></span><span style='mso-bidi-font-weight:
+bold'>.<b> </b></span></span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>Dal momento che l’allocazione e la pulizia degli
+oggetti<b style='mso-bidi-font-weight:normal'> Link </b>sono nascoste
+all’interno di <b style='mso-bidi-font-weight:normal'>Stack </b>– essendo parte
+dell’implementazione interna – tali <span class=GramE>operazioni</span> non risultano
+visibili nel programma di test. Tuttavia voi siete responsabili di ripulire i
+puntatori che <span class=GramE>vengono</span> restituiti da <b>pop(&nbsp;)</b>:</span></p>
+
+<pre><span lang=EN-GB style='color:#009900;mso-ansi-language:EN-GB'>//: C06:Stack3Test.cpp</span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p></o:p></span></pre><pre><span
+lang=EN-GB style='color:#009900;mso-ansi-language:EN-GB'>//{L} Stack3</span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p></o:p></span></pre><pre><span
+lang=EN-GB style='color:#009900;mso-ansi-language:EN-GB'>//{T} Stack3Test.cpp</span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p></o:p></span></pre><pre><span
+style='color:#009900'>// Costruttori/Distruttori</span></pre><pre>#include <span
+style='color:#004488'>&quot;Stack3.h&quot;</span></pre><pre><span lang=EN-GB
+style='mso-ansi-language:EN-GB'>#include <span style='color:#004488'>&quot;<span
+class=GramE>..</span>/require.h&quot;</span><o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>#include &lt;fstream&gt;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>#include &lt;iostream&gt;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>#include &lt;string&gt;<o:p></o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>using</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> <span style='color:blue'>namespace</span> std;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>int</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> main(<span style='color:blue'>int</span> argc, <span
+style='color:blue'>char</span>* argv[]) {<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span></span><span
+class=GramE>requireArgs</span>(argc, 1); <span style='color:#009900'>// l’argomento è il nome del file</span></pre><pre><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span lang=EN-GB style='mso-ansi-language:EN-GB'>ifstream</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> in(argv[1]);<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE>assure(</span>in, argv[1]);<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span></span>Stack textlines;</pre><pre><span style='mso-spacerun:yes'>  </span><span
+class=GramE>string</span> line;</pre><pre><span style='mso-spacerun:yes'>  </span><span
+style='color:#009900'>// Legge il file e memorizza le righe nell’oggetto stack:</span></pre><pre><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>while</span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>(</span></span><span lang=EN-GB
+style='mso-ansi-language:EN-GB'>getline(in, line))<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>    </span><span
+class=GramE>textlines.push(</span><span style='color:blue'>new</span> string(line));<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span></span><span
+style='color:#009900'>// Ripesca le righe dall’oggetto stack e le <span
+class=GramE>visualizza</span></span></pre><pre><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span lang=EN-GB style='mso-ansi-language:EN-GB'>string</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>* s;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>while</span>(</span>(s = (string*)textlines.pop()) != 0) {<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>    </span><span
+class=GramE>cout</span> &lt;&lt; *s &lt;&lt; endl;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>    </span><span
+class=GramE><span style='color:blue'>delete</span></span> s; <o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span></span>}</pre><pre>} <span
+style='color:#009900'>///<span class=GramE>:</span>~</span></pre>
+
+  <p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>In questo caso, tutte le righe contenute in <b>textlines</b> 
+    <span class=GramE>vengono</span> ripulite tramite delete, ma se non lo fossero, 
+    <b style='mso-bidi-font-weight:normal'>require() </b>genererebbe un messaggio 
+    d’errore indicante <i style='mso-bidi-font-style:normal'>memory leak</i>.</span><a name="_Toc312373860"></a><a name="_Toc472654860"></a> 
+  </p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><o:p>&nbsp;</o:p></p>
+
+<h2 style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><a
+name=Heading232></a><span style='font-family:Verdana'>Inizializzazione <span
+class=GramE>di </span>aggregati<o:p></o:p></span></h2>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>Un <i>aggregato </i>è proprio quello che suggerisce
+il nome: un insieme di cose raggruppate insieme. Questa definizione include
+aggregati di tipi misti, come strutture e classi. Un array invece è un
+aggregato <span class=GramE>di </span>elementi di un solo tipo.</span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>Inizializzare aggregati può essere tedioso e
+indurre facilmente ad errori. L’inizializzazione <span class=GramE>di </span>aggregati
+nel C++ è molto più sicura. <span class=GramE>Quando</span> si crea un oggetto
+che è un aggregato, tutto quello che si deve fare è un’assegnazione, dopodiché
+sarà il compilatore ad occuparsi dell’inizializzazione. Tale inizializzazione
+si presenta in diversi gusti, <span class=GramE>a seconda del</span> tipo di
+aggregato con cui si ha a che fare, ma in tutti i casi gli elementi per
+l’assegnazione devono essere racchiusi fra parentesi graffe. Per un array di
+tipi predefiniti questo è piuttosto semplice:</span></p>
+
+<pre><span class=GramE><span style='color:blue'>int</span></span> a[5] = { 1, 2, 3, 4, 5 };</pre>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+class=GramE><span style='font-family:Georgia'>Se</span></span><span
+style='font-family:Georgia'> si tenta di fornire più inizializzatori di quanti
+siano gli elementi dell’array, il compilatore genera un messaggio d’errore. <span
+class=GramE>Ma</span> cosa succede se si forniscono <i>meno</i>
+inizializzatori? Ad esempio:</span></p>
+
+<pre><span class=GramE><span style='color:blue'>int</span></span> b[6] = {0};</pre>
+
+  <p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>In questo caso il compilatore <span class=GramE>userà 
+    il primo inizializzatore per il primo elemento dell’array, dopodiché userà</span> 
+    zero per tutti gli altri elementi. Si noti che tale funzionamento non avviene 
+    se si definisce un array senza fornire una lista <span class=GramE>di </span>inizializzatori. 
+    L’espressione di cui sopra dunque è un modo conciso <span class=GramE>di </span>inizializzare 
+    un array a zero, senza usare un ciclo <b>for</b>, e senza quindi alcuna possibilità 
+    di commettere un errore di superamento dell'indice dell’array (off-by-one 
+    error) (a seconda del compilatore può anche essere più efficiente del ciclo 
+    <b>for</b>.)</span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>Un’altra scorciatoia per gli array è il <i>conteggio
+automatico</i>, con cui si lascia che sia il compilatore a determinare la
+dimensione dell’array in base al numero <span class=GramE>di </span>inizializzatori
+forniti:</span></p>
+
+<pre><span class=GramE><span style='color:blue'>int</span></span> c[] = { 1, 2, 3, 4 };</pre>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+class=GramE><span style='font-family:Georgia'>Se ora si decide di aggiungere un
+altro elemento all’array, basta aggiungere un inizializzatore</span></span><span
+style='font-family:Georgia'>. Se si riesce <span class=GramE>a</span> impostare
+il proprio codice in modo tale da doverlo modificare in un solo punto, si
+riducono le probabilità di commettere errori durante le modifiche. <span
+class=GramE>Ma</span> come si determina la dimensione dell’array? L’espressione
+<b>sizeof c / sizeof * c</b> (dimensione dell’intero array diviso per la
+dimensione del primo elemento) assolve il compito senza bisogno di essere
+modificata anche se <span class=GramE>dovesse</span> cambiare la dimensione
+dell’array</span><a name=fnB42> </a><a href="#fn42"><span style='mso-bookmark:
+fnB42'>[42]</span><span style='mso-bookmark:fnB42'></span></a><span
+style='mso-bookmark:fnB42'></span><span style='font-family:Georgia'>:</span></p>
+
+<pre><span class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:
+EN-GB'>for</span><span lang=EN-GB style='mso-ansi-language:EN-GB'>(</span></span><span
+lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>int</span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> i = 0; i &lt; <span
+style='color:blue'>sizeof</span> c / <span style='color:blue'>sizeof</span> *c; i++)<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> </span><span class=GramE>c</span>[i]++;</pre>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+class=GramE><span style='font-family:Georgia'>Poiché le strutture sono anche
+degli aggregati, esse possono essere inizializzate in maniera simile</span></span><span
+style='font-family:Georgia'>. Dato che in una <b>struct</b> stile C tutti i
+membri sono pubblici, essi possono essere assegnati direttamente:</span></p>
+
+<pre><span class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:
+EN-GB'>struct</span></span><span lang=EN-GB style='mso-ansi-language:EN-GB'> X {<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>int</span></span> i;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>float</span></span> f;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>char</span></span> c;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>};<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>X x1 = <span class=GramE>{ 1</span>, 2.2, 'c' };<o:p></o:p></span></pre>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>In caso si <span class=GramE>abbia un array di tali
+oggetti, questi possono</span> essere inizializzati utilizzando una coppia di
+parentesi graffe annidata per ciascun oggetto:</span></p>
+
+<pre>X x2[3] = { {1, 1.1,<span class=GramE> '</span>a'}, {2, 2.2, 'b'} };</pre>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>In questo caso, il terzo oggetto <span class=GramE>viene</span>
+inizializzato a zero.</span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+class=GramE><span style='font-family:Georgia'>Se</span></span><span
+style='font-family:Georgia'> qualche membro è privato (tipico per una classe
+C++ ben progettata), o anche se tutto è pubblico, ma c’è un costruttore, le
+cose sono diverse. Negli esempi di cui sopra, gli inizializzatori <span
+class=GramE>vengono</span> assegnati direttamente agli elementi dell’aggregato,
+ma i costruttori sono un mezzo per forzare l’inizializzazione attraverso
+un’interfaccia formale. In tal caso è necessario richiamare i costruttori per <span
+class=GramE>effettuare</span> l’inizializzazione. <span class=GramE>Quindi</span>
+se si ha una <b>struct</b> che assomiglia alla seguente:</span></p>
+
+<pre><span class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:
+EN-GB'>struct</span></span><span lang=EN-GB style='mso-ansi-language:EN-GB'> Y {<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>float</span></span> f;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>int</span></span> i;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span></span>Y(<span
+style='color:blue'>int</span> a);</pre><pre>}; </pre>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>E’ necessario indicare le chiamate ai costruttori.
+L’approccio migliore è quello esplicito, come segue:</span></p>
+
+<pre>Y y1[] = { Y(1), Y(2), Y(3) };</pre>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>Si ottengono tre oggetti e tre chiamate al
+costruttore. Ogni qualvolta si abbia un costruttore, sia che si tratti di una <b>struct
+</b>con tutti i membri <b>public </b>o di <span class=GramE>una <b>class </b>con
+dei membri <b>private</b></span>, tutte le inizializzazioni devono avvenire
+attraverso il costruttore, anche se si sta usando la forma per inizializzare
+aggregati.</span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>Ecco un secondo esempio che mostra un costruttore
+con più argomenti:</span></p>
+
+<pre><span style='color:#009900'>//: C06<span class=GramE>:</span>Multiarg.cpp</span></pre><pre><span
+style='color:#009900'>// Costruttore con più argomenti</span></pre><pre><span
+style='color:#009900'>// in caso <span class=GramE>di </span>inizializzazione di aggregati</span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>#include &lt;iostream&gt;<o:p></o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>using</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> <span style='color:blue'>namespace</span> std;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>class</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> Z {<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>int</span></span> i, j;<o:p></o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>public</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>:<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE>Z(</span><span style='color:blue'>int</span> ii, <span
+style='color:blue'>int</span> jj);<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>void</span></span> print();<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>};<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>Z::<span class=GramE>Z(</span><span
+style='color:blue'>int</span> ii, <span style='color:blue'>int</span> jj) {<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span></span><span
+class=GramE>i</span> = ii;</pre><pre><span style='mso-spacerun:yes'>  </span><span
+class=GramE>j</span> = jj;</pre><pre>}</pre><pre><o:p>&nbsp;</o:p></pre><pre><span
+class=GramE><span style='color:blue'>void</span></span> Z::print() {</pre><pre><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span lang=EN-GB style='mso-ansi-language:EN-GB'>cout</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> &lt;&lt; <span style='color:#004488'>&quot;i = &quot;</span> &lt;&lt; i &lt;&lt; <span
+style='color:#004488'>&quot;, j = &quot;</span> &lt;&lt; j &lt;&lt; endl;<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>}<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>int</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> main() {<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span>Z zz[] = { Z(1,2), Z(3,4), Z(5,6), Z(7,8) };<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>for</span>(</span><span style='color:blue'>int</span> i = 0; i &lt; <span
+style='color:blue'>sizeof</span> zz / <span style='color:blue'>sizeof</span> *zz; i++)<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>    </span></span><span
+class=GramE>zz</span>[i].print();</pre><pre>} <span style='color:#009900'>///<span
+class=GramE>:</span>~</span></pre>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>Sembra proprio che per ogni oggetto nell’array si
+abbia una chiamata esplicita al costruttore.</span><a name="_Toc312373861"></a><a
+name="_Toc472654861"></a></p>
+
+<h2 style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><a
+name=Heading233></a><span style='font-family:Verdana'><o:p>&nbsp;</o:p></span></h2>
+
+<h2 style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Verdana'>Costruttori di default<o:p></o:p></span></h2>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>Un <i>costruttore di default</i> è un costruttore
+che può essere richiamato senza argomenti (o parametri). <span class=GramE>Viene</span>
+usato per creare un &quot;oggetto&nbsp;standard&quot;, ma è importante anche
+quando si chiede al compilatore di creare un oggetto senza fornire ulteriori
+dettagli. Per esempio, se si usa la <b>struct Y </b>definita in precedenza in
+una definizione come questa:</span><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><o:p></o:p></span></p>
+
+<pre><span lang=EN-GB style='mso-ansi-language:EN-GB'>Y <span class=GramE>y2[</span>2] = { Y(1) };<o:p></o:p></span></pre>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+class=GramE><span style='font-family:Georgia'>il</span></span><span
+style='font-family:Georgia'> compilatore lamenterà di non poter trovare il
+costruttore di default. Il secondo oggetto nell’array vuole essere creato senza
+argomenti, ed è qui che il compilatore cerca il costruttore di default.
+Infatti, se si definisce semplicemente un array <span class=GramE>di </span>oggetti
+di tipo <b style='mso-bidi-font-weight:normal'>Y</b>,</span><span lang=EN-GB
+style='mso-ansi-language:EN-GB'><o:p></o:p></span></p>
+
+<pre>Y y3[7];</pre>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+class=GramE><span lang=EN-GB style='font-family:Georgia;mso-ansi-language:EN-GB'>il</span></span><span
+lang=EN-GB style='font-family:Georgia;mso-ansi-language:EN-GB'> compilatore si </span><span
+style='font-family:Georgia'>lamenterà </span><span lang=EN-GB style='font-family:
+Georgia;mso-ansi-language:EN-GB'>perché ha bisogno di un costruttore di default
+per inizializzare ogni oggetto dell’array. </span><span lang=EN-GB
+style='mso-ansi-language:EN-GB'><o:p></o:p></span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-GB style='font-family:Georgia;mso-ansi-language:EN-GB'>Lo stesso
+problema occorre se si crea <span class=GramE>un</span> singolo oggetto in
+questo modo:</span><span lang=EN-GB style='mso-ansi-language:EN-GB'><o:p></o:p></span></p>
+
+<pre>Y y4;</pre>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-GB style='font-family:Georgia;mso-ansi-language:EN-GB'>Ricordate, se
+c’è <span class=GramE>un</span> costruttore, il compilatore assicura che la
+costruzione avvenga sempre, a prescindere dalla situazione.</span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p></o:p></span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+class=GramE><span lang=EN-GB style='font-family:Georgia;mso-ansi-language:EN-GB'>Il</span></span><span
+lang=EN-GB style='font-family:Georgia;mso-ansi-language:EN-GB'> costruttore di
+default è così importante che <i style='mso-bidi-font-style:normal'>se</i> - e
+solo se - non si è definito alcun costruttore per una struttura (<b
+style='mso-bidi-font-weight:normal'>struct</b> o <b style='mso-bidi-font-weight:
+normal'>class</b>), il compilatore ne creerà uno automaticamente. Pertanto <span
+class=GramE>il</span> seguente codice funziona:</span></p>
+
+<pre><span lang=EN-GB style='color:#009900;mso-ansi-language:EN-GB'>//: C06:AutoDefaultConstructor.cpp</span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p></o:p></span></pre><pre><span
+lang=EN-GB style='color:#009900;mso-ansi-language:EN-GB'>// Costruttore di default generato automaticamente</span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>class</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> V {<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span><span
+class=GramE><span style='color:blue'>int</span></span> i;<span style='mso-spacerun:yes'>  </span><span
+style='color:#009900'>// privato</span><o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>}; <span style='color:#009900'>// Nessun costruttore</span><o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></pre><pre><span
+class=GramE><span lang=EN-GB style='color:blue;mso-ansi-language:EN-GB'>int</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> main() {<o:p></o:p></span></pre><pre><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span style='mso-spacerun:yes'>  </span>V v, <span
+class=GramE>v2[</span>10];<o:p></o:p></span></pre><pre><span lang=EN-GB
+style='mso-ansi-language:EN-GB'>} <span style='color:#009900'>///:~</span><o:p></o:p></span></pre>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>Se almeno un costruttore è stato definito, <span
+class=GramE>comunque</span>, ma non il costruttore di default, le istanze di <b
+style='mso-bidi-font-weight:normal'>V</b> nell’esempio sopra genereranno errori
+di compilazione. Si potrebbe pensare che il costruttore sintetizzato dal
+compilatore debba eseguire qualche forma <span class=GramE>di </span>inizializzazione
+intelligente, come azzerare la zona di memoria dell’oggetto. <span class=GramE>Ma</span>
+non lo fa. <span class=GramE>Se</span> lo facesse appesantirebbe il programma,
+senza alcun controllo da parte del programmatore.<span
+style='mso-spacerun:yes'>  </span>Se si vuole che la memoria <span class=GramE>venga</span>
+azzerata, bisogna farlo esplicitamente, scrivendo il proprio costruttore di
+default.<o:p></o:p></span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+class=GramE><span style='font-family:Georgia'>Nonostante</span></span><span
+style='font-family:Georgia'> il compilatore sintetizzi un costruttore di
+default autonomamente, difficilmente il suo comportamento sarà quello desiderato.
+Si dovrebbe considerare tale caratteristica come una rete di sicurezza, da
+usarsi raramente. In generale, si dovrebbero definire i propri costruttori
+esplicitamente e non lasciarlo fare al compilatore.<a name=Index1375></a><a
+name=Index1376></a><a name=Index1377></a><a name="_Toc312373862"></a><a
+name="_Toc472654862"></a><o:p></o:p></span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></p>
+
+<h2 style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><a
+name=Heading234></a><span style='font-family:Verdana'>Sommario<o:p></o:p></span></h2>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>I meccanismi apparentemente elaborati forniti dal
+C++ dovrebbero suggerire chiaramente l’estrema importanza che il linguaggio
+pone sull’inizializzazione e la pulizia. Nel progettare il C++, una delle prime
+osservazioni fatte da Stroustrup sulla produttività del linguaggio C, fu che
+una grossa fetta di problemi nella programmazione <span class=GramE>deriva</span>
+dall’impropria inizializzazione di variabili. Tali bugs sono difficili da
+scovare, e considerazioni simili valgono anche per la pulizia impropria. Poiché
+i costruttori e i distruttori consentono di <i style='mso-bidi-font-style:normal'>garantire</i>
+l’appropriata inizializzazione e pulizia (il compilatore non permette che un
+oggetto <span class=GramE>venga</span> creato e distrutto senza le dovute
+chiamate al costruttore e al distruttore), si assume un controllo completo in
+piena sicurezza.<o:p></o:p></span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>L’inizializzazione <span class=GramE>di </span>aggregati
+è stata inclusa con la stessa filosofia – impedisce di commettere i tipici
+errori di inizializzazione con aggregati di tipo predefinito e rende il codice
+più conciso.<o:p></o:p></span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-family:Georgia'>La protezione del codice è una questione primaria in
+C++. L’inizializzazione e la pulizia ne <span class=GramE>costituiscono</span>
+una parte importante, ma progredendo nella lettura del libro se ne
+incontreranno altre.</span><a name="_Toc312373863"></a><a name="_Toc472654863"></a><span
+lang=EN-GB style='color:red;mso-ansi-language:EN-GB'><o:p></o:p></span></p>
+
+<h2 style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><a
+name=Heading235></a><span style='font-family:Verdana'>Esercizi<o:p></o:p></span></h2>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-size:10.0pt;font-family:Georgia'>Si possono trovare le soluzioni ad
+esercizi scelti nel documento <span class=GramE>elettronico <i>The Thinking in
+C++ Annotated Solution Guide</i><span style='mso-bidi-font-style:italic'>,
+disponibile</span></span><span style='mso-bidi-font-style:italic'> per una
+piccola somma su </span>www.BruceEckel.com.</span></p>
+
+<ol start=1 type=1>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l1 level1 lfo3;tab-stops:list 36.0pt'><span style='font-family:
+     Georgia'>Scrivete una semplice classe dal nome <b style='mso-bidi-font-weight:
+     normal'>Semplice</b> con un costruttore che visualizzi qualcosa per dirvi
+     che è stato richiamato. Create un oggetto di tale classe nel <b
+     style='mso-bidi-font-weight:normal'>main()</b>.</span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l1 level1 lfo3;tab-stops:list 36.0pt'><span style='font-family:
+     Georgia'>Aggiungete un distruttore all’Esercizio 1, che visualizzi un
+     messaggio per dirvi che è stato richiamato.</span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l1 level1 lfo3;tab-stops:list 36.0pt'><span style='font-family:
+     Georgia'>Modificate l’Esercizio 2, in modo che la classe contenga un
+     membro di tipo <b style='mso-bidi-font-weight:normal'>int</b>. Modificate
+     il costruttore così che riceva un <b style='mso-bidi-font-weight:normal'>int</b>
+     come argomento e lo memorizzi nel membro della classe. Sia il costruttore
+     che il distruttore <span class=GramE>dovrebbero</span> visualizzare il
+     valore dell’<b style='mso-bidi-font-weight:normal'>int</b> come parte del
+     loro messaggio, in modo che possiate vedere gli oggetti mentre vengono
+     creati e distrutti.</span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l1 level1 lfo3;tab-stops:list 36.0pt'><span style='font-family:
+     Georgia'>Dimostrate che i distruttori <span class=GramE>vengono</span>
+     richiamati anche quando si salta fuori da un ciclo per mezzo di un <b
+     style='mso-bidi-font-weight:normal'>goto</b>.</span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l1 level1 lfo3;tab-stops:list 36.0pt'><span style='font-family:
+     Georgia'>Scrivete due cicli <b style='mso-bidi-font-weight:normal'>for</b>
+     che <span class=GramE>visualizzino</span> i valori da zero 10. Nel primo,
+     definite <span class=GramE>la variabile usata come contatore prima</span>
+     del ciclo <b style='mso-bidi-font-weight:normal'>for</b>. Nel secondo
+     ciclo definitela nell’espressione di controllo del ciclo stesso. Come <span
+     class=GramE>ulteriore</span> esercizio, assegnate alla variabile del
+     secondo ciclo <b style='mso-bidi-font-weight:normal'>for </b>lo stesso
+     nome di quella del primo ciclo, e vedete cosa fa il compilatore.</span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l1 level1 lfo3;tab-stops:list 36.0pt'><span style='font-family:
+     Georgia'>Modificate <span class=GramE>i file</span> <b>Handle.h</b>, <b>Handle.cpp
+     </b><span style='mso-bidi-font-weight:bold'>e <b>UseHandle.cpp </b>visti
+     alla fine del Capitolo 5, in modo che facciano uso di costruttori e
+     distruttori.</span></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l1 level1 lfo3;tab-stops:list 36.0pt'><span style='font-family:
+     Georgia'>Usate l’inizializzazione <span class=GramE>di </span>aggregati
+     per creare un array di <b style='mso-bidi-font-weight:normal'>double</b>
+     in cui specificate la dimensione dell’array, ma non fornite un numero
+     sufficiente di elementi. Visualizzate la dimensione dell’array utilizzando
+     l’operatore <b style='mso-bidi-font-weight:normal'>sizeof</b>. Adesso
+     create un array di <b style='mso-bidi-font-weight:normal'>double</b>
+     usando l’inizializzazione <span class=GramE>di </span>aggregati <i
+     style='mso-bidi-font-style:normal'>e</i> il conteggio automatico.
+     Visualizzate l’array.</span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l1 level1 lfo3;tab-stops:list 36.0pt'><span style='font-family:
+     Georgia'>Utilizzate l’inizializzazione <span class=GramE>di </span>aggregati
+     per creare un array di oggetti <b style='mso-bidi-font-weight:normal'>string</b>.
+     Create un oggetto <b style='mso-bidi-font-weight:normal'>Stack</b> per
+     contenere tali oggetti <b style='mso-bidi-font-weight:normal'>string </b>e
+     scandite l’array inserendo (<i style='mso-bidi-font-style:normal'>push</i>)
+     ciascuna <b style='mso-bidi-font-weight:normal'>string</b> nel vostro <b
+     style='mso-bidi-font-weight:normal'>Stack</b>.</span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l1 level1 lfo3;tab-stops:list 36.0pt'><span style='font-family:
+     Georgia'>Dimostrate il conteggio automatico e l’inizializzazione <span
+     class=GramE>di </span>aggregati con un array di oggetti della classe
+     creata nell’Esercizio 3. Aggiungete <span class=GramE>una funzione membro</span>
+     a tale classe che visualizzi un messaggio. Calcolate la dimensione
+     dell’array e spostatevi su di <span class=GramE>esso</span>, richiamando
+     la vostra nuova funzione membro.</span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l1 level1 lfo3;tab-stops:list 36.0pt'><span style='font-family:
+     Georgia'>Create una classe senza alcun costruttore, e mostrate che potete
+     creare oggetti tramite il costruttore di default. Ora create un
+     costruttore non di default (che abbia un argomento) per la classe, e
+     provate<span style='mso-spacerun:yes'>  </span>a compilare di nuovo.
+     Spiegate cosa è successo.</span><a name="_Toc465909232"></a><a
+     name="_Toc465909645"></a><a name="_Toc466014556"></a><a
+     name="_Toc466073466"></a><a name="_Toc466083267"></a><a
+     name="_Toc468608073"></a><a name="_Toc468771394"></a><a
+     name="_Toc312373864"></a><a name="_Toc469811397"></a><a
+     name="_Toc469821282"></a><a name="_Toc469821698"></a><a
+     name="_Toc469825379"></a><a name="_Toc469874284"></a><a
+     name="_Toc470615940"></a><a name="_Toc470655078"></a><a
+     name="_Toc470821062"></a><a name="_Toc470821479"></a><a
+     name="_Toc470911576"></a><a name="_Toc471359057"></a><a
+     name="_Toc471489477"></a><a name="_Toc471528908"></a><a
+     name="_Toc471795064"></a><a name="_Toc471965641"></a><a
+     name="_Toc472045643"></a><a name="_Toc472255847"></a><a
+     name="_Toc472654450"></a><a name="_Toc472654864"></a></li>
+</ol>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><o:p>&nbsp;</o:p></p>
+
+<div class=MsoNormal align=center style='text-align:center;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'>
+
+<hr size=2 width="100%" align=center>
+
+</div>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><a
+name=fn38></a><a href="#fnB38"><span style='mso-bookmark:fn38'>[38]</span><span
+style='mso-bookmark:fn38'></span></a><span style='mso-bookmark:fn38'></span><span
+style='font-size:10.0pt;font-family:Georgia'> C99, la versione aggiornata del C
+Standard, permette di definire le variabili in qualsiasi punto di un blocco,
+come il C++.</span></p>
+
+<p style='text-align:justify;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><a
+name=fn39></a><a href="#fnB39"><span style='mso-bookmark:fn39'>[39]</span><span
+style='mso-bookmark:fn39'></span></a><span style='mso-bookmark:fn39'></span><span
+style='font-size:10.0pt;font-family:Georgia'> Una precedente <span class=GramE>revisione</span>
+della bozza standard del C++ diceva che la durata della variabile si estendeva
+fino alla fine del blocco che racchiudeva il ciclo <b style='mso-bidi-font-weight:
+normal'>for</b>. Alcuni compilatori la implementano ancora in questo modo, ma
+non è corretto, pertanto il codice sarà portabile solo se si limita la
+visibilità della variabile al ciclo <b style='mso-bidi-font-weight:normal'>for</b>.</span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><a
+name=fn40></a><a href="#fnB40"><span style='mso-bookmark:fn40'>[40]</span><span
+style='mso-bookmark:fn40'></span></a><span style='mso-bookmark:fn40'></span><span
+style='font-size:10.0pt;font-family:Georgia'> Il linguaggio Java lo considera
+talmente una cattiva idea da segnalare tale codice <span class=GramE>come </span>errato.</span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><a
+name=fn41></a><a href="#fnB41"><span style='mso-bookmark:fn41'>[41]</span><span
+style='mso-bookmark:fn41'></span></a><span style='mso-bookmark:fn41'></span><span
+style='font-size:10.0pt;font-family:Georgia'> OK, probabilmente potreste
+pasticciare con i puntatori, ma sareste molto, molto cattivi.</span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><a
+name=fn42></a><a href="#fnB42"><span style='mso-bookmark:fn42'>[42]</span><span
+style='mso-bookmark:fn42'></span></a><span style='mso-bookmark:fn42'></span><span
+style='font-size:10.0pt;font-family:Georgia'> Nel Volume 2 di questo libro
+(disponibile gratuitamente in lingua Inglese su www.BruceEckel.com), si vedrà
+un modo più conciso <span class=GramE>di</span> calcolare la dimensione di un
+array utilizzando i <i style='mso-bidi-font-style:normal'>template</i>.</span></p>
+
+  <p class=MsoNormal align=center style='text-align:center;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span lang=EN-GB
+style='mso-ansi-language:EN-GB'><font face="Verdana" size=2>[ </font><a href="Capitolo05.html"><u><font face="Verdana" size=2 color="#0000ff">Capitolo 
+    Precedente </font></u></a><font face="Verdana" size=2> ] [ </font><a href="Contents.html"><u><font face="Verdana" size=2 color="#0000ff">Indice 
+    Generale</font></u></a><font face="Verdana" size=2> ] [ </font><a href="DocIndex.html"><u><font face="Verdana" size=2 color="#0000ff">Indice 
+    Analitico </font></u></a><font face="Verdana" size=2> ] [ </font><a href="Capitolo07.html"><u><font face="Verdana" size=2 color="#0000ff">Prossimo 
+    Capitolo</font></u></a><font face="Verdana" size=2> ] </font><br>
+    Ultimo aggiornamento: 25/02/2003</span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p></o:p></span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></p>
+
+<p style='tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><b
+style='mso-bidi-font-weight:normal'><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><o:p>&nbsp;</o:p></span></b></p>
+
+</div>
+
+</body>
+
+</html>

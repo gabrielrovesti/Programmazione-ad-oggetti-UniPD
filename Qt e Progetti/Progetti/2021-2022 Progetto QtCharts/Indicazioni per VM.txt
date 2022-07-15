@@ -1,0 +1,7 @@
+Link per VM: http://webext.studenti.math.unipd.it/prog2_2019.ova
+
+Password VM: Prog2.student
+
+É possibile scaricare il file (circa 4,2 GB) contenente una macchina virtuale per il software di virtualizzazione VirtualBox che sarà il sistema ufficiale di compilazione ed esecuzione per il progetto di laboratorio. 
+
+Il sistema è una versione minimale del sistema Linux Ubuntu installato nelle macchine dei laboratori, in particolare con compilatore gcc 7.3.0 e framework Qt 5.9.5. La macchina virtuale non è cambiata dal precedente anno accademico, quindi non è necessario alcun aggiornamento per chi avesse già scaricato il file. 

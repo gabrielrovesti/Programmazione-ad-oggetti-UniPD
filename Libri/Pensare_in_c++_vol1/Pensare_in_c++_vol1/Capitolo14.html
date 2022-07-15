@@ -1,0 +1,2282 @@
+ 
+<HTML>
+<HEAD lang="en">
+<META http-equiv="Content-Type" content="text/html">
+<TITLE>14: Ereditariet&agrave; &amp; Composizione</TITLE>
+</HEAD>
+<BODY  BGCOLOR="#FFFFFF">
+<DIV ALIGN="CENTER"> 
+  <p class=MsoNormal align=center style='text-align:center'><a
+href="http://www.MindView.net"><span style='text-decoration:none;text-underline:
+none'><img border=0 width=750 height=96 id="_x0000_i1025"
+src=mindview-head.gif alt="MindView Inc."></span></a></p>
+  <p align=center style='text-align:center'><span style='font-size:10.0pt;
+font-family:Verdana'>[ </span><a href="README-HTML.txt"><span style='font-size:
+10.0pt;font-family:Verdana'>Suggerimenti</span></a><span style='font-size:10.0pt;
+font-family:Verdana'> ] [ </span><a
+href="http://www.mindview.net/CPPServices/SolutionGuide.html"><span
+style='font-size:10.0pt;font-family:Verdana'>Soluzioni degli Esercizi</span></a><span
+style='font-size:10.0pt;font-family:Verdana'>] [ </span><a
+href="http://www.mindview.net/ThinkingInCPP2e.html"><span style='font-size:
+10.0pt;font-family:Verdana'>Volume 2</span></a><span style='font-size:10.0pt;
+font-family:Verdana'> ] [ </span><a
+href="http://www.mindview.net/MailingList.html"><span style='font-size:10.0pt;
+font-family:Verdana'>Newsletter Gratuita</span></a><span style='font-size:10.0pt;
+font-family:Verdana'> ] <br>
+    [ </span><a href="http://www.mindview.net/CPPServices/#PublicSeminars"><span
+style='font-size:10.0pt;font-family:Verdana'>Seminari</span></a><span
+style='font-size:10.0pt;font-family:Verdana'> ] [ </span><a
+href="http://www.mindview.net/CPPServices/#SeminarsOnCD"><span
+style='font-size:10.0pt;font-family:Verdana'>Seminari su CD ROM</span></a><span
+style='font-size:10.0pt;font-family:Verdana'> ] [ </span><a
+href="http://www.mindview.net/CPPServices/#ConsultingServices"><span
+style='font-size:10.0pt;font-family:Verdana'>Consulenza</span></a><span
+style='font-size:10.0pt;font-family:Verdana'>] </span></p>
+  <h2 align=center style='text-align:center'><span style='font-family:Verdana'>Pensare 
+    in C++, seconda ed. </span><span lang=EN-GB style='font-family:Verdana;
+mso-ansi-language:EN-GB'>Volume 1</span><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><o:p></o:p></span></h2>
+  <h3 align=center style='text-align:center'><span lang=EN-GB style='font-family:
+Verdana;mso-ansi-language:EN-GB'>&copy;2000 by Bruce Eckel</span><span lang=EN-GB
+style='mso-ansi-language:EN-GB'><o:p></o:p></span></h3>
+  <p align=center style='text-align:center'><span style='font-size:10.0pt;
+font-family:Verdana'>[ </span><a href="Capitolo13.html"><span style='font-size:
+10.0pt;font-family:Verdana'>Capitolo Precedente </span></a><span
+style='font-size:10.0pt;font-family:Verdana'>] [ </span><a href="Contents.html"><span
+style='font-size:10.0pt;font-family:Verdana'>Indice Generale</span></a><span
+style='font-size:10.0pt;font-family:Verdana'> ] [ </span><a href="DocIndex.html"><span
+style='font-size:10.0pt;font-family:Verdana'>Indice Analitico </span></a><span
+style='font-size:10.0pt;font-family:Verdana'>] [ </span><a
+href="Capitolo15.html"><span style='font-size:10.0pt;font-family:Verdana'>Prossimo 
+    Capitolo</span></a><span style='font-size:10.0pt;font-family:Verdana'> ] </span></p>
+
+<CENTER></CENTER>
+  <p><font face="Georgia, Times New Roman, Times, serif">trad. italiana e adattamento 
+    a cura di Umberto Sorbo</font></P>
+</DIV>
+<FONT FACE = "Verdana"> 
+<H1 ALIGN="LEFT"> 14: Ereditariet&agrave; &amp; Composizione</H1>
+</FONT> 
+<DIV ALIGN="LEFT"> 
+  <P><font face="Verdana, Arial, Helvetica, sans-serif" size="4">Uno delle caratteristiche 
+    pi&ugrave; irresistibili del C++ &egrave; il riutilizzo del codice. Ma per essere 
+    rivoluzionari, si ha bisogno di essere capaci di fare molto di pi&ugrave; 
+    che copiare codice e cambiarlo.</font><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia">Questo &egrave; stato l'approccio del C e non ha funzionato 
+    molto bene. Per la maggior parte del C++, la soluzione gira intorno alla classe. 
+    Si riusa il codice creando classi nuove, ma invece di crearle da zero, si 
+    usano classi esistenti che qualcun altro ha costruito e ha debuggato.<BR>
+    </font></P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia">Il trucco &egrave; usare classi senza sporcare il codice 
+    esistente. In questo capitolo si vedranno due modi per ottenere ci&ograve;. 
+    Il primo &egrave; piuttosto facile: si creano semplicemente oggetti della 
+    propria classe esistente nella classe nuova. Ci&ograve; &egrave; chiamato 
+    <i>composizione</i>&#130; perch&egrave; la classe nuova &egrave; composta 
+    di oggetti di classi esistenti.<BR>
+    </font></P>
+  <P><font face="Georgia">Il secondo approccio &egrave; pi&ugrave; sottile. Si 
+    crea una classe nuova come un <i>tipo</i> di una classe esistente. Si prende 
+    letteralmente la forma della classe esistente e si aggiunge codice ad essa, 
+    senza cambiare la classe esistente. Questo atto magico &egrave; chiamato <i>ereditariet&agrave;</i> 
+    e la maggior parte del lavoro &egrave; fatto dal compilatore. L'ereditariet&agrave; 
+    &egrave; una delle pietre angolari della programmazione orientata agli oggetti 
+    e ha implicazioni aggiuntive che saranno esplorate in Capitolo 15.</font></P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia"><BR>
+    Ne risulta che molto della sintassi e comportamento &egrave; simile sia alla 
+    composizione e all'ereditariet&agrave; (questo ha senso, sono due modi di 
+    creare tipi nuovi da tipi esistenti). In questo capitolo, s'imparer&agrave; 
+    come utilizzare questi meccanismi per il riutilizzo del codice.</font></P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <p>
+</DIV>
+<FONT FACE = "Verdana"> 
+<H2 ALIGN="LEFT"> Sintassi della composizione</H2>
+</FONT> 
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">A dire il vero si &egrave; 
+    sempre usata la composizione per creare classi. Si sono composte classe primariamente 
+    con tipi predefiniti (e qualche volta le stringhe). Risulta facile usare la 
+    composizione con tipi definiti dall'utente.<BR>
+    </font></P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">Si consideri una classe 
+    che &egrave; utile per qualche motivo:</font><BR>
+  </P>
+</DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"> 
+  <PRE><font color=#009900>//: C14:Useful.h</font>
+<font color=#009900>//Una classe da riutilizzare</font>
+#ifndef USEFUL_H
+#define USEFUL_H
+
+<font color=#0000ff>class</font> X {
+  <font color=#0000ff>int</font> i;
+<font color=#0000ff>public</font>:
+  X() { i = 0; }
+  <font color=#0000ff>void</font> set(<font color=#0000ff>int</font> ii) { i = ii; }
+  <font color=#0000ff>int</font> read() <font color=#0000ff>const</font> { <font color=#0000ff>return</font> i; }
+  <font color=#0000ff>int</font> permute() { <font color=#0000ff>return</font> i = i * 47; }
+};
+#endif <font color=#009900>// USEFUL_H ///:~</font></PRE>
+  </FONT></BLOCKQUOTE>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">I membri dato sono <b>private</b> in questa classe, 
+    quindi &egrave; totalmente sicuro includere un oggetto di tipo <b>X</b> come 
+    un oggetto <b>public</b> in una nuova classe, che rende l'interfaccia semplice:</FONT><BR>
+  </P>
+</DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"> 
+  <PRE><font color=#009900>//: C14:Composition.cpp</font>
+<font color=#009900>// riutilizzo del codice con la composizione</font>
+#include <font color=#004488>"Useful.h"</font>
+
+<font color=#0000ff>class</font> Y {
+  <font color=#0000ff>int</font> i;
+<font color=#0000ff>public</font>:
+  X x; <font color=#009900>//  oggetto</font> <font color="#009900">incorporato</font>
+  Y() { i = 0; }
+  <font color=#0000ff>void</font> f(<font color=#0000ff>int</font> ii) { i = ii; }
+  <font color=#0000ff>int</font> g() <font color=#0000ff>const</font> { <font color=#0000ff>return</font> i; }
+};
+
+<font color=#0000ff>int</font> main() {
+  Y y;
+  y.f(47);
+  y.x.set(37); <font color=#009900>// accesso  all'oggetto incorporato</font>
+} <font color=#009900>///:~</font></PRE>
+  </FONT></BLOCKQUOTE>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia">Le funzioni membro dell'oggetto incorporato ( indicato 
+    come un <i>suboggetto</i>) semplicemente richiedeno un'altra selezione del 
+    membro.</font></P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">&egrave; pi&ugrave; comune 
+    fare gli oggetti incorporati privati, poich&egrave; divengono parte della 
+    realizzazione sottostante (che significa che si pu&ograve; cambiare l'implementazione 
+    se si vuole). Le funzioni pubbliche dell'interfaccia per la propria classe 
+    nuova coinvolgono poi l'uso dell'oggetto incorporato, ma non necessariamente 
+    mimano l'interfaccia dell'oggetto:</font></P>
+  <P><BR>
+  </P>
+</DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"> 
+  <PRE><font color=#009900>//: C14:Composition2.cpp</font>
+<font color=#009900>// oggetti incorporati privatamente</font>
+#include <font color=#004488>"Useful.h"</font>
+
+<font color=#0000ff>class</font> Y {
+  <font color=#0000ff>int</font> i;
+  X x; <font color=#009900>// oggetto incorporato</font>
+<font color=#0000ff>public</font>:
+  Y() { i = 0; }
+  <font color=#0000ff>void</font> f(<font color=#0000ff>int</font> ii) { i = ii; x.set(ii); }
+  <font color=#0000ff>int</font> g() <font color=#0000ff>const</font> { <font color=#0000ff>return</font> i * x.read(); }
+  <font color=#0000ff>void</font> permute() { x.permute(); }
+};
+
+<font color=#0000ff>int</font> main() {
+  Y y;
+  y.f(47);
+  y.permute();
+} <font color=#009900>///:~</font></PRE>
+  </FONT></BLOCKQUOTE>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">Qui, la funzione<b> permute(&nbsp;)</b> 
+    &egrave; presente nell'interfaccia della classe nuova, ma le altre funzioni 
+    del membro di <b>X</b> sono usate fra i membri di <b>Y</b>.</font></P>
+  <p>
+</DIV>
+<FONT FACE = "Verdana"> 
+<H2 ALIGN="LEFT"> sintassi dell'ereditariet&agrave;</H2>
+</FONT> 
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">La sintassi per la composizione 
+    &egrave; ovvia, ma per usare l'ereditariet&agrave; c'&egrave; una forma nuova 
+    e diversa.<BR>
+    </font></P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">Quando si eredita, si 
+    sta dicendo,&quot;Qu<i>esta nuova classe &egrave; come quella vecchia classe</i>&quot;. 
+    Si afferma questo nel codice dando come al solito il nome della classe, ma 
+    prima della parentesi di apertura del corpo della classe, si mettono due punti 
+    ed il nome della classe base (o classi base, separate da virgole per l'ereditariet&agrave; 
+    multipla). Quando si fa questo, si ottengono automaticamente tutti i membri 
+    dato e funzioni membro della classe base. Ecco un esempio:</font><BR>
+  </P>
+</DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"> 
+  <PRE><font color=#009900>//: C14:Inheritance.cpp</font>
+<font color=#009900>// Semplice ereditariet&agrave; </font>
+#include <font color=#004488>"Useful.h"</font>
+#include &lt;iostream&gt;
+<font color=#0000ff>using</font> <font color=#0000ff>namespace</font> std;
+
+<font color=#0000ff>class</font> Y : <font color=#0000ff>public</font> X {
+  <font color=#0000ff>int</font> i; <font color=#009900>// diverso da i di X</font>
+<font color=#0000ff>public</font>:
+  Y() { i = 0; }
+  <font color=#0000ff>int</font> change() {
+    i = permute(); <font color=#009900>// diversa chiamata di nome
+</font><font color=#0000ff>return</font> i;
+  }
+  <font color=#0000ff>void</font> set(<font color=#0000ff>int</font> ii) {
+    i = ii;
+    X::set(ii); <font color=#009900>// chiamata a funzione con lo stesso nome</font>
+  }
+};
+
+<font color=#0000ff>int</font> main() {
+  cout &lt;&lt; <font color=#004488>"sizeof(X) = "</font> &lt;&lt; <font color=#0000ff>sizeof</font>(X) &lt;&lt; endl;
+  cout &lt;&lt; <font color=#004488>"sizeof(Y) = "</font>
+       &lt;&lt; <font color=#0000ff>sizeof</font>(Y) &lt;&lt; endl;
+  Y D;
+  D.change();
+  <font color=#009900>// utilizzo delle funzioni dell'interfacci di X :</font>
+  D.read();
+  D.permute();
+  <font color=#009900>// le funzioni ridefinite occultano le versioni base:</font>
+  D.set(12);
+} <font color=#009900>///:~</font></PRE>
+  </FONT></BLOCKQUOTE>
+<DIV ALIGN="LEFT"> 
+  <P>&nbsp;</P>
+  <p><font face="Georgia, Times New Roman, Times, serif">Si pu&ograve; vedere 
+    che <b>Y</b> &egrave; ereditato da <b>X</b>, che significa che <b>Y</b> conterr&agrave; 
+    tutti gli elementi dato di <b>X</b> e tutte le funzioni membro di <b>X</b>. 
+    Infatti, <b>Y</b> contiene solo un suboggetto di <b>X</b> proprio come se 
+    si avesse creato un oggetto membro di <b>X</b> in <b>Y</b> invece di ereditarlo 
+    da <b>X.</b> Ci si riferisce come suboggetti sia agli oggetti membro che ai 
+    dati della classe base.<BR>
+    </font></p>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">Tutti gli elementi privati 
+    di <b>X</b> ancora sono privati in <b>Y</b>; ovvero, poich&egrave; <b>Y</b> 
+    eredita da <b>X</b>, ci&ograve; non significa che <b>Y</b> pu&ograve; rompere 
+    il meccanismo di protezione. Gli elementi privati di <b>X</b> sono ancora 
+    l&agrave;, prendono spazio, non si pu&ograve; accedere ad essi direttamente.</font></P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">In <b>main(&nbsp;)</b> 
+    si possono vedere che gli elementi dato di <b>Y</b> sono combinati con quelli 
+    di <b>X</b>, perch&egrave; il <b>sizeof(Y)</b> &egrave; grande due volte <b>sizeof(X)</b>.<BR>
+    </font></P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">Si noti che la classe 
+    base &egrave; preceduta da <b>public</b>. Usando l'ereditariet&agrave; viene 
+    assunto tutto come <b>private</b>. Se la classe base non fosse preceduta da 
+    <b>public</b>, vorrebbe dire che tutti dei membri pubblici della classe base 
+    sarebbero privati nella classe derivata. Questo non &egrave; quasi mai quello 
+    che si vuole<a name="fnB51" href="#fn51">[51]</a><a name="Index2286"></a>; 
+    il risultato desiderato &egrave; mantenere tutti i membri pubblici della classe 
+    base pubblici nella classe derivata. Si fa questo usando la parola riservata 
+    <b>public</b> durante l'ereditariet&agrave;.<BR>
+    </font></P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">In <b>change(&nbsp;)</b>, 
+    <b>il permute() </b>della classe base viene chiamata. La classe derivata ha 
+    accesso diretto a tutte le funzioni pubbliche della classe base.<BR>
+    </font></P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">La funzione <b>set(&nbsp;) 
+    </b> nella classe derivata ridefinisce la funzione <b>set(&nbsp;)</b> della 
+    classe base. Ovvero, se si chiama il <b>read(&nbsp;)</b> e <b>permute(&nbsp;)</b> 
+    per un oggetto di tipo <b>Y</b>, si ottengono le versioni della classe base 
+    di quelle funzioni (si pu&ograve; vedere questo accadere in <b>main(&nbsp;)</b>). 
+    Ma se si chiama <b>set(&nbsp;)</b> per un oggetto di <b>Y</b>, si ottiene 
+    la versione ridefinita. Questo vuole dire che se non piace la versione di 
+    una funzione che si ottiene durante l'ereditariet&agrave;, si pu&ograve; cambiare 
+    quello che fa (si possono aggiungere anche funzioni completamente nuove come 
+    <b>change(&nbsp;)</b>).<BR>
+    </font></P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">Comunque, quando si ridefinisce 
+    una funzione, si pu&ograve; volere ancora chiamare la versione della classe 
+    base. Se, in <b>set(&nbsp;)</b>, si chiama semplicemente <b>set(&nbsp;)</b> 
+    si ottiene la versione locale della funzione, una chiamata ricorsiva di funzione. 
+    Si deve chiamare esplicitamente la classe base usando l'operatore di risoluzione 
+    dello scope per chiamare la versione della classe base.</font></P>
+</DIV>
+<FONT FACE = "Verdana"> 
+<H2 ALIGN="LEFT"> La lista di inizializzazione del costruttore</H2>
+</FONT> 
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">Si &egrave; visto come 
+    sia importante in C++ garantire un'inizializzazione corretta e non &egrave; 
+    diverso durante la composizione e l'ereditariet&agrave;. Quando un oggetto 
+    viene creato, il compilatore garantisce che vengano chiamati i costruttori 
+    per tutti i suoi suboggetti. Negli esempi visti finora, tutti i suboggetti 
+    hanno costruttori per default e il compilatore li chiama automaticamente. 
+    Ma cosa accade se i suboggetti non hanno costruttori per default o se si vuole 
+    cambiare un argomento di default in un costruttore? Questo &egrave; un problema 
+    perch&egrave; il costruttore della nuova classe non hanno il permesso di accedere 
+    agli elementi dato privati del suboggetto, quindi non pu&ograve; inizializzarli 
+    direttamente.</font><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">La soluzione &egrave; 
+    semplice: chiamare il costruttore per il suboggetto. Il C++ fornisce una sintassi 
+    speciale per questo, la <i>lista di inizializzazione del costruttore</i>. 
+    La forma della<i> lista di inizializzazione del costruttore </i>imita l'atto 
+    di ereditariet&agrave;. Con l'ereditariet&agrave;, si mette la classe base 
+    dopo un due punti e prima della parentesi di apertura del corpo della classe. 
+    Nella lista di inizializzazione del costruttore, si mettono le chiamate ai 
+    costruttori dei suboggetti dopo <i>lista di inizializzazione del costruttore</i> 
+    e un due punti, ma prima della parentesi di apertura del corpo della funzione. 
+    Per una classe <b>MioTipo</b>, ereditata da <b>Barra</b> ci&ograve; appare 
+    come:</font><BR>
+  </P>
+</DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"> 
+  <PRE>MioTipo::MiTipo(<font color=#0000ff>int</font> i) : Barra(i) { <font color=#009900>// ...</font></PRE>
+  </FONT> 
+  <p>&nbsp;</p>
+  <p><font face="Georgia, Times New Roman, Times, serif">se <b>Barra</b> ha un 
+    costruttore che prende un solo argomento <b>int</b>.</font><BR>
+  </p>
+</BLOCKQUOTE>
+<FONT FACE = "Verdana"> 
+<H3 ALIGN="LEFT"> Inizializzazione dell'oggetto membro<BR>
+</H3>
+</FONT> 
+<p><font face="Georgia, Times New Roman, Times, serif">S</font><font face="Georgia, Times New Roman, Times, serif">i 
+  usa questa sintassi molto simile per l'inizializzazione dell' oggetto membro 
+  quando si utilizza la composizione. Per la composizione, si danno i nomi degli 
+  oggetti invece dei nomi delle classi. Se si ha pi&ugrave; di una chiamata di 
+  costruttore nella lista di inizializzazione del costruttore, si separano le 
+  chiamate con virgole:</font></p>
+<BLOCKQUOTE><FONT SIZE = "+1"> 
+  <PRE>MioTipo2::MioTipo2(<font color=#0000ff>int</font> i) : Barra(i), m(i+1) { <font color=#009900>// ...</font></PRE>
+  </FONT></BLOCKQUOTE>
+<DIV ALIGN="LEFT"> 
+  <p><font face="Georgia, Times New Roman, Times, serif">Questo &egrave; l'inizio 
+    di un costruttore per la classe <b>MioTipo2</b> che &egrave; ereditata da 
+    <b>Barra</b> e contiene un oggetto membro chiamato <b>m</b>. Si faccia attenzione 
+    che mentre si pu&ograve; vedere il tipo della classe base nella lista di inizializzazione 
+    del costruttore, si vede solamente l'identificativo del oggetto membro.</font></p>
+  
+</DIV>
+<FONT FACE = "Verdana"> 
+<H3 ALIGN="LEFT"> Tipi predefiniti nella lista di inizializzazione<BR>
+</H3>
+</FONT> 
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">La lista di inizializzazione 
+    del costruttore permette di chiamare esplicitamente i costruttori per oggetti 
+    membro. Infatti, non c'&egrave; nessun altro modo di chiamare quei costruttori. 
+    L'idea &egrave; che i costruttori sono tutti chiamati prima che si entra nel 
+    corpo del costruttore delle classi nuove. In questo modo, qualsiasi chiamata 
+    si faccia a funzioni membro di suboggetti andr&agrave; sempre ad oggetti inizializzati. 
+    Non c'&egrave; modo di andare alla parentesi di apertura del costruttore senza 
+    che alcun costruttore sia chiamato per tutti gli oggetti membro e gli oggetti 
+    della classe base, anche se il compilatore deve fare una chiamata nascosta 
+    ad un costruttore per default. Questo &egrave; un ulteriore rafforzamento 
+    del C++ a garanzia che nessuno oggetto (o parte di un oggetto) possa uscire 
+    dalla barriera iniziale senza che il suo costruttore venga chiamato.</font><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">Questa idea che tutti 
+    gli oggetti membro siano inizializzati nel momento in cui si raggiunge la 
+    parentesi di apertura del costruttore &egrave; un aiuto alla programmazione. 
+    Una volta che si giunge alla parentesi apertura, si pu&ograve; presumere che 
+    tutti i suboggetti sono inizializzati propriamente e ci si concentra su i 
+    compiti specifici che si vuole completare nel costruttore. Comunque, c'&egrave; 
+    un intoppo: cosa succede agli oggetti membro dei tipi predefiniti che non 
+    hanno costruttori?</font><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">Per rendere la sint<font color="#000000">assi 
+    coerente</font>, si &egrave; permesso di trattare i tipi predefiniti come 
+    se avessero un solo costruttore che prende un solo argomento: una variabile 
+    dello stesso tipo come la variabile che si sta inizializzando. Quindi si pu&ograve; 
+    scrivere:</font><BR>
+  </P>
+</DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"> 
+  <PRE><font color=#009900>//: C14:PseudoConstructor.cpp</font>
+<font color="#009900">// Pseudo Costruttore</font>
+<font color=#0000ff>class</font> X {
+  <font color=#0000ff>int</font> i;
+  <font color=#0000ff>float</font> f;
+  <font color=#0000ff>char</font> c;
+  <font color=#0000ff>char</font>* s;
+<font color=#0000ff>public</font>:
+  X() : i(7), f(1.4), c('x'), s(<font color=#004488>"howdy"</font>) {}
+};
+
+<font color=#0000ff>int</font> main() {
+  X x;
+  <font color=#0000ff>int</font> i(100);  <font color=#009900>// applicato ad un'ordinaria definizione
+</font><font color=#0000ff>int</font>* ip = <font color=#0000ff>new</font> <font color=#0000ff>int</font>(47);
+} <font color=#009900>///:~</font></PRE>
+  </FONT></BLOCKQUOTE>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">L'azione di queste pseudo 
+    chiamate al costruttore &egrave; di compiere una semplice assegnazione. &Egrave; 
+    una tecnica <font color="#000000">utile</font> ed un buon stile di codifica, 
+    quindi la si vedr&agrave; spesso.</font><br>
+    <font face="Georgia, Times New Roman, Times, serif">&Egrave; anche possibile 
+    usare la sintassi dello pseudo-costruttore quando si crea una variabile di 
+    un tipo predefinito fuori di una classe:</font><BR>
+  </P>
+</DIV>
+<BLOCKQUOTE><FONT SIZE = "+1">
+  <PRE><font color=#0000ff>int</font> i(100);
+<font color=#0000ff>int</font>* ip = <font color=#0000ff>new</font> <font color=#0000ff>int</font>(47);</PRE>
+  </FONT></BLOCKQUOTE>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">Ci&ograve; rende i tipi 
+    predefiniti un poco pi&ugrave; simili agli oggetti. Si ricordi, tuttavia, 
+    che questi non sono i veri costruttori. In particolare, se non si fa una chiamata 
+    esplicitamente ad uno pseudo-costruttore, nessuna inizializzazione viene compiuta.</font></P>
+  <P><BR>
+  </P>
+</DIV>
+<FONT FACE = "Verdana"> 
+<H2 ALIGN="LEFT"> Combinare composizione &amp; ereditariet&agrave;<BR>
+</H2>
+</FONT> 
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">Chiaramente, si pu&ograve; 
+    usare la composizione e l'ereditariet&agrave; insieme. L'esempio seguente 
+    mostra la creazione di una classe pi&ugrave; complessa che le usa entrambe.</font><BR>
+  </P>
+</DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"> 
+  <PRE><font color=#009900>//: C14:Combined.cpp</font>
+<font color=#009900>// Ereditariet&agrave; &amp; composizione</font>
+
+<font color=#0000ff>class</font> A {
+  <font color=#0000ff>int</font> i;
+<font color=#0000ff>public</font>:
+  A(<font color=#0000ff>int</font> ii) : i(ii) {}
+  ~A() {}
+  <font color=#0000ff>void</font> f() <font color=#0000ff>const</font> {}
+};
+
+<font color=#0000ff>class</font> B {
+  <font color=#0000ff>int</font> i;
+<font color=#0000ff>public</font>:
+  B(<font color=#0000ff>int</font> ii) : i(ii) {}
+  ~B() {}
+  <font color=#0000ff>void</font> f() <font color=#0000ff>const</font> {}
+};
+
+<font color=#0000ff>class</font> C : <font color=#0000ff>public</font> B {
+  A a;
+<font color=#0000ff>public</font>:
+  C(<font color=#0000ff>int</font> ii) : B(ii), a(ii) {}
+  ~C() {} <font color=#009900>// chiama ~A() e ~B()</font>
+  <font color=#0000ff>void</font> f() <font color=#0000ff>const</font> {  <font color=#009900>// ridefinizione</font>
+    a.f();
+    B::f();
+  }
+};
+
+<font color=#0000ff>int</font> main() {
+  C c(47);
+} <font color=#009900>///:~</font></PRE>
+  </FONT></BLOCKQUOTE>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif"><b>C</b> eredita da <b>B</b> 
+    e ha un oggetto membro (&egrave; composta di ) del tipo <b>A</b>. Si pu&ograve; 
+    vedere che la lista di inizializzazione del costruttore contiene chiamate 
+    ad entrambi i costruttori della classe base e al costruttore del oggetto membro.</font><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">La funzione <b>C::f(&nbsp;) 
+    </b>ridefinisce <b>B::f(&nbsp;), </b>che eredita e chiama anche la versione 
+    della classe base. In aggiunta chiama <b>a.f(&nbsp;)</b>. Si noti che l'unica 
+    volta che si pu&ograve; parlare di ridefinizione di funzioni &egrave; con 
+    l'ereditariet&agrave;; con un oggetto membro si pu&ograve; manipolare solamente 
+    l'interfaccia pubblica dell'oggetto, non ridefinirla. In aggiunta, chiamando<b> 
+    f(&nbsp;)</b> per un oggetto della classe <b>C</b> non si chiamerebbe <b>a.f(&nbsp;)</b> 
+    se <b>C::f(&nbsp;) </b>non fosse stato definito, mentre si chiamerebbe<b> 
+    B::f(&nbsp;).</b></font><BR>
+  </P>
+</DIV>
+<FONT FACE = "Verdana"> 
+<H4 ALIGN="LEFT"> Chiamate automatiche al distruttore<BR>
+</H4>
+</FONT> 
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">Sebbene spesso sia richiesto 
+    di fare chiamate esplicite al costruttore nella lista di inizializzazione, 
+    non si ha mai bisogno di fare chiamate esplicite al distruttore perch&egrave; 
+    c'&egrave; solamente un distruttore per classe ed esso non prende nessun argomento. 
+    Il compilatore ancora assicura comunque, che tutti i distruttori vengano chiamati 
+    e cio&egrave; tutti i distruttori dell'intera gerarchia , cominciando dal 
+    distruttore pi&ugrave; derivato e risalendo indietro alla radice.</font><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia">Vale la pena di sottolineare che costruttori e distruttori 
+    sono piuttosto insoliti nel modo in cui vengono chiamati nella gerarchia, 
+    <font color="#000000">laddove</font> con una funzione membro normale viene 
+    chiamata solamente quella funzione, ma nessuna delle versioni della classe 
+    base. Se si vuole chiamare anche la versione della classe base di una funzione 
+    membro normale che si sta sovrascrivendo, lo si deve fare esplicitamente.</font></P>
+  <p>
+</DIV>
+<FONT FACE = "Verdana"> 
+<H3 ALIGN="LEFT"> Ordine delle chiamate al costruttore &amp; distruttore</H3>
+</FONT> 
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">&Egrave; interessante 
+    conoscere l'ordine delle chiamate al costruttore e distruttore quando un oggetto 
+    ha molti suboggetti. L'esempio seguente mostra precisamente come funziona:</font><BR>
+  </P>
+</DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"> 
+  <PRE><font color=#009900>//: C14:Order.cpp</font>
+<font color=#009900>// ordine costruttore/distruttore </font>
+#include &lt;fstream&gt;
+<font color=#0000ff>using</font> <font color=#0000ff>namespace</font> std;
+ofstream out(<font color=#004488>"order.out"</font>);
+
+#define CLASS(ID) <font color=#0000ff>class</font> ID { \
+<font color=#0000ff>public</font>: \
+  ID(<font color=#0000ff>int</font>) { out &lt;&lt; #ID <font color=#004488>" costruttore\n"</font>; } \
+  ~ID() { out &lt;&lt; #ID <font color=#004488>" distruttore\n"</font>; } \
+};
+
+CLASS(Base1);
+CLASS(Member1);
+CLASS(Member2);
+CLASS(Member3);
+CLASS(Member4);
+
+<font color=#0000ff>class</font> Derived1 : <font color=#0000ff>public</font> Base1 {
+  Member1 m1;
+  Member2 m2;
+<font color=#0000ff>public</font>:
+  Derived1(<font color=#0000ff>int</font>) : m2(1), m1(2), Base1(3) {
+    out &lt;&lt; <font color=#004488>"Derived1 costruttore\n"</font>;
+  }
+  ~Derived1() {
+    out &lt;&lt; <font color=#004488>"Derived1 distruttore\n"</font>;
+  }
+};
+
+<font color=#0000ff>class</font> Derived2 : <font color=#0000ff>public</font> Derived1 {
+  Member3 m3;
+  Member4 m4;
+<font color=#0000ff>public</font>:
+  Derived2() : m3(1), Derived1(2), m4(3) {
+    out &lt;&lt; <font color=#004488>"Derived2 costruttore\n"</font>;
+  }
+  ~Derived2() {
+    out &lt;&lt; <font color=#004488>"Derived2 distruttore\n"</font>;
+  }
+};
+
+<font color=#0000ff>int</font> main() {
+  Derived2 d2;
+} <font color=#009900>///:~</font></PRE>
+  </FONT></BLOCKQUOTE>
+<DIV ALIGN="LEFT"> 
+  <P>&nbsp;</P>
+  <P><font face="Georgia">Per primo</font><FONT FACE="Georgia">, un oggetto dell'<b>ofstream</b> 
+    viene creato per spedire tutto l'output ad un file. Poi, per risparmiare caratteri 
+    da digitare e dimostrare una tecnica che usa le macro ( sostituita da una 
+    migliore tecnica del Capitolo 16), ne si crea una per costruire alcune delle 
+    classi che sono usate poi con l'ereditariet&agrave; e composizione. Ognuno 
+    dei costruttori e distruttori riporta se stesso nel file. Si noti che i costruttori 
+    non sono costruttori per default; ognuno di loro ha un argomento <b>int</b>. 
+    L'argomento stesso non ha identificativo; la sua unica ragione di esistenza 
+    deve costringerlo a chiamare esplicitamente i costruttori nella lista di inizializzazione 
+    (eliminare l'identificatore evita che il compilatore dia messaggi di warning).</FONT><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia">L' output del programma &egrave;</font><BR>
+  </P>
+</DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"> 
+  <PRE>Base1 costruttore
+Member1 costruttore
+Member2 costruttore
+Derived1 costruttore
+Member3 costruttore
+Member4 costruttore
+Derived2 costruttore
+Derived2 distruttore
+Member4 distruttore
+Member3 distruttore
+Derived1 distruttore
+Member2 distruttore
+Member1 distruttore
+Base1 distruttore</PRE>
+  </FONT> 
+  <p>
+</BLOCKQUOTE>
+<p><font face="Georgia, Times New Roman, Times, serif">Si pu&ograve; vedere che 
+  la costruzione inizia alla radice della gerarchia della classe e che a ciascun 
+  livello il costruttore della classe base viene chiamato prima, seguito dai costruttori 
+  dell' oggetto membro. I distruttori sono chiamati precisamente nell'ordine inverso 
+  dei costruttori, questo &egrave; importante a causa delle dipendenze potenziali 
+  (nel costruttore della classe derivata o distruttore, si deve potere presumere 
+  che il suboggetto della classe base &egrave; ancora disponibile per l'uso ed 
+  &egrave; gi&agrave; stato costruito o non &egrave; stato distrutto ancora).</font></p>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">&Egrave; anche interessante che l'ordine di chiamata 
+    del costruttore per oggetti membro &egrave; completamente non soggetto all'ordine 
+    delle chiamate nella lista di inizializzazione del costruttore. L'ordine &egrave; 
+    determinato dall'ordine in cui gli oggetti membro sono dichiarati nella classe. 
+    Se si potesse cambiare l'ordine di chiamata dei costruttori con lista di inizializzazione 
+    del costruttore, si potrebbero avere due sequenze della chiamata diverse in 
+    due costruttori diversi, ma il povero distruttore non saprebbe come invertire 
+    propriamente l'ordine delle chiamate per la distruzione e si potrebbe finire 
+    con un problema di dipendenza.</FONT></P>
+  <p>
+</DIV>
+<FONT FACE = "Verdana"> 
+<H2 ALIGN="LEFT"> Occultamento del nome<BR>
+</H2>
+</FONT> 
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">Se si eredita una classe 
+    e si fornisce una definizione nuova per una delle sue funzioni membro, ci 
+    sono due possibilit&agrave;. Il primo &egrave; che si fornisce la firma esatta 
+    ed il tipo di ritorno nella definizione della classe derivata come nella definizione 
+    della classe base. Questo viene chiamato <i>ridefinizione</i> di funzioni 
+    membro ordinarie e <i>overriding</i> quando la funzione membro della classe 
+    base &egrave; una funzione <b>virtual</b> (virtuale, funzioni virtuali sono 
+    comuni e saranno illustrate in dettaglio nel Capitolo 15). Ma cosa accade 
+    se si cambia la lista degli argomenti della funzione membro o il tipo restituito 
+    dalla classe derivata? Ecco un esempio:</font><BR>
+  </P>
+</DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"> 
+  <PRE><font color=#009900>//: C14:NameHiding.cpp</font>
+<font color=#009900>// occultamento dei nomi sovraccaricati durante l'ereditariet&agrave;</font>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+<font color=#0000ff>using</font> <font color=#0000ff>namespace</font> std;
+
+<font color=#0000ff>class</font> Base {
+<font color=#0000ff>public</font>:
+  <font color=#0000ff>int</font> f() <font color=#0000ff>const</font> { 
+    cout &lt;&lt; <font color=#004488>"Base::f()\n"</font>; 
+    <font color=#0000ff>return</font> 1; 
+  }
+  <font color=#0000ff>int</font> f(string) <font color=#0000ff>const</font> { <font color=#0000ff>return</font> 1; }
+  <font color=#0000ff>void</font> g() {}
+};
+
+<font color=#0000ff>class</font> Derived1 : <font color=#0000ff>public</font> Base {
+<font color=#0000ff>public</font>:
+  <font color=#0000ff>void</font> g() <font color=#0000ff>const</font> {}
+};
+
+<font color=#0000ff>class</font> Derived2 : <font color=#0000ff>public</font> Base {
+<font color=#0000ff>public</font>:
+  <font color=#009900>// ridefinizione:</font>
+  <font color=#0000ff>int</font> f() <font color=#0000ff>const</font> { 
+    cout &lt;&lt; <font color=#004488>"Derived2::f()\n"</font>; 
+    <font color=#0000ff>return</font> 2;
+  }
+};
+
+<font color=#0000ff>class</font> Derived3 : <font color=#0000ff>public</font> Base {
+<font color=#0000ff>public</font>:
+  <font color=#009900>// cambio del tipo restituito:</font>
+  <font color=#0000ff>void</font> f() <font color=#0000ff>const</font> { cout &lt;&lt; <font color=#004488>"Derived3::f()\n"</font>; }
+};
+
+<font color=#0000ff>class</font> Derived4 : <font color=#0000ff>public</font> Base {
+<font color=#0000ff>public</font>:
+  <font color=#009900>// cambio della lista dei argomenti:</font>
+  <font color=#0000ff>int</font> f(<font color=#0000ff>int</font>) <font color=#0000ff>const</font> { 
+    cout &lt;&lt; <font color=#004488>"Derived4::f()\n"</font>; 
+    <font color=#0000ff>return</font> 4; 
+  }
+};
+
+<font color=#0000ff>int</font> main() {
+  string s(<font color=#004488>"ciao"</font>);
+  Derived1 d1;
+  <font color=#0000ff>int</font> x = d1.f();
+  d1.f(s);
+  Derived2 d2;
+  x = d2.f();
+<font color=#009900>//!  d2.f(s); // versione stringa occultata</font>
+  Derived3 d3;
+<font color=#009900>//!  x = d3.f(); // restituisce la versione intera occultata</font>
+  Derived4 d4;
+<font color=#009900>//!  x = d4.f(); // versione occultata di f() </font>
+  x = d4.f(1);
+} <font color=#009900>///:~</font></PRE>
+  </FONT></BLOCKQUOTE>
+<DIV ALIGN="LEFT"> 
+  <P>&nbsp;</P>
+  <p><font face="Georgia, Times New Roman, Times, serif">In <b>Base</b> si vede 
+    una <b>f()</b> sovraccaricata, e <b>Derived1</b> non fa nessun cambiamento 
+    a<b> f(&nbsp;)</b> ma ridefinisce <b>g(&nbsp;)</b>. In <b>main(&nbsp;)</b>, 
+    si pu&ograve; vedere che entrambe le versioni sovraccaricate di <b>f(&nbsp;)</b> 
+    sono disponibili in <b>Derived1</b>. Comunque, <b>Derived2</b> ridefinisce 
+    una versione sovraccaricaricata di <b>f(&nbsp;)</b> ma non l'altra ed il risultato 
+    &egrave; che la seconda forma sovraccaricata non &egrave; disponibile. In 
+    <b>Derived3</b>, cambiare il tipo del ritorno nasconde entrambe le versioni 
+    della classe base, e <b>Derived4</b> mostra che cambiare la lista di inizializzazione 
+    del costruttore nasconde entrambe le versioni della classe base. In generale, 
+    possiamo dire che ognivolta che si ridefinisce un nome di funzione sovraccaricata 
+    da una classe base, tutte le altre versioni sono nascoste automaticamente 
+    alla classe nuova. Nel Capitolo 15, si vedr&agrave; che l'aggiunta della parola 
+    chiave <b>virtual</b> influenza un p&ograve; di pi&ugrave; l'overloading.</font><BR>
+  </p>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Se si cambia l'interfaccia della classe base cambiando 
+    la firma e/o il tipo restituito da una funzione membro dalla classe base, 
+    poi si usa la classe in un modo diverso in cui l'ereditariet&agrave; normalmente 
+    intende. Non necessariamente significa che si sta sbagliando, &egrave; solo 
+    che la meta ultima dell' ereditariet&agrave; &egrave; sostenere il <i>polimorfismo</i> 
+    e se si cambia poi la firma della funzione o il tipo restitutito si sta cambiando 
+    davvero l'interfaccia della classe base. Se questo &egrave; quello che si 
+    &egrave; inteso di fare allora si sta usando l'ereditariet&agrave; per riusare 
+    il codice e non per mantenere l'interfaccia comune della classe base (che 
+    &egrave; un aspetto essenziale del polimorfismo). In generale, quando si usa 
+    l'ereditariet&agrave; in questo modo vuol dire che si sta prendendo una classe 
+    per scopo generale e la si sta specializzando per un particolare bisogno, 
+    che di solito &egrave;, ma non sempre, considerato il reame della composizione.</FONT><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">Per esempio, si consideri 
+    la classe </font><font face="Georgia"><b>Stack</b></font><font face="Georgia, Times New Roman, Times, serif"> 
+    del Capitolo 9. Uno dei problemi con quella classe &egrave; che si doveva 
+    compiere un cast ogni volta che si otteneva un puntatore dal contenitore. 
+    Questo non solo &egrave; tedioso, ma &egrave; anche pericoloso, si potrebbe 
+    castare il puntatore a qualsiasi cosa che si vuole.</font><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Un miglior approccio ad un primo sguardo &egrave; specializzare 
+    la classe generale <b>Stack</b> usando l'ereditariet&agrave;. Ecco un esempio 
+    che utilizza una classe dal Capitolo 9:</FONT><BR>
+  </P>
+</DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"> 
+  <PRE><font color=#009900>//: C14:InheritStack.cpp</font>
+<font color=#009900>// Specializzare la classe Stack </font>
+#include <font color=#004488>"../C09/Stack4.h"</font>
+#include <font color=#004488>"../require.h"</font>
+#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+#include &lt;string&gt;
+<font color=#0000ff>using</font> <font color=#0000ff>namespace</font> std;
+
+<font color=#0000ff>class</font> StringStack : <font color=#0000ff>public</font> Stack {
+<font color=#0000ff>public</font>:
+  <font color=#0000ff>void</font> push(string* str) {
+    Stack::push(str);
+  }
+  string* peek() <font color=#0000ff>const</font> {
+    <font color=#0000ff>return</font> (string*)Stack::peek();
+  }
+  string* pop() {
+    <font color=#0000ff>return</font> (string*)Stack::pop();
+  }
+  ~StringStack() {
+    string* top = pop();
+    <font color=#0000ff>while</font>(top) {
+      <font color=#0000ff>delete</font> top;
+      top = pop();
+    }
+  }
+};
+
+<font color=#0000ff>int</font> main() {
+  ifstream in(<font color=#004488>"InheritStack.cpp"</font>);
+  assure(in, <font color=#004488>"InheritStack.cpp"</font>);
+  string line;
+  StringStack textlines;
+  <font color=#0000ff>while</font>(getline(in, line))
+    textlines.push(<font color=#0000ff>new</font> string(line));
+  string* s;
+  <font color=#0000ff>while</font>((s = textlines.pop()) != 0) { <font color=#009900>// Nessun cast!</font>
+    cout &lt;&lt; *s &lt;&lt; endl;
+    <font color=#0000ff>delete</font> s;
+  }
+} <font color=#009900>///:~</font></PRE>
+  </FONT><BR>
+</BLOCKQUOTE>
+<DIV ALIGN="LEFT"> 
+  <p><font face="Georgia, Times New Roman, Times, serif">Poich&egrave; tutte delle 
+    funzioni del membro in <b>Stack4.h</b> sono inline, nulla ha bisogno di essere 
+    linkato.</font></p>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia"><b>StringStack</b> specializza <b>Stack</b> in modo 
+    che il <b>push(&nbsp;)</b> accetter&agrave; solamente puntatori <b>String</b>. 
+    Prima, <b>Stack</b> avrebbe accettato puntatori <b>void</b>, quindi l'utente 
+    non aveva nessuno controllo del tipo per essere sicuro fare che venissero 
+    inseriti i puntatori corretti. In aggiunta, <b>peek(&nbsp;)</b> e <b>pop(&nbsp;)</b> 
+    ora restituiscono puntatori <b>String</b> invece di puntatori <b>void</b>, 
+    quindi nessuno cast &egrave; necessario per usare il puntatore.</FONT><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia">Straordinariamente, questo extra controllo del tipo 
+    &egrave; gratis in <b>push(&nbsp;)</b>, <b>peek(&nbsp;)</b>, e<b> pop(&nbsp;)</b>! 
+    Si stanno dando informazioni del tipo in pi&ugrave; al compilatore che esso 
+    usa a tempo di compilazione, ma le funzioni sono inline e nessuno codice addizionale 
+    viene generato.</font><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">L'occultamento dei nomi 
+    entra in gioco qui perch&egrave;, in particolare, la funzione <b>push(&nbsp;) 
+    </b>ha una firma diversa: la lista degli argomenti &egrave; diversa. Se si 
+    avessero due versioni di<b> push(&nbsp;)</b> nella stessa classe, questo sarebbe 
+    overloading, ma in questo caso sovraccaricare non &egrave; quello che noi 
+    vogliamo perch&egrave;&#130; ancora si permetterebbe di passare qualsiasi 
+    genere di puntatore in <b>push(&nbsp;)</b> come un <b>void *</b>. Fortunatamente, 
+    il C++ nasconde <b>push(void *)</b> della classe base in favore della versione 
+    nuova definito nella classe derivata e perci&ograve; permette solamente di 
+    usare <b>push(&nbsp;)</b> con puntatori <b>string</b> dentro <b>StringStack</b>.</font><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia">Poich&egrave;</font><FONT FACE="Georgia">&#130; noi 
+    ora possiamo garantire di conoscere precisamente che genere di oggetti ci 
+    sono nel contenitore, il distruttore lavora correttamente ed il problema della 
+    propriet&agrave; &egrave; risolto o almeno si ha un approccio al problema 
+    della propriet&agrave;. Qui, se si usa <b>push(&nbsp;) </b>per un puntatore 
+    alla <b>StringStack</b>, poi (secondo le semantiche del <b>StringStack</b>) 
+    si passa anche la propriet&agrave; di quel puntatore al <b>StringStack</b>. 
+    Se si usa<b> pop(&nbsp;)</b> per ottenere il puntatore, non solo si ottiene 
+    il puntatore, ma si ottiene anche la propriet&agrave; di quel puntatore. Qualsiasi 
+    puntatore che viene lasciato in <b>StringStack</b> quando il suo distruttore 
+    viene chiamato &egrave; cancellato da quel distruttore. E poich&egrave; questi 
+    sono sempre puntatori <b>string</b> e l'istruzione <b>delete</b> lavora su 
+    puntatori <b>string</b> invece di puntatori <b>void</b>, avviene la corretta 
+    distruzione e tutto funziona correttamente.</FONT><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">C'&egrave; un inconveniente: questa classe funziona 
+    solamente con puntatori <b>string</b>. Se si vuole un <b>Stack</b> che funziona 
+    con qualche altro genere di oggetto, si deve scrivere una nuova versione della 
+    classe in modo che funziona solamente col il nuovo tipo di oggetto. Questo 
+    diviene rapidamente tedioso ed &egrave; risolto finalmente usando i template, 
+    come si vedr&agrave; nel Capitolo 16.</FONT><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia">P</font><FONT FACE="Georgia">ossiamo fare un'osservazione 
+    supplementare circa questo esempio: cambia l'interfaccia della <b>Stack</b> 
+    nel processo di ereditariet&agrave;. Se l'interfaccia &egrave; diversa, allora 
+    un <b>StringStack</b> realmente non &egrave; uno <b>Stack</b> e non si potr&agrave; 
+    mai usare correttamente un <b>StringStack</b> come uno <b>Stack</b>. Questo 
+    rende discutibile l'uso dell'ereditariet&agrave;; se non si crea un <b>StringStack</b> 
+    che &egrave; un tipo di <b>Stack</b>, allora perch&egrave; si sta ereditando? 
+    Una versione pi&ugrave; adatta di <b>StringStack</b> sar&agrave; mostrata 
+    pi&ugrave; avanti in questo capitolo.</FONT><BR>
+  </P>
+</DIV>
+<FONT FACE = "Verdana"> 
+<H2 ALIGN="LEFT"> Funzioni che non ereditano automaticamente</H2>
+</FONT> 
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Non tutte le funzioni sono ereditate automaticamente 
+    dalla classe base nella classe derivata. Costruttori e distruttori trattano 
+    la creazione e distruzione di un oggetto e sanno che fare solamente con gli 
+    aspetti dell'oggetto per la loro particolare classe, quindi tutti i costruttori 
+    e distruttori nella gerarchia sotto di loro devono essere chiamati. Dunque 
+    costruttori e distruttori ereditano e devono essere creati per ogni classe 
+    derivata.</FONT><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">In aggiunta, l'operatore 
+    <b>=</b> non eredita perch&egrave;&#130; compie un attivit&agrave; come quella 
+    del costruttore. Ovvero, solo perch&egrave;&#130; si sa come assegnare tutti 
+    i membri di un oggetto sul lato sinistro del = da un oggetto sul lato destro, 
+    non significa che l'assegnazione avr&agrave; ancora lo stesso significato 
+    dopo ereditariet&agrave;.</font><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Al posto dell'ereditariet&agrave;, queste funzioni sono 
+    sintetizzate dal compilatore se non le si crea (con i costruttori, non si 
+    possono creare qualsiasi costruttore in modo che il compilatore sintetizzi 
+    il costruttore di default e il costruttore di copia). Questo &egrave; stato 
+    descritto brevemente nel Capitolo 6. I costruttori sintetizzati usano l'inizializzazione 
+    membro a membro e l'operatore sintetizzato <b>=</b> usa l'assegnazione membro 
+    a membro. Ecco un esempio delle funzioni che sono sintetizzate dal compilatore:</FONT><BR>
+  </P>
+</DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"> 
+  <PRE><font color=#009900>//: C14:SynthesizedFunctions.cpp</font>
+<font color=#009900>// Funzioni che sono sintetizzati dal compilatore</font>
+#include &lt;iostream&gt;
+<font color=#0000ff>using</font> <font color=#0000ff>namespace</font> std;
+
+<font color=#0000ff>class</font> GameBoard {
+<font color=#0000ff>public</font>:
+  GameBoard() { cout &lt;&lt; <font color=#004488>"GameBoard()\n"</font>; }
+  GameBoard(<font color=#0000ff>const</font> GameBoard&amp;) { 
+    cout &lt;&lt; <font color=#004488>"GameBoard(const GameBoard&amp;)\n"</font>; 
+  }
+  GameBoard&amp; <font color=#0000ff>operator</font>=(<font color=#0000ff>const</font> GameBoard&amp;) {
+    cout &lt;&lt; <font color=#004488>"GameBoard::operator=()\n"</font>;
+    <font color=#0000ff>return</font> *<font color=#0000ff>this</font>;
+  }
+  ~GameBoard() { cout &lt;&lt; <font color=#004488>"~GameBoard()\n"</font>; }
+};
+
+<font color=#0000ff>class</font> Game {
+  GameBoard gb; <font color=#009900>// Composizione</font>
+<font color=#0000ff>public</font>:
+  <font color=#009900>// costruttore di GameBoard di default :</font>
+  Game() { cout &lt;&lt; <font color=#004488>"Game()\n"</font>; }
+  <font color=#009900>// Si deve chiamare il costruttore di copia  di  GameBoard</font>
+  <font color=#009900>// oppure  il costruttore di default 
+  // viene invece chiamato automaticamente:</font>
+  Game(<font color=#0000ff>const</font> Game&amp; g) : gb(g.gb) { 
+    cout &lt;&lt; <font color=#004488>"Game(const Game&amp;)\n"</font>; 
+  }
+  Game(<font color=#0000ff>int</font>) { cout &lt;&lt; <font color=#004488>"Game(int)\n"</font>; }
+  Game&amp; <font color=#0000ff>operator</font>=(<font color=#0000ff>const</font> Game&amp; g) {
+    <font color=#009900>// Si deve chiamare esplicitamente l'operatore di assegnazione di GameBoard</font>
+    <font color=#009900>// altrimenti non avviene nessuna assegnazione per gb! 
+</font>
+    gb = g.gb;
+    cout &lt;&lt; <font color=#004488>"Game::operator=()\n"</font>;
+    <font color=#0000ff>return</font> *<font color=#0000ff>this</font>;
+  }
+  <font color=#0000ff>class</font> Other {}; <font color=#009900>// classe incoporata
+// conversione automatica del tipo:</font>
+  <font color=#0000ff>operator</font> Other() <font color=#0000ff>const</font> {
+    cout &lt;&lt; <font color=#004488>"Game::operator Other()\n"</font>;
+    <font color=#0000ff>return</font> Other();
+  }
+  ~Game() { cout &lt;&lt; <font color=#004488>"~Game()\n"</font>; }
+};
+
+<font color=#0000ff>class</font> Chess : <font color=#0000ff>public</font> Game {};
+
+<font color=#0000ff>void</font> f(Game::Other) {}
+
+<font color=#0000ff>class</font> Checkers : <font color=#0000ff>public</font> Game {
+<font color=#0000ff>public</font>:
+  <font color=#009900>// costruttore della classe base di default:</font>
+  Checkers() { cout &lt;&lt; <font color=#004488>"Checkers()\n"</font>; }
+  <font color=#009900>// Si deve chiamare esplicitamente il costruttore di copia
+  // della classe base altrimenti verr&agrave; chiamato
+  // il costruttore di default </font>
+  Checkers(<font color=#0000ff>const</font> Checkers&amp; c) : Game(c) {
+    cout &lt;&lt; <font color=#004488>"Checkers(const Checkers&amp; c)\n"</font>;
+  }
+  Checkers&amp; <font color=#0000ff>operator</font>=(<font color=#0000ff>const</font> Checkers&amp; c) {
+    <font color=#009900>// Si deve chiamare esplicitamente la versione della classe base
+    // dell'operatore=() altrimenti nessuna assegnazione
+    // della classe base avverr&agrave;:</font>
+    Game::<font color=#0000ff>operator</font>=(c);
+    cout &lt;&lt; <font color=#004488>"Checkers::operator=()\n"</font>;
+    <font color=#0000ff>return</font> *<font color=#0000ff>this</font>;
+  }
+};
+
+<font color=#0000ff>int</font> main() {
+  Chess d1;  <font color=#009900>// Costruttore di Default</font>
+  Chess d2(d1); <font color=#009900>// Costruttore di Copia
+//! Chess d3(1); // Errore: nessun costruttore di  int </font>
+  d1 = d2; <font color=#009900>// Operatore = sintetizzato</font>
+  f(d1); <font color=#009900>// la conversione di tipo viene ereditata</font>
+  Game::Other go;
+<font color=#009900>//!  d1 = go; // Operatore = non  sintetizzato</font>
+           <font color=#009900>// per tipi diversi</font>
+  Checkers c1, c2(c1);
+  c1 = c2;
+} <font color=#009900>///:~</font></PRE>
+  </FONT> </BLOCKQUOTE>
+<p><font face="Georgia, Times New Roman, Times, serif">I costruttori e l'operatore 
+  <b>=</b> per <b>GameBoard</b> e <b>Gioco</b> annunciano loro stessi quindi si 
+  pu&ograve; vedere quando sono usati dal compilatore. In aggiunta, l'operatore 
+  <b>Other(&nbsp;) </b>compie conversione del tipo automatica da un oggetto <b>Game</b> 
+  a un oggetto incorporato della classe <b>Other</b>. La classe <b>Chess</b> eredita 
+  semplicemente da <b>Game</b> e non crea funzioni (per vedere come il compilatore 
+  risponde). La funzione<b> f()</b> prende un oggetto <b>Other</b> per esaminare 
+  la funzione di conversione di tipo automatica.</font></p>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">In <b>main(&nbsp;)</b>, il costruttore di default sintetizzato 
+    ed il costruttore di copia per la classe derivata <b>Chess</b> vengono chiamati. 
+    Le versioni <b>Game</b> di questi costruttori sono chiamate come parte della 
+    gerarchia delle chiamate del costruttore. Anche se assomiglia all'ereditariet&agrave;, 
+    costruttori nuovi vengono sintetizzati davvero dal compilatore. Come ci si 
+    aspetterebbe, nessun costruttore con argomenti viene creato automaticamente, 
+    perch&egrave; ci&ograve; &egrave; troppo per il compilatore.</FONT><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">L'operatore <b>=</b> 
+    &egrave; sintetizzato anche come una funzione nuova in <b>Chess</b> usando 
+    l'assegnamento membro a membro (quindi, la versione della classe base viene 
+    chiamata) perch&egrave;&#130; quella funzione non &egrave; stata scritta esplicitamente 
+    nella classe nuova. E chiaramente il distruttore &egrave; stato sintetizzato 
+    automaticamente dal compilatore.</font><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">A causa di tutti queste regole sul rimaneggiamento delle 
+    funzioni che gestiscono la creazione dell'oggetto, pu&ograve; sembrare un 
+    p&ograve; strano a prima vista che l'operatore di conversione di tipo automatico 
+    venga ereditato. Ma non &egrave; troppo irragionevole se ci sono abbastanza 
+    pezzi in <b>Game</b> per fare un oggetto <b>Other</b>, quei pezzi sono ancora 
+    l&agrave; in qualsiasi cosa sia derivata da <b>Game</b> e l'operatore di conversione 
+    di tipo ancora &egrave; valido (anche se si pu&ograve; infatti voler ridefinirlo).</FONT><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia">L</font><FONT FACE="Georgia">'operatore <b>=</b> &egrave; 
+    sintetizzato <i>solamente</i> per assegnare oggetti dello stesso tipo. Se 
+    si vuole assegnare uno tipo ad un altro si deve sempre scrivere il proprio 
+    operatore <b>=</b> .</FONT><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Se si guarda pi&ugrave; da vicino <b>Game</b>, si vede 
+    che il costruttore di copia e gli operatori di assegnazione hanno chiamate 
+    esplicite al costruttore di copia dell'oggetto membro e all'operatore di assegnazione. 
+    Si far&agrave; normalmente ci&ograve; perch&egrave;&#130; nel caso del costruttore 
+    di copia, il costruttore dell'oggetto membro di default verr&agrave; altrimenti 
+    usato e, nel caso dell'operatore di assegnazione, nessuna assegnazione sar&agrave; 
+    fatta per gli oggetti membro!</FONT><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia">Infine, si guardi a <b>Checkers</b> dove esplicitamente 
+    &egrave; scritto il costruttore di default, costruttore di copia e l'operatore 
+    di assegnazione. Nel caso del costruttore di default, il costruttore della 
+    classe base di default &egrave; stato chiamato automaticamente e questo tipicamente 
+    &egrave; quello che si vuole. Ma e questo &egrave; un importante punto, appena 
+    si decide di scrivere il proprio proprio costruttore di copia e operatore 
+    di assegnazione, il compilatore presume che si sa ci&ograve; che si fa e non 
+    chiama automaticamente le versioni della classe base, come fa nelle funzioni 
+    sintetizzate. Se si vuole che le versioni della classe basi siano chiamate 
+    (e tipicamente si vuole) poi li si devono chiamare esplicitamente. Nel costruttore 
+    di copia della <b>Checkers</b>, questa chiamata appare nella lista di inizializzazione 
+    del costruttore.</font><BR>
+  </P>
+</DIV>
+<BLOCKQUOTE><FONT SIZE = "+1">
+  <PRE>Checkers(<font color=#0000ff>const</font> Checkers&amp; c) : Game(c) {</PRE>
+  </FONT></BLOCKQUOTE>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Nell'operatore assegnazione di <B>Checkers</B>, la classe 
+    base &egrave; la prima linea del corpo della funzione:</FONT><BR>
+  </P>
+</DIV>
+<BLOCKQUOTE><FONT SIZE = "+1">
+  <PRE>Game::<font color=#0000ff>operator</font>=(c);</PRE>
+  </FONT></BLOCKQUOTE>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Queste chiamate dovrebbero essere parte della forma 
+    canonica che si usa ogni volta che si eredita una classe.</FONT></P>
+</DIV>
+<FONT FACE = "Verdana"> 
+<H3 ALIGN="LEFT"> Ereditariet&agrave; e funzioni membro statiche<BR>
+</H3>
+</FONT> 
+<DIV ALIGN="LEFT"> 
+  <p><font face="Georgia, Times New Roman, Times, serif">Le funzioni membro statiche 
+    agiscono allo stesso modo delle funzioni membro non-statiche:</font></p>
+</DIV>
+<ol>
+  <li> 
+    <DIV ALIGN="LEFT"> 
+      <p><font face="Georgia, Times New Roman, Times, serif">Ereditano nella classe 
+        derivata.</font></p>
+    </DIV>
+  </li>
+  <li> 
+    <DIV ALIGN="LEFT"> 
+      <p><font face="Georgia, Times New Roman, Times, serif">Se si ridefinisce 
+        un membro statico, tutte le altre funzioni sovraccaricate nella classe 
+        base sono occultate.</font></p>
+    </DIV>
+  </li>
+  <li> 
+    <DIV ALIGN="LEFT"> 
+      <p><font face="Georgia, Times New Roman, Times, serif">Se si cambia la firma 
+        di una funzione nella classe base, tutte le versioni della classe base 
+        con quel nome di funzione sono occultate (questa realmente &egrave; una 
+        variazione del punto precedente). </font></p>
+    </DIV>
+  </li>
+</ol>
+<DIV ALIGN="LEFT"> 
+  <p><font face="Georgia, Times New Roman, Times, serif">Tuttavia funzioni membro 
+    statiche non possono essere <b>virtual</b> (un argomento trattato completamente 
+    nel Capitolo 15).</font></p>
+</DIV>
+<FONT FACE = "Verdana"> 
+<H2 ALIGN="LEFT"> Scegliere tra composizione ed ereditariet&agrave;</H2>
+</FONT> 
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Sia la composizione che l'ereditariet&agrave; piazzano 
+    suboggetti nella propria classe nuova. Entrambe usano la lista di inizializzazione 
+    del costruttore per costruire questi suboggetti. Ci si pu&ograve; ora star 
+    chiedendo qual &egrave; la differenza tra i due e quando scegliere uno o l'altro.</FONT><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">La composizione generalmente si usa quando si vogliono 
+    le caratteristiche di una classe esistente nella propria classe nuova, ma 
+    non la sua interfaccia. Ovvero, si ingloba un oggetto per perfezionare caratteristiche 
+    della classe nuova, ma l'utente della classe nuova vede l'interfaccia definita 
+    piuttosto che l'interfaccia della classe originale. Si segue il percorso tipico 
+    di inglobare oggetti privati di classi esistenti nella propria classe nuova 
+    per fare questo.</FONT><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Ha comunque, di quando in quando, senso permettere all'utente 
+    della classe di accedere direttamente la composizione della classe nuova, 
+    ovvero, fare i membri oggetto <b>public</b>. I membri oggetto usano essi stessi 
+    il controllo di accesso, cos&igrave; questa &egrave; una cosa sicura da fare 
+    e quando l'utente sa che si stanno assemblando un gruppo di parti, rende l'interfaccia 
+    pi&ugrave; facile da capire. Una classe <b>Car</b> &egrave; un buon esempio:</FONT><BR>
+  </P>
+</DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"> 
+  <PRE><font color=#009900>//: C14:Car.cpp</font>
+<font color=#009900>// Composizione public 
+</font><font color=#0000ff>class</font> Engine {
+<font color=#0000ff>public</font>:
+  <font color=#0000ff>void</font> start() <font color=#0000ff>const</font> {}
+  <font color=#0000ff>void</font> rev() <font color=#0000ff>const</font> {}
+  <font color=#0000ff>void</font> stop() <font color=#0000ff>const</font> {}
+};
+
+<font color=#0000ff>class</font> Wheel {
+<font color=#0000ff>public</font>:
+  <font color=#0000ff>void</font> inflate(<font color=#0000ff>int</font> psi) <font color=#0000ff>const</font> {}
+};
+
+<font color=#0000ff>class</font> Window {
+<font color=#0000ff>public</font>:
+  <font color=#0000ff>void</font> rollup() <font color=#0000ff>const</font> {}
+  <font color=#0000ff>void</font> rolldown() <font color=#0000ff>const</font> {}
+};
+
+<font color=#0000ff>class</font> Door {
+<font color=#0000ff>public</font>:
+  Window window;
+  <font color=#0000ff>void</font> open() <font color=#0000ff>const</font> {}
+  <font color=#0000ff>void</font> close() <font color=#0000ff>const</font> {}
+};
+
+<font color=#0000ff>class</font> Car {
+<font color=#0000ff>public</font>:
+  Engine engine;
+  Wheel wheel[4];
+  Door left, right; <font color=#009900>// 2-door</font>
+};
+
+<font color=#0000ff>int</font> main() {
+  Car car;
+  car.left.window.rollup();
+  car.wheel[0].inflate(72);
+} <font color=#009900>///:~</font></PRE>
+  </FONT></BLOCKQUOTE>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia">Poich&egrave;</font><FONT FACE="Georgia">&#130; la composizione 
+    di una <b>Car</b> fa parte dell'analisi del problema (e non semplicemente 
+    parte del progetto ), fare i membri <b>public</b> aiuta il programmatore client 
+    a capire come usare la classe e richiede meno complessit&agrave; del codice 
+    per il creatore della classe.</FONT></P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia">Pensandoci un p&ograve;</font><FONT FACE="Georgia">, 
+    si vedr&agrave; anche che non avrebbe senso comporre una <b>Car</b> usando 
+    un oggetto &quot;Vehicle&quot; una macchina non contiene un veicolo, &egrave; 
+    un veicolo. La relazione <i>&egrave;-un e</i>spressa con l'ereditariet&agrave; 
+    e la relazione <i>ha-un</i> &egrave; espressa con la composizione.</FONT></P>
+</DIV>
+<FONT FACE = "Verdana"> 
+<H3 ALIGN="LEFT"> Subtyping<BR>
+</H3>
+</FONT> 
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Ora si supponga che si vuole creare un tipo di oggetto 
+    dell'<b>ifstream</b> che non solo apre un file ma anche monitorizza il nome 
+    del file. Si pu&ograve; usare la composizione e inglobare un <b>ifstream</b> 
+    ed una <b>string</b> nella classe nuova:</FONT><BR>
+  </P>
+</DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"> 
+  <PRE><font color=#009900>//: C14:FName1.cpp</font>
+<font color=#009900>// Un fstream con un nome di file</font>
+#include <font color=#004488>"../require.h"</font>
+#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+#include &lt;string&gt;
+<font color=#0000ff>using</font> <font color=#0000ff>namespace</font> std;
+
+<font color=#0000ff>class</font> FName1 {
+  ifstream file;
+  string fileName;
+  <font color=#0000ff>bool</font> named;
+<font color=#0000ff>public</font>:
+  FName1() : named(<font color=#0000ff>false</font>) {}
+  FName1(<font color=#0000ff>const</font> string&amp; fname) 
+    : fileName(fname), file(fname.c_str()) {
+    assure(file, fileName);
+    named = <font color=#0000ff>true</font>;
+  }
+  string name() <font color=#0000ff>const</font> { <font color=#0000ff>return</font> fileName; }
+  <font color=#0000ff>void</font> name(<font color=#0000ff>const</font> string&amp; newName) {
+    <font color=#0000ff>if</font>(named) <font color=#0000ff>return</font>; <font color=#009900>// Non sovrascrive</font>
+    fileName = newName;
+    named = <font color=#0000ff>true</font>;
+  }
+  <font color=#0000ff>operator</font> ifstream&amp;() { <font color=#0000ff>return</font> file; }
+};
+
+<font color=#0000ff>int</font> main() {
+  FName1 file(<font color=#004488>"FName1.cpp"</font>);
+  cout &lt;&lt; file.name() &lt;&lt; endl;
+  <font color=#009900>// Errore: close() non &egrave;  un membro:</font>
+<font color=#009900>//!  file.close();</font>
+} <font color=#009900>///:~</font></PRE>
+  </FONT></BLOCKQUOTE>
+<p><FONT FACE="Georgia"> C'&egrave; un problema qui, tuttavia. Viene fatto un 
+  tentativo per permettere dovunque l'uso dell'oggetto <b>FName1</b>, un oggetto 
+  dell'<b>ifstream</b> &egrave; usato includendo un operatore di conversione di 
+  tipo automatico da <b>FName1</b> a un<b> ifstream&amp;</b>. Ma nel main, la 
+  linea</FONT></p>
+<BLOCKQUOTE><FONT SIZE = "+1">
+  <PRE>file.close();</PRE>
+  </FONT></BLOCKQUOTE>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">non verr&agrave; compilata perch&egrave;&#130; la conversione 
+    di tipo automatica accade solamente nelle chiamate di funzione, non durante 
+    la selezione del membro. Quindi quest'approccio non funziona.</FONT><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Un secondo approccio &egrave; aggiungere la definizione 
+    di<b> close(&nbsp;)</b> a <b>FName1</b>:</FONT><BR>
+  </P>
+</DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"> 
+  <PRE><font color=#0000ff>void</font> close() { file.close(); }</PRE>
+  </FONT></BLOCKQUOTE>
+<p><font face="Georgia, Times New Roman, Times, serif">Questo funzioner&agrave; 
+  se ci sono solamente alcune funzioni che si vogliono portare dalla classe <b>ifstream</b>. 
+  In quel caso si usa solamente parte della classe ed &egrave; adatta la composizione.</font></p>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia">E </font><FONT FACE="Georgia">se si vuole passare tutto 
+    nella classe ? Questo &egrave; detto <i>subtyping</i> ( sottotipare ) perch&egrave;&#130; 
+    si fa un tipo nuovo da un tipo esistente e si vuole un tipo nuovo per avere 
+    precisamente la stessa interfaccia del tipo esistente ( pi&ugrave; qualsiasi 
+    altra funzione membro che si vuole aggiungere), quindi si pu&ograve; usarlo 
+    dovunque si userebbe il tipo esistente. Ecco dove l'eredit&agrave; &egrave; 
+    essenziale. Si pu&ograve; vedere che sottotipare risolve perfettamente il 
+    problema nell'esempio precedente:</FONT><BR>
+  </P>
+</DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"> 
+  <PRE><font color=#009900>//: C14:FName2.cpp</font>
+<font color=#009900>// Sottotipare risolve il problema</font>
+#include <font color=#004488>"../require.h"</font>
+#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+#include &lt;string&gt;
+<font color=#0000ff>using</font> <font color=#0000ff>namespace</font> std;
+
+<font color=#0000ff>class</font> FName2 : <font color=#0000ff>public</font> ifstream {
+  string fileName;
+  <font color=#0000ff>bool</font> named;
+<font color=#0000ff>public</font>:
+  FName2() : named(<font color=#0000ff>false</font>) {}
+  FName2(<font color=#0000ff>const</font> string&amp; fname)
+    : ifstream(fname.c_str()), fileName(fname) {
+    assure(*<font color=#0000ff>this</font>, fileName);
+    named = <font color=#0000ff>true</font>;
+  }
+  string name() <font color=#0000ff>const</font> { <font color=#0000ff>return</font> fileName; }
+  <font color=#0000ff>void</font> name(<font color=#0000ff>const</font> string&amp; newName) {
+    <font color=#0000ff>if</font>(named) <font color=#0000ff>return</font>; <font color=#009900>// Non sovrascrive </font>
+    fileName = newName;
+    named = <font color=#0000ff>true</font>;
+  }
+};
+
+<font color=#0000ff>int</font> main() {
+  FName2 file(<font color=#004488>"FName2.cpp"</font>);
+  assure(file, <font color=#004488>"FName2.cpp"</font>);
+  cout &lt;&lt; <font color=#004488>"nome: "</font> &lt;&lt; file.name() &lt;&lt; endl;
+  string s;
+  getline(file, s); <font color=#009900>// Anche questo funziona!</font>
+  file.seekg(-200, ios::end);
+  file.close();
+} <font color=#009900>///:~</font></PRE>
+  </FONT></BLOCKQUOTE>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Ora qualsiasi funzione membro disponibile per un oggetto 
+    <b>ifstream</b> &egrave; disponibile per un oggetto <b>FName2</b>. Si pu&ograve; 
+    vedere anche che quelle funzioni non-membro come<b> getline(&nbsp;)</b> che 
+    si aspettano un <b>ifstream</b> possono lavorare anche con un <b>FName2</b>. 
+    Questo perch&egrave;&#130; un <b>FName2</b> &egrave; un tipo di <b>ifstream</b>, 
+    non ne contiene semplicemente uno. Questo &egrave; un problema molto importante 
+    che sar&agrave; esplorato alla fine di questo capitolo e nel prossimo.</FONT></P>
+  <p>
+</DIV>
+<FONT FACE = "Verdana"> 
+<H3 ALIGN="LEFT"> Ereditariet&agrave; privata<BR>
+</H3>
+</FONT> 
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia">S</font><FONT FACE="Georgia">i pu&ograve; ereditare 
+    privatamente una classe base tralasciando <b>public</b> nella lista della 
+    classe base o scrivendo esplicitamente <b>private</b> (probabilmente una procedura 
+    migliore perch&egrave;&#130; &egrave; chiaro all'utente cosa si vuole dire). 
+    Quando si eredita privatamente, si sta implementando in termini di, cio&egrave; 
+    si crea una classe nuova che ha tutti i dati e le funzionalit&agrave; della 
+    classe base, ma quella funzionalit&agrave; &egrave; occultata, quindi &egrave; 
+    solamente parte della realizzazione sottostante. L'utente della classe non 
+    ha accesso alla funzionalit&agrave; sottostante ed un oggetto non pu&ograve; 
+    essere trattato come un'istanza della classe base (come era nel <b>FName2.cpp</b>).</FONT><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia">Ci si pu&ograve; chiedere qual &egrave; lo scopo dell' 
+    ereditariet&agrave; privata, perch&egrave;&#130; l'alternativa di usare la 
+    composizione per creare un oggetto <b>private</b> nella classe nuova sembra 
+    pi&ugrave; adatta. L'ereditariet&agrave; privata &egrave; inclusa nel linguaggio 
+    per completezza, ma se per nessuna altra ragione che ridurre la confusione, 
+    di solito si user&agrave; la composizione piuttosto che l'ereditariet&agrave; 
+    privata. Ci possono essere di quando in quando comunque, situazioni dove si 
+    vuole produrre parte della stessa interfaccia come quella della classe base 
+    e respingere il trattamento dell'oggetto come se fosse un oggetto della classe 
+    base. L'ereditariet&agrave; privata fornisce questa abilit&agrave;.</font><BR>
+  </P>
+  <h3><font face="Verdana, Arial, Helvetica, sans-serif">Pubblicare membri privatamente 
+    ereditati </font> </h3>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Quando si eredita privatamente, tutti i membri pubblici 
+    della classe base diventano <b>private</b>. Se si vuole che qualcuno di loro 
+    sia visibile, si usa la parola chiave <b>using</b> vicino il loro nome ( senza 
+    nessun argomento o tipi di ritorno) nella sezione <b>public</b> della classe 
+    derivata:</FONT></P>
+</DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"> 
+  <PRE><font color=#009900>//: C14:PrivateInheritance.cpp</font>
+<font color=#0000ff>class</font> Pet {
+<font color=#0000ff>public</font>:
+  <font color=#0000ff>char</font> eat() <font color=#0000ff>const</font> { <font color=#0000ff>return</font> 'a'; }
+  <font color=#0000ff>int</font> speak() <font color=#0000ff>const</font> { <font color=#0000ff>return</font> 2; }
+  <font color=#0000ff>float</font> sleep() <font color=#0000ff>const</font> { <font color=#0000ff>return</font> 3.0; }
+  <font color=#0000ff>float</font> sleep(<font color=#0000ff>int</font>) <font color=#0000ff>const</font> { <font color=#0000ff>return</font> 4.0; }
+};
+
+<font color=#0000ff>class</font> Goldfish : Pet { <font color=#009900>// ereditariet&agrave; privata 
+</font><font color=#0000ff>public</font>:
+  <font color=#0000ff>using</font> Pet::eat; <font color=#009900>// il nome publicizza il membro
+</font><font color=#0000ff>using</font> Pet::sleep; <font color=#009900>// Entrambi i membri sovraccaricati sono esposti</font>
+};
+
+<font color=#0000ff>int</font> main() {
+  Goldfish bob;
+  bob.eat();
+  bob.sleep();
+  bob.sleep(1);
+<font color=#009900>//! bob.speak();// Errore: funzione membro privata</font>
+} <font color=#009900>///:~</font></PRE>
+  </FONT></BLOCKQUOTE>
+<p><FONT FACE="Georgia">Quindi, l'ereditariet&agrave; privata &egrave; utile se 
+  si vuole occultare parte della funzionalit&agrave; della classe base.</FONT></p>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia">Si noti che esporre il nome di una funzione sovraccaricata, 
+    espone tutte le versioni della funzione sovraccaricata nella classe base.</font><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia">Si dovrebbe </font><FONT FACE="Georgia"> far attenzione 
+    prima di usare l'ereditariet&agrave; privata invece della composizione; l'ereditariet&agrave; 
+    privata ha particolari complicazioni quando combinata con l'identificazione 
+    del tipo a runtime (questo &egrave; il tema di un capitolo nel Volume 2 di 
+    questo libro, scaricabile da <i>www.BruceEckel.com</i>).</FONT></P>
+</DIV>
+<FONT FACE = "Verdana"> 
+<H2 ALIGN="LEFT"> protected</H2>
+</FONT> 
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Ora che &egrave; stata presentata l'ereditariet&agrave;, 
+    la parola riservata <b>protected</b> finalmente ha un significato. In un mondo 
+    ideale, membri privati sarebbero sempre <b>private</b>, ma nei progetti veri 
+    a volte si vuole occultare qualcosa e ancora permettere l'accesso ai membri 
+    delle classi derivate. La parola riservata <b>protected</b> &egrave; un cenno 
+    al pragmatismo; dice:&quot;Questo &egrave; privato per quanto concerne l'utente 
+    della classe, ma disponibile a chiunque eredita da questo classe&quot;.</FONT><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Il migliore approccio &egrave; lasciare i membri dato 
+    <b>private</b>, si dovrebbe sempre preservare il proprio diritto di cambiare 
+    l'implementazione sottostante. Si pu&ograve; permettere poi l'accesso controllato 
+    a chi eredita dalla propria classe attraverso funzioni membro <b>protected</b>:</FONT><BR>
+  </P>
+</DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"> 
+  <PRE><font color=#009900>//: C14:Protected.cpp</font>
+<font color=#009900>// La parola riservata protected </font>
+#include &lt;fstream&gt;
+<font color=#0000ff>using</font> <font color=#0000ff>namespace</font> std;
+
+<font color=#0000ff>class</font> Base {
+  <font color=#0000ff>int</font> i;
+<font color=#0000ff>protected</font>:
+  <font color=#0000ff>int</font> read() <font color=#0000ff>const</font> { <font color=#0000ff>return</font> i; }
+  <font color=#0000ff>void</font> set(<font color=#0000ff>int</font> ii) { i = ii; }
+<font color=#0000ff>public</font>:
+  Base(<font color=#0000ff>int</font> ii = 0) : i(ii) {}
+  <font color=#0000ff>int</font> value(<font color=#0000ff>int</font> m) <font color=#0000ff>const</font> { <font color=#0000ff>return</font> m*i; }
+};
+
+<font color=#0000ff>class</font> Derived : <font color=#0000ff>public</font> Base {
+  <font color=#0000ff>int</font> j;
+<font color=#0000ff>public</font>:
+  Derived(<font color=#0000ff>int</font> jj = 0) : j(jj) {}
+  <font color=#0000ff>void</font> change(<font color=#0000ff>int</font> x) { set(x); }
+}; 
+
+<font color=#0000ff>int</font> main() {
+  Derived d;
+  d.change(10);
+} <font color=#009900>///:~</font></PRE>
+  </FONT></BLOCKQUOTE>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia">Si</font><FONT FACE="Georgia"> troveranno esempi del 
+    uso di <b>protected</b> pi&ugrave; avanti in questo libro e nel Volume 2.</FONT></P>
+  <P><BR>
+  </P>
+</DIV>
+<FONT FACE = "Verdana"> 
+<H3 ALIGN="LEFT"> Ereditariet&agrave; protetta<BR>
+</H3>
+</FONT> 
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Quando si eredita, per default la classe base &egrave; 
+    <b>private</b>, che significa che tutte le funzioni membro pubbliche sono 
+    private all'utente della classe nuova. Normalmente, si rende l'ereditariet&agrave; 
+    pubblica in modo che l'interfaccia della classe base &egrave; anche l'interfaccia 
+    della classe derivata. Si pu&ograve; usare anche la parola chiave <b>protected</b> 
+    con l'ereditariet&agrave;.</FONT><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">La derivazione protetta vuole dire: &quot;implementata 
+    in termini di&quot; altre classi ma &quot;&egrave;-un&quot; per classi derivate 
+    e friend. Non si usa molto spesso, ma &egrave; presente nel linguaggio per 
+    completezza.</FONT></P>
+</DIV>
+<FONT FACE = "Verdana"> 
+<H2 ALIGN="LEFT"> Operatore overloading &amp; ereditariet&agrave;<BR>
+</H2>
+</FONT> 
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Tranne per l'operatore assegnamento, gli operatori sono 
+    ereditati automaticamente in una classe derivata. Questo pu&ograve; essere 
+    dimostrato ereditando da <b>C12:Byte.h</b>:</FONT><BR>
+  </P>
+</DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"> 
+  <PRE><font color=#009900>//: C14:OperatorInheritance.cpp</font>
+<font color=#009900>// Ereditare operatori sovraccaricati</font>
+#include <font color=#004488>"../C12/Byte.h"</font>
+#include &lt;fstream&gt;
+<font color=#0000ff>using</font> <font color=#0000ff>namespace</font> std;
+ofstream out(<font color=#004488>"ByteTest.out"</font>);
+
+<font color=#0000ff>class</font> Byte2 : <font color=#0000ff>public</font> Byte {
+<font color=#0000ff>public</font>:
+  <font color=#009900>// I costruttori non ereditano:</font>
+  Byte2(<font color=#0000ff>unsigned</font> <font color=#0000ff>char</font> bb = 0) : Byte(bb) {}  
+  <font color=#009900>// l'operatore non eredit&agrave;, ma</font>
+  <font color=#009900>// viene sintetizzato per assegnazione membro a membro.</font>
+  <font color=#009900>// Tuttavia, solo l'operatore = per StessoTipo = StessoTipo</font>
+  <font color=#009900>// viene sintetizzato, quindi si devono
+  // scrivere gli altri :</font>
+  Byte2&amp; <font color=#0000ff>operator</font>=(<font color=#0000ff>const</font> Byte&amp; right) {
+    Byte::<font color=#0000ff>operator</font>=(right);
+    <font color=#0000ff>return</font> *<font color=#0000ff>this</font>;
+  }
+  Byte2&amp; <font color=#0000ff>operator</font>=(<font color=#0000ff>int</font> i) { 
+    Byte::<font color=#0000ff>operator</font>=(i);
+    <font color=#0000ff>return</font> *<font color=#0000ff>this</font>;
+  }
+};
+
+<font color=#009900>// funzione di test come  in C12:ByteTest.cpp:</font>
+<font color=#0000ff>void</font> k(Byte2&amp; b1, Byte2&amp; b2) {
+  b1 = b1 * b2 + b2 % b1;
+
+  #define TRY2(OP) \
+    out &lt;&lt; <font color=#004488>"b1 = "</font>; b1.print(out); \
+    out &lt;&lt; <font color=#004488>", b2 = "</font>; b2.print(out); \
+    out &lt;&lt; <font color=#004488>";  b1 "</font> #OP <font color=#004488>" b2 produce"</font>; \
+    (b1 OP b2).print(out); \
+    out &lt;&lt; endl;
+
+  b1 = 9; b2 = 47;
+  TRY2(+) TRY2(-) TRY2(*) TRY2(/)
+  TRY2(%) TRY2(^) TRY2(&amp;) TRY2(|)
+  TRY2(&lt;&lt;) TRY2(&gt;&gt;) TRY2(+=) TRY2(-=)
+  TRY2(*=) TRY2(/=) TRY2(%=) TRY2(^=)
+  TRY2(&amp;=) TRY2(|=) TRY2(&gt;&gt;=) TRY2(&lt;&lt;=)
+  TRY2(=) <font color=#009900>//  operator assegnazione</font>
+
+  <font color=#009900>// Conditionals:</font>
+  #define TRYC2(OP) \
+    out &lt;&lt; <font color=#004488>"b1 = "</font>; b1.print(out); \
+    out &lt;&lt; <font color=#004488>", b2 = "</font>; b2.print(out); \
+    out &lt;&lt; <font color=#004488>";  b1 "</font> #OP <font color=#004488>" b2 produce"</font>; \
+    out &lt;&lt; (b1 OP b2); \
+    out &lt;&lt; endl;
+
+  b1 = 9; b2 = 47;
+  TRYC2(&lt;) TRYC2(&gt;) TRYC2(==) TRYC2(!=) TRYC2(&lt;=)
+  TRYC2(&gt;=) TRYC2(&amp;&amp;) TRYC2(||)
+
+  <font color=#009900>// assegnazione a catena:</font>
+  Byte2 b3 = 92;
+  b1 = b2 = b3;
+}
+
+<font color=#0000ff>int</font> main() {
+  out &lt;&lt; <font color=#004488>"funzioni membro:"</font> &lt;&lt; endl;
+  Byte2 b1(47), b2(9);
+  k(b1, b2);
+} <font color=#009900>///:~</font></PRE>
+  </FONT></BLOCKQUOTE>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Il codice di prova &egrave; identico a quello nel <b>C12:ByteTest.cpp</b> 
+    tranne che <b>Byte2</b> &egrave; usato al posto di <b>Byte</b>. In questo 
+    modo tutti gli operatori funzionanto con <b>Byte2</b> mediante l'ereditariet&agrave;.</FONT><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Quando si esamina la classe <b>Byte2</b>, si vede che 
+    il costruttore deve essere definito esplicitamente e che solamente l'operatore 
+    <b>=</b> che assegna un <b>Byte2</b> a un <b>Byte2</b> viene sintetizzato; 
+    qualsiasi altro operatore di assegnazione di cui si ha bisogno deve essere 
+    scritto per proprio conto.</FONT></P>
+  <p>
+</DIV>
+<FONT FACE = "Verdana"> 
+<H2 ALIGN="LEFT"> Ereditariet&agrave; multipla<BR>
+</H2>
+</FONT> 
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">Si pu&ograve; ereditare 
+    da una classe, quindi sembrerebbe avere senso ereditare da pi&ugrave; di una 
+    classe alla volta. Davvero si pu&ograve;, ma se ha senso nella parte di un 
+    progetto &egrave; soggetto di continuo dibattito. Su una cosa generalmente 
+    si &egrave; d'accordo: non la si dovrebbe provare fino a che non si programma 
+    da un p&ograve; e si capisce completamente il linguaggio. Per quel tempo, 
+    si comprender&agrave; che probabilmente dove servirebbe assolutamente l'ereditariet&agrave; 
+    multipla, quasi sempre va bene l'ereditariet&agrave; singola. </font><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">L</font><font face="Georgia, Times New Roman, Times, serif">'ereditariet&agrave; 
+    multipla sembra inizialmente abbastanza semplice: si aggiungono pi&ugrave; 
+    classi nella lista della classe base durante l'ereditariet&agrave;, separata 
+    da virgole. Comunque, l'ereditariet&agrave; multipla presenta delle ambiguit&agrave;, 
+    perci&ograve; un capitolo nel Volume 2 &egrave; dedicato all'argomento.</font></P>
+  <p>
+</DIV>
+<FONT FACE = "Verdana"> 
+<H2 ALIGN="LEFT"> Sviluppo incrementale</H2>
+</FONT> 
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Uno dei vantaggi dell' ereditariet&agrave; e della composizione 
+    &egrave; che questi sostengono lo <i>sviluppo incrementale</i> permettendo 
+    di presentare codice nuovo senza causare bachi nel codice esistente. Se appaiono 
+    bachi, sono isolati nel codice nuovo. Ereditando da (o componendo con) una 
+    esistente e funzionale classe, aggiungendo membri dato e funzioni membro (e 
+    ridefinendo funzioni membro esistenti durante l'ereditariet&agrave;) si lascia 
+    il codice esistente &middot; che qualcuno altro ancora pu&ograve; star usando 
+    &middot; intatto e non bacato. Se c'&egrave; un baco, si sa che &egrave; nel 
+    codice nuovo che &egrave; molto pi&ugrave; corto e pi&ugrave; facile leggere 
+    che se si avesse cambiato il corpo del codice esistente.</FONT><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia">S</font><FONT FACE="Georgia">tupisce piuttosto come 
+    le classi siano separate. Non si ha nemmeno bisogno del codice sorgente per 
+    le funzioni membro per riusare il codice, solo l'header file che descrive 
+    la classe e il file oggetto o la libreria con le funzioni membro compilate 
+    (questo &egrave; vero sia per l'ereditariet&agrave; che per la composizione).</FONT><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia">&Egrave;</font><FONT FACE="Georgia"> importante rendersi 
+    conto che lo sviluppo del programma &egrave; un processo incrementale, proprio 
+    come l'apprendimento umano. Si pu&ograve; fare tanta analisi quanto si vuole, 
+    ma ancora non si conosceranno tutte le risposte quan<font color="#000000">do 
+    si intraprender&agrave; un pro</font>getto. Si avr&agrave; molto pi&ugrave; 
+    successo e responsi pi&ugrave; immediati se si incomincia a far crescere il 
+    proprio progetto come una creatura organica, evolutiva, piuttosto che costruendolo 
+    tutto in una volta come un grattacielo </FONT><a name="fnB52" href="#fn52">[52]</a><a name="Index2368"></a><a name="Index2369"></a><font face="Georgia">.</font><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia" color="#000000">Sebbene l'ereditariet&agrave; per sperimentazione 
+    sia una tecnica utile, a un certo punto dopo che le cose si stabilizzano, 
+    si ha bisogno di dare alla propria gerarchia di classe un nuovo look, collassando 
+    tutto in una struttura assennata<a name="fnB53" href="#fn53">[53]</a>. Si 
+    ricordi che l'ereditariet&agrave; serve a esprimere una relazione che dice: 
+    &quot;Questa nuova classe &egrave; un tipo di quella classe vecchia&quot;. 
+    Il proprio programma non si dovrebbe preoccupare di gestire bit, ma invece 
+    di crere e manipolare oggetti di vari tipio per esprimere un modello nei termini 
+    dati dallo spazio del problema.</font><BR>
+  </P>
+</DIV>
+<FONT FACE = "Verdana"> 
+<H2 ALIGN="LEFT"> Upcasting ( cast all'ins&ugrave; )<BR>
+</H2>
+</FONT> 
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia">Nei primo </font><FONT FACE="Georgia"> capitoli, si 
+    &egrave; visto come un oggetto di una classe derivata da <b>ifstream</b> ha 
+    tutte le caratteristiche e comportamenti di un oggetto <br>
+    dell'<b>ifstream</b>. In <b>FName2.cpp</b>, qualsiasi funzione membro di <b>ifstream</b> 
+    potrebbe essere chiamata per un oggetto <b>FName2</b>. </FONT></P>
+  <P><font face="Georgia, Times New Roman, Times, serif">Il pi&ugrave; importante 
+    aspetto dell' ereditariet&agrave; non &egrave; che fornisce funzioni membro 
+    per la classe nuova, comunque. &Egrave; la relazione espressa tra la classe 
+    nuova e la classe base. Questa relazione pu&ograve; essere ricapitolata dicendo: 
+    &quot; La classe nuova <i>&egrave; un tipo della </i>classe esistente </font>&quot;.<BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">Questa descrizione non 
+    &egrave; solo un modo fantastico di spiegare l' ereditariet&agrave;, &egrave; 
+    sostenuto direttamente dal compilatore. Come esempio, si consideri una classe 
+    base chiamata </font><font face="Georgia"><b>Instrument</b></font><font face="Georgia, Times New Roman, Times, serif"> 
+    che rappresenta strumenti musicali e una classe derivata chiamata </font><font face="Georgia"><b>Wind</b></font><font face="Georgia, Times New Roman, Times, serif">. 
+    Poich&egrave; ereditare significa che tutte le funzioni della classe base 
+    sono anche disponibili nella classe derivata, qualsiasi messaggio che si pu&ograve; 
+    spedire alla classe base pu&ograve; essere spedito anche alla classe derivata. 
+    Quindi se la classe </font><font face="Georgia"><b>Instrument</b></font><font face="Georgia, Times New Roman, Times, serif"> 
+    ha una funzione membro <b>play(&nbsp;)</b>, allo stesso modo l'avr&agrave; 
+    </font><font face="Georgia"><b>Wind</b></font><font face="Georgia, Times New Roman, Times, serif">. 
+    Questo vuol dire che noi possiamo dire accuratamente che un oggetto </font><font face="Georgia"><b>Wind</b></font><font face="Georgia, Times New Roman, Times, serif"> 
+    &egrave; anche un tipo </font><font face="Georgia"><b>Instrument</b></font><font face="Georgia, Times New Roman, Times, serif">. 
+    <br>
+    L'esempio seguente mostra come il compilatore sostiene questa nozione: </font><BR>
+  </P>
+</DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"> 
+  <PRE><font color=#009900>//: C14:Instrument.cpp</font>
+<font color=#009900>// Ereditariet&agrave; &amp; upcasting</font>
+<font color=#0000ff>enum</font> note { middleC, Csharp, Cflat }; <font color=#009900>// Etc.</font>
+
+<font color=#0000ff>class</font> Instrument {
+<font color=#0000ff>public</font>:
+  <font color=#0000ff>void</font> play(note) <font color=#0000ff>const</font> {}
+};
+
+<font color=#009900>// oggetti Wind  sono  Instruments</font>
+<font color=#009900>// perch&egrave; hannno la stessa interfaccia:</font>
+<font color=#0000ff>class</font> Wind : <font color=#0000ff>public</font> Instrument {};
+
+<font color=#0000ff>void</font> tune(Instrument&amp; i) {
+  <font color=#009900>// ...</font>
+  i.play(middleC);
+}
+
+<font color=#0000ff>int</font> main() {
+  Wind flute;
+  tune(flute); <font color=#009900>// Upcasting</font>
+} <font color=#009900>///:~</font></PRE>
+  </FONT></BLOCKQUOTE>
+<p><font face="Georgia, Times New Roman, Times, serif"> Ci&ograve; che &egrave; 
+  </font> <font face="Georgia, Times New Roman, Times, serif">interessante in 
+  questo esempio &egrave; la funzione </font><font face="Georgia"><b>tune(&#160;)</b></font>, 
+  <font face="Georgia, Times New Roman, Times, serif">che accetta un riferimento 
+  </font><font face="Georgia"><b>Instrument</b></font><font face="Georgia, Times New Roman, Times, serif">. 
+  Tuttavia, in<b> main(&nbsp;)</b> la funzione <b>tune(&nbsp;)</b> viene chiamata 
+  gestendo un riferimento a un oggetto </font><font face="Georgia"><b>Wind</b></font><font face="Georgia, Times New Roman, Times, serif">. 
+  Dato che il C++ &egrave; molto particolare circa il controllo del tipo, sembra 
+  strano che una funzione che accetta un tipo accetter&agrave; prontamente un 
+  altro tipo, finch&egrave; si comprender&agrave; che un oggetto </font><font face="Georgia"><b>Wind</b></font><font face="Georgia, Times New Roman, Times, serif"> 
+  &egrave; anche un oggetto </font><font face="Georgia"><b>Instrument</b></font><font face="Georgia, Times New Roman, Times, serif">, 
+  e non c'&egrave; nessuna funzione che <b>tune(&nbsp;)</b> potrebbe chiamare 
+  per un </font><font face="Georgia"><b>Instrument</b></font><font face="Georgia, Times New Roman, Times, serif"> 
+  che non &egrave; anche in </font><font face="Georgia"><b>Wind</b></font><font face="Georgia, Times New Roman, Times, serif"> 
+  (ci&ograve; &egrave; quello che l'ereditariet&agrave; garantisce). In<b> tune(&nbsp;)</b> 
+  il codice lavora per </font><font face="Georgia"><b>Instrument</b></font><font face="Georgia, Times New Roman, Times, serif"> 
+  e qualsiasi cosa si deriva da </font><font face="Georgia"><b>Instrument</b></font><font face="Georgia, Times New Roman, Times, serif"> 
+  ; l'atto di convertire un riferimento o puntatore </font><font face="Georgia"><b>Wind</b></font><font face="Georgia, Times New Roman, Times, serif"> 
+  in un riferimento o puntatore </font><font face="Georgia"><b>Instrument</b></font><font face="Georgia, Times New Roman, Times, serif"> 
+  &egrave; chiamato <i>upcasting</i>. </font></p>
+<DIV ALIGN="LEFT"> 
+  <p>
+</DIV>
+<FONT FACE = "Verdana"> 
+<H3 ALIGN="LEFT"> Perch&egrave; &#8220;upcasting?&#8221;</H3>
+</FONT> 
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">La ragione per il termine 
+    &egrave; storica ed &egrave; basata sul modo in cui i diagrammi delle classi 
+    ereditate sono disegnate tradizionalmente: con la classe base<font color="#000000"> 
+    alla cima della pagina.</font> (Chiaramente, si pu&ograve; disegnare i diagrammi 
+    in qualsiasi modo si trova utile.) Il diagramma dell'eredit&agrave; per <b>Instrument.cpp</b> 
+    &egrave;:<br>
+    </font><BR>
+  </P>
+</DIV>
+<DIV ALIGN="CENTER"><FONT FACE="Georgia"><IMG SRC="TIC2Vo15.gif"></FONT><BR>
+  <p align="left"></P>
+  <p align="left"><font face="Georgia, Times New Roman, Times, serif">Castando 
+    dalla derivata alla base ci si muove in su sul diagramma dell'eredit&agrave;, 
+    quindi ci si riferisce comunemente come upcasting. L'upcasting &egrave; sempre 
+    sicuro perch&eacute; si va da un tipo pi&ugrave; specifico ad un tipo pi&ugrave; 
+    generale, l'unica cosa che pu&ograve; accadere all'interfaccia della classe 
+    &egrave; che pu&ograve; perdere funzioni membro, non guadagnarle. Questo accade 
+    perch&egrave; il compilatore permette l'upcasting senza qualsiasi cast esplicito 
+    o altre notazioni speciale. </font></p>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <p>
+</DIV>
+<FONT FACE = "Verdana"> 
+<H3 ALIGN="LEFT"> Upcasting ed il costruttore di copia<BR>
+</H3>
+</FONT> 
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">Se si permette al compilatore 
+    di sintetizzare un copia di costruttore per una classe derivata, esso chiamer&agrave; 
+    automaticamente il costruttore di copia della classe base e poi i costruttori 
+    di copia per tutto gli oggetti membro (o compie una copia bit a bit sui tipi 
+    predefiniti) quindi si ottiene il giusto comportamento : </font><br>
+  </P>
+</DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"> 
+  <PRE><font color=#009900>//: C14:CopyConstructor.cpp</font>
+<font color=#009900>// creare correttamente il costruttore di copia</font>
+#include &lt;iostream&gt;
+<font color=#0000ff>using</font> <font color=#0000ff>namespace</font> std;
+
+<font color=#0000ff>class</font> Parent {
+  <font color=#0000ff>int</font> i;
+<font color=#0000ff>public</font>:
+  Parent(<font color=#0000ff>int</font> ii) : i(ii) {
+    cout &lt;&lt; <font color=#004488>"Parent(int ii)\n"</font>;
+  }
+  Parent(<font color=#0000ff>const</font> Parent&amp; b) : i(b.i) {
+    cout &lt;&lt; <font color=#004488>"Parent(const Parent&amp;)\n"</font>;
+  }
+  Parent() : i(0) { cout &lt;&lt; <font color=#004488>"Parent()\n"</font>; }
+  <font color=#0000ff>friend</font> ostream&amp;
+    <font color=#0000ff>operator</font>&lt;&lt;(ostream&amp; os, <font color=#0000ff>const</font> Parent&amp; b) {
+    <font color=#0000ff>return</font> os &lt;&lt; <font color=#004488>"Parent: "</font> &lt;&lt; b.i &lt;&lt; endl;
+  }
+};
+
+<font color=#0000ff>class</font> Member {
+  <font color=#0000ff>int</font> i;
+<font color=#0000ff>public</font>:
+  Member(<font color=#0000ff>int</font> ii) : i(ii) {
+    cout &lt;&lt; <font color=#004488>"Member(int ii)\n"</font>;
+  }
+  Member(<font color=#0000ff>const</font> Member&amp; m) : i(m.i) {
+    cout &lt;&lt; <font color=#004488>"Member(const Member&amp;)\n"</font>;
+  }
+  <font color=#0000ff>friend</font> ostream&amp;
+    <font color=#0000ff>operator</font>&lt;&lt;(ostream&amp; os, <font color=#0000ff>const</font> Member&amp; m) {
+    <font color=#0000ff>return</font> os &lt;&lt; <font color=#004488>"Member: "</font> &lt;&lt; m.i &lt;&lt; endl;
+  }
+};
+
+<font color=#0000ff>class</font> Child : <font color=#0000ff>public</font> Parent {
+  <font color=#0000ff>int</font> i;
+  Member m;
+<font color=#0000ff>public</font>:
+  Child(<font color=#0000ff>int</font> ii) : Parent(ii), i(ii), m(ii) {
+    cout &lt;&lt; <font color=#004488>"Child(int ii)\n"</font>;
+  }
+  <font color=#0000ff>friend</font> ostream&amp;
+    <font color=#0000ff>operator</font>&lt;&lt;(ostream&amp; os, <font color=#0000ff>const</font> Child&amp; c){
+    <font color=#0000ff>return</font> os &lt;&lt; (Parent&amp;)c &lt;&lt; c.m
+              &lt;&lt; <font color=#004488>"Child: "</font> &lt;&lt; c.i &lt;&lt; endl;
+  }
+};
+
+<font color=#0000ff>int</font> main() {
+  Child c(2);
+  cout &lt;&lt; <font color=#004488>"chiamo  il costruttore di copia: "</font> &lt;&lt; endl;
+  Child c2 = c; <font color=#009900>// chiama  il costruttore di copia</font>
+  cout &lt;&lt; <font color=#004488>"values in c2:\n"</font> &lt;&lt; c2;
+} <font color=#009900>///:~</font></PRE>
+  </FONT></BLOCKQUOTE>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">L'operatore <b>&lt;&lt;</b> 
+    per <b>Child</b></font> <font face="Georgia, Times New Roman, Times, serif">&egrave; 
+    interessante per il modo in cui chiama l'operatore &lt;&lt; per </font><font face="Georgia">la 
+    parte<b> Parent</b></font><font face="Georgia, Times New Roman, Times, serif"> 
+    in esso: castando l'oggetto <b> Child</b> a un </font><font face="Georgia"><b>Parent</b></font><font face="Georgia, Times New Roman, Times, serif"><b>&amp;</b> 
+    (se si casta a un oggetto della classe base invece di un riferimento di solito 
+    si ottengono risultati indesiderati):</font><BR>
+  </P>
+</DIV>
+<BLOCKQUOTE><FONT SIZE = "+1">
+  <PRE><font color=#0000ff>return</font> os &lt;&lt; (Parent&amp;)c &lt;&lt; c.m</PRE>
+  </FONT></BLOCKQUOTE>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Poich&egrave; il compilatore poi vede un <b>Parent<font face="Georgia, Times New Roman, Times, serif">, 
+    </font></b><font face="Georgia, Times New Roman, Times, serif">chiama la versione 
+    </font><b>Parent </b>dell'operatore &lt;&lt;.</FONT></P>
+  <P><font face="Georgia, Times New Roman, Times, serif">S</font><font face="Georgia, Times New Roman, Times, serif">i 
+    vede che un <b>Child</b> non ha un costruttore di copia esplicitamente dichiarato. 
+    Il compilatore quindi sintetizza il costruttore di copia (poich&egrave; &egrave; 
+    una delle quattro funzioni che esso sintetizza, insieme al costruttore di 
+    default, se non si crea nessun costrutore, l'operatore = ed il distruttore) 
+    chiamando il costruttore di copia <b>Parent</b> ed il costruttore di copia 
+    di <b>Member</b>. Ecco l'output:</font></P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><BR>
+  </P>
+</DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"> 
+  <PRE>Parent(<font color=#0000ff>int</font> ii)
+Member(<font color=#0000ff>int</font> ii)
+Child(<font color=#0000ff>int</font> ii)
+chiamo il costruttore di copia:
+Parent(<font color=#0000ff>const</font> Parent&amp;)
+Member(<font color=#0000ff>const</font> Member&amp;)
+values in c2:
+Parent: 2
+Member: 2
+Child: 2</PRE>
+  </FONT></BLOCKQUOTE>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Tuttavia, se si prova a scrivere il proprio costruttore 
+    di copia per <b>Child</b> e si fa un errore innocente :</FONT><BR>
+  </P>
+</DIV>
+<BLOCKQUOTE><FONT SIZE = "+1">
+  <PRE>Child(<font color=#0000ff>const</font> Child&amp; c) : i(c.i), m(c.m) {}</PRE>
+  </FONT></BLOCKQUOTE>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">allora il costruttore di <i>default</i> verr&agrave; 
+    chiamato automaticamente per la parte della classe base di <b>Child</b>, poich&egrave; 
+    ci&ograve; &egrave; quello che il compilatore fa quando non nessun altro costruttore 
+    da chiamare ( si ricordi che un costruttore deve essere sempre chiamato per 
+    ogni oggetto, anche se &egrave; un suboggetto di un'altra classe). L'output 
+    sar&agrave;:</FONT><BR>
+  </P>
+</DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"> 
+  <PRE>Parent(<font color=#0000ff>int</font> ii)
+Member(<font color=#0000ff>int</font> ii)
+Child(<font color=#0000ff>int</font> ii)
+chiamo il costruttore di copia:
+Parent()
+Member(<font color=#0000ff>const</font> Member&amp;)
+values in c2:
+Parent: 0
+Member: 2
+Child: 2</PRE>
+  </FONT></BLOCKQUOTE>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Questo non &egrave; probabilmente ci&ograve; che ci 
+    si aspettava, poich&egrave; generalmente si vorr&agrave; che la porzione della 
+    classe base sia copiata da un oggetto esistente ad un nuovo oggetto come parte 
+    del costruttore di copia.</FONT><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Per rimediare al problema si deve ricordare di chiamare 
+    propriamente il costruttore di copia della classe base (come il compilatore 
+    fa) ogni qualvolta si scrive il proprio costruttore di copia . All'inizio 
+    ci&ograve; pu&ograve; sembrare un p&ograve; strano ma ecco un altro esempio 
+    di upcasting:</FONT><BR>
+  </P>
+</DIV>
+<BLOCKQUOTE><FONT SIZE = "+1">
+  <PRE>  Child(<font color=#0000ff>const</font> Child&amp; c)
+    : Parent(c), i(c.i), m(c.m) {
+    cout &lt;&lt; <font color=#004488>"Child(Child&amp;)\n"</font>;
+ }</PRE>
+  </FONT></BLOCKQUOTE>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">La parte strana &egrave; 
+    dove il costruttore di copia di </font><font face="Georgia"><b>Parent</b></font><font face="Georgia, Times New Roman, Times, serif"> 
+    viene chiamato: <b>Parent(c)</b>. Che vuol dire passare un oggetto </font><font face="Georgia"><b>Child</b></font><font face="Georgia, Times New Roman, Times, serif"> 
+    a un costruttore di </font><font face="Georgia"><b>Parent</b></font><font face="Georgia, Times New Roman, Times, serif">? 
+    Ma </font><font face="Georgia"><b>Child </b></font><font face="Georgia, Times New Roman, Times, serif">&egrave; 
+    ereditato da </font><font face="Georgia"><b>Parent</b></font><font face="Georgia, Times New Roman, Times, serif">, 
+    quindi un riferimento a </font><font face="Georgia"><b>Child</b></font><font face="Georgia, Times New Roman, Times, serif"> 
+    &egrave; una riferimento a </font><font face="Georgia"><b>Parent</b></font><font face="Georgia, Times New Roman, Times, serif">. 
+    Il costruttore di copia della classe base fa l'upcasting di riferimento a 
+    </font><font face="Georgia"><b>Child</b></font><font face="Georgia, Times New Roman, Times, serif"> 
+    ad un riferimento a </font><font face="Georgia"><b>Parent</b></font><font face="Georgia, Times New Roman, Times, serif"> 
+    ed lo usa per eseguire il costruttore di copia. Quando si scrivono i propri 
+    costruttori di copia, si vuole che essi facciano quasi sempre la stessa cosa.</font><BR>
+  </P>
+</DIV>
+<FONT FACE = "Verdana"> 
+<H3 ALIGN="LEFT"> Composizione ed ereditariet&agrave; (rivisitata)<BR>
+</H3>
+</FONT> 
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Uno dei modi pi&ugrave; chiari di determinare se si 
+    deve usare la composizione o l'ereditariet&agrave; &egrave; chiedersi se si 
+    avr&agrave; mai bisogno di un upcasting dalla propria nuova classe. Precedentemente 
+    in questo capitolo, la classe della <b>Stack</b> &egrave; stata specializzata 
+    usando l'ereditariet&agrave;. Tuttavia, le gli oggetti di <b>StringStack</b> 
+    saranno usati solamente come contenitori di <b>string</b> e mai con l'upcasingt, 
+    quindi un'alternativa <br>
+    pi&ugrave; adatta &egrave; la composizione:</FONT><BR>
+  </P>
+</DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"> 
+  <PRE><font color=#009900>//: C14:InheritStack2.cpp</font>
+<font color=#009900>// composizione ed ereditariet&agrave;</font>
+#include <font color=#004488>"../C09/Stack4.h"</font>
+#include <font color=#004488>"../require.h"</font>
+#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+#include &lt;string&gt;
+<font color=#0000ff>using</font> <font color=#0000ff>namespace</font> std;
+
+<font color=#0000ff>class</font> StringStack {
+  Stack stack; <font color=#009900>// incorporato invece di ereditato 
+</font><font color=#0000ff>public</font>:
+  <font color=#0000ff>void</font> push(string* str) {
+    stack.push(str);
+  }
+  string* peek() <font color=#0000ff>const</font> {
+    <font color=#0000ff>return</font> (string*)stack.peek();
+  }
+  string* pop() {
+    <font color=#0000ff>return</font> (string*)stack.pop();
+  }
+};
+
+<font color=#0000ff>int</font> main() {
+  ifstream in(<font color=#004488>"InheritStack2.cpp"</font>);
+  assure(in, <font color=#004488>"InheritStack2.cpp"</font>);
+  string line;
+  StringStack textlines;
+  <font color=#0000ff>while</font>(getline(in, line))
+    textlines.push(<font color=#0000ff>new</font> string(line));
+  string* s;
+  <font color=#0000ff>while</font>((s = textlines.pop()) != 0) <font color=#009900>// Nessun cast!</font>
+    cout &lt;&lt; *s &lt;&lt; endl;
+} <font color=#009900>///:~</font></PRE>
+  </FONT></BLOCKQUOTE>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">Il file </font><font face="Georgia, Times New Roman, Times, serif">&egrave; 
+    identico a <b>InheritStack.cpp</b>, tranne che un oggetto </font><font face="Georgia"><b>Stack</b></font><font face="Georgia, Times New Roman, Times, serif"> 
+    &egrave; incorporato in <b>StringStack</b> e le funzioni membro vengono chiamate 
+    per l'oggetto incorporato. Non c'&egrave; ancora overhead di tempo o spazio 
+    perch&eacute; il suboggetto prende lo stesso ammontare di spazio e tutto il 
+    controllodi tipo supplementare avviene a tempo di compilazione. </font></P>
+  <P><font face="Georgia, Times New Roman, Times, serif">Sebbene pu&ograve; confondere, 
+    si pu&ograve; anche usare l'ereditariet&agrave; privata per esprimere &quot;implementato 
+    in termini di&quot;. Anche ci&ograve; risolverebbe il problema adeguatamente. 
+    Un posto in cui questo diventa importante, tuttavia, &egrave; dove l'ereditariet&agrave; 
+    multipla dovrebbe essere garantita. In quel caso, se si vede un progetto in 
+    cui la composizione pu&ograve; essere usata invece dell'ereditariet&agrave;, 
+    si pu&ograve; eliminare il bisogno dell'ereditariet&agrave; multipla.</font><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <p>
+</DIV>
+<FONT FACE = "Verdana"> 
+<H3 ALIGN="LEFT"> Upcasting di puntatori &amp; riferimenti<BR>
+</H3>
+</FONT> 
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">In <B>Instrument.cpp</B>, l'upcasting avviene durante 
+    la chiamata a funzione, viene preso il riferimento ad un oggetto <B>Wind</B> 
+    esterno alla funzione e diventa un riferimento <B>Instrument</B> dentro la 
+    funzione. L' upcasting avviene anche con una semplice assegnazione ad un puntatore 
+    o riferimento:</FONT><BR>
+  </P>
+</DIV>
+<BLOCKQUOTE><FONT SIZE = "+1">
+  <PRE>Wind w;
+Instrument* ip = &amp;w; <font color=#009900>// Upcast</font>
+Instrument&amp; ir = w; <font color=#009900>// Upcast</font></PRE>
+  </FONT></BLOCKQUOTE>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Come la chiamata a funzione, nessuno di questi casi 
+    richiede un cast esplicito.</FONT><BR>
+  </P>
+</DIV>
+<FONT FACE = "Verdana"> 
+<H3 ALIGN="LEFT"> Un problema</H3>
+</FONT>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Naturalmente, con l'upcasting si perde l'informazione 
+    del tipo di un oggetto. Se si scrive:</FONT><BR>
+  </P>
+</DIV>
+<BLOCKQUOTE><FONT SIZE = "+1">
+  <PRE>Wind w;
+Instrument* ip = &amp;w;</PRE>
+  </FONT></BLOCKQUOTE>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">il compilatore pu&ograve; trattare un <b>ip</b> solo 
+    come un puntatore <b>Instrument</b> e nient'altro. Cio&egrave; non sa che 
+    <b>ip</b> punta a un oggetto <b>Wind</b>. Quindi quando si chiama la funzione 
+    membro <b>play() </b>scrivendo</FONT>:<BR>
+  </P>
+</DIV>
+<BLOCKQUOTE><FONT SIZE = "+1">
+  <PRE>ip-&gt;play(middleC);</PRE>
+  </FONT></BLOCKQUOTE>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">il compilatore conosce solo che sta chiamando <b>play()</b> 
+    per un puntatore <b>Instrument</b> e chiama la versione di <b>Instrument::play() 
+    </b>della classe base invece di ci&ograve; che dovrebbe fare, che &egrave; 
+    chiamare <b>Wind::play(&#160;)</b>. Quindi non si otterr&agrave; il giusto 
+    comportamento.</FONT></P>
+  <P><font face="Georgia">Questo &egrave; un problema serio ed &egrave; risolto 
+    nel Capitolo 15, dove viene presentata la terza pietra miliare della programmazione 
+    ad oggetti: il polimorfismo ( implementato in C++ con le funzioni virtuali).</font><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <p>
+</DIV>
+<FONT FACE = "Verdana"> 
+<H2 ALIGN="LEFT"> Sommario</H2>
+</FONT> 
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Sia l'ereditariet&agrave; che la composizione permettono 
+    di creare un tipo nuovo da tipi esistenti ed entrambi inglobano suboggetti 
+    di tipi esistenti nel tipo nuovo. Si usa comunque, tipicamente, la composizione 
+    per riutilizzare tipi esistenti come parte della implementazione sottostante 
+    del tipo nuovo e l'ereditariet&agrave; quando si vuole costringere il tipo 
+    nuovo ad essere dello stesso tipo della classe base ( l'equivalenza dei tipi 
+    garantisce l'equivalenza delle interfacce). Poich&egrave; la classe derivata 
+    ha l'interfaccia della classe base, si pu&ograve; usare l'upcasting verso 
+    la classe base, che &egrave; critico per il polimorfismo come si vedr&agrave; 
+    nel Capitolo 15.</FONT><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Sebbene il riutilizzo del codice attraverso composizione 
+    ed ereditariet&agrave; sia molto utile per lo sviluppo rapido dei progetti, 
+    generalmente si vuole ridisegnare la propria gerarchia di classe prima di 
+    permettere agli altri programmatori di divenire dipendenti da essa. La meta 
+    &egrave; una gerarchia nella quale ciascuna classe ha un uso specifico e nessuna 
+    &egrave; n&egrave; troppo grande ( comprendendo cos&igrave; molte funzionalit&agrave; 
+    <br>
+    che <font color="#000000">sono difficili da riusare) n&eacute; molestamente 
+    piccolo ( n</font>on la si pu&ograve; usare di per se o senza aggiungere funzionalit&agrave;). 
+    </FONT></P>
+  <p>
+</DIV>
+<FONT FACE = "Verdana"> 
+<H2 ALIGN="LEFT"> Esercizi</H2>
+</FONT> 
+<DIV ALIGN="LEFT"> 
+  <P><span style='font-size:10.0pt;font-family:Georgia'>Le soluzioni agli esercizi 
+    selezionati possono essere trovate nel documento elettronico <i>The Thinking 
+    in C++ Annotated Solution Guide</i>, disponibile in cambio di un piccolo onorario 
+    su www.BruceEckel.com.</span><BR>
+  </P>
+</DIV>
+<OL>
+  <LI><font face="Georgia">Modificare</font><FONT FACE="Georgia"> <b>Car.cpp</b> 
+    in modo che erediti anche da una classe chiamata <b>Vehicle, </b> mettendo 
+    le appropriate funzioni membro in <b>Vehicle</b> (ovvero, scrivere qualche 
+    funzione membro ). Aggiungere un costruttore non di default a <b>Vehicle</b>, 
+    che si deve chiamare nel costruttore di <b>Car</b>. </FONT> 
+  <LI><font face="Georgia, Times New Roman, Times, serif">Creare due classi, <b>A</b> 
+    e <b>B</b>, con costruttori di default che annunciano loro stessi. Ereditare 
+    una classe nuova chiamata <b>C</b> da <b>A</b> e creare un oggetto membro 
+    di <b>B</b> in <b>C</b>, ma non creare un costruttore per <b>C</b>. Creare 
+    un oggetto di classe <b>C</b> e osservare i risultati. </font> 
+  <LI><FONT FACE="Georgia">Creare una gerarchia a tre livelli di classi con costruttori 
+    di default, <br>
+    insieme ai distruttori, entrambi che annunciano loro stessi su <b>cout</b>. 
+    Verificare che per un oggetto del tipo di pi&ugrave; derivato, tutti e tre 
+    i costruttori e distruttori vengono chiamati automaticamente. Spiegare l'ordine 
+    nel quale le chiamate vengono fatte.</FONT> 
+  <LI><FONT FACE="Georgia">Modificare</FONT><FONT FACE="Georgia"> <b>Combined.cpp</b> 
+    per aggiungere un altro livello di ereditariet&agrave; ed un nuovo oggetto 
+    membro. Si aggiunga codice per mostrare quando si stanno chiamando costruttori 
+    e distruttori. </FONT> 
+  <LI><FONT FACE="Verdana"> </FONT><FONT FACE="Georgia">In <B>Combined.cpp</B>, 
+    creare una classe <B>D</B> che eredit&agrave; da <B>B</B> ed ha un oggetto 
+    membro della <B>C</B>. Si aggiunga codice per mostrare quando si stanno chiamando 
+    costruttori e distruttori. </FONT> 
+  <LI><font face="Georgia">Modificare </font><FONT FACE="Georgia"><B>Order.cpp</B> 
+    per aggiungere un altro livello di ereditariet&agrave; <B>Derived3</B> con 
+    oggetti membro della classe <B>Member4</B> e<B>Member5</B>. Tracciare l' output 
+    del programma.</FONT> 
+  <LI><FONT FACE="Verdana"> </FONT><FONT FACE="Georgia">In <B>NameHiding.cpp</B>, 
+    verificare che in <B>Derived2</B>, <B>Derived3</B>, e<B> Derived4</B>, nessuna 
+    delle versioni della classe base di <b>f()</b> &egrave; disponibile. </FONT> 
+  <LI><font face="Georgia">Modificare </font><FONT FACE="Georgia"><B>NameHiding.cpp</B> 
+    aggiungendo tre funzioni sovraccaricate chiamate <B>h(&#160;)</B> alla <B>Base</B> 
+    e mostrare che ridefinire una di loro in una classe derivata occulta le altre.</FONT> 
+  <LI><font face="Georgia">Ereditare</font><FONT FACE="Georgia"> una classe <B>StringVector</B> 
+    da <B>vector&lt;void*&gt;</B> e ridefinire le funzioni membro <B>push_back(&#160;)</B> 
+    e <B>operator[]</B> per accettare e produrre <B>string*</B>. Che accade se 
+    si usa <B>push_back(&#160;)</B> con <B>void*</B>?</FONT> 
+  <LI><font face="Georgia">Scrivere un</font><FONT FACE="Georgia">a classe contenente 
+    un<B> long</B> ed usare la sintassi della chiamata dello psuedo costruttore 
+    per inizializzare il <B>long</B>.</FONT> 
+  <LI><font face="Georgia">Creare</font><FONT FACE="Georgia"> una classe chiamata 
+    <B>Asteroid</B>.<B> </B>Usare l'ereditariet&agrave; per specializzare la classe 
+    <B>PStash</B> del Capitolo 13 (<B>PStash.h</B> &amp; <B>PStash.cpp</B>) in 
+    modo che accetti e restituisca puntatori <B>Asteroid</B>. Modificare anche 
+    <B>PStashTest.cpp</B> per testare le classi. Cambiare la classe in modo che 
+    <B>PStash</B> sia un oggetto membro.</FONT> 
+  <LI><font face="Georgia">Ripetere l'esercizio 11 con un <B>vector</B> invece 
+    di un <B>PStash</B>.</font> 
+  <LI><FONT FACE="Verdana"> </FONT><FONT FACE="Georgia">In <B>SynthesizedFunctions.cpp</B>, 
+    modificare <B>Chess</B> in modo che abbia un costruttore di default, un costruttore 
+    di copia un operatore di assegnazione. Dimostrare che ci&ograve; che si &egrave; 
+    scritto &egrave; corretto.</FONT> 
+  <LI><font face="Georgia">Creare due classi chiamate </font><FONT FACE="Georgia"><B>Traveler</B> 
+    e <B>Pager</B> senza costruttori di default, ma con costruttori che prendono 
+    un argomento di tipo <B>string</B>, che semplicemente copiano in una variabile 
+    <B>string</B> interna. Per ogni classe, scrivere il corretto costruttore di 
+    copia e operatore di assegnazione. Poi ereditare un classe <B>BusinessTraveler</B> 
+    da <B>Traveler </B>e darle un oggetto membro di tipo <B>Pager</B>. Scrivere 
+    il corretto costruttore di default, un costruttore che prende un argomento 
+    <b>string</b>, un costruttore di copia ed un operatore di assegnazione.</FONT> 
+  <LI><FONT FACE="Georgia">Creare una classe con due funzioni membro <b>static</b>. 
+    Ereditare da questa classe e ridefinire una delle funzioni membro. Mostrare 
+    che l'altra &egrave; occultata nella classe derivata.</FONT> 
+  <LI><FONT FACE="Georgia">Approfondire i metodi di <B>ifstream</B>. In <B>FName2.cpp</B>, 
+    provarli nell'oggetto <B>file</B>.</FONT> 
+  <LI><font face="Georgia">Usare l'ereditariet&agrave; </font><FONT FACE="Georgia"><B>private</B> 
+    e <B>protected</B> per creare due nuove classe da una classe base. Poi cercare 
+    di usare l'upcasting gli oggetti delle classi derivate alla classe base. Spiegare 
+    cosa succede.</FONT> 
+  <LI><FONT FACE="Verdana"> </FONT><FONT FACE="Georgia">In <B>Protected.cpp</B>, 
+    aggiungere un metodo in <B>Derived</B> che chiama il metodo di <B>read () 
+    </B>di<B> protected</B> <B>Base.</B></FONT> 
+  <LI><font face="Georgia">Cambiare </font><FONT FACE="Georgia"><B>Protected.cpp 
+    </B>in modo che <B>Derived</B> utilizzi l'ereditariet&agrave; <B>protected</B>. 
+    Verificare si si pu&ograve; chiamare <B>value(&#160;)</B> di un oggetto <B>Derived</B>.</FONT> 
+  <LI><font face="Georgia">Creare un</font><FONT FACE="Georgia">a classe chiamata 
+    <B>SpaceShip</B> con un metodo <B>fly(&#160;)</B>. Ereditare <B>Shuttle</B> 
+    da <B>SpaceShip</B> e aggiungere un metodo <B>land(&#160;)</B>. Creare un 
+    nuovo <B>Shuttle</B>, usare l'upcast con puntatore o riferimento a <B>SpaceShip</B>, 
+    e provare a chiamare il metodo <B>land(&#160;)</B>. Spiegare i risultati.</FONT> 
+  <LI><font face="Georgia">Modificare </font><FONT FACE="Georgia"><B>Instrument.cpp</B> 
+    per aggiungere un metodo <B>prepare(&#160;)</B> a <B>Instrument</B>. Chiamare 
+    <B>prepare(&#160;)</B> dentro <B>tune(&#160;)</B>.</FONT> 
+  <LI><font face="Georgia">Modificare </font><FONT FACE="Georgia"><B>Instrument.cpp</B> 
+    in modo che <B>play(&#160;)</B> stampa un messaggio verso <B>cout</B>, e <B>Wind</B> 
+    ridefinisca <B>play(&#160;)</B> per stampare un messaggio diverso su <B>cout</B>. 
+    Eseguire il programma e spiegare perch&egrave; questo comportamento non &egrave; 
+    desiderabile. Mettere la parola chiave <B>virtual</B> (che si imparer&agrave; 
+    nel capitolo 15) davanti la dichiarazione <B>play(&#160;)</B> in <B>Instrument</B> 
+    ed osservare come cambia il comportamento.</FONT> 
+  <LI><FONT FACE="Verdana"> </FONT><FONT FACE="Georgia">In <B>CopyConstructor.cpp</B>, 
+    ereditare un nuova classe da <B>Child</B> e darle un <B>Member</B> <B>m</B>. 
+    Scrivere un <B>costruttore</B>, <b>costruttore di copia</b>, <B>operator=</B>, 
+    e <B>operator&lt;&lt;</B> per ostreams, e testare la classe in <B>main(&#160;)</B>.</FONT> 
+  <LI><font face="Georgia">Prendere l'esempio </font><FONT FACE="Georgia"><B>CopyConstructor.cpp</B> 
+    e modificarelo aggiungendo il proprio costruttore di copia a <B>Child</B> 
+    <I>senza </I>chiamare il costruttore di copia della classe base e vedere cosa 
+    accade. Risolvere il problema facendo una chiamata esplicita al costruttore 
+    di copa della classe base nella lista di iniziazzazione del costruttore del 
+    costruttore di copia di <B>Child.</B></FONT> 
+  <LI><font face="Georgia">Modificare </font><FONT FACE="Georgia"><B>InheritStack2.cpp</B> 
+    per utilizzare un <B>vector&lt;string&gt;</B> invece di uno <B>Stack</B>.</FONT> 
+  <LI><font face="Georgia">Creare una classe <B>Rock</B> con un costruttore di 
+    default, un costruttore di copia, un operatore di assegnamento ed un distruttore, 
+    che scrivono tutti su <b>cout</b> cosa hanno chiamato. In <B>main(&#160;)</B>,<B> 
+    </B>creare un <B>vector&lt;Rock&gt;</B> (cio&egrave; che contiene oggetti 
+    <B>Rock</B> per valore ) e aggiungere qualche <B>Rock</B>. Eseguire il programma 
+    e spiegare i risultati che si ottengono. Notare se i distruttori vengono chiamati 
+    per gli oggetti Rock nel vector. Ripetere ora l'esercizio con un <B>vector&lt;Rock*&gt;</B>. 
+    &Egrave; possibile creare un <B>vector&lt;Rock&amp;&gt;</B>?</font> 
+  <LI><font face="Georgia">Quest' esercizio &egrave; il design pattern chiamato 
+    <I>proxy</I>. Partire con la classe base <B>Subject </B>e aggiungere tre funzioni: 
+    <B>f(&#160;)</B>, <B>g(&#160;)</B> e <B>h(&#160;)</B>. Ereditare una classe 
+    <B>Proxy</B> e due classi <B>Implementation1</B> e <B>Implementation2</B> 
+    da <B>Subject</B>. <B>Proxy</B> dovrebbe contenere un puntatore a <B>Subject 
+    </B> e tutti i metodi di <B>Proxy</B> dovrebberero fare le stesse chiamate 
+    attraverso il puntatore <B>Subject</B>. Il costruttore di <B>Proxy</B> accetta 
+    un puntatore a <B>Subject</B> che viene istanziato in <B>Proxy </B>(di solito 
+    da costruttore). In <B>main(&#160;)</B>, creare due oggetti <B>Proxy</B> diversi 
+    che usano implementazione differenti. Modificare <B>Proxy</B> in modo che 
+    si possono cambiare le implemntazioni dinamicamente.</font> 
+  <LI><font face="Georgia">Modificare </font><FONT FACE="Georgia"><B>ArrayOperatorNew.cpp</B> 
+    del Capitolo 13 per mostrare che, se si eredita da <B>Widget</B>, l'allocazione 
+    funziona ancora correttamente. Spiegare perch&egrave; l'ereditariet&agrave; 
+    in <B>Framis.cpp</B> del Capitolo 13 <i>non funzionerebbe</i> correttamente<I>.</I></FONT> 
+  <LI><FONT FACE="Verdana"> </FONT><FONT FACE="Georgia">Modificare <B>Framis.cpp</B> 
+    del Capitolo 13 ereditando da <B>Framis</B> e creare nuove versioni di <B>new</B> 
+    e <B>delete</B> dalla propria classe derivata. Dimostrare che funzionano correttamente.</FONT> 
+</OL>
+<HR>
+<DIV ALIGN="LEFT"> 
+  <P><A NAME="fn51" HREF="#fnB51">[51]</A><FONT FACE="Georgia" SIZE=2> In Java, 
+    il compilatore non permetter&agrave; di diminuire l'accesso di un membro con 
+    l'ereditariet&agrave;.</FONT><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><A NAME="fn52" HREF="#fnB52">[52]</A><FONT FACE="Georgia" SIZE=2> Per imparare 
+    qualcosa di pi&ugrave; circa questa idea, si veda <I>Extreme Programming Explained</I> 
+    di Kent Beck (Addison-Wesley 2000).</FONT><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><A NAME="fn53" HREF="#fnB53">[53]</A><FONT FACE="Georgia" SIZE=2> Si veda 
+    <I>Refactoring: Improving the Design of Existing Code</I> di Martin Fowler 
+    (Addison-Wesley 1999).</FONT><BR>
+  </P>
+</DIV>
+<DIV ALIGN="CENTER"> 
+  <p><span style='font-size:10.0pt;
+font-family:Verdana'>[ </span><a href="Capitolo13.html"><span style='font-size:
+10.0pt;font-family:Verdana'>Capitolo Precedente </span></a><span
+style='font-size:10.0pt;font-family:Verdana'>] [ </span><a href="Contents.html"><span
+style='font-size:10.0pt;font-family:Verdana'>Indice Generale</span></a><span
+style='font-size:10.0pt;font-family:Verdana'> ] [ </span><a href="DocIndex.html"><span
+style='font-size:10.0pt;font-family:Verdana'>Indice Analitico </span></a><span
+style='font-size:10.0pt;font-family:Verdana'>] [ </span><a
+href="Capitolo15.html"><span style='font-size:10.0pt;font-family:Verdana'>Prossimo 
+    Capitolo</span></a><span style='font-size:10.0pt;font-family:Verdana'> ] </span></p>
+  <p><BR>
+    <font face="Georgia, Times New Roman, Times, serif">Aggiornato al : 25/02/2003</font></p>
+  <p></P>
+</DIV>
+</BODY>
+</HTML>
+

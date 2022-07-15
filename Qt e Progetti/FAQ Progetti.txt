@@ -1,0 +1,28 @@
+Note progetti:
+
+- Il feedback del progetto viene comunicato tramite txt con un giudizio testuale;
+il voto complessivo arriva poco dopo solitamente.
+Si ricorda che il voto del progetto è una media aritmetica con il voto teorico
+- Si deve passare l'esame scritto e, solo dopo, il progetto viene valutato
+Esiste poi una data unica di verbalizzazione del voto su Uniweb, media progetto
+ed esame scritto
+- Il miglior modo per trovare altri progetti di riferimento è
+cercarseli su GitHub, in quanto ce ne sono un'infinità
+- Il miglior modo per imparare Qt, data l'assenza di strumenti utili,
+è fare per sé, capire bene la documentazione e usarla
+- Normalmente Ranzato apre un forum Moodle per dubbi sul progetto;
+meglio scrivere lì e non scrivergli direttamente
+- Le slide di QT e il tutorato che il prof. consiglia non sono il massimo;
+come detto, il miglior modo per imparare QT è soffrire per conto proprio
+- Normalmente si lavora su una VM su cui il prof compila;
+consigliata quella versione di Qt e attenzione a farla andare sulla VM Ubuntu fornita
+- Consegnare solo progetti che compilano;
+se non compila il prof non lo valuta neppure
+- Il pdf della relazione dettaglia tutto;
+si consegnino i file .cpp del progetto, il file .pro e quello che serve per farlo andare
+in una zip unica, ovviamente, mettendo anche il pdf della relazione
+- Se progetto di coppia, differenziare le relazioni il più possibile
+e attenzione a scrivere bene (nei feedback si possono trovare, errori grammaticali)
+- Attenersi alle specifiche del progetto e differenziare bene
+secondo la MVC; cose miste, per quanto progetto su cui si ha penato troppo
+(caso sottoscritto), riceve voto basso per questo motivo

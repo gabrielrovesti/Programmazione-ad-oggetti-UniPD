@@ -1,0 +1,1611 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<!--
+This document was converted from RTF source: 
+By rtftohtml 4.19
+See http://www.sunpack.com/RTF
+Filename:TIC2Vone.rtf
+Application Directory:C:\TOOLS\RTF2HTML\
+Subject:
+Author:Bruce Eckel
+Operator:Bruce Eckel
+Document Comments:
+Version Comments:
+Comments:
+Keywords:
+Translation Date:09/27/2001
+Translation Time:05:25:38
+Translation Platform:Win32
+Number of Output files:22
+This File:Chapter09.html
+SplitDepth=1
+SkipNavPanel=1
+SkipLeadingToc=1
+SkipTrailingToc=1
+GenContents=1
+GenFrames=1
+GenIndex=1
+-->
+<HEAD lang="en"><META http-equiv="Content-Type" content="text/html">
+<TITLE>9: Funzioni Inline</TITLE>
+</HEAD>
+
+<BODY  BGCOLOR="#FFFFFF">
+<DIV ALIGN="CENTER"> <a href="http://www.MindView.net"><img src="mindview-head.gif" alt="MindView Inc." border = "0"></a> 
+  <center>
+    <font face="Verdana" size = "-1"> </font> 
+    <p align="CENTER">&nbsp;</p>
+    <p align="CENTER"><font face="Verdana" size=2>[ </font><a href="README-HTML.txt"><u><font face="Verdana" size="2" color="#0000ff">Suggerimenti</font></u></a><font face="Verdana" size=2> 
+      ] [ </font><a href="http://www.mindview.net/CPPServices/SolutionGuide.html"><u><font face="Verdana" size=2 color="#0000ff">Soluzioni 
+      degli Esercizi</font></u></a><font face="Verdana" size=2>] [ </font><a href="http://www.mindview.net/ThinkingInCPP2e.html"><u><font face="Verdana" size=2 color="#0000ff">Volume 
+      2</font></u></a><font face="Verdana" size=2> ] [ </font><a href="http://www.mindview.net/MailingList.html"><u><font face="Verdana" size=2 color="#0000ff">Newsletter 
+      Gratuita</font></u></a><font face="Verdana" size=2> ] <br>
+      [ </font><a href="http://www.mindview.net/CPPServices/#PublicSeminars"><u><font face="Verdana" size=2 color="#0000ff">Seminari</font></u></a><font face="Verdana" size=2> 
+      ] [ </font><a href="http://www.mindview.net/CPPServices/#SeminarsOnCD"><u><font face="Verdana" size=2 color="#0000ff">Seminari 
+      su CD ROM</font></u></a><font face="Verdana" size=2> ] [ </font><a href="http://www.mindview.net/CPPServices/#ConsultingServices"><u><font face="Verdana" size="2" color="#0000ff">Consulenza</font></u></a><font face="Verdana" size=2>] 
+      </font></p>
+    <h2 align="CENTER"><font face="Verdana">Pensare in C++, seconda ed. Volume 
+      1</font></h2>
+    <h3 align="CENTER"><font face="Verdana">&copy;2000 by Bruce Eckel</font></h3>
+    <p align="CENTER"><font face="Verdana" size=2>[ </font><a href="Capitolo08.html"><u><font face="Verdana" size=2 color="#0000ff">Capitolo 
+      Precedente </font></u></a><font face="Verdana" size=2> ] [ </font><a href="Contents.html"><u><font face="Verdana" size=2 color="#0000ff">Indice 
+      Generale</font></u></a><font face="Verdana" size=2> ] [ </font><a href="DocIndex.html"><u><font face="Verdana" size=2 color="#0000ff">Indice 
+      Analitico </font></u></a><font face="Verdana" size=2> ] [ </font><a href="Capitolo10.html"><u><font face="Verdana" size=2 color="#0000ff">Prossimo 
+      Capitolo</font></u></a><font face="Verdana" size=2> ] </font></p>
+  </center>
+  <CENTER>
+    <p><font face="Georgia, Times New Roman, Times, serif">traduzione italiana 
+      e adattamento a cura di Marco Arena</font></p>
+  </CENTER>
+  <p><FONT FACE = "Verdana"> </FONT></P>
+</DIV>
+<FONT FACE = "Verdana">
+<H1 ALIGN="LEFT"> 9: Funzioni Inline </H1>
+</FONT> 
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Verdana" SIZE=4>Una delle caratteristiche importanti di C++ ereditata 
+    dal C &egrave; l'efficienza. Se l'efficienza del C++ &egrave; drasticamente 
+    minore del C, ci pu&ograve; essere una folta rappresentanza di programmatori 
+    che non pu&ograve; giustificare il suo uso.</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">In C, uno dei modi di preservare l'efficienza &egrave; 
+    attraverso l'uso di <i>macro</i>, queste permettono di fare ci&ograve; che 
+    appare come una chiamata ad una funzione ma senza l'overhead tipico della 
+    chiamata. La macro &egrave; implementata con il pre-processore invece che 
+    dalla stesso processore, e il pre-processore sostituisce tutte le chiamate 
+    alle macro direttamente con il codice delle macro, quindi non c'&egrave; costo 
+    derivante dal pushing degli argomenti, esecuzione di una CALL del linguaggio 
+    assembler, il ritorno di argomenti e l'esecuzione di un RETURN di linguaggio 
+    assembler. Tutto il lavoro &egrave; eseguito dal pre-processore, cos&igrave; 
+    si ha la convenienza e la leggibilit&agrave; di una chiamata a funzione senza 
+    costi aggiuntivi.</FONT><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia"> Ci sono due problemi con l'uso delle macro in C++. 
+    Il primo gi&agrave; cruciale in C: una macro assomiglia a una chiamata di 
+    funzione, ma non sempre agisce come tale. Questo pu&ograve; &quot;nascondere&quot; 
+    errori difficili da trovare. Il secondo problema &egrave; specifico di C++: 
+    il pre-processore non ha il permesso di accedere a dati delle classi membro. 
+    Questo significa che le macro non possono essere usate come funzioni di classi 
+    membro.</FONT><BR>
+  </P>
+  <P><FONT FACE="Georgia">Per mantenere l'efficienza delle macro, ma aggiungere 
+    la sicurezza e lo scope di classe di una vera funzione,il C++ offre le <i>funzioni 
+    inline</i>. In questo capitolo, tratteremo dei problemi delle macro in C++, 
+    di come questi siano stati risolti con le funzioni inline, delle linee guida 
+    e delle intuizioni del modo di lavorare <i>inline</i>. </FONT><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"><FONT FACE = "Verdana"></FONT></DIV>
+<FONT FACE = "Verdana">
+<H2 ALIGN="LEFT"> Le insidie del pre-processore<BR>
+</H2>
+</FONT>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Il punto chiave dei problemi delle macro &egrave; che 
+    ci si pu&ograve; ingannare nel pensare che il comportamento del pre-processore 
+    &egrave; lo stesso del compilatore. Naturalmente &egrave; stato spiegato che 
+    una macro &egrave; simile e lavora come una chiamata a funzione, per cui &egrave; 
+    facile cadere in quest' equivoco. Le difficolt&agrave; iniziano quando si 
+    affrontano le sottili differenze.</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Come semplice esempio, si consideri il seguente:</FONT></P>
+  
+</DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"><PRE>#define F (x) (x + 1)</PRE></FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Ora, se viene fatta una chiamata <B>F</B> come questa</FONT><BR>
+  </P></DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"><PRE>F(1)</PRE></FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><font face="Georgia">il preprocessore la sviluppa, piuttosto inaspettatamente, 
+    nella seguente:</font><BR>
+  </P></DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"><PRE>(x) (x + 1)(1)</PRE></FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Il problema sorge a causa della distanza tra <B>F</B> 
+    e la sua parentesi aperta nella definizione della macro. Quando questo spazio 
+    viene rimosso, si pu&ograve; effettivamente <i>chiamare</i> la macro con lo 
+    spazio</FONT><BR>
+  </P></DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"><PRE>F (1)</PRE></FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">ed essa sar&agrave; sviluppata correttamente in</FONT><BR>
+  </P></DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"><PRE>(1 + 1)</PRE></FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">L'esempio precedente &egrave; abbastanza insignificante 
+    e il problema si render&agrave; evidente subito. Le difficolt&agrave; reali 
+    nasceranno quando saranno usate espressioni come argomenti nelle chiamate 
+    a macro.</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Ci sono due problemi. Il primo e che le espressioni 
+    possono essere sviluppate all'interno delle macro per cui l'ordine di valutazione 
+    &egrave; differente da ci&ograve; che normalmente ci si aspetta. Per esempio,</FONT><BR>
+  </P></DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"><PRE>#define FLOOR(x,b) x&gt;=b?0:1</PRE></FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Ora, se vengono usate espressioni per gli argomenti</FONT><BR>
+  </P></DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"><PRE><font color=#0000ff>if</font>(FLOOR(a&amp;0x0f,0x07)) <font color=#009900>// ...</font></PRE></FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">la macro sar&agrave; sviluppata come</FONT><BR>
+  </P></DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"><PRE><font color=#0000ff>if</font>(a&amp;0x0f&gt;=0x07?0:1)</PRE></FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">La precedenza di <B>&amp;</B> &egrave; minore rispetto 
+    a quella di <b>&gt;=</b>, quindi la valutazione della macro ci sorprender&agrave;. 
+    Una volta scoperto il problema, lo si pu&ograve; risolvere mettendo parentesi 
+    intorno ad ogni cosa nella definizione della macro (questa &egrave; una buona 
+    regola da usare quando si creano macro). Quindi,</FONT><BR>
+  </P></DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"><PRE>#define FLOOR(x,b) ((x)&gt;=(b)?0:1)</PRE></FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Scoprire il problema pu&ograve; essere difficile, comunque, 
+    e si pu&ograve; non trovarlo finch&eacute; non si &egrave; dato per scontato 
+    l'esatto comportamento della macro. Nella versione senza parentesi della precedente 
+    macro, molte espressioni lavoreranno correttamente perch&eacute; la precedenza 
+    di &gt;= &egrave; minore di molti operatori come +, <B>/</B>, <B>&#8211;</B>, 
+    e anche degli operatori di shift su bit. Quindi si pu&ograve; facilmente iniziare 
+    a pensare che essa lavori con tutte le espressioni, incluse quelle che usano 
+    gli operatori logici su bit.</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Il problema precedente pu&ograve; essere risolto con 
+    un'attenta pratica di programmazione: mettere le parentesi a tutto nelle macro. 
+    Tuttavia, la seconda difficolt&agrave; &egrave; pi&ugrave; insidiosa. Diversamente 
+    da una funzione normale, ogni volta che si usa un argomento in una macro, 
+    questo viene valutato. Finch&eacute; la macro &egrave; chiamata solo con variabili 
+    ordinarie, questa valutazione non avra effetti negativi, ma se la valutazione 
+    di un argomento ha effetti collaterali, allora i risultati possono essere 
+    sorprendenti e il comportamento non seguir&agrave; affatto quello di una funzione.</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Per esempio, questa macro determina se il suo argomento 
+    cade all'interno di un certo intervallo:</FONT><BR>
+  </P></DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"><PRE>#define BAND(x) (((x)&gt;5 &amp;&amp; (x)&lt;10) ? (x) : 0)</PRE></FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Finch&eacute; si usa un argomento &quot;ordinario&quot;, 
+    la macro lavorer&agrave; praticamente come una funzione reale. Ma non appena 
+    si diventa meno attenti pensando che sia una funzione reale, cominciano i 
+    problemi. Quindi:</FONT></P>
+</DIV>
+
+<BLOCKQUOTE><FONT SIZE = "+1"><PRE><font color=#009900>//: C09:MacroSideEffects.cpp</font>
+#include <font color=#004488>"../require.h"</font>
+#include &lt;fstream&gt;
+<font color=#0000ff>using</font> <font color=#0000ff>namespace</font> std;
+
+#define BAND(x) (((x)&gt;5 &amp;&amp; (x)&lt;10) ? (x) : 0)
+
+<font color=#0000ff>int</font> main() {
+  ofstream out(<font color=#004488>"macro.out"</font>);
+  assure(out, <font color=#004488>"macro.out"</font>);
+  <font color=#0000ff>for</font>(<font color=#0000ff>int</font> i = 4; i &lt; 11; i++) {
+    <font color=#0000ff>int</font> a = i;
+    out &lt;&lt; <font color=#004488>"a = "</font> &lt;&lt; a &lt;&lt; endl &lt;&lt; '\t';
+    out &lt;&lt; <font color=#004488>"BAND(++a)="</font> &lt;&lt; BAND(++a) &lt;&lt; endl;
+    out &lt;&lt; <font color=#004488>"\t a = "</font> &lt;&lt; a &lt;&lt; endl;
+  }
+} <font color=#009900>///:~</font></PRE></FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Da notare l'uso di caratteri maiuscoli per il nome della 
+    macro. Questa &egrave; una regola utile perch&eacute; dice al lettore che 
+    essa &egrave; una macro e non una funzione, cos&igrave; se ci sono problemi 
+    o dubbi ci&ograve; funziona da piccolo promemoria.</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Ecco l'output prodotto dal programma, che non &egrave; 
+    niente affatto ci&ograve; che ci si sarebbe aspettato da una vera funzione:</FONT></P>
+</DIV>
+
+<BLOCKQUOTE><FONT SIZE = "+1"><PRE>a = 4
+  BAND(++a)=0
+   a = 5
+a = 5
+  BAND(++a)=8
+   a = 8
+a = 6
+  BAND(++a)=9
+   a = 9
+a = 7
+  BAND(++a)=10
+   a = 10
+a = 8
+  BAND(++a)=0
+   a = 10
+a = 9
+  BAND(++a)=0
+   a = 11
+a = 10
+  BAND(++a)=0
+   a = 12</PRE></FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Quando<B> a</B> vale quattro, solo la prima parte della 
+    condizione basta (perch&eacute; gi&agrave; non rispettata), quindi l'espressione 
+    viene valutata una volta e l'effetto collaterale della chiamata a macro &egrave; 
+    che <B>a</B> diventa cinque, il che &egrave; ci&ograve; che ci si aspetta 
+    da una normale chiamata a funzione nella stessa situazione. Tuttavia, quando 
+    il numero cade all'interno del range, verranno testate entrambe le condizioni 
+    dell'if il che comporta due incrementi. Il risultato viene prodotto valutando 
+    di nuovo l'argomento, per cui si passa a un terzo incremento. Una volta che 
+    il numero esce fuori dal range, entrambe le condizioni sono ancora testate 
+    avendo ancora due incrementi. Gli effetti collaterali sono differenti, dipendono 
+    dall'argomento.</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Questo non &egrave; chiaramente il tipo di comportamento 
+    che si vuole da una macro che assomigli a una funzione. In questo caso, la 
+    soluzione ovvia &egrave; renderla una vera funzione, il che naturalmente aggiunge 
+    un overhead extra e pu&ograve; ridurre l'efficienza se si chiama spesso la 
+    funzione. Sfortunatamente, il problema pu&ograve; non essere sempre cos&igrave; 
+    ovvio, si pu&ograve;, ad esempio, avere una libreria che a nostra insaputa, 
+    contenga funzioni e macro mischiate insieme, quindi un problema come questo 
+    pu&ograve; nascondere bug molto difficili da trovare. Per esempio, la macro 
+    <B>putc(&#160;)</B> nella libreria <B>cstdio </B>pu&ograve; valutare il suo 
+    secondo argomento due volte. Questo &egrave; specificato nello Standard C. 
+    Inoltre anche le implementazioni poco attente di <B>toupper(&#160;)</B> come 
+    macro possono valutare l'argomento pi&ugrave; di una volta, il che pu&ograve; 
+    dare risultati inaspettati con<B> toupper(*p++)</B>.</FONT><A NAME="fnB45" HREF="#fn45">[45]</A><BR>
+  </P></DIV>
+<FONT FACE = "Verdana"> 
+<H3 ALIGN="LEFT"> Macro e accessi</H3>
+</FONT>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Naturalmente, in C &egrave; richiesta una codifica accurata 
+    e l'uso di macro, potremmo certamente ottenere la stessa cosa in C++ se non 
+    ci fosse un problema: una macro non ha il concetto di <i>scope</i> richiesto 
+    con le funzioni membro. Il preprocessore semplicemente esegue una sostituzione 
+    di testo, quindi non si pu&ograve; dire qualcosa tipo </FONT><BR>
+  </P></DIV>
+
+<BLOCKQUOTE><FONT SIZE = "+1">
+  <PRE><font color=#0000ff>class</font> X {
+  <font color=#0000ff>int</font> i;
+<font color=#0000ff>public</font>:
+#define VAL(X::i) <font color=#009900>// Errore</font></PRE>
+  </FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">o qualcosa simile. Inoltre , pu&ograve; non esserci 
+    indicazione a quale oggetto ci si stia riferendo. Semplicemente non c'&egrave; 
+    modo di esprimere lo scope di classe in una macro. Senza alcuna alternativa 
+    per le macro, i programmatori sarebbero tentati di rendere alcuni dati <B>public</B> 
+    per amore dell'efficienza, svelando cos&igrave; l'implementazione sottostante 
+    e impedendo cambiamenti in quell'implementazione, cos&igrave; come l'eliminazione 
+    della protezione fornita dalla direttiva<B> private</B>.</FONT><BR>
+  </P></DIV>
+<FONT FACE = "Verdana">
+<H2 ALIGN="LEFT"> Funzioni Inline </H2>
+</FONT>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Risolvendo in C++ il problema delle macro con accesso 
+    a classi membro di tipo<B> private</B>, verranno eliminati <I>tutti</I> i 
+    problemi associati alle macro. Ci&ograve; &egrave; stato fatto portando il 
+    concetto di macro sotto il controllo del compilatore dove esse appartengono. 
+    Il C++ implementa le macro come <I>funzioni inline</I>, che &egrave; una vera 
+    e propria funzione in ogni senso. Qualsiasi comportamento ci si aspetti da 
+    una funzione ordinaria, lo si otterr&agrave; da una funzione inline. La sola 
+    differenza e che una f.i. &egrave; sviluppata sul posto, come una macro, cos&igrave; 
+    da eliminare l'overhead della chiamata a funzione. Pertanto, si possono (quasi) 
+    mai usare le macro, ma solo le funzioni inline.</FONT><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Ogni funzione definita all'interno del corpo di una 
+    classe &egrave; automaticamente inline, ma &egrave; possibile rendere una 
+    funzione inline facendo precedere la definizione di funzione dalla parola 
+    riservata <B>inline</B>. Comunque, affinch&eacute; si abbia un qualche effetto 
+    si deve includere il corpo della funzione con la dichiarazione, altrimenti 
+    il compilatore la tratter&agrave; come una funzione ordinaria. Pertanto,</FONT><BR>
+  </P></DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"><PRE><font color=#0000ff>inline</font> <font color=#0000ff>int</font> plusOne(<font color=#0000ff>int</font> x);</PRE></FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">non ha effetto su tutto ma solo sulla dichiarazione 
+    della funzione (che in seguito pu&ograve; essere o meno una funzione inline). 
+    L'approccio giusto prevede invece:</FONT><BR>
+  </P></DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"><PRE><font color=#0000ff>inline</font> <font color=#0000ff>int</font> plusOne(<font color=#0000ff>int</font> x) { <font color=#0000ff>return</font> ++x; }</PRE></FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Da notare che il compilatore verificher&agrave; (come 
+    sempre) l'esattezza della lista degli argomenti della funzione e del valore 
+    di ritorno (eseguendo eventuali conversioni), cose che il preprocessore &egrave; 
+    incapace di fare. Inoltre provando a scrivere il codice precedente come una 
+    macro, si otterr&agrave; un effetto indesiderato.</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Quasi sempre le funzioni inline saranno definite in 
+    un file header. Quando il compilatore vede una tale definizione, mette il 
+    tipo di funzione (il nome insieme al valore di ritorno) e il corpo della funzione 
+    stessa nella sua tabella dei simboli. Quando la funzione sar&agrave; richiamata, 
+    il compilatore verificher&agrave; l'esattezza della chiamata e l'uso corretto 
+    del valore di ritorno, e sostituisce il corpo della funzione con la chiamata 
+    stessa, eliminando cos&igrave; l'overhead. Il codice inline occupa spazio, 
+    ma se la funzione &egrave; piccola, ci&ograve; effettivamente prende meno 
+    spazio del codice generato per fare una chiamata a una funzione ordinaria 
+    (con il pushing degli argomenti nello stack e l'esecuzione della CALL).</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Una funzione inline in un file header ha uno stato speciale, 
+    si deve includere il file header contenente la funzione e la sua definizione 
+    in ogni file dove la funzione &egrave; usata, ma non si finisce il discorso 
+    con la definizione multipla di errori (comunque, la definizione deve essere 
+    identica in tutti i posti dove la funzione inline &egrave; inclusa).</FONT><BR>
+  </P></DIV>
+<FONT FACE = "Verdana"> 
+<H3 ALIGN="LEFT"> Inline all'interno delle classi</H3>
+</FONT>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Per definire una funzione inline, si deve normalmente 
+    precedere la definizione di funzione con la parola riservata <B>inline</B>. 
+    Comunque ci&ograve; non &egrave; necessario all'interno delle definizioni 
+    di classi. Ogni funzione definita all'interno di una classe &egrave; automaticamente 
+    inline. Per esempio:</FONT><br>
+    <BR>
+  </P>
+</DIV>
+
+<BLOCKQUOTE><FONT SIZE = "+1">
+  <PRE><font color=#009900>//: C09:Inline.cpp</font>
+<font color=#009900>// L'inline all'interno delle classi</font>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+<font color=#0000ff>using</font> <font color=#0000ff>namespace</font> std;
+
+<font color=#0000ff>class</font> Point {
+  <font color=#0000ff>int</font> i, j, k;
+<font color=#0000ff>public</font>:
+  Point(): i(0), j(0), k(0) {}
+  Point(<font color=#0000ff>int</font> ii, <font color=#0000ff>int</font> jj, <font color=#0000ff>int</font> kk)
+    : i(ii), j(jj), k(kk) {}
+  <font color=#0000ff>void</font> print(<font color=#0000ff>const</font> string&amp; msg = <font color=#004488>""</font>) <font color=#0000ff>const</font> {
+    <font color=#0000ff>if</font>(msg.size() != 0) cout &lt;&lt; msg &lt;&lt; endl;
+    cout &lt;&lt; <font color=#004488>"i = "</font> &lt;&lt; i &lt;&lt; <font color=#004488>", "</font>
+         &lt;&lt; <font color=#004488>"j = "</font> &lt;&lt; j &lt;&lt; <font color=#004488>", "</font>
+         &lt;&lt; <font color=#004488>"k = "</font> &lt;&lt; k &lt;&lt; endl;
+  }
+};
+
+<font color=#0000ff>int</font> main() {
+  Point p, q(1,2,3);
+  p.print(<font color=#004488>"value of p"</font>);
+  q.print(<font color=#004488>"value of q"</font>);
+} <font color=#009900>///:~</font></PRE>
+  </FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Qui, i due costruttori e la funzione <B>print(&#160;)</B> 
+    sono tutte inline per default. Da notare che nel <B>main(&#160;) </B> il fatto 
+    che si stiano usando funzioni inline &egrave; del tutto trasparente, come 
+    &egrave; giusto che sia. Il comportamento logico di una funzione deve essere 
+    identico al di l&agrave; del fatto che essa sia o meno inline (altrimenti 
+    il compilatore &egrave; rotto). La sola differenza si noter&agrave; nelle 
+    prestazioni.</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Naturalmente, la tentazione &egrave; di usare le funzioni 
+    inline ovunque all'interno delle dichiarazioni di classe perch&egrave; si 
+    risparmia lo step extra di creare una definizione di funzione esterna. Ricordarsi 
+    che la tecnica inline serve per fornire buone opportunit&agrave; per l'ottimizzazione 
+    del compilatore <A NAME="Index1624"></A>. Ma rendere inline una funzione grande 
+    causer&agrave; una duplicazione di codice ovunque la funzione venga chiamata, 
+    gonfiando il codice e diminuendo la velocit&agrave; (il solo modo sicuro per 
+    scoprirlo &egrave; sperimentare agli effetti di rendere inline un programma 
+    sul proprio compilatore).</FONT><A NAME="_Toc312373929"></A><A NAME="_Toc472654902"></A><BR>
+  </P></DIV>
+<A NAME="Heading282"></A><FONT FACE = "Verdana">
+<H3 ALIGN="LEFT"> Access functions (funzioni d'accesso)</H3>
+</FONT>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Uno degli usi pi&ugrave; importanti della tecnica inline 
+    all'interno delle classi &egrave; l'<I>access function</I>. Questa &egrave; 
+    una piccola funzione che permette di leggere o cambiare parte dello stato 
+    di un'oggetto - cio&egrave; variabili o una variabile interna. Il motivo per 
+    cui la tecnica inline &egrave; importante per le access functions pu&ograve; 
+    essere visto nel seguente esempio:</FONT><BR>
+  </P></DIV>
+
+<BLOCKQUOTE><FONT SIZE = "+1">
+  <PRE><font color=#009900>//: C09:Access.cpp</font>
+<font color=#009900>// Inline  e access functions</font>
+
+<font color=#0000ff>class</font> Access {
+  <font color=#0000ff>int</font> i;
+<font color=#0000ff>public</font>:
+  <font color=#0000ff>int</font> read() <font color=#0000ff>const</font> { <font color=#0000ff>return</font> i; }
+  <font color=#0000ff>void</font> set(<font color=#0000ff>int</font> ii) { i = ii; }
+};
+
+<font color=#0000ff>int</font> main() {
+  Access A;
+  A.set(100);
+  <font color=#0000ff>int</font> x = A.read();
+} <font color=#009900>///:~</font></PRE>
+  </FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia">Qui</font><FONT FACE="Georgia">, l'utente della classe 
+    non ha mai un contatto diretto con lo stato della variabile all'interno della 
+    classe ed esse possono essere mantenute <B>private</B>, sotto il controllo 
+    del progettista della classe. Tutti gli accessi a dati di tipo <B>private</B> 
+    pu&ograve; essere controllato attraverso la funzione interfaccia. In pi&ugrave;, 
+    l'accesso &egrave; notevolmente efficiente. Si consideri il<B> read(&#160;)</B>, 
+    per esempio. Senza l'inline, il codice generato per la chiamata a <B>read(&#160;)</B> 
+    dovr&agrave; tipicamente includere il pushing (inserimento) nello stack e 
+    fare una chiamata assembler CALL. Con molte macchine, la dimensione di questo 
+    codice potr&agrave; essere pi&ugrave; grande della dimensione del codice creato 
+    dalla tecnica inline, e il tempo d''esecuzione potr&agrave; essere certamente 
+    pi&ugrave; lungo.</FONT><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Senza le funzioni inline, un progettista che privilegia 
+    l'efficienza sar&agrave; tentato di dichiarare semplicemente <b>i</b> di tipo 
+    public, eliminando l'overhead permettendo all'utente di accedere direttamente 
+    ad <B>i</B>. Da un punto di vista progettuale, ci&ograve; &egrave; disastroso 
+    perch&egrave; <B>i</B> in tal caso diverrebbe parte dell'interfaccia pubblica, 
+    il che significa che chi ha scritto la classe non pu&ograve; pi&ugrave; cambiarla. 
+    Si rimane bloccati con un <B>int</B> chiamato <B>i</B>. Questo &egrave; un 
+    problema perch&egrave; ci si potrebbe accorgere prima o poi che pu&ograve; 
+    essere pi&ugrave; utile rappresentare quell'informazione come <B>float</B> 
+    piuttosto che con un <B>int</B>, ma perch&egrave; <B>int i</B> &egrave; parte 
+    di un interfaccia pubblica, non la si pu&ograve; pi&ugrave; cambiare. Magari 
+    si potrebbe voler eseguire calcoli supplementari oltre a leggere o settare 
+    <B>i</B>, ma non si pu&ograve; se questo &egrave; <B>public</B>.<B> </B>Se, 
+    d'altronde, si sono sempre usate funzioni per leggere o cambiare lo stato 
+    di un'oggetto, si pu&ograve; modificare la rappresentazione sottostante dell'oggetto 
+    (per la gioia del cuore..).</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Inoltre, l'uso di funzioni per controllare dati permette 
+    di aggiungere codice alla funzione per capire quando il valore del dato viene 
+    cambiato, il che pu&ograve; essere molto utile durante il debugging. Se una 
+    dato &egrave;<b> public, </b>chiunque pu&ograve; cambiarlo in qualunque momento.</FONT><BR>
+  </P></DIV>
+<FONT FACE = "Verdana"> 
+<H4 ALIGN="LEFT"> Accessors e mutators</H4>
+</FONT>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Qualcuno preferisce dividere il concetto delle access 
+    functions in <I>accessors</I> (leggere lo stato delle informazioni da un oggetto, 
+    <i>che accede</i>) e <I>mutators</I> (cambiare lo stato di un oggetto, <i>che 
+    muta</i>). Inoltre l'overloading delle funzioni pu&ograve; essere usato per 
+    fornire lo stesso nome di funzione sia per l'accessor che per il mutator; 
+    il modo in cui si chiama la funzione determina se si sta leggendo o modificando 
+    lo stato dell'informazione. Ad esempio,</FONT><BR>
+  </P></DIV>
+
+<BLOCKQUOTE><FONT SIZE = "+1">
+  <PRE><font color=#009900>//: C09:Rectangle.cpp</font>
+<font color=#009900>// Accessors e mutators</font>
+
+<font color=#0000ff>class</font> Rectangle {
+  <font color=#0000ff>int</font> wide, high;
+<font color=#0000ff>public</font>:
+  Rectangle(<font color=#0000ff>int</font> w = 0, <font color=#0000ff>int</font> h = 0)
+    : wide(w), high(h) {}
+  <font color=#0000ff>int</font> width() <font color=#0000ff>const</font> { <font color=#0000ff>return</font> wide; } <font color=#009900>// Legge</font>
+  <font color=#0000ff>void</font> width(<font color=#0000ff>int</font> w) { wide = w; } <font color=#009900>// Setta</font>
+  <font color=#0000ff>int</font> height() <font color=#0000ff>const</font> { <font color=#0000ff>return</font> high; } <font color=#009900>// Legge</font>
+  <font color=#0000ff>void</font> height(<font color=#0000ff>int</font> h) { high = h; } <font color=#009900>// Setta</font>
+};
+
+<font color=#0000ff>int</font> main() {
+  Rectangle r(19, 47);
+  <font color=#009900>// Cambia width &amp; height:</font>
+  r.height(2 * r.width());
+  r.width(2 * r.height());
+} <font color=#009900>///:~</font></PRE>
+  </FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Il costruttore usa la lista di inizializzazione (introdotta 
+    nel capitolo 8 e trattata completamente nel capitolo 14) per inizializzare 
+    i valori di <B>wide</B> e <B> high</B> (usando la forma dello pseudo costruttore 
+    per i tipi predefiniti).</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Non si possono avere nomi di funzioni e usare lo stesso 
+    identificatore come dato membro, per cui si sarebbe tentati di distinguere 
+    i dati con un trattino di sottolineatura. Comunque, gli identificatori con 
+    il trattino di sottolineatura sono riservati e non si possono usare.</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Si pu&ograve; scegliere invece di usare -get- e -set- 
+    per indicare accessor e mutator:</FONT><BR>
+  </P></DIV>
+
+<BLOCKQUOTE><FONT SIZE = "+1">
+  <PRE><font color=#009900>//: C09:Rectangle2.cpp</font>
+<font color=#009900>// Accessors e mutators con "get" e "set"</font>
+
+<font color=#0000ff>class</font> Rectangle {
+  <font color=#0000ff>int</font> width, height;
+<font color=#0000ff>public</font>:
+  Rectangle(<font color=#0000ff>int</font> w = 0, <font color=#0000ff>int</font> h = 0)
+    : width(w), height(h) {}
+  <font color=#0000ff>int</font> getWidth() <font color=#0000ff>const</font> { <font color=#0000ff>return</font> width; }
+  <font color=#0000ff>void</font> setWidth(<font color=#0000ff>int</font> w) { width = w; }
+  <font color=#0000ff>int</font> getHeight() <font color=#0000ff>const</font> { <font color=#0000ff>return</font> height; }
+  <font color=#0000ff>void</font> setHeight(<font color=#0000ff>int</font> h) { height = h; }
+};
+
+<font color=#0000ff>int</font> main() {
+  Rectangle r(19, 47);
+  <font color=#009900>// Cambia  width &amp; height:</font>
+  r.setHeight(2 * r.getWidth());
+  r.setWidth(2 * r.getHeight());
+} <font color=#009900>///:~</font></PRE>
+  </FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Naturalmente, accessors e mutators non devono essere 
+    semplici pipeline per una variabile interna. Qualche volta possono eseguire 
+    calcoli pi&ugrave; complicati. L'esempio seguente usa le funzioni della libreria 
+    Standard C per produrre una semplice classe<B>Time</B> :</FONT><BR>
+  </P></DIV>
+
+<BLOCKQUOTE><FONT SIZE = "+1">
+  <PRE><font color=#009900>//: C09:Cpptime.h</font>
+<font color=#009900>// Una semplice classe time</font>
+#ifndef CPPTIME_H
+#define CPPTIME_H
+#include &lt;ctime&gt;
+#include &lt;cstring&gt;
+
+<font color=#0000ff>class</font> Time {
+  std::time_t t;
+  std::tm local;
+  <font color=#0000ff>char</font> asciiRep[26];
+  <font color=#0000ff>unsigned</font> <font color=#0000ff>char</font> lflag, aflag;
+  <font color=#0000ff>void</font> updateLocal() {
+    <font color=#0000ff>if</font>(!lflag) {
+      local = *std::localtime(&amp;t);
+      lflag++;
+    }
+  }
+  <font color=#0000ff>void</font> updateAscii() {
+    <font color=#0000ff>if</font>(!aflag) {
+      updateLocal();
+      std::strcpy(asciiRep,std::asctime(&amp;local));
+      aflag++;
+    }
+  }
+<font color=#0000ff>public</font>:
+  Time() { mark(); }
+  <font color=#0000ff>void</font> mark() {
+    lflag = aflag = 0;
+    std::time(&amp;t);
+  }
+  <font color=#0000ff>const</font> <font color=#0000ff>char</font>* ascii() {
+    updateAscii();
+    <font color=#0000ff>return</font> asciiRep;
+  }
+  <font color=#009900>// Differenza in secondi:</font>
+  <font color=#0000ff>int</font> delta(Time* dt) <font color=#0000ff>const</font> {
+    <font color=#0000ff>return</font> <font color=#0000ff>int</font>(std::difftime(t, dt-&gt;t));
+  }
+  <font color=#0000ff>int</font> daylightSavings() {
+    updateLocal();
+    <font color=#0000ff>return</font> local.tm_isdst;
+  }
+  <font color=#0000ff>int</font> dayOfYear() { <font color=#009900>// Dal 1&deg; Gennaio</font>
+    updateLocal();
+    <font color=#0000ff>return</font> local.tm_yday;
+  }
+  <font color=#0000ff>int</font> dayOfWeek() { <font color=#009900>// Da Domenica</font>
+    updateLocal();
+    <font color=#0000ff>return</font> local.tm_wday;
+  }
+  <font color=#0000ff>int</font> since1900() { <font color=#009900>// Anni dal 1900</font>
+    updateLocal();
+    <font color=#0000ff>return</font> local.tm_year;
+  }
+  <font color=#0000ff>int</font> month() { <font color=#009900>// Da Gennaio</font>
+    updateLocal();
+    <font color=#0000ff>return</font> local.tm_mon;
+  }
+  <font color=#0000ff>int</font> dayOfMonth() {
+    updateLocal();
+    <font color=#0000ff>return</font> local.tm_mday;
+  }
+  <font color=#0000ff>int</font> hour() { <font color=#009900>// Dalla mezzanotte, orario 24-ore</font>
+    updateLocal();
+    <font color=#0000ff>return</font> local.tm_hour;
+  }
+  <font color=#0000ff>int</font> minute() {
+    updateLocal();
+    <font color=#0000ff>return</font> local.tm_min;
+  }
+  <font color=#0000ff>int</font> second() {
+    updateLocal();
+    <font color=#0000ff>return</font> local.tm_sec;
+  }
+};
+#endif <font color=#009900>// CPPTIME_H ///:~</font></PRE>
+  </FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Le funzioni della libreria Standard di C hanno diverse 
+    rappresentazioni per il tempo, e queste fanno tutte parte della classe <B>Time</B>. 
+    Comunque, non &egrave; necessario aggiornarle tutte, per tanto <B>time_t t</B> 
+    &egrave; usata come rappresentazione base, <B>tm local </B> e <B>asciiRep</B> 
+    (rappresentazione dei caratteri ASCII) hanno ciascuno dei flag per indicare 
+    se devono essere aggiornate al valore corrente di <B>time_t</B>. Le due funzioni 
+    <B>private</B>, <B>updateLocal(&#160;) </B> e<B> updateAscii(&#160;)</B> verificano 
+    i flags e di conseguenza eseguono l'aggiornamento.</FONT><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Il costruttore chiama la funzione <B>mark(&#160;)</B> 
+    (che pu&ograve; essere anche chiamata dall'utente per forzare l'oggetto a 
+    rappresentare il tempo corrente) e questo azzera i due flags per indicare 
+    che l'ora locale e la rappresentazione ASCII non sono pi&ugrave; valide. La 
+    funzione <B>ascii(&#160;)</B> chiama <B>updateAscii(&#160;)</B>, la quale 
+    copia il risultato della funzione della libreria standard <B>asctime(&#160;)</B> 
+    nel buffer locale perch&egrave; <B>asctime(&#160;)</B> usa un'area dati statica 
+    che viene sovrascritta ogni volta che si chiama. Il valore di ritorno della 
+    funzione <B>ascii(&#160;)</B> &egrave; l'indirizzo di questo buffer locale.</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Tutte le funzioni che iniziano con<B> daylightSavings(&#160;)</B> 
+    usano la funzione <B>updateLocal(&#160;)</B>, la quale provoca come conseguenza 
+    per la struttura inline di essere abbastanza pesante. Questo non deve sembrare 
+    utile, specialmente considerando che probabilmente non si vorr&agrave; chiamare 
+    la funzione molte volte. Comunque, questo non deve significare che tutte le 
+    funzione devono essere fatte non-inline. Se si vogliono tutte le altre funzioni 
+    non-inline, conviene almeno mantenere <B>updateLocal(&#160;)</B> inline, in 
+    tal modo il suo codice sar&agrave; duplicato nelle funzioni non-inline, eliminando 
+    l'overehead extra.</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Ecco un piccolo programma test:</FONT><BR>
+  </P></DIV>
+
+<BLOCKQUOTE><FONT SIZE = "+1">
+  <PRE><font color=#009900>//: C09:Cpptime.cpp</font>
+<font color=#009900>// Test di una semplice classe time</font>
+#include <font color=#004488>"Cpptime.h"</font>
+#include &lt;iostream&gt;
+<font color=#0000ff>using</font> <font color=#0000ff>namespace</font> std;
+
+<font color=#0000ff>int</font> main() {
+  Time start;
+  <font color=#0000ff>for</font>(<font color=#0000ff>int</font> i = 1; i &lt; 1000; i++) {
+    cout &lt;&lt; i &lt;&lt; ' ';
+    <font color=#0000ff>if</font>(i%10 == 0) cout &lt;&lt; endl;
+  }
+  Time end;
+  cout &lt;&lt; endl;
+  cout &lt;&lt; <font color=#004488>"start = "</font> &lt;&lt; start.ascii();
+  cout &lt;&lt; <font color=#004488>"end = "</font> &lt;&lt; end.ascii();
+  cout &lt;&lt; <font color=#004488>"delta = "</font> &lt;&lt; end.delta(&amp;start);
+} <font color=#009900>///:~</font></PRE>
+  </FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Un oggetto <B>Time</B> viene creato, poi vengono eseguite 
+    alcune attivit&agrave; mangia-tempo e dopo viene creato un secondo oggetto<B> 
+    Time</B> per segnare il tempo finale. Questi vengono usati per mostrare il 
+    tempo iniziale, finale e trascorso.</FONT><BR>
+  </P></DIV>
+<FONT FACE = "Verdana"> 
+<H2 ALIGN="LEFT"> Stash e Stack con l'inline</H2>
+</FONT>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Armati della tecnica inline, si possono adesso convertire 
+    le classi <B>Stash</B> e<B> Stack</B> per una maggiore efficienza:</FONT><BR>
+  </P></DIV>
+
+<BLOCKQUOTE><FONT SIZE = "+1">
+  <PRE><font color=#009900>//: C09:Stash4.h</font>
+<font color=#009900>// Inline functions</font>
+#ifndef STASH4_H
+#define STASH4_H
+#include <font color=#004488>"../require.h"</font>
+
+<font color=#0000ff>class</font> Stash {
+  <font color=#0000ff>int</font> size;      <font color=#009900>// Dimensione di ogni spazio
+  </font><font color=#0000ff>int</font> quantity;  <font color=#009900>// Numero di spazi per lo storage
+  </font><font color=#0000ff>int</font> next;      <font color=#009900>// Prossimo spazio libero</font>
+  <font color=#009900>// Array di bytes allocati dinamicamente:</font>
+  <font color=#0000ff>unsigned</font> <font color=#0000ff>char</font>* storage;
+  <font color=#0000ff>void</font> inflate(<font color=#0000ff>int</font> increase);
+<font color=#0000ff>public</font>:
+  Stash(<font color=#0000ff>int</font> sz) : size(sz), quantity(0),
+    next(0), storage(0) {}
+  Stash(<font color=#0000ff>int</font> sz, <font color=#0000ff>int</font> initQuantity) : size(sz), 
+    quantity(0), next(0), storage(0) { 
+    inflate(initQuantity); 
+  }
+  Stash::~Stash() {
+    <font color=#0000ff>if</font>(storage != 0) 
+      <font color=#0000ff>delete</font> []storage;
+  }
+  <font color=#0000ff>int</font> add(<font color=#0000ff>void</font>* element);
+  <font color=#0000ff>void</font>* fetch(<font color=#0000ff>int</font> index) <font color=#0000ff>const</font> {
+    require(0 &lt;= index, <font color=#004488>"Stash::fetch (-)index"</font>);
+    <font color=#0000ff>if</font>(index &gt;= next)
+      <font color=#0000ff>return</font> 0; <font color=#009900>// Per indicare la fine
+   // Produce un puntatore all'elemento desiderato:</font>
+    <font color=#0000ff>return</font> &amp;(storage[index * size]);
+  }
+  <font color=#0000ff>int</font> count() <font color=#0000ff>const</font> { <font color=#0000ff>return</font> next; }
+};
+#endif <font color=#009900>// STASH4_H ///:~</font></PRE>
+  </FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Le funzioni piccole ovviamente lavorano bene con la 
+    tecnica inline, ma da notare che le due funzioni grandi sono ancora lasciate 
+    come non-inline, usando anche per loro la tecnica inline non si avrebbe un 
+    guadagno nelle performance:</FONT></P>
+</DIV>
+
+<BLOCKQUOTE><FONT SIZE = "+1">
+  <PRE><font color=#009900>//: C09:Stash4.cpp {O}</font>
+#include <font color=#004488>"Stash4.h"</font>
+#include &lt;iostream&gt;
+#include &lt;cassert&gt;
+<font color=#0000ff>using</font> <font color=#0000ff>namespace</font> std;
+<font color=#0000ff>const</font> <font color=#0000ff>int</font> increment = 100;
+
+<font color=#0000ff>int</font> Stash::add(<font color=#0000ff>void</font>* element) {
+  <font color=#0000ff>if</font>(next &gt;= quantity) <font color=#009900>// Abbastanza spazio rimasto?</font>
+    inflate(increment);
+  <font color=#009900>// Copia l'elemento nello storage,</font>
+  <font color=#009900>// parte dal prossimo spazio libero:</font>
+  <font color=#0000ff>int</font> startBytes = next * size;
+  <font color=#0000ff>unsigned</font> <font color=#0000ff>char</font>* e = (<font color=#0000ff>unsigned</font> <font color=#0000ff>char</font>*)element;
+  <font color=#0000ff>for</font>(<font color=#0000ff>int</font> i = 0; i &lt; size; i++)
+    storage[startBytes + i] = e[i];
+  next++;
+  <font color=#0000ff>return</font>(next - 1); <font color=#009900>// Indice</font>
+}
+
+<font color=#0000ff>void</font> Stash::inflate(<font color=#0000ff>int</font> increase) {
+  assert(increase &gt;= 0);
+  <font color=#0000ff>if</font>(increase == 0) <font color=#0000ff>return</font>;
+  <font color=#0000ff>int</font> newQuantity = quantity + increase;
+  <font color=#0000ff>int</font> newBytes = newQuantity * size;
+  <font color=#0000ff>int</font> oldBytes = quantity * size;
+  <font color=#0000ff>unsigned</font> <font color=#0000ff>char</font>* b = <font color=#0000ff>new</font> <font color=#0000ff>unsigned</font> <font color=#0000ff>char</font>[newBytes];
+  <font color=#0000ff>for</font>(<font color=#0000ff>int</font> i = 0; i &lt; oldBytes; i++)
+    b[i] = storage[i]; <font color=#009900>// Copia il vecchio sul nuovo</font>
+  <font color=#0000ff>delete</font> [](storage); <font color=#009900>// Rilascia lo storage vecchio</font>
+  storage = b; <font color=#009900>// Punta alla nuova memoria</font>
+  quantity = newQuantity; <font color=#009900>// Aggiusta la dimensione</font>
+} <font color=#009900>///:~</font></PRE>
+  </FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Ancora una volta, il programma verifica che tutto funzioni 
+    correttamente:</FONT><BR>
+  </P></DIV>
+
+<BLOCKQUOTE><FONT SIZE = "+1"><PRE><font color=#009900>//: C09:Stash4Test.cpp</font>
+<font color=#009900>//{L} Stash4</font>
+#include <font color=#004488>"Stash4.h"</font>
+#include <font color=#004488>"../require.h"</font>
+#include &lt;fstream&gt;
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+<font color=#0000ff>using</font> <font color=#0000ff>namespace</font> std;
+
+<font color=#0000ff>int</font> main() {
+  Stash intStash(<font color=#0000ff>sizeof</font>(<font color=#0000ff>int</font>));
+  <font color=#0000ff>for</font>(<font color=#0000ff>int</font> i = 0; i &lt; 100; i++)
+    intStash.add(&amp;i);
+  <font color=#0000ff>for</font>(<font color=#0000ff>int</font> j = 0; j &lt; intStash.count(); j++)
+    cout &lt;&lt; <font color=#004488>"intStash.fetch("</font> &lt;&lt; j &lt;&lt; <font color=#004488>") = "</font>
+         &lt;&lt; *(<font color=#0000ff>int</font>*)intStash.fetch(j)
+         &lt;&lt; endl;
+  <font color=#0000ff>const</font> <font color=#0000ff>int</font> bufsize = 80;
+  Stash stringStash(<font color=#0000ff>sizeof</font>(<font color=#0000ff>char</font>) * bufsize, 100);
+  ifstream in(<font color=#004488>"Stash4Test.cpp"</font>);
+  assure(in, <font color=#004488>"Stash4Test.cpp"</font>);
+  string line;
+  <font color=#0000ff>while</font>(getline(in, line))
+    stringStash.add((<font color=#0000ff>char</font>*)line.c_str());
+  <font color=#0000ff>int</font> k = 0;
+  <font color=#0000ff>char</font>* cp;
+  <font color=#0000ff>while</font>((cp = (<font color=#0000ff>char</font>*)stringStash.fetch(k++))!=0)
+    cout &lt;&lt; <font color=#004488>"stringStash.fetch("</font> &lt;&lt; k &lt;&lt; <font color=#004488>") = "</font>
+         &lt;&lt; cp &lt;&lt; endl;
+} <font color=#009900>///:~</font></PRE></FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Questo &egrave; lo stesso programma-test usato prima, 
+    per cui l'output deve essere sostanzialmente lo stesso.</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">La classe <B>Stack</B> fa perfino miglior uso della 
+    tecnica inline:</FONT><BR>
+  </P></DIV>
+
+<BLOCKQUOTE><FONT SIZE = "+1">
+  <PRE><font color=#009900>//: C09:Stack4.h</font>
+<font color=#009900>// Con l'inline</font>
+#ifndef STACK4_H
+#define STACK4_H
+#include <font color=#004488>"../require.h"</font>
+
+<font color=#0000ff>class</font> Stack {
+  <font color=#0000ff>struct</font> Link {
+    <font color=#0000ff>void</font>* data;
+    Link* next;
+    Link(<font color=#0000ff>void</font>* dat, Link* nxt): 
+      data(dat), next(nxt) {}
+  }* head;
+<font color=#0000ff>public</font>:
+  Stack() : head(0) {}
+  ~Stack() {
+    require(head == 0, <font color=#004488>"Stack not empty"</font>);
+  }
+  <font color=#0000ff>void</font> push(<font color=#0000ff>void</font>* dat) {
+    head = <font color=#0000ff>new</font> Link(dat, head);
+  }
+  <font color=#0000ff>void</font>* peek() <font color=#0000ff>const</font> { 
+    <font color=#0000ff>return</font> head ? head-&gt;data : 0;
+  }
+  <font color=#0000ff>void</font>* pop() {
+    <font color=#0000ff>if</font>(head == 0) <font color=#0000ff>return</font> 0;
+    <font color=#0000ff>void</font>* result = head-&gt;data;
+    Link* oldHead = head;
+    head = head-&gt;next;
+    <font color=#0000ff>delete</font> oldHead;
+    <font color=#0000ff>return</font> result;
+  }
+};
+#endif <font color=#009900>// STACK4_H ///:~</font></PRE>
+  </FONT></BLOCKQUOTE>
+
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Da notare che il distruttore <B>Link</B>, che era presente 
+    ma vuoto nella precedente versione di <B>Stack </B>&egrave; stato rimosso. 
+    In <B>pop(&#160;)</B>, l'espressione <B>delete oldHead</B> semplicemente libera 
+    la memoria usata da<B> Link </B>(ci&ograve; non distrugge il dato puntato 
+    da<B>Link</B>).</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">La maggior parte delle funzioni diventa inline piuttosto 
+    esattamente e ovviamente, specialmente per <B>Link</B>. Perfino <B>pop(&#160;)</B> 
+    sembra lecito, sebbene qualche volta si possono avere condizioni o variabili 
+    locali per le quali non &egrave; chiaro che la tecnica inline sia la pi&ugrave; 
+    utile. Qui la funzione &egrave; piccola abbastanza tanto che probabilmente 
+    non danneggia alcunch&eacute;.</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Se tutte le funzioni sono rese inline, l'uso della libreria 
+    diventa abbastanza semplice perch&egrave; non c'e necessit&agrave; del linking, 
+    come si pu&ograve; vedere nell'esempio (da notare che non c'&egrave; <B>Stack4.cpp</B>):</FONT><BR>
+  </P></DIV>
+
+<BLOCKQUOTE><FONT SIZE = "+1">
+  <PRE><font color=#009900>//: C09:Stack4Test.cpp</font>
+<font color=#009900>//{T} Stack4Test.cpp</font>
+#include <font color=#004488>"Stack4.h"</font>
+#include <font color=#004488>"../require.h"</font>
+#include &lt;fstream&gt;
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+<font color=#0000ff>using</font> <font color=#0000ff>namespace</font> std;
+
+<font color=#0000ff>int</font> main(<font color=#0000ff>int</font> argc, <font color=#0000ff>char</font>* argv[]) {
+  requireArgs(argc, 1); <font color=#009900>// L'argomento &egrave; il nome del file</font>
+  ifstream in(argv[1]);
+  assure(in, argv[1]);
+  Stack textlines;
+  string line;
+  <font color=#009900>// Legge il file e memorizza le linee nello stack:</font>
+  <font color=#0000ff>while</font>(getline(in, line))
+    textlines.push(<font color=#0000ff>new</font> string(line));
+  <font color=#009900>// Estrae le linee dallo stack e le stampa:</font>
+  string* s;
+  <font color=#0000ff>while</font>((s = (string*)textlines.pop()) != 0) {
+    cout &lt;&lt; *s &lt;&lt; endl;
+    <font color=#0000ff>delete</font> s; 
+  }
+} <font color=#009900>///:~</font></PRE>
+  </FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><font face="Georgia">C'&egrave; chi scriver&agrave;, in qualche caso, classi 
+    con tutte funzioni inline, cos&igrave; che l'intera classe sar&agrave; in 
+    un file header. Durante lo sviluppo di un programma ci&ograve; &egrave; probabilmente 
+    innocuo, sebbene in qualche caso pu&ograve; rendere pi&ugrave; lunga la compilazione. 
+    Ma una volta che il programma si stabilizza, si pu&ograve; tornare indietro 
+    e scrivere funzioni non-inline dove &egrave; possibile.</font><BR>
+  </P></DIV>
+<FONT FACE = "Verdana"> 
+<H2 ALIGN="LEFT"> L'inline e il compilatore</H2>
+</FONT>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Per capire dove la tecnica inline &egrave; efficace, 
+    &egrave; utile conoscere cosa fa il compilatore quando incontra una funzione 
+    inline. Come per ogni funzione, il compilatore, memorizza il <i>tipo </i>della 
+    funzione (cio&egrave;, il prototipo della funzione includendo il nome e i 
+    tipi degli argomenti, insieme al valore di ritorno della funzione) nella sua 
+    tabella dei simboli. In pi&ugrave;, qua<font face="Georgia, Times New Roman, Times, serif">ndo 
+    il compilatore vede che il tipo della funzione inline e il corpo della funzione 
+    sono analizzabili senza errori, anche il codice per la funzione viene tirato 
+    dentro la tabella dei simboli. </font></FONT><font face="Georgia, Times New Roman, Times, serif">In 
+    qualsiasi forma sia memorizzato il codice sorgente, istruzioni assembler compilate 
+    o altre rapresentazioni spetta al compilatore deciderlo</font>.<BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Quando si fa una chiamata ad una funzione inline, il 
+    compilatore per prima cosa si assicura che la chiamata pu&ograve; essere fatta 
+    in modo corretto. Ovvero tutti i tipi degli argomenti devono o essere giusti 
+    nella lista degli argomenti o il compilatore deve essere in grado di fare 
+    una conversione di tipo verso i tipi esatti ed inoltre il valore di ritorno 
+    deve essere di tipo corretto (o convertibile) nell'espressione di destinazione. 
+    Questo, naturalmente, &egrave; esattamente ci&ograve; che il compilatore fa 
+    per ogni funzione ed &egrave; notevolmente diverso da ci&ograve; che fa il 
+    preprocessore, che non pu&ograve; far verifiche sui tipi o eseguire conversioni.</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Se tutte le informazioni sul tipo di funzione si adattano 
+    con il contesto della chiamata, il codice inline viene sostituito direttamente 
+    alla chiamata di funzione, eliminando l'overhead di chiamata e permettendo 
+    ulteriori ottimizzazioni al compilatore. Inoltre, se il codice inline &egrave; 
+    una funzione membro, l'indirizzo dell'oggetto (<B>this</B>) viene inserito 
+    al posto giusto, il che, ovviamente, &egrave; un'altra azione che il preprocessore 
+    non &egrave; in grado di fare.</FONT><BR>
+  </P></DIV>
+<FONT FACE = "Verdana">
+<H3 ALIGN="LEFT"> Limitazioni<BR>
+</H3>
+</FONT>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Ci sono due situazioni nelle quali il compilatore non 
+    pu&ograve; eseguire l'inlining. In questi casi, semplicemente, ritorna alla 
+    forma ordinaria di una funzione prendendo la definizione inline e memorizzandola 
+    proprio come una funzione non-inline. Se deve fare questo in unit&agrave; 
+    di conversioni multiple (le quali normalmente causano un errore di definizione 
+    multipla), il linker &egrave; in grado di ignorare le definizioni multiple.</FONT><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia, Times New Roman, Times, serif">Il compilatore non pu&ograve; 
+    eseguire l'inlining se la funzione &egrave; troppo complicata. Questo dipende 
+    dal particolare compilatore, ma su questo punto molti compilatori rinunciano, 
+    la tecnica inline quindi non apporter&agrave; probabilmente un aumento di 
+    efficienza. In generale ogni sorta di loop &egrave; considerata troppo complicata 
+    da espandere con la tecnica inline e, pensandoci sopra, un ciclo probabilmente 
+    comporta molto pi&ugrave; tempo all'interno della funzione che non quello 
+    richiesto dall'overhead di chiamata. Se la funzione &egrave; solo un insieme 
+    di semplici istruzioni, il compilatore non avr&agrave; probabilmente difficolt&agrave; 
+    nell'applicare l'inlining, ma se ci sono molte istruzioni, l'overhead della 
+    chiamata sar&agrave; minore del costo di esecuzione del corpo della funzione. 
+    Si ricordi che ogni volta che si chiama una grossa funzione inline, l'intero 
+    corpo della funzione viene inserito al posto della chiamata, per cui facilmente 
+    si ottiene un &quot;rigonfiamento&quot; del codice senza apprezzabili miglioramenti 
+    delle prestazioni (da notare che alcuni esempi di questo libro possono eccedere 
+    le dimensioni ragionevoli per la tecnica inline in favore della salvaguardia 
+    delle propriet&agrave; dello schermo).</font><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Il compilatore inoltre non pu&ograve; eseguire l'inlining 
+    se l'indirizzo della funzione &egrave; preso implicito o esplicito. Se il 
+    compilatore deve produrre un indirizzo, allora esso allocher&agrave; memoria 
+    per il codice della funzione e user&agrave; l'indirizzo derivato. Comunque, 
+    quando un indirizzo non &egrave; richiesto, il compilatore probabilmente applicher&agrave; 
+    la tecnica inline al codice.</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">E' importante capire che la tecnica inline &egrave; 
+    solo una proposta al compilatore; quest'ultimo non &egrave; forzato a fare 
+    niente inline. Un buon compilatore applicher&agrave; la tecnica inline con 
+    funzioni piccole e semplici mentre intelligentemente ignorer&agrave; tale 
+    tecnica per quelle troppo complicate. Ci&ograve; dar&agrave; i risultati sperati: 
+    l'esatta semantica della chiamata a funzione con l'efficienza di una macro.</FONT><BR>
+  </P></DIV>
+<FONT FACE = "Verdana"> 
+<H3 ALIGN="LEFT"> Riferimenti in avanti</H3>
+</FONT>
+<DIV ALIGN="LEFT">
+  <P><font face="Georgia">Se si immagina cosa faccia il compilatore per implementare 
+    la tecnica inline, ci si pu&ograve; confondere nel pensare che ci siano pi&ugrave; 
+    limitazioni di quante ne esistano effettivamente. In particolare, se una funzione 
+    inline fa un riferimento in avanti ad un'altra funzione che non &egrave; stata 
+    ancora dichiarata nella classe (al di l&agrave; del fatto che sia inline o 
+    meno), pu&ograve; sembrare che il compilatore non sia in grado di maneggiarlo:</font><BR>
+  </P></DIV>
+
+<BLOCKQUOTE><FONT SIZE = "+1">
+  <PRE><font color=#009900>//: C09:EvaluationOrder.cpp</font>
+<font color=#009900>// Ordine di valutazione dell'inline</font>
+
+<font color=#0000ff>class</font> Forward {
+  <font color=#0000ff>int</font> i;
+<font color=#0000ff>public</font>:
+  Forward() : i(0) {}
+  <font color=#009900>// Chiamata a funzioni non dichiarate:</font>
+  <font color=#0000ff>int</font> f() <font color=#0000ff>const</font> { <font color=#0000ff>return</font> g() + 1; }
+  <font color=#0000ff>int</font> g() <font color=#0000ff>const</font> { <font color=#0000ff>return</font> i; }
+};
+
+<font color=#0000ff>int</font> main() {
+  Forward frwd;
+  frwd.f();
+} <font color=#009900>///:~</font></PRE>
+  </FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">In <B>f(&#160;)</B>, viene fatta una chiamata a <B>g(&#160;)</B>, 
+    sebbene <B>g(&#160;)</B> non &egrave; stata ancora dichiarata. Ci&ograve; 
+    funziona perch&egrave; il linguaggio stabilisce che le funzioni non-inline 
+    in una classe saranno valutate fino alla parentesi graffa di chiusura della 
+    dichiarazione di classe.</FONT></P>
+</DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Naturalmente, se <B>g(&#160;)</B> a sua volta chiama 
+    <B>f(&#160;)</B>, si avrebbero una serie di chiamate ricorsive che sarebbero 
+    troppo complicate per il compilatore da gestire con l'inline ( inoltre, si 
+    dovrebbero eseguire alcune prove in <B>f(&#160;)</B> or <B>g(&#160;)</B> per 
+    forzare una di esse a &quot;raggiungere il livello pi&ugrave; basso&quot;, 
+    altrimenti la ricorsione sarebbe infinita).</FONT><BR>
+  </P></DIV>
+<FONT FACE = "Verdana">
+<H3 ALIGN="LEFT"> Attivit&agrave; nascoste nei costruttori e distruttori</H3>
+</FONT>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Costruttori e distruttori sono due situazioni in cui 
+    si pu&ograve; pensare che l'inline &egrave; pi&ugrave; efficiente di quanto 
+    non lo sia realmente. Costruttori e distruttori possono avere attivit&agrave; 
+    nascoste, perch&egrave; la classe pu&ograve; contenere suboggetti dai quali 
+    costruttori e distruttori devono essere chiamati. Questi suboggetti possono 
+    essere normali oggetti o possono esistere a causa dell'ereditariet&agrave; 
+    (trattata nel Capitolo 14). Come esempio di classe con oggetti membro: </FONT><BR>
+  </P></DIV>
+
+<BLOCKQUOTE><FONT SIZE = "+1">
+  <PRE><font color=#009900>//: C09:Hidden.cpp</font>
+<font color=#009900>// Attivit&agrave; nascoste nell'inline</font>
+#include &lt;iostream&gt;
+<font color=#0000ff>using</font> <font color=#0000ff>namespace</font> std;
+
+<font color=#0000ff>class</font> Member {
+  <font color=#0000ff>int</font> i, j, k;
+<font color=#0000ff>public</font>:
+  Member(<font color=#0000ff>int</font> x = 0) : i(x), j(x), k(x) {}
+  ~Member() { cout &lt;&lt; <font color=#004488>"~Member"</font> &lt;&lt; endl; }
+};
+
+<font color=#0000ff>class</font> WithMembers {
+  Member q, r, s; <font color=#009900>// costruttori</font>
+  <font color=#0000ff>int</font> i;
+<font color=#0000ff>public</font>:
+  WithMembers(<font color=#0000ff>int</font> ii) : i(ii) {} <font color=#009900>// Insignificante?</font>
+  ~WithMembers() {
+    cout &lt;&lt; <font color=#004488>"~WithMembers"</font> &lt;&lt; endl;
+  }
+};
+
+<font color=#0000ff>int</font> main() {
+  WithMembers wm(1);
+} <font color=#009900>///:~</font></PRE>
+  </FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Il costruttore per <B>Member</B> &egrave; abbastanza 
+    semplice da trattare con la tecnica inline poich&egrave; non c'e niente di 
+    speciale da fare - nessuna eredit&agrave; o oggetti membro </FONT><FONT FACE="Georgia">che 
+    causano attivit&agrave; nascoste. Ma nella classe <B>WithMembers</B> c'e molto 
+    di pi&ugrave; di cui occuparsi di quanto salta all'occhio. I costruttori e 
+    distruttori per gli oggetti <B>q</B>, <B>r</B>, e <B>s</B> sono stati chiamati 
+    automaticamente, e <i>quei</i> costruttori e distruttori sono pure inline, 
+    per cui la differenza da una normale funzione &egrave; significativa. Questo 
+    non deve necessariamente significare che si dovrebbero sempre fare definizioni 
+    di costruttori e distruttori non-inline; ci sono casi in cui ci&ograve; ha 
+    senso. Inoltre, quando si sta facendo una &quot;bozza&quot; iniziale di un 
+    programma per scrivere velocemente il codice, &egrave; spesso molto conveniente 
+    usare la tecnica inline. Ma se si ricerca l'efficienza, &egrave; una situazione 
+    da osservare .</FONT><BR>
+  </P>
+  </DIV>
+<FONT FACE = "Verdana"> 
+<H2 ALIGN="LEFT"> Ridurre la confusione</H2>
+</FONT>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">In un libro come questo, la semplicit&agrave; e concisione 
+    di mettere le definizioni inline all'interno delle classi &egrave; molto utile 
+    perch&eacute; ben si adattano su una pagina o su un video (come in un seminario). 
+    Comunque, Dan Saks</FONT><A NAME="fnB46" HREF="#fn46">[46]</A><FONT FACE="Georgia"> 
+    ha posto in rilievo che in un progetto reale ci&ograve; ha l'effetto di ingombrare 
+    inutilmente l'interfaccia della classe e quindi rendere la classe molto pesante 
+    da usare. Egli ricorre a funzioni membro definite dentro le classi, usando 
+    il latino <I>in situ</I> (sul posto), e sostiene che tutte le definizioni 
+    dovrebbero essere piazzate fuori dalla classe per mantenere l'interfaccia 
+    pulita. L'ottimizzazione che egli intende dimostrare &egrave; una questione 
+    separata. Se si vuole ottimizzare il codice, si usi la parola riservata <B>inline.</B>Usando 
+    questo approccio, l'esempio di prima, <B>Rectangle.cpp</B> diventa:</FONT><BR>
+  </P></DIV>
+
+<BLOCKQUOTE><FONT SIZE = "+1">
+  <PRE><font color=#009900>//: C09:Noinsitu.cpp</font>
+<font color=#009900>// Rimuovere le funzioni in situ </font>
+
+<font color=#0000ff>class</font> Rectangle {
+  <font color=#0000ff>int</font> width, height;
+<font color=#0000ff>public</font>:
+  Rectangle(<font color=#0000ff>int</font> w = 0, <font color=#0000ff>int</font> h = 0);
+  <font color=#0000ff>int</font> getWidth() <font color=#0000ff>const</font>;
+  <font color=#0000ff>void</font> setWidth(<font color=#0000ff>int</font> w);
+  <font color=#0000ff>int</font> getHeight() <font color=#0000ff>const</font>;
+  <font color=#0000ff>void</font> setHeight(<font color=#0000ff>int</font> h);
+};
+
+<font color=#0000ff>inline</font> Rectangle::Rectangle(<font color=#0000ff>int</font> w, <font color=#0000ff>int</font> h)
+  : width(w), height(h) {}
+
+<font color=#0000ff>inline</font> <font color=#0000ff>int</font> Rectangle::getWidth() <font color=#0000ff>const</font> {
+  <font color=#0000ff>return</font> width;
+}
+
+<font color=#0000ff>inline</font> <font color=#0000ff>void</font> Rectangle::setWidth(<font color=#0000ff>int</font> w) {
+  width = w;
+}
+
+<font color=#0000ff>inline</font> <font color=#0000ff>int</font> Rectangle::getHeight() <font color=#0000ff>const</font> {
+  <font color=#0000ff>return</font> height;
+}
+
+<font color=#0000ff>inline</font> <font color=#0000ff>void</font> Rectangle::setHeight(<font color=#0000ff>int</font> h) {
+  height = h;
+}
+
+<font color=#0000ff>int</font> main() {
+  Rectangle r(19, 47);
+  <font color=#009900>// Transpone Width e Height:
+  </font><font color=#0000ff>int</font> iHeight = r.getHeight();
+  r.setHeight(r.getWidth());
+  r.setWidth(iHeight);
+} <font color=#009900>///:~</font></PRE>
+  </FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Ora se si vuole paragonare l'effetto delle funzioni 
+    inline con quelle non-inline, semplicemente si pu&ograve; rimuovere la keyword 
+    <B>inline</B> (le funzioni inline dovrebbero trovarsi normalmente nei file 
+    header, per quanto possibile, mentre le funzioni non-inline devono trovarsi 
+    nella propria unit&agrave; di conversione). Se si vogliono mettere le funzioni 
+    nella documentazione, lo si pu&ograve; fare con una semplice operazione di 
+    taglia-e-incolla. Le funzioni <I>in situ</I> necessitano di maggior lavoro 
+    e potenzialmente possono presentare pi&ugrave; errori. Un'altra controversia 
+    per questo approccio &egrave; che si pu&ograve; sempre produrre uno stile 
+    di formattazione coerente per le definizioni di funzioni, qualcosa che non 
+    sempre &egrave; necessario con le funzioni <I>in situ</I>.</FONT><BR>
+  </P></DIV>
+<FONT FACE = "Verdana">
+<H2 ALIGN="LEFT"> Ulteriori caratteristiche del preprocessore</H2>
+</FONT>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">In precedenza, ho detto che <i>quasi</i> sempre si vogliono 
+    usare le funzioni <B>inline</B> invece delle macro. Le eccezioni sorgono quando 
+    si ha bisogno di usare tre caratteristiche speciali del preprocessore C (che 
+    poi &egrave; anche il preprocessore C++): stringizing (convertire in stringhe 
+    <i>ndt</i>), concatenazione di stringhe e token pasting (incollatura di identificatori). 
+    Stringizing, introdotta in precedenza nel libro, viene eseguita con la direttiva 
+    <B>#</B> e permette di prendere un identificatore e convertirlo in una stringa. 
+    La concatenazione di stringhe si ha quando due stringhe adiacenti non hanno 
+    caratteri di punteggiatura tra di loro, nel qual caso esse vengono unite. 
+    Queste due caratteristiche sono particolarmente utili nello scrivere codice 
+    di debug. Cio&egrave;,</FONT><BR>
+  </P></DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"><PRE>#define DEBUG(x) cout &lt;&lt; #x <font color=#004488>" = "</font> &lt;&lt; x &lt;&lt; endl</PRE></FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Questo stampa il valore di ogni variabile. Si pu&ograve; 
+    anche ottenere una traccia che stampi le istruzioni eseguite:</FONT></P>
+</DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"><PRE>#define TRACE(s) cerr &lt;&lt; #s &lt;&lt; endl; s</PRE></FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><font face="Georgia">La direttiva </font><FONT FACE="Georgia"><B>#s</B> <font color="#000000">converte 
+    in stringa</font> le istruzioni per l'output e la seconda <B>s</B> reitera 
+    l'istruzione cos&igrave; esso viene eseguito. Naturalmente, questo tipo di 
+    cosa pu&ograve; causare problemi, specialmente con un ciclo <B>for </B>di 
+    una sola linea:</FONT><BR>
+  </P></DIV>
+
+<BLOCKQUOTE><FONT SIZE = "+1"><PRE><font color=#0000ff>for</font>(<font color=#0000ff>int</font> i = 0; i &lt; 100; i++)
+ TRACE(f(i));</PRE></FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Poich&egrave; ci sono esattamente due istruzioni nella 
+    macro <B>TRACE(&#160;)</B>, il ciclo <B>for</B> di una linea, esegue solo 
+    la prima. La soluzione &egrave; di sostituire il punto e virgola con una virgola 
+    nella macro.</FONT><BR>
+  </P></DIV>
+<FONT FACE = "Verdana">
+<H3 ALIGN="LEFT">
+Token pasting</H3>
+</FONT> 
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Token pasting, implementato con la direttiva <B>##</B>, 
+    &egrave; molto utile quando si sta scrivendo il codice. Essa permette di prendere 
+    due identificatori e incollarli insieme per creare automaticamente un nuovo 
+    identificatore. Per esempio,</FONT><BR>
+  </P></DIV>
+
+<BLOCKQUOTE><FONT SIZE = "+1"><PRE>#define FIELD(a) <font color=#0000ff>char</font>* a##_string; <font color=#0000ff>int</font> a##_size
+<font color=#0000ff>class</font> Record {
+  FIELD(one);
+  FIELD(two);
+  FIELD(three);
+  <font color=#009900>// ...</font>
+}; </PRE></FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Ogni chiamata alla macro <B>FIELD(&#160;)</B> crea un 
+    identificatore per memorizzare una stringa e un altro per memorizzare la lunghezza 
+    di questa. Non solo &egrave; di facile lettura, ma pu&ograve; eliminare errori 
+    di codice e rendere la manutenzione pi&ugrave; facile.</FONT><BR>
+  </P></DIV>
+<FONT FACE = "Verdana">
+<H2 ALIGN="LEFT"> Miglioramenti nell'error checking</H2>
+</FONT>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Le funzioni<B> require.h </B>sono state usate fino a 
+    questo punto senza definirle (sebbene<B> assert(&#160;)</B> &egrave; gi&agrave; 
+    stata usata per aiutare a trovare gli errori di programmazione dove appropriato). 
+    E' il momento di definire questo file header. Le funzioni inline qui sono 
+    convenienti perch&egrave; permettono ad ogni cosa di essere posizionata in 
+    un file header, il che semplifica il processo di utilizzo dei package. Basta 
+    includere il file header senza il bisogno di preoccuparsi del linking di file.</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Si dovrebbe notare che le eccezioni (presentate in dettaglio 
+    nel Volume 2 di questo libro) forniscono un modo molto pi&ugrave; efficace 
+    di maneggiare molte specie di errori &#8211; specialmente quelli che si vogliono 
+    riparare&#8211; invece di fermare il programma. Le condizioni che tratta <B>require.h</B>, 
+    comunque, sono quelle che impediscono la continuazione del programma, in modo 
+    simile a quando l'utente non fornisce sufficienti argomenti alla riga di comando 
+    o quando un file non pu&ograve; essere aperto. Perci&ograve;, &egrave; accettabile 
+    la chiamata alla funzione <b>exit()</b> della libreria Standard C.</FONT></P>
+</DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Il seguente file header si trova nella root directory 
+    del libro, per cui facilmente accessibile da tutti i capitoli.</FONT><BR>
+  </P></DIV>
+
+<BLOCKQUOTE><FONT SIZE = "+1"> 
+  <PRE><font color=#009900>//: :require.h</font>
+<font color=#009900>// Test per le condizioni di errore nei programmi</font>
+<font color=#009900>// Per i primi compilatori inserire "using namespace std"</font>
+#ifndef REQUIRE_H
+#define REQUIRE_H
+#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+#include &lt;fstream&gt;
+#include &lt;string&gt;
+
+<font color=#0000ff>inline</font> <font color=#0000ff>void</font> require(<font color=#0000ff>bool</font> requirement, 
+  <font color=#0000ff>const</font> std::string&amp; msg = <font color=#004488>"Richiesta fallita"</font>){
+  <font color=#0000ff>using</font> <font color=#0000ff>namespace</font> std;
+  <font color=#0000ff>if</font> (!requirement) {
+    fputs(msg.c_str(), stderr);
+    fputs(<font color=#004488>"\n"</font>, stderr);
+    exit(1);
+  }
+}
+
+<font color=#0000ff>inline</font> <font color=#0000ff>void</font> requireArgs(<font color=#0000ff>int</font> argc, <font color=#0000ff>int</font> args, 
+  <font color=#0000ff>const</font> std::string&amp; msg = 
+    <font color=#004488>"Devi usare %d argomenti"</font>) {
+  <font color=#0000ff>using</font> <font color=#0000ff>namespace</font> std;
+   <font color=#0000ff>if</font> (argc != args + 1) {
+     fprintf(stderr, msg.c_str(), args);
+     fputs(<font color=#004488>"\n"</font>, stderr);
+     exit(1);
+   }
+}
+
+<font color=#0000ff>inline</font> <font color=#0000ff>void</font> requireMinArgs(<font color=#0000ff>int</font> argc, <font color=#0000ff>int</font> minArgs,
+  <font color=#0000ff>const</font> std::string&amp; msg =
+    <font color=#004488>"Devi usare almeno  %d argomenti"</font>) {
+  <font color=#0000ff>using</font> <font color=#0000ff>namespace</font> std;
+  <font color=#0000ff>if</font>(argc &lt; minArgs + 1) {
+    fprintf(stderr, msg.c_str(), minArgs);
+    fputs(<font color=#004488>"\n"</font>, stderr);
+    exit(1);
+  }
+}
+  
+<font color=#0000ff>inline</font> <font color=#0000ff>void</font> assure(std::ifstream&amp; in, 
+  <font color=#0000ff>const</font> std::string&amp; filename = <font color=#004488>""</font>) {
+  <font color=#0000ff>using</font> <font color=#0000ff>namespace</font> std;
+  <font color=#0000ff>if</font>(!in) {
+    fprintf(stderr, <font color=#004488>"Impossibile aprire il file %s\n"</font>,
+      filename.c_str());
+    exit(1);
+  }
+}
+
+<font color=#0000ff>inline</font> <font color=#0000ff>void</font> assure(std::ofstream&amp; out, 
+  <font color=#0000ff>const</font> std::string&amp; filename = <font color=#004488>""</font>) {
+  <font color=#0000ff>using</font> <font color=#0000ff>namespace</font> std;
+  <font color=#0000ff>if</font>(!out) {
+    fprintf(stderr, <font color=#004488>"Impossibile aprire il file %s\n"</font>, 
+      filename.c_str());
+    exit(1);
+  }
+}
+#endif <font color=#009900>// REQUIRE_H ///:~</font></PRE>
+  </FONT><BR>
+</BLOCKQUOTE>
+<DIV ALIGN="LEFT"></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">I valori di default forniscono messaggi ragionevoli 
+    che possono essere cambiati se necessario.</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Si noter&agrave; che invece di usare argomenti <B>char*</B>, 
+    vengono usati <B>const string&amp;</B>. Ci&ograve; permette per queste funzioni 
+    argomenti sia <B>char*</B> che<B> string</B>, e quindi in generale molto pi&ugrave; 
+    utile (si pu&ograve; voler seguire questo modello nel proprio codice).</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Nelle definizioni di <B>requireArgs(&#160;) </B>e <B>requireMinArgs(&#160;)</B>, 
+    viene aggiunto 1 al numero di argomenti necessari sulla linea di comando perch&egrave; 
+    <B>argc</B> gi&agrave; include il nome del programma che viene eseguito come 
+    argomento 0, e quindi gi&agrave; ha un valore che &egrave; uno in pi&ugrave; 
+    del numero degli argomenti presenti sulla linea di comando.</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Si noti l'uso delle dichiarazioni locali &#8220;<B>using 
+    namespace std</B>&#8221; dentro ogni funzione. Ci&ograve; perch&egrave; alcuni 
+    compilatori nel momento della scrittura di questo libro non includevano erroneamente 
+    le funzioni standard della libreria C in <B>namespace std</B>, per cui un 
+    uso esplicito potrebbe causare un errore a compile-time</FONT><FONT FACE="Georgia">. 
+    La dichiarazione locale permette a <B>require.h</B> di lavorare sia con librerie 
+    corrette che con quelle incomplete evitando la creazione di namespace <B>std</B> 
+    per chiunque includa questo file header.</FONT><BR>
+  </P>
+  </DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Ecco un semplice programma per testare<B> require.h</B>:</FONT><BR>
+  </P></DIV>
+
+<BLOCKQUOTE><FONT SIZE = "+1">
+  <PRE><font color=#009900>//: C09:ErrTest.cpp</font>
+<font color=#009900>//{T} ErrTest.cpp</font>
+<font color=#009900>// Test di  require.h</font>
+#include <font color=#004488>"../require.h"</font>
+#include &lt;fstream&gt;
+<font color=#0000ff>using</font> <font color=#0000ff>namespace</font> std;
+
+<font color=#0000ff>int</font> main(<font color=#0000ff>int</font> argc, <font color=#0000ff>char</font>* argv[]) {
+  <font color=#0000ff>int</font> i = 1;
+  require(i, <font color=#004488>"value must be nonzero"</font>);
+  requireArgs(argc, 1);
+  requireMinArgs(argc, 1);
+  ifstream in(argv[1]);
+  assure(in, argv[1]); <font color=#009900>// Use il nome del file</font>
+  ifstream nofile(<font color=#004488>"nofile.xxx"</font>);
+  <font color=#009900>// Fallimento:</font>
+<font color=#009900>//!  assure(nofile); // L'argomento di default</font>
+  ofstream out(<font color=#004488>"tmp.txt"</font>);
+  assure(out);
+} <font color=#009900>///:~</font></PRE>
+  </FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Si potrebbe essere tentati di fare un passo ulteriore 
+    per aprire file e aggiungere macro a <B>require.h</B>:</FONT><BR>
+  </P></DIV>
+
+<BLOCKQUOTE><FONT SIZE = "+1"><PRE>#define IFOPEN(VAR, NAME) \
+  ifstream VAR(NAME); \
+  assure(VAR, NAME);</PRE></FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Che potrebbero essere usate cos&igrave;:</FONT><BR>
+  </P></DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"><PRE>IFOPEN(in, argv[1])</PRE></FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Dapprima, questo potrebbe sembrare interessante poich&egrave; 
+    sembra ci sia da digitare di meno. Non &egrave; terribilmente insicuro, ma 
+    &egrave; una strada che &egrave; meglio evitare. Si noti come, ancora una 
+    volta, una macro appare come una funzione ma si comporta diversamente; essa 
+    effettivamente crea un oggetto (<B>in</B>) il cui scope dura al di l&agrave; 
+    della la macro. Si pu&ograve; capire questo, ma per i nuovi programmatori 
+    e i manutentori di codice &egrave; solo una cosa in pi&ugrave; da decifrare. 
+    Il C++ &egrave; gi&agrave; complicato abbastanza di per s&egrave;, per cui 
+    &egrave; bene evitare di usare le macro ogni qualvolta si pu&ograve;.</FONT><BR>
+  </P>
+</DIV>
+<FONT FACE = "Verdana">
+<H2 ALIGN="LEFT"> Sommario</H2>
+</FONT>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">E' di importanza cruciale essere abili a nascondere 
+    l'implementazione sottostante di una classe perch&egrave; si pu&ograve; voler 
+    cambiare questa in seguito. Si faranno questi cambiamenti per aumentare l'efficienza, 
+    o perch&egrave; si arriva a una migliore comprensione del problema, o perch&egrave; 
+    si rendono disponibili nuove classi che si vogliono usare nell'implementazione. 
+    Qualsiasi cosa che metta in pericolo la privacy dell'implementazione riduce 
+    la flessibilit&agrave; del linguaggio. Per questo, la funzione inline &egrave; 
+    molto importante perch&egrave; essa virtualmente elimina il bisogno delle 
+    macro e i loro problemi correlati. Con la tecnica inline, le funzioni possono 
+    essere efficienti come macro</FONT>.<BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Le funzioni inline possono essere usate nelle definizioni 
+    di classi, naturalmente. Il programmatore &egrave; tentato di fare cos&igrave; 
+    perch&egrave; &egrave; pi&ugrave; facile, e cos&igrave; avviene. Comunque, 
+    non &egrave; che un punto di discussione, infatti pi&ugrave; tardi, cercando 
+    un'ottimizzazione delle dimensioni, si possono sempre cambiare le funzioni 
+    in funzioni non-inline senza nessuno effetto sulla loro funzionalit&agrave;. 
+    La linea guida dello sviluppo del codice dovrebbe essere &#8220;Prima rendilo 
+    funzionante, poi ottimizzalo.</FONT><BR>
+  </P></DIV>
+<FONT FACE = "Verdana">
+<H2 ALIGN="LEFT"> Esercizi</H2>
+</FONT>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia" SIZE=2>Le soluzioni agli esercizi proposti pu&ograve; 
+    essere trovata nel documento elettronico <I>The Thinking in C++ Annotated 
+    Solution Guide</I>, disponibile a un costo accessibile, all'indirizzo www.BruceEckel.com.</FONT><BR>
+  </P></DIV>
+<OL>
+  <LI><FONT FACE="Georgia">Scrivere un programma che usi la macro <B>F(&#160;)</B> 
+    vista all'inizio del capitolo e dimostrare che essa non si sviluppa correttamente, 
+    come descritto nel testo. Riparare la macro e mostrare che essa opera correttamente.</FONT> 
+  <LI><font face="Georgia">Scrivere un programma che usi la macro <b>FLOOR(&#160;)</b> 
+    vista all'inizio del capitolo. Mostrare sotto quali condizioni essa non opera 
+    correttamente.</font> 
+  <LI><FONT FACE="Georgia">Modificare l'esempio <B>MacroSideEffects.cpp</B> in 
+    modo che<B> BAND(&#160;)</B> operi correttamente.</FONT> 
+  <LI><FONT FACE="Verdana"> </FONT><FONT FACE="Georgia">Creare due funzioni identiche, 
+    <B>f1(&#160;)</B> e <B>f2(&#160;)</B>. Rendere inline <B>f1(&#160;)</B> e 
+    lasciare <B>f2(&#160;)</B> come funzione non-inline. Usare la funzione <B>clock(&#160;) 
+    </B>della libreria Standard C che si trova in <B>&lt;ctime&gt;</B> per segnare 
+    il punto di inizio/fine e paragonare le due funzioni per vedere quale &egrave; 
+    pi&ugrave; veloce. Si pu&ograve; aver bisogno di fare ripetute chiamate alle 
+    funzioni all'interno di un ciclo per ottenere numeri utili.</FONT> 
+  <LI><FONT FACE="Georgia">Provare, variando la dimensioni e complessit&agrave; 
+    del codice dentro le funzioni dell'esercizio 4, a vedere se si trova un punto 
+    di equilibrio, in termini di tempi di esecuzione, tra funzione inline e non-inline. 
+    Se si ha la possibilit&agrave;, provare questo esercizio con differenti compilatori 
+    e valutare le differenze.</FONT>
+  <LI><FONT FACE="Georgia">Provare che le funzioni inline mancano di un linkaggio 
+    interno.</FONT> 
+  <LI><FONT FACE="Georgia">Creare una classe che contenga un array di <B>char</B>. 
+    Inserire un costruttore inline che usi la funzione della libreria Standard 
+    C <B>memset(&#160;)</B> per inizializzare l'array all'argomento del costruttore 
+    (valore di default per questo &#8216; &#8217;), e una funzione inline chiamata 
+    <B>print(&#160;)</B> per stampare tutti i caratteri dell'array.</FONT> 
+  <LI><FONT FACE="Georgia">Considerare l'esempio <B>NestFriend.cpp</B> del Capitolo 
+    5 e sostituire tutte le funzioni normali con funzioni inline. Renderle funzioni 
+    inline non-<I>in situ</I>. Cambiare inoltre la funzione <B>initialize(&#160;)</B> 
+    in costruttore.</FONT>
+  <LI><FONT FACE="Georgia">Modificare <B>StringStack.cpp</B> del Capitolo 8 usando 
+    funzioni inline.</FONT>
+  <LI><FONT FACE="Georgia">Creare un tipo <B>enum</B> chiamato <B>Hue</B> contenente 
+    <B>red, blue</B>,e <B>yellow</B>. Creare poi una classe chiamata <B>Color</B> 
+    contenente una variabile di tipo <B>Hue </B>e un costruttore che setti <B>Hue</B> 
+    al suo argomento. Aggiungere access functions per &#8220;get&#8221; e &#8220;set&#8221; 
+    <B>Hue</B>. Scrivere tutte le funzioni inline.</FONT>
+  <LI><FONT FACE="Georgia">Modificare l'esercizio 10 per usare l'approccio &#8220;accessor&#8221; 
+    e &#8220;mutator&#8221;.</FONT> 
+  <LI><FONT FACE="Verdana"> </FONT><FONT FACE="Georgia">Modificare<B> Cpptime.cpp</B> 
+    in modo che esso misuri il tempo dal momento in cui il programma inizia l'esecuzione 
+    al momento in cui un utente premi il tasto &#8220;Enter&#8221; o &#8220;Return&#8221; 
+    .</FONT> 
+  <LI><FONT FACE="Georgia">Creare una classe con due funzioni inline, tale che 
+    la prima che &egrave; definita nella classe chiami la seconda funzione, senza 
+    il bisogno di dichiarazioni in avanti. Scrivere un main che crei un oggetto 
+    della classe e chiami la prima funzione.</FONT> 
+  <LI><FONT FACE="Verdana"> </FONT><FONT FACE="Georgia">Creare una classe <B>A 
+    </B>con un costruttore inline che presenti se stesso. Fare poi una nuova classe 
+    <B>B</B> e mettere un oggetto di <B>A </B>come membro<B>B</B>, e dare a <B>B</B> 
+    un costruttore inline. Creare un array di oggetti <B>B</B> e vedere cosa succede.</FONT> 
+  <LI><FONT FACE="Georgia">Creare una grande quantit&agrave; di oggetti dal precedente 
+    esercizio, e usare la classe <B>Time</B> per cronometrare la differenza tra 
+    costruttori non-inline e inline. .</FONT> 
+  <LI><FONT FACE="Verdana"> </FONT><FONT FACE="Georgia">Scrivere un programma 
+    che accetti una <B>stringa</B> come argomento alla linea comando. Scrivere 
+    un ciclo <b>for </b> che rimuova una carattere dalla stringa a ogni passo, 
+    e usare la macro <B>DEBUG(&#160;)</B> di questo capitolo per stampare la stringa 
+    ogni volta.</FONT>
+  <LI><FONT FACE="Georgia">Correggere la macro<B> TRACE(&#160;)</B> macro come 
+    specificata in questo capitolo, a provare che questa lavori correttamente.</FONT>
+  <LI><FONT FACE="Verdana"> </FONT><FONT FACE="Georgia">Modificare la macro <B>FIELD(&#160;)</B> 
+    in modo che essa contenga anche un <b>indice</b>. Creare una classe i cui 
+    membri sono composti di chiamate alla macro <B>FIELD(&#160;)</B>. Aggiungere 
+    una funzione che permetta di cercare un campo usando l'<b>indice.</b> Scrivere 
+    un <B>main(&#160;)</B> per testare la classe.</FONT> 
+  <LI><FONT FACE="Georgia">Modificare la macro <B> FIELD(&#160;)</B> in modo che 
+    essa automaticamente generi access function per ogni campo ( i dati dovrebbero 
+    essere private, comunque). Creare una classe i cui membri sono composti di 
+    chiamate alla macro <B>FIELD(&#160;)</B>. Scrivere un <b>main(&#160;)</b> 
+    per testare la classe.</FONT> 
+  <LI><FONT FACE="Georgia">Scrivere un programma che accetti due argomenti alla 
+    linea di comando: il primo &egrave; un <B>int</B> e il secondo &egrave; un 
+    nome di file. Usare <B>require.h</B> per accertarsi che si ha il giusto numero 
+    di argomenti, che l'intero &egrave; compreso tra 5 e 10, e che il file pu&ograve; 
+    essere aperto con successo.</FONT>
+  <LI><FONT FACE="Georgia">Scrivere un programma che usi la macro <B>IFOPEN(&#160;)</B> 
+    per aprire un file come input stream. Giustificare la creazione dell'oggetto 
+    <B>ifstream</B> e il suo scopo.</FONT> 
+  <LI><FONT FACE="Georgia">(Da sfida) Determinare come fa il proprio compilatore 
+    a generare codice assembly. Creare un file contenente una funzione molto piccola 
+    ed un <B>main(&#160;)</B> che chiami la funzione. Generare il codice assembly 
+    quando la funzione &egrave; inline e non-inline, e dimostrare che la versione 
+    inline non ha overhead per chiamata a funzione.</FONT>
+</OL>
+<FONT FACE = "Verdana"><H1 ALIGN="LEFT">
+</H1></FONT>
+
+
+
+
+
+<HR><DIV ALIGN="LEFT">
+  <P><A NAME="fn45" HREF="#fnB45">[45]</A><FONT FACE="Georgia" SIZE=2>Andrew Koenig 
+    entra in maggiori dettagli nel suo libro <I>C Traps &amp; Pitfalls</I> (Addison-Wesley, 
+    1989).</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><A NAME="fn46" HREF="#fnB46">[46]</A><FONT FACE="Georgia" SIZE=2> Co-autore 
+    con Tom Plum di <I>C++ Programming Guidelines</I>, Plum Hall, 1991.</FONT><BR>
+  </P></DIV>
+
+<DIV ALIGN="CENTER"> <FONT FACE="Verdana" size = "-1"> </FONT><font face="Verdana" size=2>[ 
+  </font><a href="Capitolo08.html"><u><font face="Verdana" size=2 color="#0000ff">Capitolo 
+  Precedente </font></u></a><font face="Verdana" size=2> ] [ </font><a href="Contents.html"><u><font face="Verdana" size=2 color="#0000ff">Indice 
+  Generale</font></u></a><font face="Verdana" size=2> ] [ </font><a href="DocIndex.html"><u><font face="Verdana" size=2 color="#0000ff">Indice 
+  Analitico </font></u></a><font face="Verdana" size=2> ] [ </font><a href="Capitolo10.html"><u><font face="Verdana" size=2 color="#0000ff">Prossimo 
+  Capitolo</font></u></a><font face="Verdana" size=2> ] </font><BR>
+  Ultimo Aggiornamento:24/12/2002 
+  <p></P></DIV>
+
+</BODY>
+
+</HTML>

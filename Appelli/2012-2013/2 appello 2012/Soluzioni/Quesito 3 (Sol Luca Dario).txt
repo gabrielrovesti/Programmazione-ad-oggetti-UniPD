@@ -1,0 +1,137 @@
+using namespace std;
+
+class Log{
+	private:
+		String applicazione,messaggio;
+		
+		public:
+			~SmartLoggin();
+			String toString() const=0;
+			Log* clone() const=0;
+	
+	
+	
+}
+
+
+class appLog:public Log{
+	private:
+		unsigned short int criticita;
+		
+	public:
+		String toString() const{return "messaggio di log da"applicazione":"messaggio+" con criticita "+std:toString(criticita)};
+		Log* clone() const{return new appLog(*this);}
+	
+};
+
+
+
+class DebugLog:public Log{
+	private:
+		unsigned int nLinea;
+		
+		
+	public:
+		String toString() const{return "messaggio di debug da"applicazione":"messaggio+" dalla linea"+std:toString(nLinea)};
+		Log* clone() const{return new DebugLog(*this);}
+	
+}
+
+
+class Log{
+	private:
+		class nodo{
+			public:
+				Log info;
+				nodo* next;
+		}
+		
+		nodo* first;
+		friend class iteratoreApp;
+		class iteratoreApp{
+			private:
+				Log::nodo* punt;
+			friend class Log;
+			public:
+				 
+				iteratoreApp& operator++(){
+					bool trovato=0;
+					while(punt && !trovato){
+						if(dynamic_cast<appLog*>(*punt)){
+							trovato=1;
+						}
+						punt=punt->next;
+						
+					}
+					return *this // se lo trova ritorna il prossimo appLog se no ritorn 0
+					
+				}
+				
+				bool operator==(iteratoreApp i){
+					return punt==i.punt;
+				}
+				
+				Log* operator*(){
+					return punt->info;
+				}
+				
+				
+				
+				
+		};
+		
+		iteratoreApp endApp() const{
+			iteratoreApp aux;
+			aux.punt=0;
+			return aux;
+		}
+		
+		iteratore BeginApp() const{
+			iteratore temp;
+			temp.punt=first;
+			if(!dynamic_cast<appLog>(first->info)){
+				iteratore temp;
+				temp.punt=first;
+				++temp;   ///uso il ++prefisso per puntare al prossimo aapDebug
+				return temp;
+			}
+			return temp;
+		}
+		
+		vector<Log*> messaggi() const{
+			vector<temp*> temp;
+			iteratoreApp first=BeginApp();
+			while(first.punt){
+				temp.add(*first->clone());
+				++first;
+				
+			}
+			iteratoreDebug first1=BeginDebug();
+			while(first1.punt){
+				temp.add(*first1->clone());
+				++first1;
+			
+		
+		}
+	}
+	ofstream save() const{
+   		 ofstream OUT("output");
+		
+			iteratoreApp first=BeginApp();
+			while(first.punt){
+				OUT<<"AppLog "<<*first->toString()<<endl;
+				++first;
+				
+			}
+			iteratoreDebug first1=BeginDebug();
+			while(first1.punt){
+				OUT<<"DebugApp"<<*first1->toString();
+				++first1;
+			}
+    
+
+    
+    OUT<<"Scrittura avvenuta con successo!";
+	
+	}
+};

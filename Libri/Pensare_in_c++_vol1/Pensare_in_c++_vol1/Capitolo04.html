@@ -1,0 +1,1917 @@
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<link rel=Edit-Time-Data href="./V1_C4_bozza_2_file/editdata.mso">
+<title>4: Astrazione dei dati</title>
+
+</head>
+<body l bgcolor="#FFFFFF">
+<div class=Section1> 
+  <p class=MsoTitle style='line-height:150%' align="center"><a href="http://www.MindView.net"> 
+    <img src="mindview-head.gif" alt="MindView Inc." border = "0"></a> </p>
+  <p align="center">&nbsp;</p>
+  <p align="center"><font face="Verdana" size=2>[ </font><a href="README-HTML.txt"><u><font face="Verdana" size="2" color="#0000ff">Suggerimenti</font></u></a><font face="Verdana" size=2> 
+    ] [ </font><a href="http://www.mindview.net/CPPServices/SolutionGuide.html"><u><font face="Verdana" size=2 color="#0000ff">Soluzioni 
+    degli Esercizi</font></u></a><font face="Verdana" size=2>] [ </font><a href="http://www.mindview.net/ThinkingInCPP2e.html"><u><font face="Verdana" size=2 color="#0000ff">Volume 
+    2</font></u></a><font face="Verdana" size=2> ] [ </font><a href="http://www.mindview.net/MailingList.html"><u><font face="Verdana" size=2 color="#0000ff">Newsletter 
+    Gratuita</font></u></a><font face="Verdana" size=2> ] <br>
+    [ </font><a href="http://www.mindview.net/CPPServices/#PublicSeminars"><u><font face="Verdana" size=2 color="#0000ff">Seminari</font></u></a><font face="Verdana" size=2> 
+    ] [ </font><a href="http://www.mindview.net/CPPServices/#SeminarsOnCD"><u><font face="Verdana" size=2 color="#0000ff">Seminari 
+    su CD ROM</font></u></a><font face="Verdana" size=2> ] [ </font><a href="http://www.mindview.net/CPPServices/#ConsultingServices"><u><font face="Verdana" size="2" color="#0000ff">Consulenza</font></u></a><font face="Verdana" size=2>] 
+    </font></p>
+  <h2 align="center"><font face="Verdana">Pensare in C++, seconda ed. Volume 1</font></h2>
+  <h3 align="center"><font face="Verdana">&copy;2000 by Bruce Eckel</font></h3>
+  <p align="center"><font face="Verdana" size=2>[ </font><a href="Capitolo03.html"><u><font face="Verdana" size=2 color="#0000ff">Capitolo 
+    Precedente </font></u></a><font face="Verdana" size=2> ] [ </font><a href="Contents.html"><u><font face="Verdana" size=2 color="#0000ff">Indice 
+    Generale</font></u></a><font face="Verdana" size=2> ] [ </font><a href="DocIndex.html"><u><font face="Verdana" size=2 color="#0000ff">Indice 
+    Analitico </font></u></a><font face="Verdana" size=2> ] [ </font><a href="Capitolo05.html"><u><font face="Verdana" size=2 color="#0000ff">Prossimo 
+    Capitolo</font></u></a><font face="Verdana" size=2> ] </font></p>
+  <p align="center"><font face="Georgia, Times New Roman, Times, serif">traduzione 
+    italiana e adattamento a cura di Cesare Bertoletti</font></p>
+  <div align="left"> 
+    <h1><font face="Verdana, Arial, Helvetica, sans-serif">Capitolo 4: Astrazione 
+      dei dati</font> </h1>
+  </div>
+  <p><b><font face="Verdana, Arial, Helvetica, sans-serif" size="4">Il C++ è uno 
+    strumento di miglioramento della produttività. Perché mai si dovrebbe fare 
+    lo sforzo (ed è uno sforzo, al di là di quanto facilmente si tenti di effettuare 
+    la transizione</font></b></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">per cambiare un certo 
+    linguaggio che già si conosce e che è produttivo, con un nuovo linguaggio 
+    con la prospettiva immediata che per un certo tempo sia meno produttivo, fino 
+    a che non ci si è fatta la mano? Perché si è giunti al convincimento che si 
+    avranno grandi vantaggi usando questo nuovo strumento.</font></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">In termini di programmazione, 
+    maggiore produttività significa che meno persone possono produrre programmi 
+    più grandi, più complessi e<span style="mso-spacerun: yes">  </span>in meno 
+    tempo. Ci sono certamente altri problemi quando si va verso la scelta di un 
+    nuovo linguaggio, come l’efficienza (la natura di questo linguaggio causerà 
+    ritardi e un codice “gonfio”?), la sicurezza (il linguaggio ci aiuterà ad 
+    essere sicuri che il nostro programma faccia sempre quello che abbiamo progettato 
+    e gestirà gli errori in modo decente?) e la manutenzione (il linguaggio ci 
+    aiuterà a creare codice facile da capire, modificare ed estendere?). Questi 
+    sono dei fattori certamente importanti e che verranno esaminati in questo 
+    libro.</font></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Ma produttività grezza 
+    significa anche che per scrivere un programma, prima si dovevano occupare 
+    tre persone per una settimana, e ora se ne occupa una per un giorno o due. 
+    Questo aspetto tocca diversi livelli di economie: noi programmatori siamo 
+    contenti perché ci arriva una botta di energia quando si costruisce qualcosa, 
+    il nostro cliente (o il nostro capo) è contento perché il prodotto è fatto 
+    più velocemente e con meno persone, e l’utente finale è contento perché il 
+    prodotto è più economico. La sola via per ottenere un massiccio incremento 
+    di produttività è sfruttare il codice di altri programmatori, cioè usare librerie.</font></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Una libreria è semplicemente 
+    del codice che qualcun altro ha scritto e impacchettato assieme. Spesso, il 
+    pacchetto minimo è costituito da un singolo file con un’estensione <b>.lib</b> 
+    e uno o più file header che dicono al compilatore cosa c’è nella libreria 
+    (per esempio, nomi di funzioni). Il linker sa come cercare nel file di libreria 
+    e come estrarre l’appropriato codice. Ma questo è solo uno dei modi per consegnare 
+    una libreria. Su piattaforme che occupano diverse architetture, come Linux/Unix, 
+    spesso il solo modo sensato di consegnare una libreria è con il codice sorgente, 
+    cosicché esso possa essere riconfigurato e ricompilato sul nuovo target.</font></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Perciò, le librerie sono 
+    probabilmente il modo più importante per migliorare la produttività, ed una 
+    delle mete primarie del C++ è quella di renderne più facile l’uso. Ciò sottointende 
+    che c’è qualcosa di abbastanza complicato<span
+style="mso-spacerun: yes">  </span>nell’uso delle librerie scritte in C. La comprensione 
+    di questo fattore vi farà capire a fondo il modello del C++ e come usarlo.</font></p>
+  <p><b><span style='font-size:18.0pt;
+mso-bidi-font-size:12.0pt'><font face="Verdana, Arial, Helvetica, sans-serif">Una 
+    piccola libreria in stile C</font></span></b></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Normalmente, una libreria 
+    parte come un insieme di funzioni, ma chi ha già<span style="mso-spacerun: yes">  
+    </span>usato librerie C di terze parti, sa che vi si trova molto di più: oltre 
+    a comportamento, azioni e funzioni di un oggetto, ci sono anche le sue caratteristiche 
+    ( peso, materiale,ecc.. ), che vengono rappresentate dai dati. E quando si 
+    deve gestire un insieme di caratteristiche in C, è molto conveniente raggrupparle 
+    in una struttura <b>struct</b>, specialmente se volete rappresentare più oggetti 
+    simili fra loro nel vostro spazio del problema. Quindi, potete costruire una 
+    istanza di questa struttura per ognuna di tali oggetti.</font></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">La maggior parte delle 
+    librerie C si presenta, quindi, come un insieme di strutture e un insieme 
+    di funzioni che agiscono su quelle strutture. Come esempio di un tale sistema, 
+    consideriamo un tool di programmazione che agisce come un array, ma le cui 
+    dimensioni possono essere stabilite runtime, cioè quando viene creato. Chiameremo 
+    la struttura <b>Cstash</b>. Sebbene sia scritta in C++, ha lo stesso stile 
+    che avrebbe se fosse scritta in C.</font></p>
+</div>
+
+<BLOCKQUOTE><FONT SIZE = "+1">
+  <PRE><font color=#009900>//: C04:CLib.h</font>
+<font color=#009900>// Header file per una libreria in stile  C</font>
+<font color=#009900>// Un'entit&agrave; tipo array tipo creata  a runtime</font>
+
+<font color=#0000ff>typedef</font> <font color=#0000ff>struct</font> CStashTag {
+  <font color=#0000ff>int</font> size;      <font color=#009900>// dimensione di ogni elemento</font>
+<font color=#0000ff>int</font> quantity; <font color=#009900>// numero di elementi allocati</font>
+  <font color=#0000ff>int</font> next;     <font color=#009900>// indice del primo elemento vuoto</font>
+ 
+ <font  color=#009900>// array di byte allocato dinamicamente:</font> 
+
+  <font color=#0000ff>unsigned</font> <font color=#0000ff>char</font>* storage;
+} CStash;
+
+<font color=#0000ff>void</font> initialize(CStash* s, <font color=#0000ff>int</font> size);
+<font color=#0000ff>void</font> cleanup(CStash* s);
+<font color=#0000ff>int</font> add(CStash* s, <font color=#0000ff>const</font> <font color=#0000ff>void</font>* element);
+<font color=#0000ff>void</font>* fetch(CStash* s, <font color=#0000ff>int</font> index);
+<font color=#0000ff>int</font> count(CStash* s);
+<font color=#0000ff>void</font> inflate(CStash* s, <font color=#0000ff>int</font> increase);
+<font color=#009900>///:~ </font></pre>
+  </font></blockquote>
+<p>&nbsp;</p><div class=Section1>
+  <p><font face="Georgia, Times New Roman, Times, serif">Un nome di variabile 
+    come <b>CstashTag</b>, generalmente è usato per una struttura nel caso in 
+    cui si abbia bisogno di riferirsi all’interno della struttura stessa. Per 
+    esempio, quando si crea una lista concatenata (ogni elemento nella lista contiene 
+    un puntatore all’elemento successivo), si necessita di un puntatore alla successiva 
+    struttura, così si ha bisogno di un modo per identificare il tipo di quel 
+    puntatore all’interno del corpo della struttura.<span style="mso-spacerun: yes">  
+    </span>Vedrete anche che, quasi universalmente, per ogni struttura in una 
+    libreria C, il simbolo <b>typedef</b> viene usato come sopra, in modo tale 
+    da poter trattare una struttura come se fosse un nuovo tipo e poter quindi 
+    definire istanze di quella struttura: </font> </p>
+  <pre >CStash A, B, C;</pre>
+ 
+  <p><font face="Georgia, Times New Roman, Times, serif">Il puntatore <b>storage</b> 
+    è un <b>unsigned char*</b>. Un <b>unsigned char* </b>è il più piccolo pezzo 
+    di memoria che un compilatore C può gestire: la sua dimensione è dipendente 
+    dall’implementazione della macchina che state usando, spesso ha le dimensioni 
+    di un byte, ma può essere anche più grande. Si potrebbe pensare che, poiché 
+    <b>Cstash</b> è progettata per contenere ogni tipo di variabile, sarebbe più 
+    appropriato<b> </b>un <b>void*</b>. Comunque, lo scopo non è quello di trattare 
+    questa memoria come un blocco di un qualche tipo sconosciuto, ma piuttosto 
+    come un blocco contiguo di byte.</font></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Il codice sorgente contenuto 
+    nel file di implementazione (il quale, se comprate una libreria commerciale, 
+    normalmente non viene dato, – avreste solo un compilato <b>obj</b> o <b>lib</b> 
+    o <b>dll</b>) assomiglia a questo:</font></p>
+  <p>&nbsp;</p><blockquote><font size = "+1"> 
+  <pre><font color=#009900>//: C04:CLib.cpp {O}</font>
+<font color=#009900>// Implementazione dell’esempio di libreria in stile C</font>
+<font color="#009900">// Dichiarazione della struttura e delle funzioni:</font>
+#include <font color=#004488>"CLib.h"</font>
+#include &lt;iostream&gt;
+#include &lt;cassert&gt; 
+<font color=#0000ff>using</font> <font color=#0000ff>namespace</font> std;
+<font color=#009900>// </font>Quantità di elementi da aggiungere<font color=#009900>
+// </font>quando viene incrementata la allocazione:<font color="#009900">
+</font><font color=#0000ff>const</font> <font color=#0000ff>int</font> increment = 100;
+
+<font color=#0000ff>void</font> initialize(CStash* s, <font color=#0000ff>int</font> sz) {
+  s-&gt;size = sz;
+  s-&gt;quantity = 0;
+  s-&gt;storage = 0;
+  s-&gt;next = 0;
+}
+
+<font color=#0000ff>int</font> add(CStash* s, <font color=#0000ff>const</font> <font color=#0000ff>void</font>* element) {
+  <font color=#0000ff>if</font>(s-&gt;next &gt;= s-&gt;quantity) <font color="#009900">// E’ rimasto spazio sufficiente?</font>
+inflate(s, increment);
+ <font color="#009900"> // Copia dell’elemento nell’allocazione,
+// partendo dal primo elemento vuoto:</font>
+<font color=#0000ff>int</font> startBytes = s-&gt;next * s-&gt;size;
+  <font color=#0000ff>unsigned</font> <font color=#0000ff>char</font>* e = (<font color=#0000ff>unsigned</font> <font color=#0000ff>char</font>*)element;
+  <font color=#0000ff>for</font>(<font color=#0000ff>int</font> i = 0; i &lt; s-&gt;size; i++)
+    s-&gt;storage[startBytes + i] = e[i];
+  s-&gt;next++;
+  <font color=#0000ff>return</font>(s-&gt;next - 1);
+<font color="#009900">// numero d’indice</font>
+}
+
+<font color=#0000ff>void</font>* fetch(CStash* s, <font color=#0000ff>int</font> index) {
+<font color="#009900"> // Controllo dei limiti dell’indice:</font>
+assert(0 &lt;= index);
+  <font color=#0000ff>if</font>(index &gt;= s-&gt;next)
+    <font color=#0000ff>return</font> 0; <font color="#009900">// per indicare la fine</font>
+<font color="#009900"> // produciamo un puntatore all’elemento desiderato:</font>
+<font color=#0000ff>return</font> &amp;(s-&gt;storage[index * s-&gt;size]);
+}
+
+<font color=#0000ff>int</font> count(CStash* s) {
+  <font color=#0000ff>return</font> s-&gt;next; <font color="#009900">// Elementi in CStash</font>
+}
+
+<font color=#0000ff>void</font> inflate(CStash* s, <font color=#0000ff>int</font> increase) {
+  assert(increase &gt; 0);
+  <font color=#0000ff>int</font> newQuantity = s-&gt;quantity + increase;
+  <font color=#0000ff>int</font> newBytes = newQuantity * s-&gt;size;
+  <font color=#0000ff>int</font> oldBytes = s-&gt;quantity * s-&gt;size;
+  <font color=#0000ff>unsigned</font> <font color=#0000ff>char</font>* b = <font color=#0000ff>new</font> <font color=#0000ff>unsigned</font> <font color=#0000ff>char</font>[newBytes];
+  <font color=#0000ff>for</font>(<font color=#0000ff>int</font> i = 0; i &lt; oldBytes; i++)
+    b[i] = s-&gt;storage[i]; <font color="#009900">// Copia della vecchia allocazione nella nuova
+</font><font color=#0000ff>delete</font> [](s-&gt;storage); <font color="#009900">// Vecchia allocazione</font>
+s-&gt;storage = b;<font color="#009900"> //Puntiamo alla nuova memoria</font>
+s-&gt;quantity = newQuantity;
+}
+
+<font color=#0000ff>void</font> cleanup(CStash* s) {
+  <font color=#0000ff>if</font>(s-&gt;storage != 0) {
+   cout &lt;&lt; <font color=#004488>"freeing storage"</font> &lt;&lt; endl;
+   <font color=#0000ff>delete</font> []s-&gt;storage;
+  }
+} <font color=#009900>///:~</font></pre>
+  </font> 
+  <blockquote> 
+    <pre><font size="+1"></font></pre>
+  </blockquote>
+</blockquote>
+  <p><font face="Georgia, Times New Roman, Times, serif">La funzione <b>initialize()</b> 
+    compie le inizializzazioni necessarie per la struttura <b>CStash</b> impostando 
+    le variabili interne con valori appropriati. Inizialmente, il puntatore <b>storage</b> 
+    è impostato a zero, cioè: inizialmente, nessuno spazio di memoria allocato.</font></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">La funzione <b>add()</b> 
+    inserisce un elemento in <b>CStash</b> nella successiva locazione di memoria 
+    disponibile. Per prima cosa effettua un controllo per vedere se c’è dello 
+    spazio residuo utilizzabile, e se non c’è espande lo spazio di memoria utilizzando 
+    la funzione <b>inflate()</b> descritta più sotto.</font></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Poiché il compilatore 
+    non conosce il tipo specifico della variabile che deve essere immagazzinata 
+    (la funzione tratta un <b>void*</b>), non è possibile effettuare solo un assegnamento, 
+    che sarebbe certamente la cosa conveniente da fare, invece si deve copiare 
+    la variabile byte per byte. Il modo più diretto per fare la copia, è tramite 
+    un array indicizzato. Tipicamente, vi sono già dati di tipo byte nella memoria 
+    allocata <b>storage</b>, e il riempimento è indicato dal valore di <b>next</b>. 
+    Per partire con il giusto offset di byte, la variabile <b>next</b> viene moltiplicata 
+    per la dimensione di ogni elemento (in byte) per ottenere <b>startBytes</b>. 
+    Dopodiché, l’argomento <b>element</b> viene castato ad un <b>unsigned char*</b> 
+    in modo da poter essere indirizzato byte per byte e copiato nello spazio disponibile 
+    <b>storage</b>, e <b>next</b> viene quindi incrementato in modo da indicare 
+    sia la prossima zona di memoria utilizzabile, che il numero d’indice dove 
+    il valore è stato immagazzinato, così che possa essere recuperato usando il 
+    numero d’indice con la funzione <b>fetch()</b>.</font></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">La funzione <b>fetch()</b> 
+    controlla che l’indice non ecceda i limiti e restituisce l’indirizzo della 
+    variabile desiderata, calcolata usando l’argomento <b>index</b>. Poiché <b>index</b> 
+    indica il numero di elementi di offset in <b>CStash</b>, per ottenere l’offset 
+    numerico in byte, si deve moltiplicare <b>index</b> per il numero di byte 
+    occupati da ogni elemento. Quando questo offset viene usato per l’indicizzazione 
+    in <b>storage</b> usando array indicizzati, non si ottiene l’indirizzo, bensì 
+    il byte a quell’indirizzo. Per ottenere l’indirizzo, si deve usare <b><span style="mso-spacerun: yes"> </span></b>operatore 
+    <b>&amp;,</b> “indirizzo-di”. </font></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">La funzione <b>count()</b>, 
+    a prima vista, può sembrare strana a un esperto programmatore C. Sembra, in 
+    effetti, un grosso pasticcio fatto per fare una cosa che è più facile fare 
+    a mano. Se, per esempio, si ha una struttura <b>CStash</b> chiamata <b>intStash</b>, 
+    parrebbe molto più diretto scoprire quanti elementi ha usando <b>intStash.next</b> 
+    invece di fare una chiamata di funzione<span style="mso-spacerun: yes">  </span>(che 
+    è overhead) come <b>count(&amp;intStash)</b>. Comunque, se in futuro si vorrà 
+    cambiare la rappresentazione interna di <b>CStash</b>, e quindi anche il modo 
+    con cui si calcola<span style="mso-spacerun: yes">  </span>il conteggio, l’interfaccia 
+    della chiamata di funzione permette la necessaria flessibilità. Ma, purtroppo, 
+    la maggior parte dei programmatori non si sbatterà per scoprire il miglior 
+    design per utilizzare la vostra libreria; guarderanno com’è fatta la <b>struct</b> 
+    e preleveranno direttamente il valore di <b>next</b>, e possibilmente cambieranno 
+    anche <b>next</b> senza il vostro permesso. Ah,<span style="mso-spacerun: yes">  
+    </span>se solo ci fosse un modo per il progettista di librerie per avere un 
+    controllo migliore sopra cose come questa (Sì, è un'anticipazione!).</font></p>
+  <p><b><span style='font-size:14.0pt;
+mso-bidi-font-size:12.0pt'><font face="Verdana, Arial, Helvetica, sans-serif">Allocazione 
+    dinamica della memoria.</font></span></b></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Non si conosce mai la 
+    quantità massima di memoria di cui si ha bisogno per la struttura <b>CStash</b>, 
+    così la memoria puntata da <b>storage</b> è allocata prendendola dallo <i>heap</i>.<span
+style="mso-spacerun: yes">  </span>Lo heap è un grande blocco di memoria che viene 
+    usato per allocare runtime quantità più piccole di memoria. Si usa lo heap 
+    quando non si conoscono le dimensioni della memoria di cui si avrà bisogno 
+    mentre si sta scrivendo il programma (solo in fase di runtime si scopre, per 
+    esempio, che si ha bisogno di allocare spazio di memoria per 200 variabili 
+    <b>aeroplano</b> invece di 20). Nel C Standard, le funzioni di allocazione 
+    dinamica della memoria includono <b>malloc()</b>, <b>calloc()</b>, <b>realloc()</b> 
+    e <b>free()</b>. Invece di chiamate le funzioni di libreria, comunque, il 
+    C++ ha un accesso più sofisticato (sebbene più semplice da usare) alla memoria 
+    dinamica, il quale è integrato nel linguaggio stesso attraverso parole chiave 
+    come <b>new</b> e <b>delete</b>.</font></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">La funzione <b>inflate()</b> 
+    usa <b>new</b> per ottenere una quantità di spazio più grande per <b>CStash</b>. 
+    In questa situazione, la memoria si potrà solo espandere e non restringere, 
+    e la funzione <b>assert()</b> garantirà che alla <b>inflate()</b> non venga 
+    passato un numero negativo come valore del parametro <b>increase</b>. Il nuovo 
+    numero di elementi che può essere contenuto (dopo che è stata completata la 
+    chiamata a <b>inflate()</b>), è calcolato e memorizzato in <b>newQuantity</b>, 
+    e poi moltiplicato per il numero di byte per elemento per ottenere <b>newBytes</b>, 
+    che rappresenta il numero di byte allocati. In questo modo siamo in grado 
+    di sapere quanti byte devono essere copiati oltre la vecchia locazione; <b>oldBytes</b> 
+    è calcolata usando la vecchia <b>quantity</b>. </font></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">L’allocazione della memoria 
+    attuale, avviene attraverso un nuovo tipo di espressione, che implica la parola 
+    chiave <b>new</b>:</font></p>
+  <pre ><span lang=EN-GB
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:Arial;color:blue;
+mso-ansi-language:EN-GB'>new</span><span lang=EN-GB style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;font-family:Arial;mso-ansi-language:EN-GB'> <span
+style='color:blue'>unsigned</span> <span style='color:blue'>char</span>[newBytes];</span>
+</pre>
+  <p style='text-align:justify;line-height:150%'><font face="Georgia, Times New Roman, Times, serif">L’uso 
+    generale di <b>new</b>, ha la seguente forma: </font> </p>
+  <p style='text-align:justify;line-height:150%'><b><span
+style='font-family:Arial'>new Type;</span></b><span style='font-family:Arial'></span></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">dove <b>Type</b> descrive 
+    il tipo di variabile che si vuole allocare nello heap. Nel nostro caso, si 
+    vuole un array di <b>unsigned char</b> lungo <b>newBytes</b>, così che si 
+    presenti come <b>Type</b>. E’ possibile allocare anche qualcosa di semplice 
+    come un <b>int</b> scrivendo: </font></p>
+  <p></p>
+  new int;
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">e sebbene tale allocazione 
+    venga raramente fatta, essa è tuttavia formalmente corretta. </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Una espressione new restituisce 
+    un puntatore ad un oggetto dell’esatto tipo richiesto. Così, se si scrive 
+    <b>new Type</b>, si ottiene un puntatore a <b>Type</b>. Se si scrive <b>new 
+    int</b>, viene restituito un puntatore ad un intero, e se si vuole un array 
+    di <b>unsigned char</b>, verrà restituito un puntatore al primo elemento dell’array. 
+    Il compilatore si assicurerà che venga assegnato il valore di ritorno dell’espressione 
+    <b>new</b> a un puntatore del tipo corretto. </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Naturalmente, ogni volta 
+    che viene richiesta della memoria, è possibile che la richiesta fallisca se 
+    non c’è sufficiente disponibilità di memoria. Come si vedrà in seguito, il 
+    C++ possiede dei meccanismi che entrano in gioco se non ha successo l’operazione 
+    di allocazione della memoria. </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Una volta che la nuova 
+    memoria è allocata, i dati nella vecchia allocazione devono essere copiati 
+    nella nuova; questa operazione è realizzata di nuovo attraverso l’indicizzazione 
+    di un array, copiando in un ciclo un byte alla volta. Dopo aver copiato i 
+    dati, la vecchia allocazione di memoria deve essere rilasciata per poter essere 
+    usufruibile per usi futuri da altre parti del programma. La parola chiave 
+    <b>delete</b> è il complemento di <b>new</b>, e deve essere usata per rilasciare 
+    ogni blocco memoria allocato in precedenza con una <b>new</b> (se ci si dimentica 
+    di usare <b>delete</b>, la zona di memoria interessata rimane non disponibile, 
+    e se questa cosiddetto meccanismo di <i>memoria persa</i> (<i>memory leak</i>) 
+    si ripete un numero sufficiente di volte, il programma esaurirà l’intera memoria 
+    disponibile). In aggiunta, quando si cancella un array si usa una sintassi 
+    speciale, ed è come se si dovesse ricordare al compilatore che quel puntatore 
+    non punta solo a un oggetto, ma ad un gruppo di oggetti: si antepone al puntatore 
+    da eliminare una coppia vuota di parentesi quadre: </font> </p>
+  <p></p>
+  delete [ ] myArray;
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Una volta che la vecchia 
+    allocazione è stata eliminata, il puntatore a quella nuova può essere assegnato 
+    al puntatore che si usa per l’allocazione; la quantità viene aggiornata al 
+    nuovo valore e la funzione <b>inflate()</b> ha così esaurito il suo compito. 
+    </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Si noti che la gestione 
+    dello heap è abbastanza primitiva, grezza. Lo heap cede blocchi di memoria 
+    e li riprende quando viene invocato l’operatore <b>delete</b>. Non c’è alcun 
+    servizio inerente alla compattazione dello heap, che lo comprima per liberare 
+    blocchi di memoria più grandi (un servizio di deframmentazione). Se un programma 
+    alloca e libera memoria di heap per un certo periodo, si rischia di avere 
+    uno heap frammentato che ha sì pezzi di memoria liberi, ma nessuno dei quali 
+    sufficientemente grandi da permettere di allocare lo spazio di memoria richiesto 
+    in quel momento. Un compattatore di heap complica un programma, perché sposta 
+    pezzi di memoria in giro per lo heap, e i puntatori usati dal programma non 
+    conserveranno i loro propri valori! Alcuni ambienti operativi hanno al proprio 
+    interno la compattazione dello heap, ma richiedono l’uso di handle speciali 
+    per la memoria (i quali possono essere temporaneamente convertiti in puntatori, 
+    dopo aver bloccato la memoria, in modo che il compattatore di heap non possa 
+    muoverli) al posto di veri puntatori. Non è impossibile costruire lo schema 
+    di un proprio compattatore di heap, ma questo non è un compito da prendere 
+    alla leggera. </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Quando si crea una variabile 
+    sullo stack, durante la compilazione del programma, l’allocazione di memoria 
+    per la variabile viene automaticamente creata e liberata dal compilatore. 
+    Il compilatore sa esattamente quanta memoria è necessaria, e conosce anche 
+    il tempo di vita di quella variabile attraverso il suo scope. Con l’allocazione 
+    dinamica della memoria, comunque, il compilatore non sa di quanta memoria 
+    avrà bisogno e, quindi, non conosce neppure il tempo di vita di quella allocazione. 
+    Quindi, l’allocazione di memoria non può essere pulita automaticamente, e 
+    perciò il programmatore è responsabile del rilascio della memoria con la procedura 
+    di <b>delete</b>, la quale dice al gestore dello heap che può essere nuovamente 
+    usata alla prossima chiamata a <b>new</b>. Il luogo più logico dove fare la 
+    pulizia della memoria nella libreria, è la funzione <b>cleanup()</b>, perché 
+    è lì che viene compiuta l’intera procedura di chiusura di tutte le operazioni 
+    ausiliarie. </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Per provare la libreria, 
+    sono state create due strutture di tipo <b>CStash</b>. La prima contiene interi 
+    e la seconda un array di 80 caratteri. </font> </p>
+  <p></p>
+  
+  <BLOCKQUOTE><font size = "+1"> 
+    <PRE><font color=#009900>//: C04:CLibTest.cpp</font>
+<font color=#009900>//{L} CLib</font>
+<span
+lang=EN-GB style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:Arial;
+color:#009900;mso-ansi-language:EN-GB'>// Test della libreria in stile C</span><span
+lang=EN-GB style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:Arial;
+mso-ansi-language:EN-GB'></span>
+#include <font color=#004488>"CLib.h"</font>
+#include &lt;fstream&gt;
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;cassert&gt;
+<font color=#0000ff>using</font> <font color=#0000ff>namespace</font> std;
+
+<font color=#0000ff>int</font> main() {
+  <span style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;font-family:Arial'><span style="mso-spacerun: yes">  </span><span
+style='color:#009900'>// Definiamo le<span style="mso-spacerun: yes">  </span>variabili all’inizio</span></span><span
+lang=EN-GB style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:Arial;
+mso-ansi-language:EN-GB'></span>
+   <span style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;font-family:Arial'><span
+style='color:#009900'>// del blocco, come in C:</span></span>
+  CStash intStash, stringStash;
+  <font color=#0000ff>int</font> i;
+  <font color=#0000ff>char</font>* cp;
+  ifstream in;
+  string line;
+  <font color=#0000ff>const</font> <font color=#0000ff>int</font> bufsize = 80;
+  <span style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;font-family:Arial'><span style="mso-spacerun: yes"> </span><span
+style='color:#009900'>// Ora, ricordiamoci di inizializzare le variabili:</span></span>
+  initialize(&amp;intStash, <font color=#0000ff>sizeof</font>(<font color=#0000ff>int</font>));
+  <font color=#0000ff>for</font>(i = 0; i &lt; 100; i++)
+    add(&amp;intStash, &amp;i);
+  <font color=#0000ff>for</font>(i = 0; i &lt; count(&amp;intStash); i++)
+    cout &lt;&lt; <font color=#004488>"fetch(&amp;intStash, "</font> &lt;&lt; i &lt;&lt; <font color=#004488>") = "</font>
+         &lt;&lt; *(<font color=#0000ff>int</font>*)fetch(&amp;intStash, i)
+         &lt;&lt; endl;
+  <span style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;font-family:Arial'><span
+style='color:#009900'>// (Holds) Creiamo una stringa di 80 caratteri</span></span><font color="#009900">:</font>
+  initialize(&amp;stringStash, <font color=#0000ff>sizeof</font>(<font color=#0000ff>char</font>)*bufsize);
+  in.open(<font color=#004488>"CLibTest.cpp"</font>);
+  assert(in);
+  <font color=#0000ff>while</font>(getline(in, line))
+    add(&amp;stringStash, line.c_str());
+  i = 0;
+  <font color=#0000ff>while</font>((cp = (<font color=#0000ff>char</font>*)fetch(&amp;stringStash,i++))!=0)
+    cout &lt;&lt; <font color=#004488>"fetch(&amp;stringStash, "</font> &lt;&lt; i &lt;&lt; <font color=#004488>") = "</font>
+         &lt;&lt; cp &lt;&lt; endl;
+  cleanup(&amp;intStash);
+  cleanup(&amp;stringStash);
+} <font color=#009900>///:~</font></pre>
+    </font></BLOCKQUOTE>
+  <p><font face="Georgia, Times New Roman, Times, serif">Seguendo il formalismo 
+    del C, tutte le variabili sono create all’inizio dello scope di <b>main()</b>. 
+    Naturalmente, successivamente ci si deve ricordare di inizializzare le variabili 
+    <b>CStash</b> nel blocco chiamando <b>initialize()</b>. Uno dei problemi con 
+    le librerie C, è che<span style="mso-spacerun: yes">  </span>si deve indicare 
+    accuratamente a chi userà la libreria, l’importanza delle funzioni di inizializzazione 
+    e di pulizia. Se queste funzioni non vengono chiamate, si va incontro a grossi 
+    problemi.<span style="mso-spacerun: yes">  </span>Sfortunatamente, l’utente 
+    non si chiede sempre se l’inizializzazione e la pulizia siano obbligatori 
+    e quale sia il modo corretto di eseguirli; inoltre, anche il linguaggio C 
+    non prevede meccanismi per prevenire cattivi usi delle librerie. </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">La struttura <b>intStash</b> 
+    viene riempita con interi, mentre la <b>stringStash</b> con array di caratteri; 
+    questi array di caratteri sono ottenuti aprendo<b> ClibTest.cpp</b>, un file 
+    di codice sorgente: le linee di codice vengono lette e scritte dentro un’istanza 
+    di <b>string</b> chiamata <b>line</b>, poi usando la funzione membro <b>c_str()</b> 
+    di <b>string,</b> si produce un puntatore alla rappresentazione a caratteri 
+    di <b>line</b>. </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Dopo che ogni <b>Stash</b><span
+style="mso-spacerun: yes">  </span>è stata caricata, viene anche visualizzata. 
+    La <b>intStash</b> viene stampata usando un ciclo <b>for</b>, che termina 
+    quando la <b>fetch()</b> restituisce zero per indicare che è uscito dai limiti. 
+    </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Si noti anche il cast 
+    aggiuntivo in: </font> </p>
+  <blockquote><font size="+1">
+    <pre>cp = (char*)fetch(&amp;stringStash, i++)</pre>
+    </font></blockquote>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">a causa del controllo 
+    rigoroso dei tipi che viene effettuato in C++, il quale non permette di assegnare 
+    semplicemente <b>void*</b> a ogni altro tipo (mentre in C è permesso). </font></p>
+  <p></p>
+  <font face="Verdana, Arial, Helvetica, sans-serif"><b><span style='font-size:14.0pt;
+mso-bidi-font-size:12.0pt'>Cattive congetture.</span></b> </font> 
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">C’è però un argomento 
+    più importante che deve essere capito prima di affrontare in generale i problemi 
+    nella creazione di una libreria C. Si noti che il file header <b>CLib.h</b> 
+    <i>deve</i> essere incluso in ogni file che fa riferimento a <b>CStash</b>, 
+    perché il compilatore non può anche indovinare a cosa assomiglia quella struttura. 
+    Comunque il compilatore <i>può</i> indovinare a cosa assomiglia una funzione; 
+    questo suona come una qualit&agrave; del C, ma poi si rivela per esserne uno 
+    dei principali tranelli. </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Sebbene si dovrebbero 
+    dichiarare sempre le funzioni, includendo un file header, la dichiarazione 
+    di funzione non è obbligatoria in C. In C (ma non in C++) è possibile chiamare 
+    una funzione che non è stata dichiarata. Un buon compilatore avvisa suggerendo 
+    di dichiarare prima la funzione, ma il C Standard non obbliga a farlo. Questa 
+    è una pratica pericolosa, perché il compilatore C può assumere che una funzione 
+    che è stata chiamata con un argomento di tipo <b>int</b> abbia una lista di 
+    argomenti contente interi, anche se essa può in realtà contenere un <b>float</b>. 
+    Come si vedrà, questa pratica può produrre degli errori difficili da trovare 
+    in fase di debugging. </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Ogni file separato di 
+    implementazione C (cioè con estensione <b>.c</b>), è una <b><i>unità di traslazione</i></b>, 
+    cioè il compilatore elabora separatamente ognuna di tali unità, e mentre la 
+    sta elaborando è conosce questa sola unità e nient’altro. Così, ogni informazione 
+    che viene fornita attraverso l’inclusione dei file header, risulta di grande 
+    importanza, poiché determina la conoscenza del compilatore sul resto del programma. 
+    Le dichiarazioni nei file header risultano essere particolarmente importanti, 
+    perché in qualsiasi posto essi vengano inclusi, faranno in modo che lì il 
+    compilatore sappia cosa fare. Se, per esempio, si ha una dichiarazione in 
+    un file header che dice <b>void func(float)</b>, il compilatore sa che se 
+    si chiama la funzione <b>func</b> con un argomento <b>int</b>, dovrà convertire 
+    <b>int</b> in <b>float</b> e passarlo come argomento (questa operazione è 
+    detta <b><i>promotion</i></b>). Senza la dichiarazione di funzione, il compilatore 
+    C assumerebbe semplicemente l’esistenza di una funzione <b>func(int)</b>, 
+    non verrebbe fatta la promotion e il dato errato verrebbe tranquillamente 
+    passato a <b>func()</b>. </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Per ogni unità di traslazione, 
+    il compilatore crea un file oggetto, con estensione <b>.o</b> oppure <b>.obj</b> 
+    o qualcosa di simile. I file oggetto, insieme al codice necessario per l’avvio, 
+    devono essere riuniti dal linker in un file programma eseguibile, e tutti 
+    i riferimenti esterni dovranno essere risolti durante l’operazione di linking. 
+    Per esempio, nel file <b>CLibTest.cpp</b> sono state dichiarate (cioè al compilatore 
+    è stato detto a cosa assomigliano) e usate funzioni<span
+style="mso-spacerun: yes">  </span>come <b>initialize()</b> e <b>fetch()</b>, 
+    ma queste funzioni non sono state definite, lo sono altrove, in <b>CLib.cpp</b>. 
+    Quindi le chiamate in <b>CLib.cpp</b> sono riferimenti esterni. Il linker, 
+    quando mette insieme tutti i file oggetto, prendere i riferimenti esterni 
+    non risolti e li risolve trovando gli indirizzi a cui essi effettivamente 
+    si riferiscono, e gli poi indirizzi vengono messi nel programma eseguibile 
+    per sostituire i riferimenti esterni. </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">E’ importante rendersi 
+    conto che, in C, i riferimenti esterni che il linker cerca, sono semplicemente 
+    nomi di funzioni, generalmente con anteposto il carattere underscore (‘_’). 
+    Quindi, tutto quello che il linker deve fare è<span style="mso-spacerun: yes">  
+    </span>associare il nome di una funzione dove è chiamata, con il corpo della 
+    funzione stessa nel file oggetto. Se, accidentalmente, un programmatore fa 
+    una chiamata che il compilatore interpreta come <b>func(int)</b>, e in qualche 
+    altro file oggetto c’è un corpo di funzione per <b>func(float)</b>, il linker 
+    vedrà <b>_func</b> in un posto e <b>_func</b> nell’altro, e riterrà essere 
+    tutto OK.<span style="mso-spacerun: yes">  </span>La funzione <b>func(),</b> 
+    nel luogo dove viene invocata, spingerà un <b>int</b> sullo <b>stack</b>, 
+    ma lì il corpo di funzione di <b>func()</b> si aspetta che ci sia un <b>float</b> 
+    sullo <b>stack</b>. Se la funzione compie solo una lettura del valore e non 
+    tenta di fare un assegnamento, allora lo <b>stack</b> non scoppierà. In tal 
+    caso, infatti, il valore <b>float</b> che legge dallo <b>stack</b> potrebbe 
+    anche essere sensato, il che è addirittura peggio, perché così è ancora più 
+    difficile trovare il baco. </font> </p>
+  <p></p>
+  <font face="Verdana, Arial, Helvetica, sans-serif"><b><span style='font-size:14.0pt;
+mso-bidi-font-size:12.0pt'>Cosa c’è di sbagliato?</span></b></font> 
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Noi siamo straordinariamente 
+    adattabili, anche in situazioni nelle quali, forse, non vorremmo adattarci. 
+    Lo stile della libreria <b>CStash</b> è stata un fattore di base per i programmatori 
+    C, ma se la si guarda per un momento, si può notare come sia piuttosto, come 
+    dire?… goffa. Quando la si usa, si deve passare l’indirizzo della struttura 
+    ad ogni singola funzione della libreria. Quando si legge il codice, il meccanismo 
+    della libreria si mescola con il significato delle chiamate di funzione, provocando 
+    confusione quando si prova a capire cosa sta succedendo. </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Comunque, uno dei più 
+    grandi ostacoli nell’uso delle librerie in C, è il problema del <b><i>conflitto 
+    di nomi</i></b> (<b><i>name clashes</i></b>). Il C ha un singolo spazio di 
+    nomi per la funzioni, cioè, quando il linker cerca un nome di funzione, lo 
+    cerca in una singola lista master. In più, quando il compilatore sta lavorando 
+    su una unità di traslazione, lo fa lavorando solo con una singola funzione 
+    con un dato nome. </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Ora, supponiamo di aver 
+    comprato due librerie da due differenti aziende, e che ogni libreria abbia 
+    una struttura che deve essere inizializzata e pulita, ed entrambe le ditte 
+    costruttrici decidono che <b>initialize()</b> e <b>cleanup()</b> sono ottimi 
+    nomi per le relative funzioni. Se si includono entrambi i file header in un 
+    singolo file di traslazione, cosa fa il compilatore C? Fortunatamente, il 
+    C dà un errore, dicendo che c’è un errato accoppiamento di tipi (<b><i>type 
+    mismatch</i></b>) nelle due differenti liste di argomenti delle funzioni dichiarate. 
+    Ma anche se i file header non vengono inclusi negli stessi file di traslazione, 
+    lo stesso si avranno problemi nell’attività del linker. Un buon linker rileverà 
+    la presenza di un conflitto di nomi, ma altri linker prendono il primo nome 
+    di funzione che trovano, cercando lungo la lista di file oggetto<span
+style="mso-spacerun: yes">  </span>nell’ordine a loro dato nella lista di link. 
+    </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">In entrambi i casi, non 
+    è possibile usare due librerie C che contengano funzioni con nomi identici. 
+    Per risolvere il problema, i venditori spesso aggiungono una sequenza di caratteri 
+    specifica all’inizio di tutti i nomi di funzione. Così, <b>initialize()</b> 
+    diventa <b>CStash_initialize ()</b> e così via, che è una pensata sensata. 
+    </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Adesso, è venuto il momento 
+    per fare il primo passo verso la creazione di classi in C++. </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">I nomi delle variabili 
+    all’interno di una struttura non sono in conflitto con i nomi delle variabili 
+    globali; e così, perché non trarne vantaggio per i nomi di funzione, quando 
+    quelle funzioni operano su una particolare struttura? Cioè, perché non costruire 
+    funzioni membro di una struttura? </font> </p>
+  <p></p>
+  <font face="Verdana, Arial, Helvetica, sans-serif"><b><span style='font-size:14.0pt;
+mso-bidi-font-size:12.0pt'>L’oggetto base.</span></b> </font> 
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Il primo passo è proprio 
+    questo: le funzioni C++ possono essere messe all’interno di strutture come 
+    ”<i>funzioni membro”</i>. Di seguito viene mostrato il codice per una struttura<span
+style="mso-spacerun: yes">  </span><b>CStash</b> di tipo C convertita a una <b>CStash</b> 
+    di tipo C++: </font> </p>
+  <p></p>
+  <blockquote><font  size="+1"> 
+    <pre><font color="#009900" >// C04:CppLib.h</font>
+<span
+lang=EN-GB style='font-size:12.0pt;font-family:Arial;
+color:#009900;'>// La </span><span style='font-size:
+12.0pt;font-family:Arial;color:#009900'>libreria</span><span
+lang=EN-GB style='font-size:12.0pt;font-family:Arial;
+color:#009900;'> in stile C </span><span
+style='font-size:12.0pt;font-family:Arial;color:#009900'>convertita</span><span
+lang=EN-GB style='font-size:12.0pt;font-family:Arial;
+color:#009900;'> in C++</span><font color="#009900">
+
+</font><font color="#0000ff" >struct</font> Stash {
+  <font color=#0000ff>int</font> size;      <span
+style='color:#009900'>// Dimensione di ogni elemento</span>
+  <font color="#0000ff" >int</font>quantity; <span
+style='color:#009900'>// Numero di elementi allocati</span>
+  <font color="#0000ff" >int</font> next;      <font color="#009900">// Indice del primo elemento vuoto</font>
+<span
+style='color:#009900'>// Array di byte allocati dinamicamente:</span><font color="#009900">
+</font><font color="#0000ff" >unsigned</font> <font color="#0000ff" >char</font>* storage;
+ <span
+style='color:#009900'>// Le funzioni membro!</span>
+<font color="#0000ff" >void</font> initialize(<font color=#0000ff>int</font> size);
+  <font color=#0000ff>void</font> cleanup();
+  <font color=#0000ff>int</font> add(<font color=#0000ff>const</font> <font color="#0000ff" >void</font>* element);
+  <font color=#0000ff>void</font>* fetch(<font color=#0000ff>int</font> index);
+  <font color=#0000ff>int</font> count();
+  <font color=#0000ff>void</font> inflate(<font color=#0000ff>int</font> increase);
+}; <font color=#009900>///:~</font></pre>
+    </font>
+    <p><font  size="+1"> </font> </p>
+  </blockquote>
+  <p><font face="Georgia, Times New Roman, Times, serif">Per prima cosa, si noti 
+    che non ci sono <b>typedef</b>. Invece di usare <b>typedef</b>, il compilatore 
+    C++ trasforma il nome della struttura in un nuovo nome di tipo valido all’interno 
+    del programma (proprio come <b>int</b>, <b>char</b>, <b>float</b> e <b>double</b> 
+    sono nomi di tipo). </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Tutti i dati membro sono 
+    esattamente come prima, ma ora le funzioni sono all’interno del corpo della 
+    struttura. In più, si noti che è stato rimosso il primo argomento presente 
+    in tutte le funzioni della versione C della libreria, cioè il puntatore a 
+    CStash. In C++, invece di costringere il programmatore a passare l’indirizzo 
+    della struttura come primo argomento di tutte le funzioni che operano sulla 
+    struttura, l’operazione viene fatta<span style="mso-spacerun: yes">  </span>dal 
+    compilatore in modo del tutto trasparente. Ora, i soli argomenti passati alle 
+    funzioni, sono relativi a quello che la funzione fa, non al meccanismo interno 
+    della funzione. </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">E’ importante rendersi 
+    conto che il codice della funzione è effettivamente lo stesso della precedente 
+    versione C della libreria. Il numero di argomenti è lo stesso (anche se non 
+    è più esplicitato, il passaggio dell’indirizzo della struttura c’è ancora), 
+    e c’è un solo corpo di funzione per ogni funzione. Cioè, solo perché si dice 
+    : </font> </p>
+  <p></p>
+  <b><span lang=EN-GB
+style='mso-ansi-language:EN-GB'>Stash A, B, C;</span></b>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">ciò non significa avere 
+    differenti funzioni <b>add()</b> per ogni variabile. </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Così, il codice che è 
+    stato generato è quasi identico a quello che si avrebbe scritto per la versione 
+    C della libreria. Curiosamente, questo include i suffissi che si sarebbero 
+    fatti per produrre <b>Stash_initialize()</b>, <b>Stash_cleanup()</b>, e così 
+    via. </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Quando il nome di funzione 
+    è all’interno della struttura, il compilatore fa effettivamente la stessa 
+    cosa. Perciò, <b>initialize()</b> all’interno della struttura <b>Stash</b> 
+    non colliderà con una funzione chiamata <b>initialize()</b> all’interno di 
+    qualsiasi altra struttura, oppure con una funzione globale con lo stesso nome. 
+    Sebbene la maggior parte delle volte non serva, qualche volta si ha la necessità 
+    di poter precisare che questa specifica <b>initialize()</b> appartiene alla 
+    struttura <b>Stash</b>, e non a qualche altra struttura, e in particolare 
+    questo serve quando si deve definire la funzione, perché in tal caso si necessita 
+    di specificare pienamente cosa essa sia. Per ottenere questa specificazione 
+    completa, il C++ ha un operatore (<b>::</b>) chiamato <b><i>operatore di risoluzione 
+    della visibilità</i></b> (scope resolution operator), così chiamato perché 
+    adesso i nomi possono avere differenti visibilità: visibilità globale o all’interno 
+    di una struttura. Per esempio, per specificare la funzione membro <b>initialize()</b>, 
+    che appartiene a <b>Stash</b>, si dice: </font> </p>
+  <p></p>
+  <b><span lang=EN-GB
+style='mso-ansi-language:EN-GB'>Stash::initialize(int size)</span></b><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>.</span>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Vediamo come si usa l’operatore 
+    di risoluzione della visibilità nelle definizioni di funzione: </font></p>
+  <p></p>
+ <blockquote><font size = "+1"> 
+    <pre><font color=#009900>//: C04:CppLib.cpp {O}</font>
+<span
+style='font-size:12.0pt;font-family:Arial;color:#009900'>// Libreria C convertita in C++</span>
+<font color=#009900><span style='font-size:12.0pt;
+font-family:Arial;color:#009900'>// Dichiariamo strutture e funzioni:</span>:</font>
+#include <font color=#004488>"CppLib.h"</font>
+#include &lt;iostream&gt;
+#include &lt;cassert&gt;
+<font color=#0000ff>using</font> <font color=#0000ff>namespace</font> std;
+<span style='font-size:12.0pt;
+font-family:Arial;color:#009900'>// Quantità di elementi da aggiungere</span>
+<span style='font-size:12.0pt;
+font-family:Arial;color:#009900'>// quando viene incrementata la allocazione:</span><font color="#009900">
+</font><font color=#0000ff>const</font> <font color=#0000ff>int</font> increment = 100;
+
+<font color=#0000ff>void</font> Stash::initialize(<font color=#0000ff>int</font> sz) {
+  size = sz;
+  quantity = 0;
+  storage = 0;
+  next = 0;
+}
+
+<font color=#0000ff>int</font> Stash::add(<font color=#0000ff>const</font> <font color=#0000ff>void</font>* element) {
+  <font color=#0000ff>if</font>(next &gt;= quantity)<span style='color:#009900'>// E’ rimasto spazio sufficiente?</span>
+    inflate(increment);
+ <span
+style='color:#009900'>// Copia dell’elemento nell’allocazione,</span>
+ <span
+style='color:#009900'>// partendo dal primo spazio vuoto:</span><font color="#009900">
+</font><font color=#0000ff>int</font> startBytes = next * size;
+  <font color=#0000ff>unsigned</font> <font color=#0000ff>char</font>* e = (<font color=#0000ff>unsigned</font> <font color=#0000ff>char</font>*)element;
+  <font color=#0000ff>for</font>(<font color=#0000ff>int</font> i = 0; i &lt; size; i++)
+    storage[startBytes + i] = e[i];
+  next++;
+  <font color=#0000ff>return</font>(next - 1); <span style='color:#009900'>// </span><span
+style='font-size:12.0pt;font-family:Arial;color:#009900'>numero</span><span
+style='font-size:12.0pt;font-family:Arial;color:#009900;
+'> </span><span style='font-size:12.0pt;font-family:Arial;color:#009900'>d’indice</span>
+}
+
+<font color=#0000ff>void</font>* Stash::fetch(<font color=#0000ff>int</font> index) {
+  <span
+style='color:#009900'>// Controllo dei limiti dell’indice:</span>
+  assert(0 &lt;= index);
+  <font color=#0000ff>if</font>(index &gt;= next)
+    <font color=#0000ff>return</font> 0; <span style='color:#009900'>// Per indicare la fine</span>
+ <span
+style='color:#009900'>// produciamo un puntatore all’elemento desiderato:</span>
+  <font color=#0000ff>return</font> &amp;(storage[index * size]);
+}
+
+<font color=#0000ff>int</font> Stash::count() {
+  <font color=#0000ff>return</font> next; <span style='color:#009900'>// Numero di elementi in CStash</span>
+}
+
+<font color=#0000ff>void</font> Stash::inflate(<font color=#0000ff>int</font> increase) {
+  assert(increase &gt; 0);
+  <font color=#0000ff>int</font> newQuantity = quantity + increase;
+  <font color=#0000ff>int</font> newBytes = newQuantity * size;
+  <font color=#0000ff>int</font> oldBytes = quantity * size;
+  <font color=#0000ff>unsigned</font> <font color=#0000ff>char</font>* b = <font color=#0000ff>new</font> <font color=#0000ff>unsigned</font> <font color=#0000ff>char</font>[newBytes];
+  <font color=#0000ff>for</font>(<font color=#0000ff>int</font> i = 0; i &lt; oldBytes; i++)
+    b[i] = storage[i]; <font color=#009900><span
+style='color:#009900'>// Copia della vecchia allocazione nella nuova</span></font>
+  <font color=#0000ff>delete</font> []storage; <span style='color:#009900'>// Vecchia allocazione</span>
+  storage = b; <span
+style='color:#009900'>// Puntiamo alla nuova memoria</span>
+  quantity = newQuantity;
+}
+
+<font color=#0000ff>void</font> Stash::cleanup() {
+  <font color=#0000ff>if</font>(storage != 0) {
+    cout &lt;&lt; <font color=#004488>"freeing storage"</font> &lt;&lt; endl;
+    <font color=#0000ff>delete</font> []storage;
+  }
+} <font color=#009900>///:~</font></pre>
+    </font></blockquote>
+  <p><font face="Georgia, Times New Roman, Times, serif">Ci sono diverse altre 
+    differenze tra il C e il C++. Primo, le dichiarazioni nei file header sono 
+    esplicitamente <i>richieste</i> dal compilatore. In C++ non si può chiamare 
+    una funzione senza prima dichiararla, e in caso contrario il compilatore emetterà 
+    un messaggio di errore. Questo è un modo importante per essere sicuri che 
+    le chiamate di funzione siano consistenti tra il punto dove sono chiamate 
+    e il punto dove sono definite. Rendendo obbligatoria la dichiarazione della 
+    funzione prima di poterla chiamare, il compilatore C++ si assicura virtualmente 
+    che l’utente lo faccia includendo il file header. Se lo stesso file header 
+    viene incluso anche nel file dove le funzioni sono definite, il compilatore 
+    controlla che la dichiarazione nel file header e la definizione di funzione 
+    combacino. Questo significa che il file header diventa un luogo ottimale per 
+    le dichiarazioni di funzione e assicura che le funzioni siano usate in modo 
+    consistente in tutte le unità di traslazione del progetto. </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Naturalmente, le funzioni 
+    globali possono sempre essere dichiarate a mano in ogni luogo dove sono definite 
+    e usate (cosa così tediosa da diventare molto spiacevole.) Comunque, le strutture 
+    devono essere sempre dichiarate prima che siano definite e usate, e il luogo 
+    più conveniente dove mettere la definizione di una struttura è in un file 
+    header, tranne quelle che sono intenzionalmente nascoste in un file. </font> 
+  </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Si noti che tutte le 
+    funzioni membro sembrano uguali a quando erano funzioni C, tranne per la risoluzione 
+    della visibilità e per il fatto che il primo argomento che si trovava nella 
+    versione C della libreria, non è più esplicito (c’è ancora, naturalmente, 
+    perché la funzione deve essere in grado di lavorare su una particolare variabile 
+    struct). Notiamo, però, all’interno della funzione membro, che anche la selezione 
+    del membro se n’è andata! E così, invece di dire <b>s–&gt;size = sz;</b> si 
+    dice <b>size = sz;</b> e si elimina la tediosa scrittura <b>s–&gt;</b>, che 
+    in ogni caso non aggiunge in realtà nulla al significato di quello che si 
+    sta facendo. Il compilatore C++ lo fa chiaramente per noi. Infatti, prende 
+    il primo argomento “segreto” (l’indirizzo della struttura che in precedenza 
+    gli veniva passata a mano) e applica il selettore di membro ogniqualvolta 
+    ci si riferisce ad uno dei dati membro (incluse anche le altre funzioni membro) 
+    dando semplicemente il suo nome. Il compilatore cercherà prima tra i nomi 
+    della struttura locale e poi, se non lo trova, nella versione globale di quel 
+    nome. Questa caratteristica significa non solo codice più facile da scrivere, 
+    ma anche parecchio più facile da leggere. </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Ma cosa avverrebbe se, 
+    per qualche ragione, si volesse essere in grado di mettere le mani sull’indirizzo 
+    della struttura? Nella versione C della libreria sarebbe stato piuttosto facile, 
+    perché ciascun primo argomento della funzione era un puntatore <b>s</b> a 
+    <b>CStash</b> (<b>CStash*</b>). In C++ le cose sono ancora più conformi: c’è 
+    una parola chiave (parola riservata) speciale, chiamata <b>this</b>, la quale 
+    produce l’indirizzo di <b>struct</b><span style="mso-spacerun: yes">  </span>ed 
+    è l’equivalente di <b>s</b> nella versione C della libreria. Così si può tornare 
+    al solito comportamento in stile C, dicendo: </font> </p>
+  <p></p>
+  <span lang=EN-GB
+style='color:blue;mso-ansi-language:EN-GB'>this</span><span lang=EN-GB
+style='mso-ansi-language:EN-GB'>-&gt;size = Size;</span>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif"> Il codice generato dal 
+    compilatore, è esattamente lo stesso, senza che si abbia più bisogno di fare 
+    questo uso di </font><font face="Georgia, Times New Roman, Times, serif"><b>this</b>; 
+    occasionalmente, si può vedere del codice dove la gente usa esplicitamente 
+    <b>this-&gt;</b> dovunque, ma ciò non aggiunge nulla al significato del codice 
+    e indica solo un programmatore inesperto. Normalmente, non si usa spesso <b>this</b>, 
+    ma quando se ne ha bisogno, è presente (come si vedrà in alcuni degli esempi 
+    illustrati in questo libro).</font> </p>
+  <p><font face="Georgia, Times New Roman, Times, serif">C’è un’ultima cosa da 
+    dire: in C,  si potrebbe assegnare un <b>void*</b> ad ogni altro puntatore 
+    in questo modo: </font></p>
+  <pre style='text-align:justify;line-height:150%'><span lang=EN-GB
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:Arial;color:blue;
+mso-ansi-language:EN-GB'>int</span><span lang=EN-GB style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;font-family:Arial;mso-ansi-language:EN-GB'> i = 10;</span></pre>
+  <pre
+style='text-align:justify;line-height:150%'><span style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;font-family:Arial;color:blue'>void</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:Arial'>* vp = &amp;i; <span
+style='color:#009900'>// corretto sia in C che in C++</span></span></pre>
+  <pre
+style='text-align:justify;line-height:150%'><span style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;font-family:Arial;color:blue'>int</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:Arial'>* ip = vp; <span
+style='color:#009900'>// Accettabile solo in C</span></span></pre>
+  <p><font face="Georgia, Times New Roman, Times, serif">senza che il compilatore 
+    protesti. Ma, in C++, quest’affermazione non è permessa. Perché? Perché il 
+    C non è molto rigoroso circa le informazioni sul tipo, e permette quindi di 
+    assegnare un puntatore<span style="mso-spacerun: yes">  </span>di un tipo 
+    non specificato, ad un puntatore di tipo specificato. Non così il C++. Il 
+    tipo è un aspetto critico del C++, e il compilatore pesta i piedi quando c’è 
+    una qualsiasi violazione nelle informazioni sui tipi. Questa è sempre stata 
+    una questione importante, ma lo è specialmente in C++ perché nelle <b>struct</b>s 
+    ci sono funzioni membro. Se in C++ si potessero passare impunemente puntatori 
+    a <b>struct</b>s, allora si finirebbe per fare chiamate a funzioni membro 
+    per una struttura che non esiste logicamente per quella <b>struct</b>! Un’ottima 
+    ricetta per compiere disastri! Perciò, mentre il C++ permette l’assegnamento 
+    di ogni tipo di puntatore<span style="mso-spacerun: yes">  </span>a un <b>void*</b> 
+    (questo era lo scopo originale di <b>void*</b>, che si voleva grande a sufficienza 
+    per contenere un puntatore di qualsiasi tipo), non permetterà di assegnare 
+    un puntatore <b>void</b> ad altri tipi di puntatori. In C++ viene sempre richiesto 
+    un cast per dire sia al lettore, che al compilatore, che si vuole veramente 
+    trattare l’oggetto come il tipo di destinazione specificato. </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">E qui si solleva un’interessante 
+    questione. Una delle mete importanti del C++, è compilare la quantità maggiore 
+    di codice C esistente, per permettere una facile transizione al nuovo linguaggio. 
+    Questo comunque non significa che qualsiasi frammento di codice permesso in 
+    C lo sia anche in C++. Un compilatore C lascia passare parecchie cose pericolose 
+    che possono portare a errori. Per queste situazioni, invece, il compilatore 
+    C++ genera avvertimenti e messaggi di errore, e questo è molto spesso più 
+    un vantaggio che un impiccio; infatti, vi sono molte situazioni nelle quali 
+    in C si tenta inutilmente di rintracciare un errore, e non appena si ricompia 
+    il codice in C++, il compilatore identifica subito il problema! In C capita 
+    di compilare apparentemente in modo corretto un programma che poi non funziona, 
+    mentre in C++, quando un programma è stato compilato correttamente, è molto 
+    probabile che funzioni! e ciò è dovuto al fatto che è un linguaggio più restrittivo 
+    nell’uso dei tipi. </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif"> Nel seguente programma 
+    di test, è possibile vedere come, nella versione C++ di Cstash,  ci siano 
+    parecchie cose nuove: </font> </p>
+
+  <blockquote><FONT SIZE="+1">
+    <pre><font color="#009900" >//: C04:CppLibTest.cpp</font>
+<font color="#009900" >//{L} CppLib</font>
+<font color="#009900">// Test della libreria C++<</font>
+#include <font color=#004488>"CppLib.h"</font>
+#include <font color=#004488>"../require.h"</font>
+#include &lt;fstream&gt;
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+<font color=#0000ff>using</font> <font color="#0000ff" >namespace</font> std;
+
+<font color=#0000ff>int</font> main() {
+  Stash intStash;
+  intStash.initialize(<font color=#0000ff>sizeof</font>(<font color=#0000ff>int</font>));
+  <font color=#0000ff>for</font>(<font color=#0000ff>int</font> i = 0; i &lt; 100; i++)
+    intStash.add(&amp;i);
+  <font color=#0000ff>for</font>(<font color=#0000ff>int</font> j = 0; j &lt; intStash.count(); j++)
+    cout &lt;&lt; <font color=#004488>"intStash.fetch("</font> &lt;&lt; j &lt;&lt; <font color=#004488>") = "</font>
+    &lt;&lt; *(<font color=#0000ff>int</font>*)intStash.fetch(j)
+         &lt;&lt; endl;
+  <font color=#009900>// Creiamo una stringa di 80 caratteri:</font>
+  Stash stringStash;
+  <font color=#0000ff>const</font> <font color="#0000ff" >int</font> bufsize = 80;
+  stringStash.initialize(<font color=#0000ff>sizeof</font>(<font color=#0000ff>char</font>) * bufsize);
+  ifstream in(<font color=#004488>"CppLibTest.cpp"</font>);
+  assure(in, <font color=#004488>"CppLibTest.cpp"</font>);
+  string line;
+  <font color=#0000ff>while</font>(getline(in, line))
+    stringStash.add(line.c_str());
+  <font color=#0000ff>int</font> k = 0;
+  <font color=#0000ff>char</font>* cp;
+  <font color=#0000ff>while</font>((cp =(<font color=#0000ff>char</font>*)stringStash.fetch(k++)) != 0)
+    cout &lt;&lt; <font color=#004488>"stringStash.fetch("</font>&lt;&lt; k &lt;&lt; <font color=#004488>") = "</font>
+    &lt;&lt; cp &lt;&lt; endl;
+  intStash.cleanup();
+  stringStash.cleanup();
+} <font color=#009900>///:~</font></pre></font>
+   
+  </blockquote>
+  <p>&nbsp;</p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Una delle cose che si 
+    notano, è che le variabili sono tutte definite “al volo” (vedi capitolo precedente). 
+    Cioè, sono definite in un punto qualsiasi permesso alla loro visibilità (scope), 
+    piuttosto che con la restrizione del C di metterle all’inizio dello scope. 
+    </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Il codice è del tutto 
+    simile a <b>CLibTest.cpp</b>, ma quando viene chiamata una funzione membro, 
+    la chiamata avviene usando l’operatore ‘.’ di selezione del membro, preceduto 
+    dal nome della variabile. Questa sintassi risulta conveniente poiché imita 
+    la selezione di un membro dati della struttura; la differenza è che questa 
+    è una funzione membro, e quindi ha una lista di argomenti. </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Naturalmente, la chiamata 
+    che il compilatore effettivamente genera, assomiglia molto di più alla funzione 
+    della libreria C originale, così, considerando<span style="mso-spacerun: yes">  
+    </span>i suffissi del nome (name decoration) e il passaggio di <b>this</b>, 
+    la chiamata di funzione C++ <b>intStash.initialize(sizeof(int), 100)</b> diventa 
+    qualcosa di simile a <b>Stash_initialize(&amp;intStash, sizeof(int), 100)</b>. 
+    Se vi siete chiesti cosa mai ci sia sotto lo strato superficiale, ricordate 
+    che il compilatore C++ originale (“cfront” della AT&amp;T) , produceva come 
+    suo output codice C, il quale poi veniva compilato dal compilatore C sottostante. 
+    Questo approccio significava che cfront poteva essere velocemente portato 
+    su ogni macchina che aveva un compilatore C: un grande contributo a diffondere 
+    rapidamente la tecnologia dei compilatori C++. Ma, poiché il compilatore C++ 
+    doveva generare codice C, è chiaro che si doveva in qualche modo rappresentare 
+    la sintassi C++ in C (alcuni compilatori C++ permettono tuttora di produrre 
+    codice C). </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">C’è un’altra differenza 
+    da <b>ClibTest.cpp</b>, che è l’introduzione del file header <b>require.h</b>, 
+    un file header creato appositamente per questo libro per effettuare un controllo 
+    degli errori più sofisticato di quello dato dalla funzione <b>assert()</b>. 
+    Questo file contiene diverse funzioni, incluse quella che qui è usata, <b>assure()</b>, 
+    usata per i file: controlla se un file è stato aperto con successo, e se non 
+    lo è, comunica allo standard error che il file potrebbe non essere aperto 
+    (quindi è necessario il nome del file come secondo argomento) ed esce dal 
+    programma. Le funzioni di <b>require.h</b> rimpiazzano il codice di controllo 
+    degli errori di tipo distracting e repetitive, e in più forniscono utili messaggi 
+    di errore. Queste funzioni saranno completamente spiegate più tardi nel libro. 
+    </font> </p>
+  <p></p>
+  <font face="Verdana, Arial, Helvetica, sans-serif"><b><span style='font-size:14.0pt;
+mso-bidi-font-size:12.0pt'>Cos’è un oggetto?</span></b></font> 
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Ora che si è visto un 
+    esempio iniziale, è tempo di fare un passo indietro e dare un’occhiata a un 
+    po’ di terminologia. </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Il portare funzioni all’interno 
+    di una struttura, è il fondamento strutturale che il C++ aggiunge al C; introduce 
+    un nuovo modo di pensare le strutture: come concetti. In C, una struttura 
+    è un agglomerato di dati, un modo per impacchettare dati così che possano 
+    essere trattati in un blocco. Ma è difficile pensarlo come un qualcosa che 
+    non sia altro che una conveniente modalità di programmazione. Le funzioni 
+    che operano su quella struttura possono essere ovunque. Con le funzioni all’interno 
+    del pacchetto, la struttura diventa una nuova creatura, capace di descrivere 
+    sia caratteristiche (coma fa una struttura C) che comportamento. Il concetto 
+    di un oggetto, una entità a sé, chiusa, che può <i>ricordare</i> e <i>agire</i>, 
+    suggerisce, propone, sé stesso. </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">In C++, un oggetto è 
+    appunto una variabile, e la più pura definizione è:<span style="mso-spacerun: yes">  
+    </span>“una zona di memoria” (che è un modo più specifico di dire, “un oggetto 
+    deve avere un identificatore univoco”, il quale, nel caso del C++, è un indirizzo 
+    di memoria univoco).<span style="mso-spacerun: yes">  </span>E’ un luogo dove 
+    è possibile memorizzare dati, ed è sottointeso che lì ci siano anche operazioni 
+    che possono agire su questi dati. </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Sfortunatamente, quando 
+    si giunge a questo livello di terminologia, non c’è un completo accordo tra 
+    i linguaggi, anche se sono accettati abbastanza bene. Si possono anche trovare 
+    posizioni discordanti su cosa sia un linguaggio orientato agli oggetti. Ci 
+    sono alcuni linguaggi che sono <i>basati</i> sugli oggetti (object-based), 
+    cioè hanno oggetti come le “strutture con funzioni” che si sono viste fin 
+    qui, ma questa è solo una parte della faccenda che investe un linguaggio orientato 
+    agli oggetti; i linguaggi che si fermano all’impacchettamento delle funzioni 
+    all’interno delle strutture dati, sono solo linguaggi basati sugli oggetti, 
+    e non orientati agli oggetti. </font> </p>
+  <p></p>
+  <font face="Verdana, Arial, Helvetica, sans-serif"><b><span style='font-size:14.0pt;
+mso-bidi-font-size:12.0pt'>Tipi di dati astratti</span></b> </font> 
+  <p></p>
+  <p><span style="mso-spacerun:
+yes"><font face="Georgia, Times New Roman, Times, serif"> </font></span><font face="Georgia, Times New Roman, Times, serif">La 
+    capacità di impacchettare dati insieme a funzioni, permette la creazione di 
+    un nuovo tipo di dati. Questa capacità è spesso chiamata <b><i>incapsulamento</i> 
+    </b>[33]. Un tipo di dato già esistente, può avere diversi blocchi di dati 
+    impacchettati assieme. Per esempio, un <b>float</b> è costituito da un esponente, 
+    una mantissa e un bit di segno, e gli si può dire di compiere delle cose: 
+    aggiungere un altro <b>float</b> o un <b>int</b>, e così via: risulta quindi 
+    avere già un insieme sia di caratteristiche che di comportamenti. </font> 
+  </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">La definizione di <b>Stash</b> 
+    crea un nuovo tipo di dato, su cui è possibile effettuare operazioni tramite 
+    <b>add()</b>, <b>fetch()</b>, e <b>inflate ()</b>. Per creare un’istanza di 
+    <b>Stash</b>, si scrive <b>Stash s</b>, proprio come per creare un <b>float</b> 
+    si scrive <b>float f</b>. Un tipo <b>Stash</b> possiede sia delle caratteristiche 
+    che dei comportamenti. Anche <b>Stash</b> si comporta come un vero tipo di 
+    dato built-in, ci si riferisce ad esso come ad un tipo di dato astratto, forse 
+    perché ci permette di astrarre un concetto dallo spazio del problema allo 
+    spazio della soluzione. In più, il compilatore C++ lo tratta come un nuovo 
+    tipo di dato, e se si dice che una funzione si aspetta un dato di tipo <b>Stash</b>, 
+    il compilatore si assicura che si passi uno <b>Stash</b> a quella funzione. 
+    Così, come per i tipi built-in definiti dall’utente, anche con i tipi di dati 
+    astratti c’è lo stesso livello di controllo di tipo. Qui si vede immediatamente 
+    una differenza nel modo in cui si compiono le operazioni sugli oggetti. Si 
+    scrive: <b>object.memberFunction(arglist)</b>, e significa “richiedere una 
+    funzione membro di un oggetto”. Ma nel gergo object-oriented, significa anche 
+    <b><i>“spedire un messaggio a un oggetto”</i></b>. Così. Per un <b>s</b> di 
+    tipo <b>Stash</b>, l’affermazione <b>s.add(&amp;i) “spedisci un messaggio 
+    a s”</b> dice, “<b>add()</b> (aggiungi) questo a te stesso”. E infatti, la 
+    programmazione orientata agli oggetti può essere riassunta in una singola 
+    frase: <b><i>la programmazione orientata agli oggetti è lo spedire messaggi 
+    a oggetti</i></b><i>.</i> In effetti, questo è tutto ciò che si fa: creare 
+    un gruppo di oggetti e spedire loro dei messaggi. Il trucco, naturalmente, 
+    è riuscire a capire cosa sono quegli oggetti e quei messaggi, ma una volta 
+    fatto questo lavoro, l’implementazione in C++ è sorprendentemente semplice. 
+    </font> </p>
+  <p></p>
+  <font face="Verdana, Arial, Helvetica, sans-serif"><b><span style='font-size:14.0pt;
+mso-bidi-font-size:12.0pt'>Gli oggetti in dettaglio</span></b> </font> 
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Una domanda che spesso 
+    viene fatta nei seminari, è : “Quanto è grande un oggetto, e a cosa assomiglia?”. 
+    La risposta è : “circa quello che ci si aspetta da una struttura di tipo C”. 
+    Infatti, il codice che viene prodotto dal codice C per una struttura C (senza 
+    parti C++), sembra <i>esattamente</i> lo stesso del codice prodotto da un 
+    compilatore C++.<span style="mso-spacerun: yes">  </span>Questo fatto risulta 
+    rassicurante per quei programmatori per i quali è importante il dettaglio 
+    della dimensione e della implementazione nel proprio codice, e per qualche 
+    ragione accedono direttamente alla struttura di bytes invece di usare gli 
+    identificatori (il dipendere da particolari dimensioni e implementazioni di 
+    una struttura, è una attività che non è portabile su altre piattaforme). </font> 
+  </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">La dimensione di una 
+    struttura è la somma delle dimensioni di tutti i suoi membri. Talvolta, quando 
+    il compilatore implementa una <b>struct</b>, aggiunge dei bytes extra per 
+    fare in modo che i confini fra le zone di memoria assegnate ai dati siano 
+    netti, aumentando l’efficienza dell’esecuzione del programma. Nel cap. 15 
+    si vedrà come, in alcuni casi, vengano aggiunti alla struttura dei puntatori 
+    “segreti”, ma ora non è il caso di preoccuparsene. </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Si può determinare la 
+    dimensione di una struttura usando l’operatore <b>sizeof</b>.Un semplice esempio: </font> </p>
+  
+  <blockquote><font size = "+1">
+    <pre><font color=#009900>//: C04:Sizeof.cpp</font>
+<font color=#009900>// Dimensioni di  struct</font>
+#include <font color=#004488>"CLib.h"</font>
+#include <font color=#004488>"CppLib.h"</font>
+#include &lt;iostream&gt;
+<font color=#0000ff>using</font> <font color=#0000ff>namespace</font> std;
+
+<font color=#0000ff>struct</font> A {
+  <font color=#0000ff>int</font> i[100];
+};
+
+<font color=#0000ff>struct</font> B {
+  <font color=#0000ff>void</font> f();
+};
+
+<font color=#0000ff>void</font> B::f() {}
+
+<font color=#0000ff>int</font> main() {
+  cout &lt;&lt; <font color=#004488>"sizeof struct A = "</font> &lt;&lt; <font color=#0000ff>sizeof</font>(A)
+       &lt;&lt; <font color=#004488>" bytes"</font> &lt;&lt; endl;
+  cout &lt;&lt; <font color=#004488>"sizeof struct B = "</font> &lt;&lt; <font color=#0000ff>sizeof</font>(B)
+       &lt;&lt; <font color=#004488>" bytes"</font> &lt;&lt; endl;
+  cout &lt;&lt; <font color=#004488>"sizeof CStash in C = "</font> 
+       &lt;&lt; <font color=#0000ff>sizeof</font>(CStash) &lt;&lt; <font color=#004488>" bytes"</font> &lt;&lt; endl;
+  cout &lt;&lt; <font color=#004488>"sizeof Stash in C++ = "</font> 
+       &lt;&lt; <font color=#0000ff>sizeof</font>(Stash) &lt;&lt; <font color=#004488>" bytes"</font> &lt;&lt; endl;
+} <font color=#009900>///:~</font></pre>
+    </font></blockquote>
+  <p><font face="Georgia, Times New Roman, Times, serif">Tenendo presente che 
+    il risultato dipende dalla macchina su cui gira il programma, la prima istruzione 
+    di print produce 200, poiché ogni <b>int</b> occupa due bytes. La <b>struct</b> 
+    B è qualcosa di anomalo, perché è una <b>struct</b> senza membri dati; in 
+    C è un’operazione illegale, ma in C++ è permesso perché si ha la necessità 
+    di creare una struttura il cui unico compito sia la visibilità dei nomi delle 
+    funzioni. Ancora, il risultato prodotto dal secondo print, è un qualcosa che 
+    sorprendentemente ha un valore diverso da zero. Nelle prime versioni del linguaggio, 
+    la dimensione era zero, ma quando si creano tali oggetti si crea una situazione 
+    imbarazzante: hanno lo stesso indirizzo dell’oggetto creato direttamente dopo 
+    di loro, e quindi non sono distinti. Una delle regole fondamentali nella trattazione 
+    degli oggetti, è che ogni oggetto deve avere un indirizzo univoco; quindi 
+    le strutture senza membri dati avranno sempre una qualche dimensione minima 
+    diversa da zero. </font></p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Gli ultimi due <b>sizeof</b>, 
+    mostrano che la dimensione della struttura in C++ è la stessa della dimensione 
+    della versione equivalente in C. Il C++ cerca di non aggiungere nessun sovrappiù 
+    che non sia strettamente necessario. </font> </p>
+  <p></p>
+  <h2 style='text-align:justify;line-height:
+150%'><font face="Verdana, Arial, Helvetica, sans-serif"><span style='font-size:14.0pt;mso-bidi-font-size:18.0pt;font-family:Arial'>Etichetta 
+    di comportamento per i file header</span></font></h2>
+  <p><font face="Georgia, Times New Roman, Times, serif">Quando si crea una struttura 
+    che contiene funzioni membro, si sta creando un nuovo tipo di dato e, in generale, 
+    si vuole che questo tipo sia facilmente accessibile a chi scrive il programma 
+    e anche agli altri. Inoltre, si vuole separare l’interfaccia (la dichiarazione) 
+    dall’implementazione (la definizione delle funzioni membro), così che l’implementazione 
+    possa essere cambiata senza essere obbligati a una ricompilazione<span style="mso-spacerun: yes">  
+    </span>dell’intero sistema. Si raggiunge questo fine mettendo la dichiarazione 
+    di un nuovo tipo in un file header. </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Quando ho imparato a 
+    programmare in C, i file header erano per me un mistero, e in molti libri 
+    dedicati al C non c’era molto interesse al riguardo; inoltre, il compilatore 
+    C non imponeva le dichiarazioni di funzione, cosicché per molto tempo i file 
+    header sono stati considerati un’utilità opzionale, tranne nel caso in cui 
+    venissero dichiarate delle strutture. In C++, invece, l’uso dei file header 
+    diventa chiaro in modo cristallino; sono virtualmente obbligatori per un sviluppo 
+    comodo di un programma; lì, è possibile inserire informazioni molto specifiche: 
+    le dichiarazioni. Il file header dice al compilatore cosa è disponibile nella 
+    libreria. Si può usare la libreria anche se si possiede solo il file header 
+    insieme al file oggetto o al file libreria; non si ha bisogno del file <b>.cpp</b> 
+    del codice sorgente. Il file header è il luogo dove sono contenute le specifiche 
+    di interfaccia. </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Sebbene non si sia obbligati 
+    dal compilatore, il miglior modo per costruire grandi progetti in C è di usare 
+    le librerie: collezioni di funzioni tra loro associate, poste all’interno 
+    dello stesso modulo oggetto o libreria, e usare poi un file header per contenere 
+    tutte le dichiarazioni per le funzioni. Questo metodo è <i>di rigore</i> in 
+    C++. E’ possibile mettere qualsiasi funzione in una libreria C, ma in C++, 
+    il tipo di dato astratto determina le funzioni che vengono associate in forza 
+    del loro comune accesso ai dati in una <b>struct</b>. Ogni funzione membro 
+    deve essere dichiarata nella dichiarazione della <b>struct</b>: non è possibile 
+    metterla altrove. </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">L’uso delle librerie 
+    di funzioni era incoraggiato in C, ma è istituzionalizzato in C++. </font> 
+  </p>
+  <p></p>
+  <font face="Verdana, Arial, Helvetica, sans-serif"><b>L’importanza dei file 
+  header.</b> </font> 
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Quando si usa una funzione 
+    di una libreria, il C permette di ignorare il file header e di dichiarare 
+    semplicemente la funzione a mano. Nel passato, la gente qualche volta lo faceva 
+    per accelerare un pelo il compilatore ed evitandogli così il compito di aprire 
+    e includere il file (cosa non più redditizia con i compilatori moderni). Come 
+    esempio, di seguito riporto una dichiarazione estremamente “<i>lazzarona</i>” 
+    per la funzione <b>printf()</b>  del C (da <b>&lt;stdio.h&gt;</b>): </font></p>
+<BLOCKQUOTE><FONT SIZE = "+1"><PRE>printf(…);   </pre></font></BLOCKQUOTE>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">L’omissione “…” indica 
+    una lista variabile di argomenti [34], che dice: <b>printf()</b> ha un qualche 
+    argomento, ognuno dei quali ha un tipo, ma si ignora quale. Soltanto prendendo 
+    un determinato argomento è possibile vederlo e accettarlo. Usando questo tipo 
+    di dichiarazione, vengono sospesi tutti i controlli di errore sugli argomenti 
+    della funzione. </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Questa pratica può causare 
+    problemi oscuri, subdoli. Se si dichiara una funzione a mano, in un file si 
+    può fare un errore. Siccome il compilatore vede solo la dichiarazione fatta 
+    a mano e fatta solo in quel file, può essere in grado di adattarsi all’errore. 
+    Il programma verrà quindi linkato correttamente, ma l’uso della funzione in 
+    quel singolo file fallirà. Questo tipo di errore è molto difficile da trovare, 
+    ma si può facilmente evitare usando un file header. </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Se si mettono tutte le 
+    dichiarazioni di funzione in un file header e si include quel file header 
+    sia dove viene definita la funzione<span style="mso-spacerun: yes">  </span>che 
+    ovunque la si usi, ci si assicura una dichiarazione consistente attraverso 
+    l’intero sistema. Inoltre, ci si può assicurare che dichiarazione e definizione 
+    combacino, inserendo il file header nel file di definizione. </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Se in un file C++ si 
+    dichiara una <b>struct</b>, è obbligatorio includere il file header ovunque 
+    si usi una <b>struct</b> e dove vengono definiti i membri funzione della <b>struct</b>. 
+    Se si prova a chiamare una funzione regolare, o a chiamare o definire una 
+    funzione membro senza che essa sia stata prima dichiarata, il compilatore 
+    C++ darà un messaggio di errore. Costringendo il programmatore ad un uso corretto 
+    dei file header, il linguaggio si assicura la consistenza nelle librerie, 
+    inoltre riduce gli errori con l’uso della stessa interfaccia ovunque sia necessaria. 
+    </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Il file header è un contratto 
+    fra l’utente di una libreria e il suo programmatore, che descrive la sua struttura 
+    dati, specifica gli argomenti e i valori restituiti dalle funzioni chiamate. 
+    Dice: “Questo è ciò che la mia libreria fa”. L’utente necessita di alcune 
+    di queste informazioni per sviluppare la propria applicazione, mentre il compilatore 
+    ne ha bisogno per generare il codice appropriato. L’utente che usa <b>struct</b>, 
+    include semplicemente il file header, crea le istanze di <b>struct</b> e linka 
+    il tutto nel modulo oggetto o in libreria (cioè: compila il codice). </font> 
+  </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Il compilatore fa osservare 
+    il contratto richiedendo di dichiarare tutte le strutture e le funzioni prima 
+    che siano usate e, nel caso di funzioni membro, prima che esse siano definite. 
+    Ciò implica essere costretti a mettere le dichiarazioni nel file header e 
+    a includerlo nel file dove le funzioni membro sono definite, e nei file dove 
+    sono usate. Siccome un singolo file header che descrive la libreria è incluso 
+    lungo tutto il sistema, il compilatore è in grado di assicurare la consistenza 
+    e prevenire gli errori. </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Ci sono certe questioni 
+    di cui si deve essere al corrente al fine di organizzare il codice in modo 
+    appropriato e scrivere dei file header efficaci. La prima questione concerne 
+    quello che si deve mettere all’interno di un file header. La regola base è: 
+    “solo dichiarazioni”, cioè, solo informazioni al compilatore ma niente che 
+    allochi memoria attraverso la generazione di codice o la creazione di variabili. 
+    Questo perché, tipicamente, in un progetto il file header sarà incluso in 
+    diverse unità di traslazione, e se la memoria per un identificatore viene 
+    allocata in più di un posto, il linker emetterà un errore di definizione multipla 
+    (questa è, per il C++, la “regola dell’uno per le definizioni”: E’ possibile 
+    dichiarare delle cose quante volte si vuole, ma ci può essere una sola definizione 
+    per ogni cosa dichiarata). </font> </p>
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Questa regola non è del 
+    tutto rigida: se si definisce una variabile che è “<b>file static</b>” (ha 
+    visibilità solo dentro un file) all’interno di un file header, ci saranno 
+    istanze multiple di quel dato nei moduli del progetto, ma il linker non riscontrerà 
+    collisioni [35]. Fondamentalmente, non si desidera fare nulla nel file header 
+    che possa causare una ambiguità nella fase di link. </font> </p>
+  <p></p>
+  <font face="Verdana, Arial, Helvetica, sans-serif"><b>Il problema della dichiarazione 
+  multipla.</b> </font> 
+  <p></p>
+  <font face="Georgia, Times New Roman, Times, serif">La seconda questione legata 
+  ai file header è questa: quando si mette una dichiarazione di <b>struct</b> 
+  in un file header, è possibile che quel file header sia incluso più di una volta 
+  se il programma è complicato. Gli <b>Iostream</b>s rappresentano un buon esempio. 
+  Ogni volta che una <b>struct</b> fa un un’operazione di I/O, può includere uno 
+  o più degli header di <b>iostream</b>. Se il file <b>cpp</b> su cui si sta lavorando 
+  usa più di un tipo di <b>struct</b> ( includendo tipicamente un file header 
+  per ognuna di esse), si corre il rischio di includere più di una volta lo header<span style="mso-spacerun: yes">   
+  </span><b>&lt;iostream&gt;</b> e di ridichiarare gli <b>iostream</b>s. </font>
+  <p></p>
+  <font face="Georgia, Times New Roman, Times, serif">Il compilatore considera 
+  la ridichiarazione di una struttura (si parla sia di <b>struct</b>s che di <b>class</b>es) 
+  come un errore, poiché se così non fosse permetterebbe l’uso dello stesso nome 
+  per tipi differenti. Per prevenire questo errore quando si includono file header 
+  multipli, si ha la necessità di costruire un qualcosa di intelligente all’interno 
+  dei file header usando il preprocessore (i file header dello Standard C++, come 
+  <b>&lt;iostream&gt;</b>, hanno già questo qualcosa di intelligente). </font>
+  <p></p>
+  <font face="Georgia, Times New Roman, Times, serif">Sia il C che il C++ permettono 
+  di ridichiarare una funzione, purché le due dichiarazioni combacino, ma né uno 
+  né l’altro permettono la ridichiarazione di una struttura. Questa regola è particolarmente 
+  importante in C++, perché se il compilatore permettesse di ridichiarare una 
+  struttura e poi le due dichiarazioni differissero, quale userebbe? </font>
+  <p></p>
+  <font face="Georgia, Times New Roman, Times, serif">Il problema della ridichiarazione 
+  emerge un po’ più in C++ che in C, perché in C++ ogni tipo di dato (strutture 
+  con funzioni) ha generalmente il suo proprio file header, e si deve includere 
+  un header in un altro se si vuole creare un altro tipo di dati che usa il primo.<span style="mso-spacerun: yes">  
+  </span>In ogni file <b>cpp</b> di un progetto, è probabile che vengano inclusi 
+  diversi file che includono a loro volta lo stesso file header. Durante una singola 
+  compilazione, il compilatore può vedere lo stesso file header diverse volte. 
+  A meno che non si faccia qualcosa a riguardo, il compilatore vedrà la ridichiarazione 
+  della struttura e registrerà un errore di compilazione. Per risolvere il problema, 
+  si ha bisogno di conoscere un po’ di più il preprocessore. </font> 
+  <p></p>
+  <font face="Verdana, Arial, Helvetica, sans-serif"><b>Le direttive del preprocessore:<span style='mso-tab-count:1'> 
+  </span>#define, #ifdef, #endif</b> </font> 
+  <p></p>
+  <font face="Georgia, Times New Roman, Times, serif">Si può usare la direttiva 
+  di preprocessore <b>#define,</b> per creare dei flag nel momento della compilazione 
+  del programma. Si hanno due scelte: si può semplicemente dire al preprocessore 
+  che il flag è definito, senza specificarne un valore: </font>
+  <p></p>
+  <font face="Georgia, Times New Roman, Times, serif"><b>#define FLAG</b> </font>
+  <p></p>
+  <font face="Georgia, Times New Roman, Times, serif">oppure si può dargli un 
+  valore (che è il tipico modo di definire delle costanti in C): </font>
+  <p></p>
+  <font face="Georgia, Times New Roman, Times, serif"><b>#define PI 3.14159</b> 
+  </font>
+  <p></p>
+  <font face="Georgia, Times New Roman, Times, serif">In entrambi i casi, la label 
+  può essere testata dal preprocessore per vedere se è stata definita: </font>
+  <p></p>
+  <font face="Georgia, Times New Roman, Times, serif"><b>#ifdef FLAG</b> </font>
+  <p></p>
+  <font face="Georgia, Times New Roman, Times, serif">Questo produrrà come risultato 
+  “<b>true</b>”, e il codice che segue la direttiva <b>#ifdef</b> sarà incluso 
+  nel pacchetto spedito al compilatore. Questa inclusione cessa quando il preprocessore 
+  incontra la direttiva </font>
+  <p></p>
+  <font face="Georgia, Times New Roman, Times, serif"><b>#endif</b> </font>
+  <p></p>
+  <font face="Georgia, Times New Roman, Times, serif">o </font>
+  <p></p>
+  <font face="Georgia, Times New Roman, Times, serif"><b><span lang=EN-GB
+style='mso-ansi-language:EN-GB'>#endif </span></b><span lang=EN-GB
+style='color:#009900;mso-ansi-language:EN-GB'>// FLAG</span> </font>
+  <p></p>
+  <font face="Georgia, Times New Roman, Times, serif">Qualsiasi cosa che non sia 
+  un commento, messo sulla stessa linea dopo la direttiva <b>#endif</b>, è illegale, 
+  anche se qualche compilatore può accettarlo. La coppia <b>#ifdef</b> / <b>#endif</b> 
+  si può annidare una nell’altra. </font>
+  <p></p>
+  <font face="Georgia, Times New Roman, Times, serif">Il complemento di <b>#define</b> 
+  è <b>#undef</b>, il quale farà un <b>#ifdef</b> usando la stessa variabile e 
+  producendo “<b>false</b>” come risultato. La direttiva <b>#undef</b> causerà 
+  anche lo stop dell’uso delle macro da parte del preprocessore. </font>
+  <p></p>
+  <font face="Georgia, Times New Roman, Times, serif">Il complemento di <b>#ifdef</b> 
+  è <b>#ifndef</b>, che dà “<b>true</b>” se la label non è stata definita (questo 
+  è quello che si userà nei file header). </font>
+  <p></p>
+  <font face="Georgia, Times New Roman, Times, serif">Nel preprocessore C ci sono 
+  altre caratteristiche utili, che si possono trovare nella documentazione allegata 
+  al particolare preprocessore. </font> 
+  <p></p>
+  <font face="Verdana, Arial, Helvetica, sans-serif"><b>Uno standard per i file 
+  header</b> </font> 
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Quando un file header 
+    contiene una struttura, prima di includerlo in un file <b>cpp</b>, si dovrebbe 
+    controllare se è già stato in qualche modo incluso in questo <b>cpp</b>. Questo 
+    viene fatto testando un flag del preprocessore. Se il flag non è stato messo 
+    in precedenza, significa che il tipo non è già stato dichiarato; si può allora 
+    mettere il flag (così che la struttura non possa venire ridichiarata) e dichiarare 
+    la struttura, cioè includere il file. Se invece il flag è già stato messo, 
+    allora il tipo è già stato dichiarato e non lo si deve più dichiarare. Ecco 
+    come dovrebbe presentarsi un file header: </font> <font face="Georgia, Times New Roman, Times, serif"><span style='font-family:Arial'>&nbsp;</span></font></p>
+  <blockquote><font size="+1">
+    <pre>#ifndef HEADER_FLAG
+#define HEADER_FLAG
+<font color=#009900>// La dichiarazione di Tipo deve essere inserita qui... </font>
+#endif <font color=#009900>// HEADER_FLAG</font></pre></font>
+  </blockquote>
+  <p><font face="Georgia, Times New Roman, Times, serif"> Come si può vedere, 
+    la prima volta che il file header è incluso, il contenuto del file header 
+    (includendo le dichiarazioni di tipo) sarà incluso dal processore. Tutte le 
+    volte seguenti che sarà incluso – in una singola unità di compilazione – la 
+    dichiarazione di tipo sarà ignorata. Il nome HEADER_FLAG può essere qualsiasi 
+    nome univoco, ma uno standard attendibile da seguire è quello di scrivere 
+    il nome del file header con caratteri maiuscoli e sostituire i punti con underscore 
+    (gli underscore iniziali sono riservati per i nomi di sistema). Un esempio: 
+    </font> </p>
+  <p></p>
+  
+  <blockquote><font size = "+1">
+    <pre><font color=#009900>//: C04:Simple.h</font>
+<font color=#009900>// Un semplice header che previene la re-definizione </font>
+#ifndef SIMPLE_H
+#define SIMPLE_H
+
+<font color=#0000ff>struct</font> Simple {
+  <font color=#0000ff>int</font> i,j,k;
+  initialize() { i = j = k = 0; }
+};
+#endif <font color=#009900>// SIMPLE_H ///:~</font></pre>
+    </font></blockquote>
+  <pre
+style='text-align:justify;line-height:150%'><span style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;font-family:Arial'>&nbsp;</span></pre>
+  SIMPLE_H dopo #endif è commentato e quindi ignorato dal preprocessore, ma risulta 
+  utile per la documentazione.
+  <p></p>
+  <font face="Georgia, Times New Roman, Times, serif">Le dichiarazioni di preprocessore 
+  che prevengono la inclusioni multiple, sono spesso nominate come “<b><i>include 
+  guards</i></b>” (guardie degli include). </font>
+  <p></p>
+  <font face="Georgia, Times New Roman, Times, serif"><b>Namespaces negli header</b> 
+  </font>
+  <p></p>
+  <font face="Georgia, Times New Roman, Times, serif">Si sarà notato che in quasi 
+  tutti i file cpp di questo libro, sono presenti <b>using <i>direttive</i> </b>, 
+  normalmente nella forma: </font>
+  <p></p>
+  <pre style='text-align:justify;line-height:150%'><font face="Georgia, Times New Roman, Times, serif"><span lang=EN-GB
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:Arial;color:blue;
+mso-ansi-language:EN-GB'>using</span><span lang=EN-GB style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;font-family:Arial;mso-ansi-language:EN-GB'> <span
+style='color:blue'>namespace</span> std;</span></font></pre>
+  <font face="Georgia, Times New Roman, Times, serif"> Poiché <b>std</b> è il 
+  <b>namespace</b> che circonda l’intera libreria Standard del C++, questa particolare 
+  direttiva d’uso permette ai nomi nella libreria Standard del C++ di essere usati 
+  senza qualificazione. Comunque, non si vedranno virtualmente mai direttive d’uso 
+  in un file header (almeno, non al di fuori dello scope). La ragione è che la 
+  direttiva d’uso elimina la protezione di quel particolare namespace, e l’effetto 
+  dura fino alla fine dell’unità di compilazione. Se si mette una direttiva d’uso 
+  (fuori dallo scope) in un file header, significa che questa perdita di “namespace 
+  protection” avverrà per ogni file che include questo header, il che significa, 
+  spesso, altri file header. Così, se si parte mettendo direttive d’uso nei file 
+  header, risulta molto facile finire per disattivare le direttive d’uso praticamente 
+  ovunque, neutralizzando, perciò, gli effetti benefici dei namespace. </font>
+  <p></p>
+  <font face="Georgia, Times New Roman, Times, serif">In breve: non mettere le 
+  direttive using nei file header. </font> 
+  <p></p>
+  <font face="Verdana, Arial, Helvetica, sans-serif"><b>Uso degli header nei progetti</b> 
+  </font> 
+  <p></p>
+  <font face="Georgia, Times New Roman, Times, serif">Quando si costruisce un 
+  progetto in C++, normalmente lo si crea mettendo assieme un po’ di tipi differenti 
+  (strutture dati con funzioni associate). Normalmente, le dichiarazioni per ogni 
+  tipo per ciascun gruppo di tipi associati, si mettono in file header separati, 
+  e poi si definiscono le funzioni relative in una unità di traslazione. Quando 
+  poi si usa quel tipo, si deve includere il file header per eseguire correttamente 
+  le dichiarazioni. </font>
+  <p></p>
+  <font face="Georgia, Times New Roman, Times, serif">In questo libro si seguirà 
+  talvolta questo schema, ma il più delle volte gli esempi saranno molto piccoli, 
+  e quindi ogni cosa<span style="mso-spacerun: yes">  </span>- dichiarazioni di 
+  struttura, definizioni di funzioni, e la funzione <b>main()</b> – possono comparire 
+  in un singolo file. Comunque, si tenga a mente che nella pratica si dovranno 
+  usare sia file che file header separati. </font> 
+  <p></p>
+  <font face="Verdana, Arial, Helvetica, sans-serif"><b><span style='font-size:14.0pt;
+mso-bidi-font-size:12.0pt'>Strutture annidate</span></b> </font> 
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Il vantaggio di estrarre 
+    nomi di dati e di funzioni dal namespace globale, si estende alle strutture. 
+    E’ possibile annidare una struttura all’interno di un’altra struttura e pertanto 
+    tenere assieme gli elementi associati. La sintassi di dichiarazione è quella 
+    che ci si aspetterebbe , come è possibile vedere nella struttura seguente, 
+    che implementa uno stack push-down come una semplice lista concatenata, così 
+    che non esaurisca mai la memoria: </font> </p>
+  <blockquote><font size="+1">
+    <pre><font color="#009900" >//: C04:Stack.h</font>
+<font color="#009900" >// Struttura annidata in una lista concatenata</font>
+#ifndef STACK_H
+#define STACK_H
+
+<font color=#0000ff>struct</font> Stack {
+  <font color=#0000ff>struct</font> Link {
+    <font color=#0000ff>void</font>* data;
+    Link* next;
+    <font color=#0000ff>void</font> initialize(<font color=#0000ff>void</font>* dat, Link* nxt);
+  }* head;
+  <font color=#0000ff>void</font> initialize();
+  <font color=#0000ff>void</font> push(<font color=#0000ff>void</font>* dat);
+  <font color=#0000ff>void</font>* peek();
+  <font color=#0000ff>void</font>* pop();
+  <font color=#0000ff>void</font> cleanup();
+};
+#endif <font color=#009900>// STACK_H ///:~</font></pre></font>
+    
+  </blockquote>
+  <p><font face="Georgia, Times New Roman, Times, serif">La <b>struct</b> annidata 
+    è chiamata <b>Link</b> e contiene un puntatore al successivo elemento <b>Link</b> 
+    della lista, e un puntatore ai dati immagazzinati in <b>Link</b>. Se il puntatore 
+    <b>next</b> è zero, significa che si è arrivati alla fine della lista. </font> 
+  </p>
+  <p></p>
+  <font face="Georgia, Times New Roman, Times, serif">Si noti che il puntatore 
+  <b>head</b> è definito giusto dopo la dichiarazione della <b>struct Link</b>, 
+  invece di avere una definizione separata come <b>Link* head</b>.<span style="mso-spacerun:
+yes">  </span>Questa è una sintassi che viene dal C, ma qui sottolinea l’importanza 
+  del punto e virgola dopo la dichiarazione di struttura. Il punto e virgola indica 
+  la fine della lista di definizioni separate da virgola di quel tipo di struttura. 
+  (Normalmente la lista è vuota). </font>
+  <p></p>
+  <font face="Georgia, Times New Roman, Times, serif">La struttura annidata ha 
+  la sua propria funzione <b>initialize()</b>, come tutte le strutture presentate 
+  fin’ora, per assicurare una corretta inizializzazione. <b>Stack</b> ha sia una 
+  funzione <b>initialize ()</b> che una funzione <b>cleanup()</b>, come pure una 
+  funzione <b>push()</b>, la quale ha come argomento un puntatore ai dati che 
+  si vogliono memorizzare (assume che i dati siano allocati nello <b>heap</b>), 
+  e <b>pop()</b>, la quale restituisce il puntatore <b>data</b> dalla cima di 
+  <b>Stack</b> e rimuove l’elemento in cima. Quando si usa la <b>pop()</b> su 
+  un elemento, si è responsabili della distruzione dell’oggetto puntato da <b>data</b>. 
+  Inoltre, la funzione <b>peek()</b> restituisce il puntatore data dall’ elemento 
+  che è in cima, ma lascia l’elemento nello <b>Stack</b>. </font> 
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">Ecco le definizioni per 
+    le funzioni membro: </font></p>
+  <blockquote><font size="+1"> 
+    <pre><font color="#009900" >//: C04:Stack.cpp {O}</font>
+<span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:Arial;color:#009900'>// Lista concatenata con annidamento</span>
+#include <font color=#004488>"Stack.h"</font>
+#include <font color=#004488>"../require.h"</font>
+<font color="#0000ff" >using</font> <font color="#0000ff" >namespace</font>std;
+
+<font color=#0000ff>void</font> 
+Stack::Link::initialize(<font color=#0000ff>void</font>* dat, Link* nxt) {
+  data = dat;
+  next = nxt;
+}
+
+<font color=#0000ff>void</font> Stack::initialize() { head = 0; }
+
+<font color=#0000ff>void</font> Stack::push(<font color=#0000ff>void</font>* dat) {
+  Link* newLink = <font color=#0000ff>new</font> Link;
+  newLink-&gt;initialize(dat, head);
+  head = newLink;
+}
+
+<font color=#0000ff>void</font>* Stack::peek() { 
+  require(head != 0, <font color=#004488>"Stack empty"</font>);
+  <font color=#0000ff>return</font> head-&gt;data; 
+}
+
+<font color=#0000ff>void</font>* Stack::pop() {
+  <font color=#0000ff>if</font>(head == 0) <font color=#0000ff>return</font> 0;
+  <font color=#0000ff>void</font>* result = head-&gt;data;
+  Link* oldHead = head;
+  head = head-&gt;next;
+  <font color=#0000ff>delete</font> oldHead;
+  <font color=#0000ff>return</font> result;
+}
+
+<font color=#0000ff>void</font> Stack::cleanup() {
+  require(head == 0, <font color=#004488>"Stack not empty"</font>);
+} <font color=#009900>///:~</font></pre>
+    </font> </blockquote>
+  <p>&nbsp; </p>
+  <p></p>
+  
+  
+  <font face="Georgia, Times New Roman, Times, serif">La prima definizione è particolarmente 
+  interessante perché mostra come definire un membro in una struttura annidata: 
+  semplicemente, si usa un livello addizionale di risoluzione di scope, per specificare 
+  il nome della struttura racchiusa. <b>Stack::Link::initialize(&nbsp;)</b> prende 
+  gli argomenti e li assegna ai suoi membri. </font>
+  <p></p>
+  <font face="Georgia, Times New Roman, Times, serif"><b>Stack::initialize()</b> 
+  imposta head a zero, così l’oggetto sa che ha una lista vuota. </font>
+  <p></p>
+  <font face="Georgia, Times New Roman, Times, serif"><b>Stack::push()</b> prende 
+  l’argomento, il quale è un puntatore alla variabile di cui si vuole tenere traccia, 
+  e lo spinge su <b>Stack</b>. Per prima cosa, viene usato new per allocare memoria 
+  per <b>Link</b>, che sarà inserito in cima; poi viene chiamata la funzione <b>initialize()</b> 
+  di <b>Link</b> per assegnare valori appropriati ai membri di <b>Link</b>. Si 
+  noti che il puntatore <b>next</b> viene assegnato al head corrente; quindi head 
+  viene assegnato al nuovo puntatore <b>Link</b>. Questo in realtà mette <b>Link</b> 
+  in cima alla lista. </font>
+  <p></p>
+  <font face="Georgia, Times New Roman, Times, serif"><b>Stack::pop()</b> cattura 
+  il puntatore <b>data</b> che in quel momento è in cima a <b>Stack</b>, poi porta 
+  giù il puntatore <b>head</b> e elimina quello vecchio in cima allo <b>Stack</b>, 
+  e in fine restituisce il puntatore prelevato. Quando <b>pop()</b> rimuove l’ultimo 
+  elemento, allora head diventa ancora zero, e ciò significa che lo <b>Stack</b> 
+  è vuoto. </font>
+  <p></p>
+  <font face="Georgia, Times New Roman, Times, serif"><b>Stack::cleanup()</b> 
+  in realtà non fa alcuna ripulita, ma stabilisce una linea di condotta risoluta: 
+  “il programmatore client che userà l’oggetto <b>Stack</b>, è responsabile per 
+  espellere tutti gli elementi di <b>Stack</b> e per la loro eliminazione”. La 
+  funzione <b>require()</b>, è usata per indicare se è avvenuto un errore di programmazione 
+  con lo <b>Stack</b> non vuoto. </font>
+  <p></p>
+  <font face="Georgia, Times New Roman, Times, serif">Ma perché il distruttore 
+  di <b>Stack</b> non potrebbe occuparsi di distruggere tutti gli oggetti che 
+  il cliente programmatore non ha eliminato con <b>pop()</b>? Il problema è che 
+  lo <b>Stack</b> tratta puntatori <b>void</b> e, come si vedrà nel cap. 13, chiamando 
+  la <b>delete</b> per <b>void*</b>, non si effettua correttamente la pulizia. 
+  </font>
+  <p></p>
+  <p ><font face="Georgia, Times New Roman, Times, serif"><span
+style='font-family:Arial'>Anche il soggetto di “chi è il responsabile della gestione 
+    della memoria” non è qualcosa di semplice definizione, come si vedrà negli 
+    ultimi capitoli.</span></font></p>
+  <p ><font face="Georgia, Times New Roman, Times, serif"><span
+style='font-family:Arial'>Un esempio per testare <b>Stack</b>:</span></font></p>
+ 
+
+  <blockquote><font size = "+1"> 
+    <pre><font color=#009900>//: C04:StackTest.cpp</font>
+<font color=#009900>//{L} Stack</font>
+<font color=#009900>//{T} StackTest.cpp</font>
+<span style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:Arial;color:#009900'>// Test di una lista concatenata annidata</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:Arial'></span>
+#include <font color=#004488>"Stack.h"</font>
+#include <font color=#004488>"../require.h"</font>
+#include &lt;fstream&gt;
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+<font color=#0000ff>using</font> <font color=#0000ff>namespace</font> std;
+
+<font color=#0000ff>int</font> main(<font color=#0000ff>int</font> argc, <font color=#0000ff>char</font>* argv[]) {
+  requireArgs(argc, 1);<span style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;font-family:Arial'><span
+style='color:#009900'>// Il nome del file è un argomento</span></span>
+  ifstream in(argv[1]);
+  assure(in, argv[1]);
+  Stack textlines;
+  textlines.initialize();
+  string line;
+  <span style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;font-family:Arial'><span style="mso-spacerun: yes"> </span><span
+style='color:#009900'>// Leggiamo il file e immagazziniamo le linee di testo in Stack:</span></span><font color="#009900">
+</font><font color=#0000ff>while</font>(getline(in, line))
+    textlines.push(<font color=#0000ff>new</font> string(line));
+<span style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;font-family:Arial'><span style="mso-spacerun: yes"> </span><span
+style='color:#009900'>// Facciamo emergere le linee di testo da Stack e poi le stampiamo:</span></span>
+  string* s;
+  <font color=#0000ff>while</font>((s = (string*)textlines.pop()) != 0) {
+    cout &lt;&lt; *s &lt;&lt; endl;
+    <font color=#0000ff>delete</font> s; 
+  }
+  textlines.cleanup();
+} <font color=#009900>///:~</font></pre>
+    </font></blockquote>
+  <p><font face="Georgia, Times New Roman, Times, serif">Questo esempio è simile 
+    all’esempio precedente, ma qui spingono linee da un file (come puntatore a 
+    <b>string</b>) sullo <b>Stack</b>, per poi espellerle, il che risulta nel 
+    fatto che il file viene stampato in ordine inverso. Si noti, che la funzione 
+    membro <b>pop()</b> restituisce un <b>void*</b> e questo deve essere castato 
+    a <b>string*</b> prima di essere usato. Per stampare la stringa, il puntatore 
+    deve essere dereferenziato.</font> </p>
+  <p ><font face="Georgia, Times New Roman, Times, serif">Non 
+    appena <b>textlines</b> viene riempito, il contenuto di line è “clonato” per 
+    ogni <b>push()</b> con il codice <b>new string(line)</b>. Il valore restituito 
+    dall’espressione <b>new</b>, è un puntatore alla nuova stringa <b>string</b> 
+    che è stata creata e che ha copiato le informazioni da <b>line</b>. Se si 
+    era semplicemente passato l’indirizzo di <b>line</b> a <b>push()</b>, si finirà 
+    con uno <b>Stack</b> riempito con indirizzi identici, tutti che puntano a 
+    <b>line</b>. Nel prossimo libro, si imparerà un po’ di più riguardo questo 
+    processo di “clonazione”.</font></p>
+  <p ><font face="Georgia, Times New Roman, Times, serif">Il nome del file è preso 
+    dalla riga di comando. Per garantire che vi siano sufficienti argomenti sulla 
+    riga di comando, si veda una seconda funzione, usata dal file header <b>requie.h</b>: 
+    <b>requireArgs()</b>, la quale confronta <b>argc</b> con il numero di argomenti 
+    desiderati, e stampa un appropriato messaggio di errore ed esce dal programma 
+    se non vi sono argomenti sufficienti.</font></p>
+  <b><span style='font-size:14.0pt;
+mso-bidi-font-size:12.0pt'><font face="Verdana, Arial, Helvetica, sans-serif">Risoluzione 
+  dello scope globale</font></span></b> 
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">L’operatore di risoluzione 
+    dello scope interviene nelle situazioni in cui il nome che il compilatore 
+    sceglie per default (il nome più “prossimo”), non è quello che si vuole. Per 
+    esempio, supponiamo di avere una struttura con un identificatore locale <b>a</b>, 
+    e che si voglia selezionare un identificatore globale <b>a</b> dall’interno 
+    di una funzione membro. Il compilatore sceglierebbe per default quello locale, 
+    così siamo costretti a dirgli di fare altrimenti. Quando si vuole specificare 
+    un nome globale usando la risoluzione di scope, si usa l’operatore con niente 
+    di fronte ad esso. L’esempio seguente illustra la risoluzione di scope globale 
+    sia per una variabile, che per una funzione:</font></p>
+  <blockquote><font size = "+1"> 
+    <pre><font color=#009900>//: C04:Scoperes.cpp</font>
+<span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:Arial;color:#009900'>// Risoluzione di scope globale</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:Arial'></span>
+<font color=#0000ff>int</font> a;
+<font color=#0000ff>void</font> f() {}
+
+<font color=#0000ff>struct</font> S {
+  <font color=#0000ff>int</font> a;
+  <font color=#0000ff>void</font> f();
+};
+
+<font color=#0000ff>void</font> S::f() {
+  ::f();  <span style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;font-family:Arial'><span
+style='color:#009900'>// Altrimenti sarebbe  ricorsiva<span style="mso-spacerun: yes">  </span></span></span>
+  ::a++;<span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:Arial'><span style="mso-spacerun: yes"> </span><span
+style='color:#009900'>// Selezioniamo la ‘a’ globale</span></span>
+  a--;    <span style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;font-family:Arial'><span style="mso-spacerun: yes"> </span><span
+style='color:#009900'>// La ‘a’ nello scope della struttura</span></span> 
+}
+<font color=#0000ff>int</font> main() { S s; f(); }
+ <font color=#009900>///:~</font></pre>
+    </font></blockquote>
+  <p><font face="Georgia, Times New Roman, Times, serif">Senza risoluzione di 
+    scope in <b>S::f()</b>, il compilatore selezionerebbe per default la versione 
+    membro di <b>f()</b> e <b>a</b>.</font></p>
+  <font face = "Verdana">
+  <h2 align="LEFT">Sommario</h2>
+  </font> 
+  <p></p>
+  <p><font face="Georgia, Times New Roman, Times, serif">In questo capitolo abbiamo 
+    trattato della svolta fondamentale del C++, e cioè: è possibile inserire funzioni 
+    nelle strutture. Questo nuovo tipo di struttura è chiamato tipo di dato astratto, 
+    e le variabili che si creano usando questa struttura, sono chiamate oggetti, 
+    o istanze, di quel tipo. Il chiamare una funzione membro di un oggetto, viene 
+    detto spedire un messaggio a quell’oggetto. L’azione primaria nella programmazione 
+    orientata agli oggetti, è lo spedire massaggi agli oggetti.</font></p>
+  <p ><font face="Georgia, Times New Roman, Times, serif">Sebbene l’impacchettare 
+    insieme dati e funzioni sia un significativo vantaggio per l’organizzazione 
+    del codice e renda le librerie più facili da usare (previene il conflitto 
+    sui nomi nascondendo il nome), c’è ancora parecchio che si può fare per ottenere 
+    una programmazione C++ più sicura. Nel prossimo capitolo si imparerà come 
+    proteggere alcuni membri di una struttura così che solo l’autore possa manipolarli. 
+    Questo stabilisce un chiaro confine tra cosa l’utente della struttura può 
+    modificare e cosa solo il programmatore può variare.</font></p>
+  <p><b><span style='font-size:14.0pt;
+mso-bidi-font-size:12.0pt'><font face="Verdana, Arial, Helvetica, sans-serif">Esercizi</font></span></b> 
+  </p>
+  <p><span
+style='mso-bidi-font-size:10.0pt;font-family:Arial'><font face="Georgia, Times New Roman, Times, serif" size="2">Si 
+    possono trovare le soluzioni degli esercizi </font></span><font face="Georgia, Times New Roman, Times, serif" size="2"><span style='font-family:Verdana'>2 
+    - 6, 9-10, 15, 17 - 20, 25 </span><span style='mso-bidi-font-size:10.0pt;font-family:Arial'>nel 
+    documento elettronico “<i>The Thinking in C++ Annotated Solution Guide</i>”, 
+    disponibile al sito http://www.BruceEckel.com.</span></font> </p>
+  <ol start=1 type=1>
+    <li > <font face="Georgia, Times New Roman, Times, serif"><span style='font-family:Arial'>Nella 
+      libreria Standard del C, la funzione puts() stampa una stringa di caratteri 
+      sullo schermo<span
+     style="mso-spacerun: yes">  </span>in modo tale da poter dire<span
+     style="mso-spacerun: yes">  </span><b>puts(“ciao”)</b>. Scrivete un programma 
+      C che usi <b>puts(),</b> non usando però l’istruzione #<b>include &lt;stdio.h</b></span><b><span style='font-size:11.0pt;mso-bidi-font-size:
+     12.0pt;font-family:Arial'>&gt;</span></b><span style='font-size:11.0pt;
+     mso-bidi-font-size:12.0pt;font-family:Arial'>,</span><span
+     style='font-family:Arial'> o altrimenti, dichiarando la funzione.<span
+     style="mso-spacerun: yes">  </span>Compilate il programma con il vostro compilatore 
+      C. (Alcuni compilatori C++ non sono distinti dal loro compilatore C; in 
+      questo caso, potreste aver bisogno di identificare i flag necessari a una 
+      riga di comando per utilizzare la sola compilazione C.) Quindi, compilate 
+      il programma con il compilatore C++ e osservate le differenze.<span style="mso-spacerun: yes">  
+      </span></span></font></li>
+    <li > <font face="Georgia, Times New Roman, Times, serif"><span style='font-family:Arial'>Create 
+      una <b>struct</b> che abbia una sola funzione membro, poi scrivete la definizione 
+      per quella funzione membro. Create un oggetto appartenente al vostro nuovo 
+      tipo di dati e quindi chiamate la funzione membro.</span></font></li>
+    <li > <font face="Georgia, Times New Roman, Times, serif"><span style='font-family:Arial'>Create 
+      lo stesso programma dell’esercizio 2, ma facendo in modo che <b>struct</b> 
+      sia dichiarata in un suo proprio file header, sia definita in un file <b>cpp</b> 
+      diverso dal file in cui c’è la funzione <b>main()</b>.</span></font></li>
+    <li > <font face="Georgia, Times New Roman, Times, serif"><span style='font-family:Arial'>Create 
+      una <b>struct</b> con un singolo dato membro <b>int</b> di tipo intero, 
+      e due funzioni globali, ciascuna delle quali ha come argomento un puntatore 
+      a quella struttura. La prima funzione ha un secondo argomento di tipo intero 
+      e imposta il dato membro <b>int</b> di <b>struct</b> al valore dell’argomento 
+      intero, la seconda mostra <b>int</b> leggendolo da <b>struct</b>. Testate 
+      le funzioni. </span></font></li>
+    <li > <font face="Georgia, Times New Roman, Times, serif"><span style='font-family:Arial'>Ripetete 
+      l’esercizio 4 in modo che le funzioni siano ora funzioni membro di <b>struct</b>, 
+      e testatele nuovamente.</span></font></li>
+    <li > <font face="Georgia, Times New Roman, Times, serif"><span style='font-family:Arial'>Create 
+      una classe che (in modo ridondante) esegua la selezione di un dato membro 
+      e una chiamata ad una funzione membro usando la parola chiave <b>this</b> 
+      ( la quale fa riferimento all’indirizzo dell’oggetto corrente).</span></font></li>
+    <li > <font face="Georgia, Times New Roman, Times, serif"><span style='font-family:Arial'>Costruite 
+      un oggetto di tipo <b>Stash</b> che tratti dati di tipo <b>double</b>. Riempite 
+      <b>Stash</b> con 25 valori di tipo <b>double</b>, e quindi stampateli a 
+      video.</span></font></li>
+    <li > <font face="Georgia, Times New Roman, Times, serif"><span style='font-family:Arial'>Ripetete 
+      l’esercizio 7 usando l’oggetto <b>Stack</b>.</span></font></li>
+    <li > <font face="Georgia, Times New Roman, Times, serif"><span style='font-family:Arial'>Create 
+      un file contenente una funzione <b>f()</b> che abbia un argomento <b>i</b> 
+      di tipo intero, e che lo stampi a video usando la funzione <b>printf()</b> 
+      di <b>&lt;stdio.h&gt;</b> con l’istruzione: <b>printf(“%d/n”, i)</b>, dove 
+      <b>i</b> è l’intero che si vuole stampare.Create un file separato che contenga 
+      <b>main()</b>, e in questo file dichiarate <b>f()</b> con un argomento di 
+      tipo <b>float</b>. Chiamate <b>f()</b> all’interno di <b>main()</b>. Provate 
+      a compilare e a linkare il vostro programma con un compilatore C++ e vedete 
+      cosa accade. Ora compilate e linkate il programma usando il compilatore 
+      C, e vedete che accade quando fate girare il programma. Spiegate il comportamento.</span></font></li>
+    <li > <font face="Georgia, Times New Roman, Times, serif"><span style='font-family:Arial'>Trovate 
+      come produrre linguaggio assembly dai vostri compilatori C e C++. Scrivete 
+      una funzione in C e una <b>struct</b> con una singola funzione membro in 
+      C++. Fate produrre linguaggio assembly da entrambe e trovate i nomi delle 
+      funzioni che vengono prodotti dalla funzione C e dal membro funzione C++, 
+      così che possiate vedere quale tipo di suffisso (name decoration) viene 
+      applicato all’interno del compilatore.</span></font></li>
+    <li > <font face="Georgia, Times New Roman, Times, serif"><span style='font-family:Arial'>Scrivete 
+      un programma a compilazione condizionata in <b>main()</b> in modo tale che 
+      venga stampato un messaggio quando si usa una direttiva di preprocessore. 
+      Compilate questo codice provando con una <b>#define</b> all’interno del 
+      programma, e poi cercate di scoprire il modo in cui il compilatore prende 
+      le direttive di preprocessore dalla line di comando e fate un esperimento 
+      con quella.</span></font></li>
+    <li > <font face="Georgia, Times New Roman, Times, serif"><span style='font-family:Arial'>Scrivete 
+      un programma che usi <b>assert()</b> con un argomento che è sempre ‘false’ 
+      (zero) per vedere cosa accade quando lo fate girare. Poi compilatelo con 
+      l’istruzione <b>#define NDEBUG</b>, e fatelo girare ancora per vedere la 
+      differenza.</span></font></li>
+    <li > <font face="Georgia, Times New Roman, Times, serif"><span style='font-family:Arial'>Create 
+      un tipo di dato astratto che rappresenti una videocassetta di un negozio 
+      di videonoleggio. Provate a considerare tutti i dati e le operazioni che 
+      servono per una buona descrizione del tipo <b>Video</b> nel sistema di gestione 
+      del videonoleggio. Includete una funzione membro <b>print()</b> che mostri 
+      informazioni relative a <b>Video</b>. </span></font></li>
+    <li > <font face="Georgia, Times New Roman, Times, serif"><span style='font-family:Arial'>Create 
+      un oggetto <b>Stack</b> che tratti gli oggetti <b>Video</b> dell’esercizio 
+      13. Create poi diversi oggetti <b>Video</b>, memorizzateli nello <b>Stack</b>, 
+      e quindi mostrateli usando <b>Video::print()</b>. </span></font></li>
+    <li class=MsoNormal style='mso-mso-
+     text-align:justify;line-height:150%;mso-list:l0 level1 lfo1;'> <font face="Georgia, Times New Roman, Times, serif"><span style='font-family:Arial'>Scrivete 
+      un programma che stampi tutte le dimensioni dei tipi fondamentali di dati 
+      sul vostro computer usando <b>sizeof</b>. </span></font></li>
+    <li > <font face="Georgia, Times New Roman, Times, serif"><span style='font-family:Arial'>Modificate 
+      <b>Stash</b> in modo da poter usare un <b>vector&lt;char&gt;</b> come sua 
+      struttura dati di base. </span></font></li>
+    <li > <font face="Georgia, Times New Roman, Times, serif"><span style='font-family:Arial'>Usando 
+      <b>new</b>, create dinamicamente allocazioni di memoria dei tipi seguenti: 
+      <b>int</b>, <b>long</b>, un array di 100 <b>char</b>, un array di 100 <b>float</b>. 
+      Stampatene gli indirizzi e poi liberate la memoria usando <b>delete</b>.</span></font></li>
+    <li > <font face="Georgia, Times New Roman, Times, serif"><span style='font-family:Arial'>Scrivete 
+      una funzione che abbia un <b>char*</b> come argomento. Usando <b>new</b>, 
+      allocate dinamicamente un array di <b>char</b> con le stesse dimensioni 
+      dell’array di <b>char</b> che viene passato alla funzione. Usando l’indicizzazione 
+      di array, copiate i caratteri dall’argomento all’array allocato dinamicamente 
+      (non dimenticate il carattere “null” di terminazione) e restituite il puntatore 
+      alla copia. Nella vostra funzione <b>main()</b>, testate la funzione passandole 
+      un array statico di caratteri racchiusi tra apicetti; quindi, prendetene 
+      il risultato e passatelo di nuovo alla funzione. Stampate entrambe le stringhe 
+      ed entrambi i puntatori, in modo che possiate vedere che sono zone differenti 
+      di memoria. Usando <b>delete</b>, pulite tutta la memoria dinamica allocata.</span></font></li>
+    <li > <font face="Georgia, Times New Roman, Times, serif"><span style='font-family:Arial'>Mostrate 
+      un esempio di una struttura dichiarata all’interno di un’altra struttura 
+      (una struttura annidata). Dichiarate i dati membro in entrambe le strutture, 
+      e dichiarate e definite le funzioni membro in entrambe le strutture. Scrivete 
+      una funzione <b>main()</b> per testare il vostro nuovo tipo di dato. </span></font></li>
+    <li > <font face="Georgia, Times New Roman, Times, serif"><span style='font-family:Arial'>Quanto 
+      è grande una struttura? Scrivete del codice che stampi le dimensioni di 
+      varie strutture. Create strutture che abbiano solo dati membro, e una che 
+      abbia dati membro e funzioni membro. Poi , create una struttura che non 
+      abbia alcun membro. Stampate le dimensioni di tutte queste strutture. Infine, 
+      spiegate le ragioni del risultato relativo alla struttura senza membri. 
+      </span></font></li>
+    <li > <font face="Georgia, Times New Roman, Times, serif"><span style='font-family:Arial'>Come 
+      avete visto in questo capitolo, per una struttura, il C++ crea automaticamente 
+      l’equivalente di <b>typedef</b>. Il C++ fa la stessa cosa anche per le enumerazioni 
+      e per le union. Scrivete un piccolo programma per dimostrarlo.</span></font></li>
+    <li > <font face="Georgia, Times New Roman, Times, serif"><span style='font-family:Arial'>Create 
+      una <b>Stack</b> che tratti oggetti tipo <b>Stash</b>. Ogni <b>Stash</b> 
+      otterrà cinque linee da un file di input. Create gli <b>Stash</b> usando 
+      <b>new</b>.<span
+     style="mso-spacerun: yes">  </span>Leggete un file dentro il vostro <b>Stack</b>, 
+      quindi stampatelo nel suo formato originale estraendolo da <b>Stack</b>.</span></font></li>
+    <li > <font face="Georgia, Times New Roman, Times, serif"><span style='font-family:Arial'>Modificate 
+      l’esercizio 22 creando una struttura struct che incapsuli una <b>Stack</b> 
+      di <b>Stash</b>. L’utente dovrebbe aggiungere e ricavare le linee solamente 
+      attraverso le funzioni membro, ma sotto l’invisibilità offerta dalla copertura 
+      della struttura, la <b>struct</b> usa uno <b>Stack</b> di <b>Stash</b>.</span></font></li>
+    <li > <font face="Georgia, Times New Roman, Times, serif"><span style='font-family:Arial'>Create 
+      una struttura <b>struct</b> che abbia un intero <b>int</b> e un puntatore 
+      ad un’altra istanza della stessa <b>struct</b>. Scrivete una funzione che 
+      abbia come argomenti l’indirizzo di una di queste strutture e un intero 
+      che indichi la lunghezza della lista che volete creare. Questa funzione 
+      produrrà una catena completa (intera) di queste <b>struct</b> (una lista 
+      concatenata) partendo dall’argomento (la <i>testa</i> della lista), e con 
+      ognuna di essa che punta alla successiva. Costruite le nuove <b>struct</b> 
+      usando <b>new</b>, e mettete il conteggio (cioè il numero di oggetti che 
+      c’è) nel dato <b>int</b>. Nell’ultima <b>struct</b> della lista, assegnate 
+      il valore zero al puntatore, per indicare che è terminata la lista. Scrivete 
+      una seconda funzione che prenda la testa della vostra lista e che la sposti 
+      alla fine, stampando entrambi i valori del puntatore e il valore di <b>int</b> 
+      per ognuno di essi.</span></font></li>
+    <li > <font face="Georgia, Times New Roman, Times, serif"><span style='font-family:Arial'>Ripetete 
+      l’esercizio 24, ma mettete le funzioni all’interno di una <b>struct</b>, 
+      invece di usare strutture e funzioni nude”.</span></font></li>
+  </ol>
+  <div class=MsoNormal align=center style='text-align:center;line-height:150%'> 
+    <hr size=2 width="100%" align=center>
+  </div>
+  <p><font face="Georgia, Times New Roman, Times, serif" size="2">[33] Questo 
+    termine può essere fonte di discussione: alcuni lo usano nel senso definito 
+    in questo libro, altri per descrivere il <i>controllo di accesso</i>, che 
+    sarà discusso nel capitolo seguente.</font></p>
+  <p><font face="Georgia, Times New Roman, Times, serif" size="2">[34] Per scrivere 
+    una definizione di funzione per una funzione che prende una vera lista di 
+    argomenti di variabili, si deve usare <i>varargs</i>, sebbene queste ultime 
+    dovrebbero essere vietate in C++. I dettagli sull’uso di varargs si trovano 
+    nei manuali di C.</font></p>
+  <p><font face="Georgia, Times New Roman, Times, serif" size="2"><span
+style='mso-bidi-font-size:10.0pt;font-family:Arial'>[35] Comunque, nel C++ Standard, 
+    l’uso di <i>file static</i> è deprecabile.</span></font> </p>
+  <p>&nbsp;</p>
+  <p align="center"><font face="Verdana" size=2>[ </font><a href="Capitolo03.html"><u><font face="Verdana" size=2 color="#0000ff">Capitolo 
+    Precedente </font></u></a><font face="Verdana" size=2> ] [ </font><a href="Contents.html"><u><font face="Verdana" size=2 color="#0000ff">Indice 
+    Generale</font></u></a><font face="Verdana" size=2> ] [ </font><a href="DocIndex.html"><u><font face="Verdana" size=2 color="#0000ff">Indice 
+    Analitico </font></u></a><font face="Verdana" size=2> ] [ </font><a href="Capitolo05.html"><u><font face="Verdana" size=2 color="#0000ff">Prossimo 
+    Capitolo</font></u></a><font face="Verdana" size=2> ] </font></p>
+  <p align="center"><br>
+    <font face="Georgia, Times New Roman, Times, serif">Ultima Modifica: 13/01/2003</font></p>
+  <p >&nbsp;</p>
+</div>
+</body>
+</html>

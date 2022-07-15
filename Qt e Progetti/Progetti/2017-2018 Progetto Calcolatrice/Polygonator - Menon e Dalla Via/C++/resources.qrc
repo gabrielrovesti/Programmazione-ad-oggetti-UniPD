@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="down-arrow.png">View/Images/down-arrow.png</file>
+        <file alias="hexagon.png">View/Images/hexagon.png</file>
+        <file alias="icon.png">View/Images/icon.png</file>
+        <file alias="line.png">View/Images/line.png</file>
+        <file alias="pentagon.png">View/Images/pentagon.png</file>
+        <file alias="point.png">View/Images/point.png</file>
+        <file alias="quadrilateral.png">View/Images/quadrilateral.png</file>
+        <file alias="triangle.png">View/Images/triangle.png</file>
+    </qresource>
+</RCC>

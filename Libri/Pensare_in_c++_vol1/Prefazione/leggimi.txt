@@ -1,0 +1,25 @@
+Pensare in C++ (titolo originale Thinking in C++)
+Seconda Edizione
+di Bruce Eckel, Presidente MindView Inc.
+ultimo aggiornamento: 17.08.2003
+
+team di traduzione:
+ 
+· Umberto Sorbo home page: http://www.umbertosorbo.it 
+· Mauro Sorbo  
+· Cesare Bertoletti  
+· Giuseppe Cicardo  
+· Antonio Cuni  
+· Gianmaria De Tommasi home page: http://janmi.urizen.it 
+· Marco Arena  
+· Giacomo Grande  
+· Barbara Colaiocco  
+· Alberto Francia  
+
+
+un grazie ai lettori che ci hanno aiutato a migliorare i capitoli segnalandoci errori vari:
+
+Guerrieri Luca Virgilio, Domenico Testa  
+
+
+

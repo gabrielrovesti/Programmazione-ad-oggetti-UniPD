@@ -1,0 +1,744 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<!--
+This document was converted from RTF source: 
+By rtftohtml 4.19
+See http://www.sunpack.com/RTF
+Filename:TIC2Vone.rtf
+Application Directory:C:\TOOLS\RTF2HTML\
+Subject:
+Author:Bruce Eckel
+Operator:Bruce Eckel
+Document Comments:
+Version Comments:
+Comments:
+Keywords:
+Translation Date:09/27/2001
+Translation Time:05:26:06
+Translation Platform:Win32
+Number of Output files:22
+This File:AppendixB.html
+SplitDepth=1
+SkipNavPanel=1
+SkipLeadingToc=1
+SkipTrailingToc=1
+GenContents=1
+GenFrames=1
+GenIndex=1
+-->
+<HEAD lang="en"><META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<TITLE>B:Linee guida di programmazione</TITLE>
+</HEAD>
+
+<BODY  BGCOLOR="#FFFFFF">
+<div align="left"> 
+  <H1 align="center"><a href="http://www.MindView.net"> <img src="mindview-head.gif" alt="MindView Inc." border = "0"></a> 
+  </H1>
+  <center>
+    <font face="Verdana" size = "-1"> </font> 
+    <p align="CENTER">&nbsp;</p>
+    <p align="CENTER"><font face="Verdana" size=2>[ </font><a href="README-HTML.txt"><u><font face="Verdana" size="2" color="#0000ff">Suggerimenti</font></u></a><font face="Verdana" size=2> 
+      ] [ </font><a href="http://www.mindview.net/CPPServices/SolutionGuide.html"><u><font face="Verdana" size=2 color="#0000ff">Soluzioni 
+      degli Esercizi</font></u></a><font face="Verdana" size=2>] [ </font><a href="http://www.mindview.net/ThinkingInCPP2e.html"><u><font face="Verdana" size=2 color="#0000ff">Volume 
+      2</font></u></a><font face="Verdana" size=2> ] [ </font><a href="http://www.mindview.net/MailingList.html"><u><font face="Verdana" size=2 color="#0000ff">Newsletter 
+      Gratuita</font></u></a><font face="Verdana" size=2> ] <br>
+      [ </font><a href="http://www.mindview.net/CPPServices/#PublicSeminars"><u><font face="Verdana" size=2 color="#0000ff">Seminari</font></u></a><font face="Verdana" size=2> 
+      ] [ </font><a href="http://www.mindview.net/CPPServices/#SeminarsOnCD"><u><font face="Verdana" size=2 color="#0000ff">Seminari 
+      su CD ROM</font></u></a><font face="Verdana" size=2> ] [ </font><a href="http://www.mindview.net/CPPServices/#ConsultingServices"><u><font face="Verdana" size="2" color="#0000ff">Consulenza</font></u></a><font face="Verdana" size=2>] 
+      </font></p>
+    <h2 align="CENTER"><font face="Verdana">Pensare in C++, seconda ed. Volume 
+      1</font></h2>
+    <h3 align="CENTER"><font face="Verdana">&copy;2000 by Bruce Eckel</font></h3>
+    <p align="CENTER"><font face="Verdana" size=2>[ </font><a href="AppendiceA.html"><u><font face="Verdana" size=2 color="#0000ff">Capitolo 
+      Precedente </font></u></a><font face="Verdana" size=2> ] [ </font><a href="Contents.html"><u><font face="Verdana" size=2 color="#0000ff">Indice 
+      Generale</font></u></a><font face="Verdana" size=2> ] [ </font><a href="DocIndex.html"><u><font face="Verdana" size=2 color="#0000ff">Indice 
+      Analitico </font></u></a><font face="Verdana" size=2> ] [ </font><a href="AppendiceC.html"><u><font face="Verdana" size=2 color="#0000ff">Prossimo 
+      Capitolo</font></u></a><font face="Verdana" size=2> ] </font></p>
+    <p align="CENTER"><font face="Georgia, Times New Roman, Times, serif">traduzione 
+      italiana e adattamento a cura di Alberto Francia</font></p>
+  </center>
+  <H1><font face="Verdana, Arial, Helvetica, sans-serif">B: Linee guida di programmazione</font></H1>
+  <P><font size="4" face="Verdana, Arial, Helvetica, sans-serif">Quest'appendice è un insieme 
+    di suggerimenti per la programmazione in C++. Sono stati messi insieme nel 
+    corso della mia esperienza di insegnamento e </font> </P>
+  <P><font face="Georgia, Times New Roman, Times, serif">di programmazione, nonché 
+    dai consigli di amici come Dan Saks (coautore con Tom Plum di <EM>C++ Programming 
+    Guidelines</EM>, Plum Hall, 1991), Scott Meyers (autore di <EM>Effective C++</EM>, 
+    2nd editioN, Addison-Wesley, 1998), e Rob Murray (autore di <EM>C++ Strategies 
+    &amp; Tactics</EM>, Addison-Wesley, 1993). Inoltre, molti suggerimenti sono 
+    direttamente tratti dalle pagine di <EM>Thinking in C++</EM>. </font></P>
+  <OL>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Prima fatelo funzionare, 
+        poi rendetelo veloce. Questo è vero anche se siete certi che un frammento 
+        di codice sia realmente importante e che diverrà il collo di bottiglia 
+        principale del vostro sistema. Non fatelo. Prima di tutto cercate di ottenere 
+        un sistema funzionante con un progetto il più semplice possibile. Soltanto 
+        dopo, se non è abbastanza veloce, analizzatelo. Quasi sempre scoprirete 
+        che il vero problema non è il "vostro" collo di bottiglia. Risparmiate 
+        tempo per le cose veramente utili. </font></P>
+    
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">L'eleganza paga sempre. 
+        Non è un'attività frivola. Avrete in mano un programma non solo più facile 
+        da compilare e testare, ma anche da comprendere e da mantenere: ed è qui 
+        che si ritrova il valore economico. Potrebbe servire un po' di esperienza 
+        prima di credere a questo fatto, in quanto potrebbe sembrare che, mentre 
+        cercate di rendere elegante un frammento di codice, non siate produttivi. 
+        La produttività emergerà quando il codice si integrerà perfettamente nel 
+        vostro sistema, ed ancor più quando il codice o il sistema verrà modificato. 
+        </font></P>
+    
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Ricordatevi del principio 
+        "divide et impera". Se il problema che state affrontando è troppo complesso, 
+        cercate di immaginare quali potrebbero essere le operazioni basilari del 
+        programma, se esistesse un essere soprannaturale che si occupasse delle 
+        parti più difficili. Quest'essere soprannaturale è un oggetto - scrivete 
+        il codice che utilizza quell'oggetto, quindi studiate l'oggetto ed incapsulate 
+        le <EM>sue</EM> parti complicate all'interno di altri oggetti, e così 
+        via. </font></P>
+    
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Non riscrivete automaticamente 
+        in C++tutto il vostro codice C già esistente, a meno che non dobbiate 
+        variarne le funzionalità in maniera significativa (in pratica, se non 
+        è guasto, è inutile ripararlo). <EM>Ricompilare</EM> il codice C in C++ 
+        è invece un'attività utile, perché potrebbe rivelare dei bug nascosti. 
+        Comunque, prendere del codice C che funziona bene e riscriverlo in C++ 
+        potrebbe non essere il modo migliore per passare il vostro tempo, a meno 
+        che la versione C++, essendo una classe, non offra molte più possibilità 
+        di riutilizzo. </font></P>
+    
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Se avete un grosso 
+        blocco di codice C che ha bisogno di modifiche, cominciate ad isolarne 
+        le parti che non verranno modificate, eventualmente inglobandole in una 
+        "classe API" come metodi statici. Successivamente, focalizzate la vostra 
+        attenzione sul codice che verrà modificato, ristrutturandolo in classi 
+        in modo da rendere agevoli le modifiche man mano che la vostra manutenzione 
+        procede. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Tenete ben distinti 
+        il creatore della classe dal suo utilizzatore (il <EM>programmatore client</EM>). 
+        Chi utilizza la classe è il "cliente", e non ha bisogno né vuole sapere 
+        cosa accade dietro le quinte. Chi crea la classe dev'essere l'esperto 
+        di progettazione di classi e deve scriverla in modo che possa essere usata 
+        anche dal più principiante dei programmatori, continuando a comportarsi 
+        in maniera robusta nell'applicazione. L'utilizzo di una libreria è semplice 
+        soltanto se è trasparente. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Quando create una 
+        classe, usate i nomi più chiari possibile. Il vostro obiettivo è quello 
+        di rendere l'interfaccia di programmazione concettualmente semplice. Cercate 
+        di rendere i vostri nomi talmente chiari da rendere superflui i commenti. 
+        A tal fine, sfruttate l'overloading delle funzioni e gli argomenti di 
+        default per creare un'interfaccia intuitiva e facile da usare. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Il controllo dell'accesso 
+        consente a voi (creatori della classe) di fare in futuro le più grandi 
+        modifiche possibili senza danneggiare il codice client nel quale la classe 
+        è utilizzata. In questa prospettiva, mantenete tutto il più <SPAN class=keyword>private</SPAN> 
+        possibile, e rendete <SPAN 
+  class=keyword>public</SPAN> solo l'interfaccia della classe, utilizzando sempre 
+        le funzioni anziché i dati. Rendete i dati <SPAN 
+  class=keyword>public</SPAN> solo quando siete costretti. Se gli utilizzatori 
+        di una classe non hanno bisogno di chiamare una funzione, dichiaratela 
+        <SPAN 
+  class=keyword>private</SPAN>. Se una parte della vostra classe deve restare 
+        visibile agli eredi come <SPAN class=keyword>protected</SPAN>, fornite 
+        un'interfaccia a funzioni piuttosto che esporre direttamente i dati. In 
+        questo modo, le modifiche di implementazione avranno un impatto minimo 
+        sulle classi derivate. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Non commettete l'errore 
+        di bloccarvi durante l'analisi. Ci sono certe cose delle quali non vi 
+        renderete conto finché non inizierete a scrivere codice e ad avere una 
+        specie di sistema funzionante. Il C++ ha al proprio interno delle barriere 
+        protettive; lasciate che lavorino per voi. Gli errori che commetterete 
+        in una classe o in un insieme di classi non distruggeranno l'integrità 
+        dell'intero sistema. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">La vostra analisi 
+        ed il vostro progetto devono produrre, quantomeno, le classi del vostro 
+        sistema, le loro interfacce pubbliche, e le loro relazioni con le altre 
+        classi, in particolare con le classi base. Se il vostro metodo di progetto 
+        produce più di questo, chiedetevi se tutto ciò che viene prodotto dalla 
+        vostra tecnica serve a qualcosa durante il ciclo di vita di un programma. 
+        Se la risposta è no, mantenerlo avrà un costo per voi. I membri dei team 
+        di sviluppo tendono a non mantenere nulla che non contribuisca alla loro 
+        produttività; questo è un dato di fatto che molte tecniche di progetto 
+        non prendono in considerazione. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Prima scrivete il 
+        codice di test (prima di scrivere la classe), e tenetelo insieme alla 
+        classe. Rendete automatica l'esecuzione dei vostri test per mezzo di un 
+        makefile o di uno strumento simile. In questo modo, qualunque modifica 
+        può essere controllata automaticamente lanciando il codice di test, e 
+        gli errori verranno immediatamente scoperti. Sapendo di avere la rete 
+        di sicurezza dell'ambiente di test, sarete più propensi ad effettuare 
+        modifiche consistenti quando ne sentirete il bisogno. Ricordate che i 
+        maggiori miglioramenti nei linguaggi di programmazione vengono dai controlli 
+        interni forniti da controllo del tipo, gestione delle eccezioni e così 
+        via, ma queste caratteristiche servono fino ad un certo punto. Dovete 
+        arrivare in fondo alla strada che porta alla creazione di sistemi robusti 
+        introducendo i test che verificano le caratteristiche specifiche della 
+        vostra classe o del vostro programma. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Prima scrivete il 
+        codice di test (prima di scrivere la classe) in modo da controllare che 
+        il progetto della vostra classe sia completo. Se non siete in grado di 
+        scrivere il codice di test, significa che non sapete che aspetto presenta 
+        la vostra classe. Inoltre, il semplice atto di scrivere il codice di test 
+        farà spesso emergere caratteristiche aggiuntive o vincoli di cui avete 
+        bisogno nella classe - queste caratteristiche e questi vincoli non appaiono 
+        sempre durante l'analisi ed il progetto. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Ricordate una regola 
+        fondamentale dell'ingegneria del software <A 
+  href="file:///C:/Documents%20and%20Settings/Administrator/Desktop/itaB.html#nota1">[1]</A>: 
+        <EM>Tutti i problemi di progetto del software possono essere semplificati 
+        introducendo un ulteriore livello di dereferenziamento concettuale</EM>. 
+        Quest'idea sta alla base dell'astrazione, la caratteristica primaria della 
+        programmazione orientata agli oggetti. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Rendete le classi 
+        le più atomiche possibile; in altri termini, date ad ogni classe un unico 
+        scopo chiaro. Se le vostre classi o il vostro progetto del sistema diventano 
+        troppo complicati, suddividete le classi complesse in classi più semplici. 
+        Il segnale più ovvio di questo fatto è proprio la stessa dimensione: se 
+        una classe è grande, c'è la possibilità che stia facendo troppo e che 
+        andrebbe divisa. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Guardatevi dalle 
+        definizioni dei metodi lunghe. Una funzione lunga e complicata è difficile 
+        e costosa da mantenere, e probabilmente sta cercando di fare troppo da 
+        sola. Se trovate una funzione del genere, significa che, quantomeno, andrebbe 
+        suddivisa in alcune funzioni più piccole. Potrebbe anche suggerire la 
+        creazione di una nuova classe. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Guardatevi dalle 
+        liste di argomenti lunghe. Le chiamate di funzione diventano difficili 
+        da scrivere, leggere e mantenere. Piuttosto, cercate di spostare il metodo 
+        in una classe alla quale sia (più) adatto, e/o a passargli un oggetto 
+        come parametro. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Non ripetetevi. Se 
+        un pezzo di codice compare in molte funzioni nelle classi derivate, spostate 
+        quel codice in un'unica funzione nella classe base e chiamatelo dalle 
+        funzioni delle classi derivate. Non solo risparmierete spazio, ma consentirete 
+        un'agevole propagazione delle modifiche. Potete utilizzare una funzione 
+        inline per l'efficienza. Talvolta, la scoperta di questo codice comune 
+        porta considerevoli benefici alla funzionalità della vostra interfaccia. 
+        </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Guardatevi dalle 
+        istruzioni <SPAN class=keyword>switch</SPAN> o dagli <SPAN 
+  class=keyword>if-else</SPAN> concatenati. Tipicamente, questo è un indicatore 
+        della programmazione di tipo <EM>type-check</EM>, che significa che state 
+        scegliendo quale codice eseguire in base ad un qualche genere di informazione 
+        sul tipo (il tipo esatto potrebbe non esservi immediatamente chiaro). 
+        Solitamente, potete rimpiazzare questo genere di codice sfruttando ereditarietà 
+        e polimorfismo; la chiamata ad una funzione polimorfica eseguirà il controllo 
+        di tipo per voi, e consentirà un estensibilità più affidabile e semplice. 
+        </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Al momento del progetto, 
+        cercate e separate le cose che cambiano da quelle che restano uguali. 
+        In altre parole, individuate gli elementi del sistema che potreste voler 
+        modificare senza dover riprogettare tutto, quindi incapsulate quegli elementi 
+        nelle classi. Potete avere maggiori dettagli su questo concetto nel capitolo 
+        dedicato ai Design Pattern nel Volume 2 di questo libro, disponibile presso 
+        <EM><A 
+  href="file:///C:/Documents%20and%20Settings/Administrator/Desktop/www.BruceEckel.com">www.BruceEckel.com</A></EM>. 
+        </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Guardatevi dalla 
+        <EM>varianza</EM>. Due oggetti semanticamente differenti potrebbero avere 
+        identiche funzioni, o responsabilità, e c'è una naturale tentazione di 
+        cercare di renderla una sottoclasse dell'altra, con l'unico scopo di trarre 
+        benefici dall'ereditarietà. Questa tecnica si chiama varianza, ma non 
+        c'è un valido motivo per forzare una relazione superclasse/sottoclasse 
+        quando questa non esiste. Una soluzione migliore sarebbe creare una classe 
+        base generale che genera per entrambe un'interfaccia - richiede un po' 
+        più spazio ma vi consente ancora di trarre vantaggio dall'ereditarietà 
+        e probabilmente di fare interessanti scoperte sul progetto. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Guardatevi dalle 
+        <EM>limitazioni</EM> nell'ereditarietà. I progetti più puliti aggiungono 
+        nuove funzionalità a quelle ereditate. Un progetto di cui diffidare rimuove 
+        le vecchie funzionalità durante l'eredità senza aggiungerne altre. Ma 
+        le regole sono fatte per essere infrante, e se state lavorando con una 
+        vecchia libreria di classi potrebbe essere più efficiente restringere 
+        una classe esistente nelle sue sottoclassi, piuttosto che ristrutturare 
+        la gerarchia in modo che la vostra nuova classe si vada ad inserire dove 
+        dovrebbe, al di sopra della vecchia classe. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Non estendete le 
+        funzionalità fondamentali nelle sottoclassi. Se un elemento dell'interfaccia 
+        è fondamentale per una classe si dovrebbe trovare nella classe base, e 
+        non essere aggiunto nel corso delle derivazioni. Se state aggiungendo 
+        dei metodi tramite l'eredità, forse dovreste ripensare il progetto. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Meno è più. Iniziate 
+        da un'interfaccia minimale per la classe, semplice e piccola quanto basta 
+        per risolvere il vostro problema corrente, ma non cercate di anticipare 
+        tutti i modi nei quali la vostra classe <EM>potrebbe</EM> essere usata. 
+        Al momento del suo utilizzo, scoprirete il modo nel quale dovrete espandere 
+        l'interfaccia. Comunque, una volta che la classe è in uso, non potete 
+        modificarne l'interfaccia senza disturbare il codice client. Se avete 
+        bisogno di aggiungere più funzioni, va bene; non creerà problemi al codice, 
+        se non la necessità di una ricompilazione. Ma anche se i nuovi metodi 
+        rimpiazzano le funzionalità di quelle vecchie, lasciate da sola l'interfaccia 
+        già esistente (se volete, potete combinare le funzionalità nell'implementazione 
+        sottostante). Se avete bisogno di espandere l'interfaccia di una funzione 
+        esistente aggiungendo nuovi argomenti, lasciate gli argomenti già esistenti 
+        nel loro ordine, ed assegnate dei valori di default a tutti quelli nuovi; 
+        in questo modo, non creerete problemi a nessuna chiamata già esistente 
+        a quella funzione. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Leggete le vostre 
+        classi ad alta voce per assicurarvi che siano logiche, riportando la relazione 
+        tra classe base e classe derivata come "è un", e quella tra classe ed 
+        oggetto membro come "ha un". </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Al momento di scegliere 
+        fra eredità e composizione, chiedetevi se avete bisogno di fare un upcast 
+        al tipo base. In caso negativo, privilegiate la composizione (oggetti 
+        membri) all'eredità. Ciò può eliminare la necessità percepita di usare 
+        l'eredità multipla. Se ereditate, gli utenti penseranno che prevediate 
+        che facciano upcast. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Talvolta, avete bisogno 
+        di ereditare per poter accedere ai membri <SPAN 
+  class=keyword>protected</SPAN> della classe base. In questo modo potreste pensare 
+        di avere bisogno dell'eredità multipla. Se non avete bisogno di upcast, 
+        dapprima derivate una nuova classe per eseguire l'accesso protected. In 
+        seguito, rendete questa nuova classe un oggetto membro di qualunque classe 
+        che abbia bisogno di utilizzarlo, piuttosto che ereditarlo. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Tipicamente, una 
+        classe base verrà utilizzata principalmente per creare un'interfaccia 
+        alle classi derivate da lei. Pertanto, quando create una classe base, 
+        create tendenzialmente le funzioni membro come virtuali pure. Anche il 
+        distruttore può essere virtuale puro (per forzare gli eredi a sovrascriverlo 
+        esplicitamente), ma ricordate di dare al distruttore un corpo, perché 
+        tutti i distruttori di una gerarchia vengono sempre chiamati. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Quando inserite una 
+        funzione <SPAN class=keyword>virtual</SPAN> in una classe, rendete <SPAN class=keyword>virtual</SPAN> 
+        tutte le funzioni di quelle classe, ed inserite un distruttore <SPAN class=keyword>virtual</SPAN>. 
+        Questo approccio previene sorprese nel comportamento dell'interfaccia. 
+        Iniziate a rimuovere la parola chiave <SPAN class=keyword>virtual</SPAN> 
+        solo quando avete problemi di efficienza ed il vostro analizzatore vi 
+        ha suggerito questa soluzione. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Utilizzate le variabili 
+        membro per le variazioni di valore, e le funzioni <SPAN class=keyword>virtual</SPAN> 
+        per le variazioni di comportamento. In altre parole, se trovate una classe 
+        che utilizza variabili di stato unitamente a funzioni membro che modificano 
+        il loro comportamento in base a quelle variabili, probabilmente dovreste 
+        riprogettarla esprimendo le differenze di comportamento tramite sottoclassi 
+        e funzioni <SPAN 
+  class=keyword>virtual</SPAN> soprascritte. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Se dovete fare qualcosa 
+        di non portabile, create un astrazione per quel servizio ed inseritelo 
+        in una classe. Questo livello ulteriore di redirezione impedisce alla 
+        non portabilità di essere distribuita in tutto il programma. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Evitate l'eredità 
+        multipla. Serve a tirarvi fuori da situazioni spiacevoli, in particolare 
+        per riparare interfacce di classi sulle quali non avete il controllo (vedete 
+        il Volume 2). Dovreste essere programmatori esperti prima di progettare 
+        eredità multiple per il vostro sistema. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Non usate eredità 
+        <SPAN class=keyword>private</SPAN>. Sebbene sia prevista dal linguaggio 
+        e talvolta sembri essere funzionale, introduce notevoli ambiguità quando 
+        è combinata all'identificazione run-time del tipo. Create un oggetto membro 
+        private, piuttosto che utilizzare l'eredità privata. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Se due classi sono 
+        in qualche maniera funzionalmente associate tra di loro (ad esempio come 
+        i contenitori e gli iteratori), cercate di rendere una delle due una classe 
+        <SPAN class=keyword>public</SPAN> e <SPAN 
+  class=keyword>friend</SPAN> annidata nell'altra, così come la Libreria Standard 
+        C++ fa con gli iteratori dentro i contenitori (esempi di questa tecnica 
+        sono mostrati nella parte finale del Capitolo 16). In questo modo non 
+        solo viene enfatizzata l'associazione fra le due classi, ma, anidandolo 
+        all'interno di un'altra classe, si consente al nome della classe di essere 
+        riutilizzato. La Libreria Standard C++ fa questo definendo una classe 
+        <SPAN 
+  class=keyword>iterator</SPAN> annidata in ciascuna classe contenitore, fornendo 
+        così ai contenitori un'interfaccia comune. L'altra ragione per la quale 
+        potreste voler annidare una classe è come parte di un'implementazione 
+        <SPAN class=keyword>private</SPAN>. In questo caso, l'annidamento è utile 
+        più per nascondere l'implementazione che per sottolineare l'associazione 
+        fra le classi o prevenire l'inquinamento del namespace come descritto 
+        sopra. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">L'overloading degli 
+        operatori è soltanto "zucchero sintattico": un modo diverso per chiamare 
+        una funzione. Se l'overloading di un operatore non rende l'interfaccia 
+        della classe più chiara e semplice da usare, non fatelo. Per una classe 
+        create solo un operatore per la conversione automatica di tipo. In generale, 
+        seguite le linee guida ed il formato descritto nel Capitolo 12 quando 
+        effettuate l'overloading degli operatori. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Non preoccupatevi 
+        di un'ottimizzazione prematura. È pura follia. In particolare, non preoccupatevi 
+        di scrivere (o evitare) le funzioni <SPAN 
+  class=keyword>inline</SPAN>, di rendere non <SPAN class=keyword>virtual</SPAN> 
+        certe funzioni, o di forzare il codice ad essere efficiente quando state 
+        appena costruendo il sistema. Il vostro scopo principale è di verificare 
+        il progetto, a meno che lo stesso richieda una certa efficienza. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Di norma, evitate 
+        che sia il compilatore a creare per voi costruttori, distruttori ed <SPAN class=keyword>operator=</SPAN>. 
+        I progettisti delle classi dovrebbero sempre dire esattamente che cosa 
+        la classe dovrebbe fare e mantenere la classe completamente sotto controllo. 
+        Se non volete avere un costruttore di copia o un <SPAN class=keyword>operator=</SPAN>, 
+        dichiarateli come <SPAN class=keyword>private</SPAN>. Ricordate che, se 
+        create un qualunque costruttore, impedirete al costruttore di default 
+        di essere sintetizzato. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Se la vostra classe 
+        contiene puntatori, per farla funzionare correttamente dovete creare il 
+        costruttore di copia, <SPAN class=keyword>operator=</SPAN> ed il distruttore. 
+        </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Quando scrivete il 
+        costruttore di copia per una classe derivata, ricordatevi di richiamare 
+        esplicitamente il costruttore di copia della classe base (anche nelle 
+        versioni che hanno un oggetto come membro) (Vedete il Capitolo 14). Se 
+        non lo fate, per la classe base (o per l'oggetto membro) verrà richiamato 
+        il costruttore di default, e probabilmente non è quello che volete. Per 
+        chiamare il costruttore di copia della classe base, passategli l'oggetto 
+        derivato dal quale state copiando:</font><BR>
+      
+      <P><CODE>Derived(<SPAN class=keyword>const</SPAN> Derived&amp; d) : Base(d) 
+        { <SPAN class=comment>// ...</SPAN> </CODE></P>
+      <P></P>
+    <LI><font face="Georgia, Times New Roman, Times, serif">Quando scrivete un 
+      operatore di assegnazione per una classe derivata, ricordate di chiamare 
+      esplicitamente la versione dell'operatore di assegnazione della classe base. 
+      (Vedete il Capitolo 14.) Se non lo fate, allora non accadrà nulla (lo stesso 
+      vale per gli oggetti membri). Per richiamare l'operatore di assegnazione 
+      della classe base, usate il nome della classe base e la risoluzione di ambiente: 
+      </font> 
+      <P><CODE>Derived&amp; operator=(<SPAN class=keyword>const</SPAN> Derived&amp; 
+        d) {<BR>
+        &nbsp;&nbsp;Base::operator=(d); </CODE></P>
+      <P></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Se avete bisogno 
+        di minimizzare le ricompilazioni durante lo sviluppo di un progetto esteso, 
+        utilizzate la tecnica della classe di gestione/gatto Cheshire mostrata 
+        nel Capitolo 5, e rimuovetela solo se l'efficienza a runtime costituisce 
+        un problema. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Evitate il preprocessore. 
+        Usate sempre <SPAN class=keyword>const</SPAN> per sostituire i valori 
+        e le funzioni <SPAN class=keyword>inline</SPAN> per le macro. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Mantenete gli scope 
+        più piccoli possibile, in modo che la visibilità e la vita dei vostri 
+        oggetti siano le più ridotte possibile. In questo modo, diminuisce la 
+        possibilità di utilizzare un oggetto in un contesto sbagliato e di nascondere 
+        un bug difficile da trovare. Per esempio, supponete di avere un contenitore 
+        ed un frammento di codice che itera su di lui. Se copiate quel codice 
+        per usarlo con un altro contenitore, potreste trovarvi accidentalmente 
+        ad utilizzare la dimensione del vecchio contenitore come limite superiore 
+        per quello nuovo. Se, comunque, il vecchio contenitore è esterno allo 
+        scope, l'errore verrà scoperto al momento della compilazione. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Evitate le variabili 
+        globali. Cercate sempre di inserire i dati all'interno delle classi. È 
+        più probabile imbattersi in funzioni globali piuttosto che in variabili 
+        globali, sebbene potreste rendervi conto in seguito che una funzione globale 
+        troverebbe una collocazione più consona come metodo <SPAN 
+  class=keyword>static</SPAN> di una classe. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Se avete bisogno 
+        di dichiarare una classe o una funzione di una libreria, fatelo sempre 
+        utilizzando un file header. Per esempio, se volete creare una funzione 
+        per scrivere su di un <SPAN class=keyword>ostream</SPAN>, non dichiarate 
+        mai <SPAN class=keyword>ostream</SPAN> per conto vostro utilizzando una 
+        specificazione di tipo incompleta come questa,<BR>
+        </font>
+      <P><CODE><SPAN class=keyword>class</SPAN> ostream; </CODE></P>
+      <font face="Georgia, Times New Roman, Times, serif">Questo approccio rende 
+      il vostro codice vulnerabile a cambiamenti di rappresentazione. (Per esempio, 
+      <SPAN class=keyword>ostream</SPAN> potrebbe essere in effetti un <SPAN class=keyword>typedef</SPAN>). 
+      Piuttosto, utilizzate il file header: </font> 
+      <P><CODE><SPAN class=keyword>#include</SPAN> &lt;iostream&gt;. </CODE></P>
+      <font face="Georgia, Times New Roman, Times, serif">Quando create le vostre 
+      classi, se una libreria è grande, fornite ai vostri utenti una versione 
+      abbreviata del file header, con dichiarazioni di tipo incomplete (vale a 
+      dire, dichiarazioni dei nomi delle classi) nei casi in cui debbano usare 
+      solamente i puntatori. (La compilazione potrebbe risultarne accelerata). 
+      </font>
+      <P></P>
+    
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Quando scegliete 
+        il tipo restituito dall’overloading di un operatore, considerate che cosa 
+        accadrebbe se le espressioni venissero concatenate assieme. Restituite 
+        una copia di un reference ad un lvalue (<CODE><SPAN 
+  class=keyword>return</SPAN> *<SPAN class=keyword>this</SPAN></CODE>) in modo 
+        che possa essere utilizzato in espressioni concatenate (<CODE>A=B=C</CODE>). 
+        Quando definite <SPAN class=keyword>operator=</SPAN>, ricordatevi di <CODE>x 
+        = x</CODE>. </font></P>
+    
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Quando scrivete una 
+        funzione, come prima scelta passatele gli argomenti come <SPAN class=keyword>const</SPAN> 
+        reference. Fintantoché non dovete modificare l’oggetto passato, questa 
+        è la scelta migliore, in quanto possiede la semplicità del passaggio per 
+        valore ma non richiede costose operazioni di costruzione e distruzione 
+        per creare un oggetto locale, cosa che accade quando un parametro viene 
+        passato per valore. Normalmente, non dovreste preoccuparvi eccessivamente 
+        delle problematiche di efficienza quando progettate e costruite il vostro 
+        sistema, ma quest’abitudine è di certo un punto vincente. </font></P>
+    
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Siate consapevoli 
+        degli oggetti temporanei. Quando cercate le prestazioni, controllate la 
+        creazione di oggetti temporanei, soprattutto in presenza di overload degli 
+        operatori. Se i vostri costruttori e distruttori sono complicati, il costo 
+        di creare e distruggere oggetti temporanei può essere elevato. Quando 
+        restituite un oggetto da una funzione, cercate sempre di costruire l’oggetto 
+        “in loco” con una chiamata al costruttore nell’istruzione <SPAN class=keyword>return</SPAN>:<BR>
+        </font>
+      <P><CODE><SPAN class=keyword>return</SPAN> MyType(i, j); </CODE></P>
+      <font face="Georgia, Times New Roman, Times, serif">piuttosto di </font> 
+      <P><CODE>MyType x(i, j);<BR>
+        <SPAN class=keyword>return</SPAN> x; </CODE></P>
+      <font face="Georgia, Times New Roman, Times, serif">La prima istruzione 
+      <SPAN class=keyword>return</SPAN> (la cosiddetta ottimizzazione del valore 
+      restituito) elimina una chiamata al costruttore ed una chiamata al distruttore. 
+      </font>
+      <P></P>
+    
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Quando create i costruttori, 
+        prendete in considerazione le eccezioni. Nella migliore delle ipotesi, 
+        il costruttore non farà nulla che lanci un’eccezione. Nello scenario appena 
+        peggiore, la classe sarà composta ed erediterà solo da classi robuste, 
+        che quindi si puliranno automaticamente se un’eccezione viene lanciata. 
+        Se dovete avere puntatori “scoperti”, siete responsabili di catturare 
+        le vostre eccezioni e quindi di deallocare tutte le risorse puntate prima 
+        di lanciare un eccezione nel vostro costruttore. Se un costruttore deve 
+        fallire, il modo migliore per farlo è lanciare un’eccezione. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Nei vostri costruttori 
+        fate solo il minimo necessario. In questo modo, non solo produrrete un 
+        costo minimo per le chiamate al costruttore (molte delle quali potrebbero 
+        non essere sotto il vostro controllo), ma è anche meno probabile che i 
+        vostri costruttori lancino eccezioni o creino problemi. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">La responsabilità 
+        del distruttore è di rilasciare le risorse allocate durante l’intera vita 
+        dell’oggetto, non solo durante la costruzione. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Utilizzate le gerarchie 
+        di eccezioni, preferibilmente derivandole dalla gerarchia di eccezioni 
+        standard del C++ ed annidate come classi public all’interno della classe 
+        che lancia l’eccezione. La persona che cattura l’eccezione può così catturare 
+        i tipi specifici di eccezione, seguiti dal tipo base. Se aggiungete nuove 
+        eccezioni derivate, il codice client esistente catturerà ancora l’eccezione 
+        attraverso il tipo base. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Lanciate le eccezioni 
+        per valore, e catturatele per riferimento. Lasciate che sia il meccanismo 
+        di gestione delle eccezioni ad occuparsi della gestione della memoria. 
+        Se lanciate puntatori ad oggetti eccezione che sono stati creati sull’heap, 
+        chi la cattura deve sapere di doverla distruggere, e questo è un comportamento 
+        scorretto. Se catturate le eccezioni per valore, provocate ulteriori costruzioni 
+        e distruzioni; peggio ancora, le porzioni derivate dei vostri oggetti 
+        eccezione potrebbero andare perdute nel corso dell’upcast per valore. 
+        </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Non create dei vostri 
+        propri class template, a meno che non vi siate costretti. Prima guardate 
+        nella Libreria Standard C++, quindi rivolgetevi ai venditori che creano 
+        strumenti di tipo special-purpose. Acquistate dimestichezza con il loro 
+        uso ed incrementerete notevolmente la vostra produttività. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Quando create i template, 
+        cercate il codice che non dipende dal tipo e collocatelo in una classe 
+        base esterna al template per prevenire un inutile rigonfiamente del codice. 
+        Utilizzando l’ereditarietà o la composizione, potete creare template nei 
+        quali la maggior parte del codice dipende dal tipo ed è quindi essenziale. 
+        </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Non utilizzate le 
+        funzioni <SPAN class=keyword>&lt;cstdio&gt;</SPAN>, come <SPAN class=keyword>printf()</SPAN>. 
+        Piuttosto, imparate ad utilizzare gli iostream; sono funzioni type-safe 
+        e type-extensible, e nettamente più potenti. Il vostro sforzo sarà regolarmente 
+        ricompensato. In generale, usate sempre le librerie C++ piuttosto delle 
+        librerie C. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Evitate i tipi nativi 
+        del C. Sono supportati dal C++ solo per ragioni di compatibilità all’indietro, 
+        ma sono molto meno robusti delle classi C++, quindi il tempo dedicato 
+        alla ricerca dei bug aumenta. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Tutte le volte che 
+        usate i tipi nativi come globali o automatici, non definiteli fintantoché 
+        non potete anche inizializzarli. Definite la variabili una per riga, ciascuna 
+        con la propria inizializzazione. Quando definite i puntatori, posizionate 
+        la ‘<SPAN class=keyword>*</SPAN>’ vicino al nome del tipo. Potete farlo 
+        senza pericolo, se definite una variabile per riga. Questo stile tende 
+        a confondere meno l’utente. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Garantite che l’inizializzazione 
+        abbia luogo in tutti gli aspetti del vostro codice. Eseguite tutte le 
+        inizializzazioni dei membri nella lista di inizializzazione del costruttore, 
+        anche per i tipi nativi (utilizzate chiamate a pseudocostruttori). L’utilizzo 
+        della lista di inizializzazione del costruttore è spesso più efficiente 
+        quando si inizializzano gli oggetti membro; in caso contrario viene chiamato 
+        il costruttore di default, e finite per chiamare, dopo di lui, altre funzioni 
+        membro (probabilmente <SPAN 
+  class=keyword>operator=</SPAN>) per ottenere l’inizializzazione desiderata. 
+        </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Non utilizzate la 
+        forma <CODE>MyType a = b;</CODE> per definire un oggetto. Questa caratteristica 
+        è una delle maggiori fonti di confusione, perché viene chiamato il costruttore 
+        e non <SPAN class=keyword>operator=</SPAN>. Per chiarezza, siate sempre 
+        precisi ed utilizzate piuttosto la forma <CODE>MyType a(b);</CODE>. Il 
+        risultato è identico, ma non confonderete le idee agli altri programmatori. 
+        </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Utilizzate i cast 
+        espliciti descritti nel Capitolo 3. Un cast scavalca il sistema normale 
+        dei tipi, ed è una fonte potenziale di errori. Dal momento che i cast 
+        specifici suddividono il cast “tuttofare” del C in categorie di cast ben 
+        definiti, chiunque esegua il debug o mantenga il codice è in grado di 
+        trovare facilmente tutti i punti nei quali è più probabile il verificarsi 
+        di errori logici. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Perché un programma 
+        sia robusto, ogni singolo componente deve essere robusto. Sfruttate tutti 
+        gli strumenti offerti dal C++: controllo degli accessi, eccezioni, correttezza 
+        delle costanti, controllo del tipo, e così via, e questo in ogni classe 
+        che create. In questo modo, quando costruite il vostro sistema, potete 
+        muovervi con sicurezza verso il livello di astrazione successivo. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Utilizzate la correttezza 
+        delle costanti. Consente al compilatore di evidenziare dei bug che, altrimenti, 
+        sarebbero stati infidi e difficili da individuare. Questa abitudine ha 
+        bisogno di una certa disciplina e dev’essere utilizzata in maniera consistente 
+        in tutte le classi, ma paga. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Sfruttate a vostro 
+        vantaggio il controllo degli errori effettuato dal compilatore. Compilate 
+        il vostro codice abilitando tutti i warning, e correggete il vostro codice 
+        in modo da eliminarli tutti. Scrivete codice che utilizza gli errori ed 
+        i warning al momento della compilazione, piuttosto che codice che provochi 
+        errori di runtime (ad esempio, non utilizzate liste di argomenti variadic, 
+        che impediscono qualsiasi controllo dei tipi). Utilizzate <SPAN class=keyword>assert()</SPAN> 
+        per il debug, ma a runtime usate le eccezioni. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Preferite gli errori 
+        di compilazione agli errori di runtime. Cercate di gestire un errore il 
+        più vicino possibile al punto in cui si è verificato. È preferibile gestire 
+        l’errore in quel punto piuttosto che lanciare un eccezione. Catturate 
+        le eccezioni nel gestore più vicino che abbia informazioni sufficienti 
+        per gestirle. Fate il possibile col l’eccezione al livello corrente; se 
+        in questo modo non risolvete il problema, rilanciatela nuovamente. (Vedete 
+        il Volume 2 per maggiori dettagli.) </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Se state utilizzando 
+        le specifiche delle eccezioni (vedete il Volume 2 di questo libro, scaricabile 
+        a <EM><A 
+  href="file:///C:/Documents%20and%20Settings/Administrator/Desktop/www.BruceEckel.com">http://www.BruceEckel.com</A></EM>, 
+        per imparare a gestire le eccezioni) installate una vostra funzione <SPAN 
+  class=keyword>unexpected()</SPAN> utilizzando <SPAN 
+  class=keyword>set_unexpected()</SPAN>. La vostra funzione <SPAN 
+  class=keyword>unexpected()</SPAN> dovrebbe registrare l’errore e rilanciare 
+        l’eccezione corrente. In questo caso, se una funzione esistente viene 
+        scavalcata e comincia a lanciare eccezioni, avrete a disposizione una 
+        traccia di quanto è accaduto e potrete modificare il codice chiamante 
+        per gestire l’eccezione. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Create una funzione 
+        <SPAN class=keyword>terminate()</SPAN> (che indica un errore di programmazione) 
+        personalizzata per registrare l’errore che ha portato all’eccezione, dopodiché 
+        rilasciate le risorse del sistema ed uscite dal programma. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Se un distruttore 
+        chiama una qualunque funzione, quella funzione potrebbe lanciare un’eccezione. 
+        Un distruttore non può lanciare un’eccezione (ne potrebbe risultare una 
+        chiamata a <SPAN class=keyword>terminate()</SPAN>, che indica un errore 
+        di programmazione), quindi qualunque distruttore che chiama funzioni deve 
+        catturarne e gestirne le eccezioni. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Non create una vostra 
+        notazione “personalizzata” per i nomi delle variabili membro (underscore 
+        prefissi, notazione ungherese e così via), a meno che non abbiate una 
+        gran quantità di variabili globali preesistenti; se così non è, lasciate 
+        che le classi ed i namespace svolgano il lavoro per voi. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Prestate attenzione 
+        all’overload. Una funzione non dovrebbe eseguire del codice condizionatamente, 
+        in base al valore di un argomento, che sia o meno di default. In questo 
+        caso, dovreste invece creare due o più funzioni in overload. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Nascondete i vostri 
+        puntatori all’interno di classi contenitore. Portateli all’esterno solo 
+        immediatamente prima di eseguire operazioni su di essi. I puntatori sono 
+        sempre stati una grossa fonte di errori. Quando utilizzate <SPAN class=keyword>new</SPAN>, 
+        cercate di racchiuderne il risultato in un contenitore. Fate in modo che 
+        i contenitori “possiedano” i loro puntatori, in modo che siano responsabili 
+        per il rilascio delle risorse. Ancora meglio, inserite il puntatore in 
+        una classe; se volete ancora che si comporti come un puntatore, effettuate 
+        l’overload di <SPAN class=keyword>operator-&gt;</SPAN> e di <SPAN class=keyword>operator*</SPAN>. 
+        Se dovete necessariamente avere un puntatore libero, inizializzatelo sempre, 
+        preferibilmente con l’indirizzo di un oggetto, ma se necessario anche 
+        a zero. Impostatelo a zero quando chiamate la <SPAN class=keyword>delete</SPAN>, 
+        per prevenire eliminazioni multiple. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Evitate l’overload 
+        degli operatori <SPAN class=keyword>new</SPAN> e <SPAN 
+  class=keyword>delete</SPAN> a livello globale, ma fatelo sempre classe per classe. 
+        L’overload globale influenza sempre l’intero progetto, che invece andrebbe 
+        controllato solamente dal creatore del progetto. Al momento dell’overload 
+        di <SPAN class=keyword>new</SPAN> e <SPAN 
+  class=keyword>delete</SPAN> per una classe, non assumete di conoscere la dimensione 
+        dell’oggetto; qualcuno potrebbe stare ereditando da voi. Utilizzate l’argomento 
+        fornito. Se fate qualcosa di particolare, considerate l’effetto che potrebbe 
+        avere sugli eredi. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Prevenite lo sfaldamento 
+        degli oggetti. Non ha praticamente mai senso fare l’upcast di un oggetto 
+        per valore. Per prevenire l’upcast per valore, inserite funzioni virtuali 
+        pure nella vostra classe base. </font></P>
+    <LI> 
+      <P><font face="Georgia, Times New Roman, Times, serif">Talvolta la semplice 
+        aggregazione è tutto ciò che serve. Un “sistema di confort per i passeggeri” 
+        di una linea aerea si compone di elementi sconnessi: sedile, aria condizionata, 
+        video, e così via; perdipiù avete bisogno di crearne molte istanze per 
+        un aereo. Forse che costruite dei membri privati e costruite da zero una 
+        nuova interfaccia? No - in questo caso i componenti appartengono anche 
+        all’interfaccia pubblica, quindi dovreste creare oggetti membro pubblici. 
+        Questi oggetti hanno una loro implementazione privata, che è ancora sicura. 
+        Tenete conto che l’aggregazione pura e semplice non è una soluzione da 
+        usare spesso, ma talvolta accade. </font> </P>
+    </LI>
+  </OL>
+  <HR>
+  <A name=nota1><font face="Georgia, Times New Roman, Times, serif">[1] Spiegatami 
+  da Andrea Koenig </font></A></div>
+<p><FONT FACE = "Verdana"></FONT></p>
+<div align="center"><FONT FACE = "Verdana"> </FONT><FONT FACE="Verdana" size = "-1">[ 
+  <a href="AppendiceA.html">Capitolo Precedente</a> ] [ <a href="Contents.html">Indice 
+  Generale</a> ] [ <a href="DocIndex.html">Indice Analitico</a> ] [ <a href="AppendiceC.html">Prossimo 
+  Capitolo</a> ] </FONT> <BR>
+  Ultimo Aggiornamento:17/08/2003<FONT FACE = "Verdana"> </FONT></div>
+<FONT FACE = "Verdana"></FONT> 
+</BODY>
+
+</HTML>

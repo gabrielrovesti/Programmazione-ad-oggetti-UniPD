@@ -1,0 +1,644 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<!--
+This document was converted from RTF source: 
+By rtftohtml 4.19
+See http://www.sunpack.com/RTF
+Filename:TIC2Vone.rtf
+Application Directory:C:\TOOLS\RTF2HTML\
+Subject:
+Author:Bruce Eckel
+Operator:Bruce Eckel
+Document Comments:
+Version Comments:
+Comments:
+Keywords:
+Translation Date:09/27/2001
+Translation Time:05:26:04
+Translation Platform:Win32
+Number of Output files:22
+This File:AppendixA.html
+SplitDepth=1
+SkipNavPanel=1
+SkipLeadingToc=1
+SkipTrailingToc=1
+GenContents=1
+GenFrames=1
+GenIndex=1
+-->
+<HEAD lang="en"><META http-equiv="Content-Type" content="text/html">
+<TITLE>A: Coding Style</TITLE>
+</HEAD>
+
+<BODY  BGCOLOR="#FFFFFF">
+<DIV ALIGN="CENTER"> <a href="http://www.MindView.net"> <img src="mindview-head.gif" alt="MindView Inc." border = "0"></a> 
+  <center>
+    <font face="Verdana" size = "-1"> </font> 
+    <p align="CENTER">&nbsp;</p>
+    <p align="CENTER"><font face="Verdana" size=2>[ </font><a href="README-HTML.txt"><u><font face="Verdana" size="2" color="#0000ff">Suggerimenti</font></u></a><font face="Verdana" size=2> 
+      ] [ </font><a href="http://www.mindview.net/CPPServices/SolutionGuide.html"><u><font face="Verdana" size=2 color="#0000ff">Soluzioni 
+      degli Esercizi</font></u></a><font face="Verdana" size=2>] [ </font><a href="http://www.mindview.net/ThinkingInCPP2e.html"><u><font face="Verdana" size=2 color="#0000ff">Volume 
+      2</font></u></a><font face="Verdana" size=2> ] [ </font><a href="http://www.mindview.net/MailingList.html"><u><font face="Verdana" size=2 color="#0000ff">Newsletter 
+      Gratuita</font></u></a><font face="Verdana" size=2> ] <br>
+      [ </font><a href="http://www.mindview.net/CPPServices/#PublicSeminars"><u><font face="Verdana" size=2 color="#0000ff">Seminari</font></u></a><font face="Verdana" size=2> 
+      ] [ </font><a href="http://www.mindview.net/CPPServices/#SeminarsOnCD"><u><font face="Verdana" size=2 color="#0000ff">Seminari 
+      su CD ROM</font></u></a><font face="Verdana" size=2> ] [ </font><a href="http://www.mindview.net/CPPServices/#ConsultingServices"><u><font face="Verdana" size="2" color="#0000ff">Consulenza</font></u></a><font face="Verdana" size=2>] 
+      </font></p>
+    <h2 align="CENTER"><font face="Verdana">Pensare in C++, seconda ed. Volume 
+      1</font></h2>
+    <h3 align="CENTER"><font face="Verdana">&copy;2000 by Bruce Eckel</font></h3>
+    <p align="CENTER"><font face="Verdana" size=2>[ </font><a href="Capitolo16.html"><u><font face="Verdana" size=2 color="#0000ff">Capitolo 
+      Precedente </font></u></a><font face="Verdana" size=2> ] [ </font><a href="Contents.html"><u><font face="Verdana" size=2 color="#0000ff">Indice 
+      Generale</font></u></a><font face="Verdana" size=2> ] [ </font><a href="DocIndex.html"><u><font face="Verdana" size=2 color="#0000ff">Indice 
+      Analitico </font></u></a><font face="Verdana" size=2> ] [ </font><a href="AppendiceB.html"><u><font face="Verdana" size=2 color="#0000ff">Prossimo 
+      Capitolo</font></u></a><font face="Verdana" size=2> ] </font></p>
+    <p align="CENTER"><font face="Georgia, Times New Roman, Times, serif">traduzione 
+      italiana e adattamento a cura di Marco Arena</font></p>
+  </center>
+  <CENTER>
+  </CENTER>
+  <p></P></DIV>
+<FONT FACE = "Verdana"> 
+<H1 ALIGN="LEFT"> A: Stile di codifica</H1>
+</FONT> <FONT FACE = "Verdana">
+<H1 ALIGN="LEFT">
+</H1></FONT>
+<DIV ALIGN="LEFT">
+  <P><font face="Verdana" size="4">Questa appendice non tratta dell'indentazione 
+    e posizionamento di parentesi tonde e graffe, sebbene ci&ograve; sar&agrave; 
+    menzionato.E' dedicato alle linee guida generali usate in questo libro per 
+    l'organizzazione dei listati del codice.</font><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Sebbene molti di questi problemi sono stati introdotti 
+    in tutto il libro, questa appendice compare alla fine del libro in modo che 
+    si possa presumere che ogni argomento &egrave; aperto a critiche e se qualcosa 
+    non &egrave; chiaro ci si pu&ograve; rimandare alla sezione appropriata.</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Tutte le decisioni riguardanti lo stile di codifica 
+    in questo libro sono state deliberatamente considerate e prese, qualche volta 
+    lungo un periodo di anni. Naturalmente, ognuno ha le proprie ragioni per organizzare 
+    il codice nel modo che vuole ed io prover&ograve; solo a dire come sono arrivato 
+    al mio considerando i vincoli e i fattori ambientali che mi hanno guidato 
+    a queste decisioni.</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Verdana" SIZE=5><B>Nozioni generali</B></FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Nel testo di questo libro, gli identificatori (funzioni, 
+    variabili e nomi di classi) sono scritte in <b>grassetto</b>. Molte parole 
+    chiavi saranno scritte in grassetto, eccetto per quelle usate moltissimo per 
+    cui il grassetto pu&ograve; diventare tedioso, come &quot;class&quot; e &quot;virtual&quot;.</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Uso un particolare stile di codifica per gli esempi 
+    in questo libro. Questo &egrave;' stato sviluppato su un certo numero di anni 
+    ed &egrave; stato parzialmente ispirato dallo stile di Bjarne Stroustrup nel 
+    suo originale <I>The C++ Programming Language</I>.</FONT><A NAME="fnB64" HREF="#fn64">[64]</A><FONT FACE="Georgia"> 
+    Lo stile di formattazione &egrave; un buon tema per ore di dibattito, per 
+    cui dir&ograve; solo che non sto tentando di dettare il corretto stile con 
+    i miei esempi; ho le mie motivazioni per usare lo stile che uso. Poich&eacute; 
+    il C++ &egrave; un linguaggio di programmazione a stile libero, si pu&ograve; 
+    continuare ad usare qualsiasi stile con cui ci si trova comodi.</FONT><BR>
+  </P>
+  </DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Detto questo, noter&ograve; che &egrave; importante 
+    avere uno stile di formattazione coerente all'interno di un progetto. Cercando 
+    in Internet, si troveranno un certo numero di tools che si possono usare per 
+    riformattare tutto il codice in un progetto per ottenere questa preziosa coerenza.</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">I programmi in questo libro sono file che vengono automaticamente 
+    estratti dal testo del libro, il che permette ad essi di essere testati per 
+    assicurarsi che funzionino correttamente. Quindi il codice stampato nel libro 
+    funzioner&agrave; senza errori di compilazione quando &egrave; compilato con 
+    un'implementazione conforme allo Standard C++ (da notare che non tutti i compilatori 
+    supportano tutte le caratteristiche del linguaggio). Gli errori che <i>dovrebbero</i> 
+    causare problemi di compilazione sono descritti con il commento <B>//! </B>per 
+    cui possono essere facilmente scoperti e testati usando gli strumenti automatici. 
+    Errori scoperti e segnalati all'autore compariranno prima nella versione elettronica 
+    del libro (su <I>www.BruceEckel.com</I>) ed in seguito aggiornati sul libro.</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Uno degli standard in questo libro &egrave; che tutti 
+    i programmi saranno compilati e linkati senza errori (sebbene qualche volta 
+    causeranno dei warning). A questo fine, qualcuno dei programmi, che dimostra 
+    solo un esempio di codifica e non rappresenta un programma a se stante, avr&agrave; 
+    una funzione <B>main(&#160;)</B> vuota, come questo</FONT><BR>
+  </P></DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"><PRE><font color=#0000ff>int</font> main() {}</PRE></FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><font face="Georgia">Questo permette al linker di </font><FONT FACE="Georgia">finire 
+    senza errori.</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Lo standard per <B>main(&#160;)</B> &egrave; di restituire 
+    un <B>int</B>, ma lo Standard C++ stabilisce che se non c'&egrave; un istruzione 
+    di <B>return</B> all'interno di <B>main(&#160;)</B>, il compilatore generer&agrave; 
+    automaticamente il codice <B>return 0</B>. Questa opzione (niente <B>return 
+    </B>nel <B>main(&#160;)</B>)<B> </B>sar&agrave; usata in questo libro (alcuni 
+    compilatori potranno ancora generare dei warning per ci&ograve;, ma questi 
+    non sono compatibili con lo Standard C++).</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Verdana" SIZE=5><B>Nomi di file</B></FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">In C, &egrave; tradizione chiamare gli header file (contenenti 
+    le dichiarazioni) con l'estensione <B>.h</B> e i file di esecuzione ( che 
+    fanno s&igrave; che la memoria sia allocata e il codice generato) con l'estensione 
+    <B>.c</B>. Il C++ &egrave; passato attraverso un evoluzione. Fu prima sviluppato 
+    su Unix, dove il sistema operativo distingueva tra minuscole e maiuscole nei 
+    nomi di file. I nomi di file originali erano semplicemente la versione maiuscola 
+    dell'estensione C: <B>.H</B> e <B>.C</B>. Questo naturalmente non funziona 
+    per sistemi operativi che non distinguono minuscole e maiuscole, come il DOS. 
+    I venditori C++ sotto DOS usano estensioni come <B>hxx</B> e <B>cxx</B> per 
+    i file header e esecutivi, rispettivamente, <B>hpp</B> e <B>cpp</B>. Pi&ugrave; 
+    tardi, qualcuno riusc&igrave; a capire che l'unica ragione per cui bisognava 
+    avere differenti estensioni per un file era perch&egrave; il compilatore potesse 
+    determinare se compilarlo come file C o C++. Poich&egrave; il compilatore 
+    non compilava mai gli header file direttamente, solo l'estensione dei file 
+    esecutivi doveva essere cambiata. La consuetudine, attraversando virtualmente 
+    tutti i sistemi, ha portato ad usare ora <B>cpp</B> per i file esecutivi e 
+    <B>h</B> per gli header file. Da notare che quando includiamo i file header 
+    standard di C++, si usa l'opzione di non avere estensione per i file, ad esempio: 
+    <B>#include &lt;iostream&gt;</B>.</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Verdana" SIZE=5><B>Tag di inizio e fine commento</B></FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><font face="Georgia">Un problema molto importante di questo libro &egrave; 
+    che tutto il codice che si vede in esso deve essere verificato per essere 
+    corretto ( con almeno un compilatore). Questo &egrave; realizzato estraendo 
+    automaticamente il file dal libro. Per facilitare ci&ograve;, tutti i listati 
+    che sono proposti per essere compilati ( al contrario dei frammenti di codice, 
+    dei quali ci sono solo alcuni) hanno tag di commento all'inizio e alla fine. 
+    Questi tag sono usati dal tool di estrazione del codice <B>ExtractCode.cpp</B> 
+    nel Volume 2 di questo libro ( che si pu&ograve; trovare sul sito <I>www.BruceEckel.com</I>) 
+    per estrarre ogni listato dalla versione ordinaria di testo ASCII del libro.</font><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Il tag di fine listato dice ad <B>ExtractCode.cpp</B> 
+    che &egrave; alla fine del listato, ma il tag di inizio listato &egrave; seguito 
+    da informazioni quali la sotto-directory a cui il file appartiene (generalmente 
+    organizzate in capitoli, cos&igrave; un file appartenente al Capitolo 8 avr&agrave; 
+    un tag tipo <B>C08</B>), seguito da due punti ed il nome del listato.</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Poich&egrave; <B>ExtractCode.cpp</B> crea anche un <B>makefile</B> 
+    per ogni sotto-directory, vengono anche incorporate nel listato informazioni 
+    su come un programma &egrave; fatto e la linea di comando usata per testarlo. 
+    Se un programma &egrave; a se stante ( non necessita di essere linkato con 
+    nessun altro cio&egrave;) non ha informazioni extra. Questo vale anche per 
+    gli header file. Comunque, se non contiene un <B>main(&#160;)</B> e si intende 
+    che deve essere linkato con qualcos'altro, allora esso ha uno <B>{O}</B> dopo 
+    il nome del file. Se per il listato si intende che deve essere il programma 
+    principale ma necessita di essere linkato con altre componenti, c'&egrave; 
+    una linea separata che inizia con <B>//{L} </B> e continua con tutti i file 
+    che necessitano di essere linkati (senza estensioni, dal momento che questi 
+    possono variare da piattaforma a piattaforma).</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Si possono trovare esempi in tutto il libro.</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Se un file deve essere estratto ma i tag di inizio e 
+    fine non devono essere inclusi nel file che ne deriva (per esempio se esso 
+    &egrave; un file di dati di test) allora il tag di inizio &egrave; immediatamente 
+    seguito da un &#8216;<B>!</B>&#8217;.</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Verdana" SIZE=5><B>Parentesi, graffe e indentazione</B></FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Si pu&ograve; notare che lo stile di formattazione in 
+    questo libro &egrave; differente da molti stili tradizionali di C. Naturalmente, 
+    ognuno pensa che il proprio stile sia il pi&ugrave; razionale. Comunque, lo 
+    stile qui usato ha dietro una logica semplice, che sar&agrave; presentata 
+    qui insieme alle idee sul perch&egrave; sono stati sviluppati altri stili.</FONT><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Lo stile di formattazione &egrave; motivato da una cosa: 
+    la presentazione, sia nella forma stampata che per i seminari. Si pu&ograve; 
+    avere la sensazione che i propri bisogni siano differenti perch&egrave; non 
+    si fanno molte presentazioni. Comunque, il codice operativo viene letto pi&ugrave; 
+    volte di quanto &egrave; scritto e quindi deve essere facile per il lettore 
+    comprenderlo. I miei due importanti criteri sono la &quot;scansione&quot; 
+    ( come &egrave; facile per il lettore capire il significato di una singola 
+    linea) e il numero di linee che pu&ograve; adattarsi su una pagina. Quest'ultimo 
+    pu&ograve; suonare strano, ma quando si sta tenendo una presentazione in pubblico, 
+    si pu&ograve; far distrarre molto la platea se il presentatore deve spostarsi 
+    avanti e indietro tra le slide e ci&ograve; pu&ograve; essere causato da poche 
+    linee sparse.</FONT><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><font face="Georgia">T</font><FONT FACE="Georgia">utti sembrano concordare 
+    che il codice tra parentesi graffe dovrebbe essere indentato. Ci&ograve; su 
+    cui la gente non concorda - ed &egrave; il punto dove c'&egrave; maggior inconsistenza 
+    tra gli stili di formattazione - &egrave; questo: Dove vanno messe le parentesi 
+    aperte? Questa domanda, penso, &egrave; quella che causa tante variazioni 
+    tra stili di codifica (per un enumerazione di stili di codifica, vedi <i>C++ 
+    Programming Guidelines</i>, di Tom Plum e Dan Saks, Plum Hall 1991). Prover&ograve; 
+    a convincerti che molti degli stili odierni derivino dai vincoli del pre-Standard 
+    C (prima dei prototipi di funzione) e ora sono quindi inappropriati.</FONT><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Prima, la mia risposta a quella domanda chiave: le parentesi 
+    graffe aperte dovrebbero sempre andare sulla stessa linea come il &quot;precursore&quot; 
+    ( per questo intendo &quot; se il corpo &egrave; del tipo: una classe, funzione, 
+    definizioni di oggetti, istruzioni if, etc..&quot;). Questa &egrave; una semplice, 
+    coerente regola che applico a tutto il codice che scrivo e rende la formattazione 
+    molto pi&ugrave; semplice. Rende la &quot;scansione&quot; pi&ugrave; semplice 
+    quando si guarda questa linea:</FONT><BR>
+  </P></DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"><PRE><font color=#0000ff>int</font> func(<font color=#0000ff>int</font> a);</PRE></FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">si sa, dal punto e virgola alla fine della linea, che 
+    questa &egrave; una dichiarazione e non ha seguito, ma quando si vede la linea:</FONT></P>
+</DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"><PRE><font color=#0000ff>int</font> func(<font color=#0000ff>int</font> a) {</PRE></FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">immediatamente si sa che &egrave; una definizione perch&egrave; 
+    la linea finisce con una parentesi aperta e non il punto e virgola. Usando 
+    questo approccio, non c'&egrave; differenza su dove mettere le parentesi di 
+    apertura per una definizione su pi&ugrave; linee:</FONT><BR>
+  </P></DIV>
+
+<BLOCKQUOTE><FONT SIZE = "+1"><PRE><font color=#0000ff>int</font> func(<font color=#0000ff>int</font> a) {
+  <font color=#0000ff>int</font> b = a + 1;
+  <font color=#0000ff>return</font> b * 2;
+} </PRE></FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">e per una definizione su linea singola spesso usata 
+    per l'inline:</FONT><BR>
+  </P></DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"><PRE><font color=#0000ff>int</font> func(<font color=#0000ff>int</font> a) { <font color=#0000ff>return</font> (a + 1) * 2; }</PRE></FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">In modo simile per una classe:</FONT><BR>
+  </P></DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"><PRE><font color=#0000ff>class</font> Thing;</PRE></FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">&egrave; una dichiarazione di un nome di classe e</FONT><BR>
+  </P></DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"><PRE><font color=#0000ff>class</font> Thing {</PRE></FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">&egrave; una definizione di classe. Si pu&ograve; dire 
+    guardando la linea singola in tutti i casi se &egrave; una dichiarazione o 
+    una definizione. E naturalmente mettendo le parentesi aperte sulla stessa 
+    linea, invece che su una linea a parte, &egrave; possibile inserire pi&ugrave; 
+    linee nella stessa pagina.</FONT><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">E quindi perch&egrave; abbiamo tanti altri stili? In 
+    particolare, si noter&agrave; che molte persone creano classi seguendo lo 
+    stile di sopra (il quale &egrave; usato da Stroustrup in tutte le edizioni 
+    del suo libro <I>The C++ Programming Language</I> ed. Addison-Wesley) ma creano 
+    definizioni di funzioni mettendo la parentesi aperta su una linea a s&eacute; 
+    (il che genera molti differenti stili di indentazione). Stroustrup fa questo 
+    eccetto che per brevi funzioni inline. Con l'approccio che descrivo qui, tutto 
+    &egrave; coerente - si pu&ograve; dire di cosa si tratta (<B>class</B>, funzione, 
+    <B>enum</B>, etc.) e sulla stessa linea si mette la parentesi aperta per indicare 
+    che il corpo per questa cosa &egrave; scritto a seguire. Inoltre, la parentesi 
+    aperta &egrave; la stessa sia per brevi funzioni inline che per le definizioni 
+    di funzioni ordinarie.</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Sostengo che lo stile delle definizioni di funzioni 
+    usato da molte persone, derivi dal prototipo C pre-funzioni, nel quale non 
+    si dovevano dichiarare gli argomenti all'interno delle parentesi tonde, ma 
+    invece tra la parentesi tonda chiusa e la parentesi graffa aperte (questo 
+    mostra le radici assembly del linguaggio C):</FONT><BR>
+  </P></DIV>
+
+<BLOCKQUOTE><FONT SIZE = "+1">
+  <PRE><font color=#0000ff>void</font> bar()
+ <font color=#0000ff>int</font> x;
+ <font color=#0000ff>float</font> y;
+{
+ <font color=#009900>/* il corpo qui */</font>
+} </PRE>
+  </FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Qui, sarebbe completamente inopportuno mettere le parentesi 
+    graffe aperte sulla stessa linea, per cui nessuno lo fece. Comunque, si presero 
+    diverse decisioni in merito alla questione se le graffe dovrebbero essere 
+    indentate con il corpo o se esse dovrebbero essere al livello del &quot;precursore&quot;. 
+    Per questo abbiamo differenti stili di formattazione.</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Ci sono altri argomenti sul posizionamento delle graffe 
+    sulla linea immediatamente seguente la dichiarazione (di una classe, struct, 
+    funzione, etc.). La seguente viene da un lettore, ed &egrave; presentata in 
+    modo che si possa conoscere quale siano i problemi:</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Utenti esperti di '<i>vi</i>' sanno che schiacciando 
+    il tasto ']' due volte porter&agrave; alla prossima occorrenza di &quot;{&quot; 
+    (o ^L) in colonna 0. Questa caratteristica &egrave; estremamente utile per 
+    muoversi nel codice (per saltare alla prossima funzione o definizione di classe). 
+    [Il mio commento: quando stavo inizialmente lavorando sotto Unix, apparvero 
+    le GNU Emac e rimasi intrappolato tra esse. Come conseguenza, non ho mai raggiunto 
+    una piena conoscenza di vi e quindi non penso in termini di &quot;locazione 
+    di colonna 0&quot;. Comunque, c'&egrave; un ampio gruppo di utenti di <i>vi 
+    </i>, ed essi sono colpiti da tale questione.]</FONT><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Mettendo la &quot;{&quot; sulla linea successiva, si 
+    eliminano un po di confusione dal codice con istruzioni condizionali complesse, 
+    favorendo la &quot;scansione&quot;. Esempio:</FONT><BR>
+  </P></DIV>
+
+<BLOCKQUOTE><FONT SIZE = "+1">
+  <PRE><font color=#0000ff>if</font>(cond1
+   &amp;&amp; cond2
+   &amp;&amp; cond3) {
+   istruzione;
+} </PRE>
+  </FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><font face="Georgia">Il codice precedente [afferma il lettore] ha una scansione 
+    limitata. Comunque,</font><BR>
+  </P></DIV>
+
+<BLOCKQUOTE><FONT SIZE = "+1">
+  <PRE><font color=#0000ff>if</font> (cond1
+&amp;&amp; cond2
+&amp;&amp; cond3)
+{
+istruzione;
+} </PRE>
+  </FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">spezza l'<i>if </i>dal corpo, ma ha la conseguenza di 
+    una migliore leggibilit&agrave;. [le nostre opinioni sul fatto che ci&ograve; 
+    sia vero varieranno in dipendenza da cosa siamo abituati a fare.]</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Alla fine, &egrave; pi&ugrave; facile allineare visualmente 
+    le graffe quando esse sono allineate nella stessa colonna. Esse visivamente 
+    &quot;emergono&quot; meglio. [fine del commento del lettore.]</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Il problema di dove mettere le parentesi graffe aperte 
+    &egrave; probabilmente il pi&ugrave; discordante. Ho imparato a scandire entrambe 
+    le forme e alla fine ne viene fuori quella con cui ci si trova pi&ugrave; 
+    comodi. Comunque, noto che lo standard ufficiale Java ( trovato sul sito Java 
+    della Sun) &egrave; effettivamente lo stesso di quello che presento qui - 
+    da quando molte persone stanno iniziando a programmare in entrambi i linguaggi, 
+    la coerenza tra stili di codifica pu&ograve; essere utile.</FONT></P>
+</DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">L'approccio che uso rimuove tutte le eccezioni e casi 
+    speciali, e logicamente fornisce uno stile singolo di indentazione. Perfino 
+    all'interno del corpo di una funzione, la coerenza rimane, come in:</FONT><BR>
+  </P></DIV>
+
+<BLOCKQUOTE><FONT SIZE = "+1"><PRE><font color=#0000ff>for</font>(<font color=#0000ff>int</font> i = 0; i &lt; 100; i++) {
+  cout &lt;&lt; i &lt;&lt; endl;
+  cout &lt;&lt; x * i &lt;&lt; endl;
+} </PRE></FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Lo stile &egrave; semplice da insegnare e ricordare 
+    - si usa una singola, coerente regola per tutte le nostre formattazioni del 
+    codice, non una per le classi, due per le funzioni (una per quelle inline 
+    e un'altra quelle non), e possibilmente altre per cicli<B> for</B>, istruzioni 
+    <B>if</B>, ecc. La sola coerenza, penso, &egrave; meritevole di considerazione. 
+    Soprattutto, C++ &egrave; un linguaggio pi&ugrave; nuovo che C, e sebbene 
+    dobbiamo fare molte concessioni al C, non dovremmo portare anche troppi manufatti 
+    con noi che causano problemi in futuro. Piccoli problemi moltiplicati per 
+    molte linee di codice diventano grandi problemi. Per un completo esame della 
+    materia, sebbene per il C, vedi <I>C Style: Standards and Guidelines</I>, 
+    di <A NAME="Index2741"></A>David Straker (Prentice-Hall 1992).</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">L'altro vincolo sotto il quale ho lavorato &egrave; 
+    la larghezza della linea, infatti il libro ha una limitazione a 50 caratteri. 
+    Cosa succede quando qualcosa &egrave; pi&ugrave; lungo di una linea? Bene, 
+    di nuovo mi sono sforzato per avere una politica coerente per il modo in cui 
+    spezzare le linee, cos&igrave; che esse possano facilmente essere identificate. 
+    Finch&eacute; qualcosa &egrave; parte di una singola definizione, lista di 
+    definizione, etc. la linea di continuazione dovrebbe essere indentata di un 
+    livello dentro dall'inizio della definizione, lista di argomenti, ecc.</FONT></P>
+</DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Verdana" SIZE=5><B>Nomi degli identificatori</B></FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Coloro che hanno familiarit&agrave; con Java noteranno 
+    che ho cambiato nell'usare lo stile standard di Java per tutti i nomi degli 
+    identificatori. Comunque, non posso essere completamente coerente qui perch&egrave; 
+    gli identificatori nelle librerie standard C e C++ non seguono questo stile.</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Lo stile &egrave; abbastanza lineare. Solo la prima 
+    lettera di un identificatore &egrave; maiuscola se tale identificatore &egrave; 
+    una classe. Se si tratta di una funzione o variabile allora la prima lettera 
+    &egrave; minuscola. Il resto degli identificatori consistono di un o pi&ugrave; 
+    parole, legate insieme ma distinte mettendo la maiuscola per ogni inizio parola. 
+    Cos&igrave; una classe appare in questo modo:</FONT><BR>
+  </P></DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"><PRE><font color=#0000ff>class</font> FrenchVanilla : <font color=#0000ff>public</font> IceCream {</PRE></FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Un identificatore di un oggetto appare cos&igrave;:</FONT><BR>
+  </P></DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"><PRE>FrenchVanilla myIceCreamCone(3);</PRE></FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">e una funzione invece:</FONT><BR>
+  </P></DIV>
+<BLOCKQUOTE><FONT SIZE = "+1"><PRE><font color=#0000ff>void</font> eatIceCreamCone();</PRE></FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">(sia per una funzione membro che per una regolare funzione).</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">La sola eccezione riguarda le costanti compile-time 
+    (<B>const</B> o<B> #define</B>), per le quali tutte le lettere nell'identificatore 
+    sono maiuscole.</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Il pregio dello stile &egrave; che scrivere con le maiuscole 
+    ha un suo significato - si pu&ograve; vedere dalla prima lettera se si sta 
+    parlando di una classe o di un oggetto/metodo. Ci&ograve; &egrave; particolarmente 
+    utile nell'accesso a classi membro di tipo <B>static</B>.</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Verdana" SIZE=5><B>Ordine di inclusione dei file header</B></FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><font face="Georgia">Gli header file sono inclusi in ordine &quot;dal pi&ugrave; 
+    specifico al pi&ugrave; generale&quot;. Cio&egrave; ogni file header nella 
+    directory locale viene incluso per primo, poi ogni header del mio &quot;tool&quot; 
+    come <A NAME="Index2743"></A><B>require.h</B>, successivamente vengono inclusi 
+    i file header di librerie di terzi, poi gli header della libreria Standard 
+    C++ e finalmente i file header della libreria C.</font><BR>
+  </P>
+</DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">La giustificazione per questo viene da <A NAME="Index2744"></A>John 
+    Lakos nel libro <I>Large-Scale C++ Software Design</I> (Addison-Wesley, 1996):</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia"><I>Errori d'uso nascosti possono essere evitati assicurando 
+    che i file .h di una componente facciano l'analisi di se stessi - senza dichiarazioni 
+    o definizioni fornite dall'esterno.... Includendo i file .h nella prima linea 
+    del file .c ci si assicura che nessuno pezzo critico di informazione intrinseca 
+    all'interfaccia fisica del componente manchi dal file .h ( o, se c'&egrave;, 
+    ci&ograve; che si scoprir&agrave; su di esso non appena si prover&agrave; 
+    a compilare il file .c)</I></FONT><i>.</i></P>
+</DIV>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Se l'ordine di inclusione dei file header va &quot;dal 
+    pi&ugrave; specifico al pi&ugrave; generale&quot; allora &egrave; pi&ugrave; 
+    verosimile che il proprio header non si analizzi da se, lo si scoprir&agrave; 
+    ben presto prevenendo fastidi lungo la strada.</FONT></P>
+</DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Verdana" SIZE=5><B>Include guard nei file header</B></FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT"><i></i> 
+  <P><FONT FACE="Georgia">Gli<I> include guard</I> sono sempre usati all'interno 
+    dei file header per prevenire inclusioni multiple di un file header durante 
+    la compilazione di un singolo file <B>.cpp</B>. Le include guard sono implementate 
+    usando la direttiva del preprocessore <B>#define</B> controllando per vedere 
+    che un nome non sia gi&agrave; definito. Il nome usato per guard &egrave; 
+    basato sul nome del file header, con tutte le lettere del nome del file in 
+    maiuscolo e rimpiazzando il &quot;.&quot; con un trattino di sottolineatura. 
+    Per esempio:</FONT></P>
+</DIV>
+
+<BLOCKQUOTE><FONT SIZE = "+1">
+  <PRE><font color=#009900>// IncludeGuard.h</font>
+#ifndef INCLUDEGUARD_H
+#define INCLUDEGUARD_H
+<font color=#009900>// Il corpo dell'header qui...</font>
+#endif <font color=#009900>// INCLUDEGUARD_H</font></PRE>
+  </FONT></BLOCKQUOTE>
+
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">L'indentificatore sull'ultima linea &egrave; incluso 
+    per chiarezza. Sebbene alcuni preprocessori ignorino ogni carattere dopo un 
+    <A NAME="Index2747"></A><A NAME="Index2748"></A><B>#endif</B>, ci&ograve; 
+    non &egrave; un comportamento standard per questo l'identificatore &egrave; 
+    commentato.</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Verdana" SIZE=5><B>Uso dello spazio nei nomi </B></FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Georgia">Nei file header, ogni violazione della spaziatura nei 
+    nomi nel quale &egrave; inclusa l'header deve essere scrupolosamente evitata. 
+    Cio&egrave; se si cambia la spaziatura fuori da una funzione o classe, si 
+    avr&agrave; che quel cambiamento si ritrover&agrave; per ogni file che include 
+    il nostro header, portando ad una serie di problemi. Nessuno dichiarazione 
+    <B>using</B> di qualsiasi tipo &egrave; permessa fuori dalla definizione di 
+    funzione, e nessuna direttiva <B>using </B>&egrave; permessa nei file header.</FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><font face="Georgia">Nei file <B>cpp</B>, ogni direttiva <B>using</B> globale 
+    riguarder&agrave; solo quel file, per cui in questo libro esse sono generalmente 
+    usate per produrre codice pi&ugrave; leggibile, specialmente in piccoli programmi.</font><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT">
+  <P><FONT FACE="Verdana" SIZE=5><B>Uso di require(&#160;) e assure(&#160;)</B></FONT><BR>
+  </P></DIV>
+<DIV ALIGN="LEFT"> 
+  <P><FONT FACE="Georgia">Le funzioni <B>require(&#160;)</B> e <B>assure(&#160;)</B> 
+    definite in <B>require.h</B> sono usate in modo consistente in gran parte 
+    del libro, per cui potrebbero riportare errori. Se si ha familiarit&agrave; 
+    con i concetti di <i>precondizioni</i> e <i>postcondizioni</i> (introdotti 
+    da Bertrand Meyer) si riconoscer&agrave; che l'uso di <B>require(&#160;)</B> 
+    e <B>assure(&#160;)</B> pi&ugrave; o meno fornisce precondizioni (tipicamente) 
+    e postcondizioni (occasionalmente). Quindi all'inizio di una funzione, prima 
+    che parte del &quot;nucleo&quot; della funzione sia eseguito, vengono verificate 
+    le precondizioni per assicurarsi che ogni cosa sia giusta e che tutte le condizioni 
+    necessarie siano corrette. Poi il &quot;nucleo&quot; della funzione viene 
+    eseguito, e qualche volta vengono verificate alcune postcondizioni per essere 
+    sicuri che il nuovo stato dei dati rientri tra i parametri definiti. Si noter&agrave; 
+    che le verifiche delle postcondizioni sono are in questo libro, e <B> assure(&#160;)</B> 
+    &egrave; principalmente usata per sincerarsi che i file siano aperti con successo.</FONT><BR>
+  </P>
+</DIV>
+<FONT FACE = "Verdana"><H1 ALIGN="LEFT">
+</H1></FONT>
+
+<FONT FACE = "Verdana"><H1 ALIGN="LEFT">
+</H1></FONT>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<FONT FACE = "Verdana"><H1 ALIGN="LEFT">
+</H1></FONT>
+
+
+
+
+
+
+
+
+
+
+
+<HR><DIV ALIGN="LEFT"><P><A NAME="fn64" HREF="#fnB64">[64]</A><FONT FACE="Georgia" SIZE=2>
+Ibid.</FONT><BR></P></DIV>
+
+<DIV ALIGN="CENTER"> <FONT FACE="Verdana" size = "-1"> [ <a href="Chapter16.html">Capitolo 
+  Precedente</a> ] [ <a href="Contents.html">Indice Generale</a> ] [ <a href="DocIndex.html">Indice 
+  Analitico</a> ] [ <a href="AppendixB.html">Prossimo Capitolo</a> ] </FONT> <BR>
+  Ultimo Aggiornamento:24/12/2002
+<p></P></DIV>
+
+</BODY>
+
+</HTML>
