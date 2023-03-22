@@ -1,8 +1,1 @@
-# These are supported funding model platforms
-
-patreon: GabrielRovesti
-[
-  ![Donate with PayPal]
-  (https://raw.githubusercontent.com/gabrielrovesti/paypal-donate-button/master/paypal-donate-button.png)
-]
-(https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QT54MSJR6QU7Y)
+custom: ['paypal.me/rovestigabriel']
