@@ -1,1 +1,0 @@
-F (const &F f) : D(f), l(f.l), ref(f.ref), p(f.p) {}

@@ -1,0 +1,23 @@
+(Avendo tutti i file nella stessa cartella, esecuzione in Windows)
+g++ main.cpp Pol.cpp Quadrato.cpp Rettangolo.cpp Triangolo.cpp
+.\a
+
+Output:
+25
+20
+
+
+(Avendo i file su più cartelle)
+
+Esempio classe orario:
+
+-poligono
+	-rettangolo
+		-quadrato
+	-triangolo
+
+g++ -c poligono\poligono.cpp
+g++ -c rettangolo\rettangolo.cpp
+g++ -c quadrato\quadrato.cpp
+g++ -c poligono\main.cpp
+g++ poligono.o rettangolo.o quadrato.o main.o

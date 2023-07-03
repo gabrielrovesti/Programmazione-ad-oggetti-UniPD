@@ -1,0 +1,13 @@
+File su più cartelle:
+
+Esempio classe orario:
+
+-orario
+	-bolletta
+	-telefonata
+
+g++ -c bolletta\bolletta.cpp
+g++ -c orario\orario.cpp
+g++ -c telefonata\telefonata.cpp
+g++ -c orario\main.cpp
+g++ bolletta.o telefonata.o orario.o main.o
