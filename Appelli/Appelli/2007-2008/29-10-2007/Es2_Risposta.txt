@@ -1,4 +1,0 @@
-Il costruttore di default standard:
-
-Risposta corretta (4): è disponibile se non sono stati definiti esplicitamente altri costruttori.
-
